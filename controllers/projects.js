@@ -1007,7 +1007,7 @@ exports.getJobCosts = (req, res, next) => {
                     where: { projectId: projId }
                 })
                 .then(jobCosts => {
-                    const allfunds = jobCosts;
+                    const allCosts = jobCosts;
                     let tots = 0;
                     for (a of allCosts) {
                         tots += a.costAmt;
@@ -1027,11 +1027,11 @@ exports.getJobCosts = (req, res, next) => {
                                 path: '/jobCosts',
                                 project: project,
                                 projId: projId,
+                                trade: trades,
                                 userName: userName,
                                 userId: userId,
                                 jC: jobCosts,
-                                totals: tots,
-                                trade: trades
+                                totals: tots
                             });
                         })
                 })

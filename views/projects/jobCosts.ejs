@@ -9,7 +9,7 @@
                 <%- include('../includes/navigation.ejs') %>
                     <main>
                         <article class="notes">
-                            <form class="form-inline" action="/jobCosts" method="POST">
+                            <form class="form" action="/jobCosts" method="POST">
                                 <div class="row">
 
                                     <div class="col-sm">
@@ -25,11 +25,12 @@
                                         <input type="text" name="enteredBy" id="enteredBy" value="<%= userName %>">
                                         <input type="hidden" name="enteredID" value="<%= userId %>">
                                     </div>
-                                    <div class="col-sm" style="width: 25%">
-                                        <label for="tradeId">Trade: </label>
-                                        <select class="select" name="tradeId" id="tradeId">
+                                    <div class="col-sm" style="width: 200px">
+                                        <label for="tradeId"><strong>Trade: </strong></label>
+                                        <select style="width: 200px" class="select" name="tradeId" id="tradeId">
                                     <% for (let trades of trade) { %>
-                                    <option value="<%= trades.id %>"><%= trades.name %></option>
+                                    <option value="<%= trades.id %>">
+                                    <%= trades.trade %></option>
                                     <% } %>
                                 </select>
                                     </div>

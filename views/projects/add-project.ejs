@@ -22,7 +22,8 @@
                                         <label for="statusId">Change to: </label>
                                         <select class="select" name="statusId" id="statusId">
                                     <% for (let stat of status) { %>
-                                    <option value="<%= stat.id %>"><%= stat.status %></option>
+                                    <option value="<%= stat.id %>">
+                                    <%= stat.status %></option>
                                     <% } %>
                                 </select>
                                     </div>
