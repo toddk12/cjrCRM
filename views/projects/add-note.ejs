@@ -1,0 +1,71 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+            <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                <%- include('../includes/navigation.ejs') %>
+                    <main>
+                        <form class="form-inline" action="/add-note" method="POST">
+                            <div class="form-row">
+
+                                <div class="form-control mb-3 mr-sm-2">
+                                    <label for="projectId"><strong>Project Id: </strong></label>
+                                    <input type="text" name="projectId" id="projectId" value="<%= projId %>">
+                                </div>
+                                <div class="form-control mb-3 mr-sm-2">
+                                    <label for="entryDate"><strong>Entered On: </strong></label>
+                                    <input type="text" name="entryDate" id="entryDate" value="<%= new Date() %>">
+                                </div>
+                                <div class="form-control mb-3 mr-sm-2">
+                                    <label for="enteredBy"><strong>Entered By: </strong></label>
+                                    <input type="text" name="enteredBy" id="enteredBy" value="<%= userName %>">
+                                    <input type="hidden" name="enteredID" value="<%= userId %>">
+                                </div>
+                                <div class="form-controlz mb-3 mr-sm-2">
+                                    <label for="note"><strong>Note: </strong></label>
+                                    <textarea cols="95" rows="6" type="text" name="note" id="note" value="<%= note.note %>"></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <br>
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="btn-sm" type="submit">Add Note</button>
+
+                                <a class="btn-sm" href="/project/<%= project.id %>">Back to Project</a>
+                            </div>
+                        </form><br>
+                        <br>
+                        <br><br>
+                        <br><br>
+                        <br>
+                        <br>
+                        <article class="notes">
+                            <div class="d-flex w-100 justify-content-between">
+
+                                <div class="form-row">
+                                    <ul>
+                                        <% for (let notes of note) { %>
+                                            <li>
+                                                <%=notes.enteredBy %>
+                                                    <em><%=notes.entryDate.substring(5, 7) %>/
+                                                    <%=notes.entryDate.substring(8, 10) %>/
+                                                        <%=notes.entryDate.substring(0,4) %>: </em>
+                                                    <%=notes.note %>
+                                            </li>
+                                            <br>
+                                            <% } %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+
+
+                    </main>
+
+                    <%- include('../includes/footer.ejs') %>
+                        <script src="/js/status.js"></script>

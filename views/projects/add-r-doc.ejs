@@ -1,0 +1,41 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <div class="register">
+                    <h1 class="section-title">Documents List</h1>
+                    <br>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">ST - Contingency Agreement</h5><br>
+                                <form action="/add-r-doc" method="POST">
+                                    <br>
+                                    <p>Project #:
+                                        <%= proj %>
+                                    </p>
+                                    <br>
+                                    <div class="form-control">
+
+
+                                        <input type="file" name="docFile" id="docFile"></input>
+                                    </div>
+                                </form>
+                                <br>
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="adddoc" type="submit">Add Document</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

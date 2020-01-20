@@ -1,0 +1,58 @@
+<%- include('includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+
+    <body>
+        <%- include('includes/navigation.ejs') %>
+            <main>
+                <% if (projs.length >0) { %>
+                    <div class="container">
+                        <h1>Project List</h1>
+                        <br>
+                        <% for (let project of projs) { %>
+                            <a href="/project/<%= project.id %>" class="list-group-item list-group-item-action active" style="background-color: darkgreen" style="border-color: darkgreen">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">
+                                        <% if (!project.owner2Fn) { %>
+                                            <%= project.owner1Fn %>
+                                                <%= project.owner1Ln %>
+                                                    <% } else { %>
+                                                        <% if (project.owner1Ln === project.owner2Ln) { %>
+                                                            <%= project.owner1Fn %><span> & </span>
+                                                                <%= project.owner2Fn %><span> </span>
+                                                                    <%= project.owner1Ln %>
+                                                                        <% } else { %>
+                                                                            <%= project.owner1Fn %>
+                                                                                <%= project.owner1Ln %><span> & </span>
+                                                                                    <%= project.owner2Fn %>
+                                                                                        <%= project.owner2Ln %>
+                                                                                            <% } %>
+                                                                                                <% } %>
+                                    </h5>
+                                    <small>Job: <%= project.id %> - - Project: <%= project.projectNo %></small>
+                                </div>
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        <%= project.address %>,
+                                            <%= project.city %>,
+                                                <%= project.state %>
+                                                    <%= project.zip %>
+                                    </h6>
+                                    <small>Insurance Company: <%= project.insurance.coName %></small>
+                                </div>
+                                <small>Sales Rep: <%= project.sale.name %> </small><span> - - </span><small>Project Manager: <%= project.supervisor.name %></small>
+                            </a>
+                            <br>
+                            <% } %>
+                    </div>
+                    <% } else { %>
+                        <div class="container">
+                            <h1>Project List</h1>
+                            <br>
+                            <p>There are no Projects on the List at this Time!</p>
+                        </div>
+                        <% } %>
+            </main>
+
+            <%- include('includes/footer.ejs') %>

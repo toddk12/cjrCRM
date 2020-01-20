@@ -1,0 +1,468 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+            <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                <%- include('../includes/navigation.ejs') %>
+                    <main>
+                        <!-- Status Section -->
+                        <article class="changeStatus">
+                            <input type="hidden" value="<%= project.id %>" name="projectId">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <h6> Project Status: </h6>
+                            <% if (project.statusId === 1) { %>
+                                <button class="btn-sm" type="button" disabled>Entry</a>
+            <% } else { %>
+                <button class="btnsm1" type="button" onclick="chgStat1(this)">Entry</button>
+                                <% } %>
+                                    <% if (project.statusId === 2) { %>
+                                        <button class="btn-sm" type="button" disabled>Estimating</a>
+            <% } else { %>
+                <button class="btnsm1" type="button" onclick="chgStat2(this)">Estimating</button>
+                                        <% } %>
+                                            <% if (project.statusId === 3) { %>
+                                                <button class="btn-sm" type="button" disabled>Production</a>
+            <% } else { %>
+                <button class="btnsm1" type="button" onclick="chgStat3(this)">Production</button>
+                                                <% } %>
+                                                    <% if (project.statusId === 4) { %>
+                                                        <button class="btn-sm" type="button" disabled>Awaiting Inspection</a>
+            <% } else { %>
+                <button class="btnsm1" type="button" onclick="chgStat4(this)">Awaiting Inspection</button>
+                                                        <% } %>
+                                                            <% if (project.statusId === 5) { %>
+                                                                <button class="btn-sm" type="button" disabled>Close-Out</a>
+            <% } else { %>
+                <button class="btnsm1" type="button" onclick="chgStat5(this)">Close-Out</a>
+            <% } %>
+            <% if (project.statusId === 6) { %>
+                <button class="btn-sm" type="button" disabled>Completed</a>
+            <% } else { %>
+                <button class="btnsm1" type="button" onclick="chgStat6(this)">Completed</button>
+                                                                <% } %>
+                                                                    <% if (project.statusId === 7) { %>
+                                                                        <button class="btn-sm" type="button" disabled>Collections</a>
+            <% } else { %>
+                <button class="btnsm1" type="button" onclick="chgStat7(this)">Collections</button>
+                                                                        <% } %>
+                                                                            <% if (project.statusId === 8) { %>
+                                                                                <button class="btn-sm" type="button" disabled>Canceled</a>
+            <% } else { %>
+                <button class="btnsm1" type="button" onclick="chgStat8(this)">Canceled</button>
+                                                                                <% } %>
+                                                                                    <% if (project.statusId === 9) { %>
+                                                                                        <button class="btn-sm" type="button" disabled>Denied</a>
+            <% } else { %>
+                <button class="btnsm1" type="button" onclick="chgStat9(this)">Denied</button>
+                                                                                        <% } %>
+                                                                                            <% if (project.statusId === 10) { %>
+                                                                                                <button class="btn-sm" type="button" disabled>On Hold</a>
+            <% } else { %>
+                <button class="btnsm1" type="button" onclick="chgStat10(this)">On Hold</button>
+                                                                                                <% } %>
+                        </article><br>
+                        <!-- Owner Information Section -->
+                        <article class="ownerinfo">
+                            <% if (!project.commercial) { %>
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">
+                                        <strong> <% if (!project.owner2Fn) { %>
+                        <%= project.owner1Fn %>
+                        <%= project.owner1Ln %>
+                        <% } else { %>
+                        <% if (project.owner1Ln === project.owner2Ln) { %>
+                        <%= project.owner1Fn %><span> & </span>
+                        <%= project.owner2Fn %><span> </span>
+                        <%= project.owner1Ln %>
+                        <% } else { %>
+                        <%= project.owner1Fn %>
+                        <%= project.owner1Ln %><span> & </span>
+                        <%= project.owner2Fn %>
+                        <%= project.owner2Ln %>
+                        <% } %>
+                        <% } %></strong>
+                                    </h5>
+                                    <small></small>
+                                </div>
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        <strong> <%= project.address %>,
+                        <%= project.city %>,
+                        <%= project.state %>
+                        <%= project.zip %></strong>
+                                    </h6>
+                                </div>
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        Home Phone: (
+                                        <strong><%= project.hPhone.substring(0,3) %> )
+                        <%= project.hPhone.substring(3, 6) %>-
+                        <%= project.hPhone.substring(6, 10) %></strong>
+                                        <br> Cell Phone: (
+                                        <strong><%= project.cPhone.substring(0,3) %> )
+                        <%= project.cPhone.substring(3, 6) %>-
+                        <%= project.cPhone.substring(6, 10) %></strong><br> Other Phone: (
+                                        <strong><%= project.oPhone.substring(0,3) %> )
+                        <%= project.oPhone.substring(3, 6) %>-
+                        <%= project.oPhone.substring(6, 10) %></strong><br> Email:
+                                        <strong><%= project.email %></strong><br><br>
+                                        <a href="/ownerInfo/<%= project.id %>" class="btn-sm">Edit Owner Information</a>
+                                    </h6>
+                                </div>
+                                <% } else { %>
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <div class="col1">
+                                            <h6 class="mb-1">
+                                                <strong><h5><%= project.bName %></strong></h5>
+                                                <strong> <%= project.bAddress %>,
+                                        <%= project.bCity %>,
+                                        <%= project.bState %>
+                                        <%= project.bZip %></strong></h6>
+                                            <br>
+                                            <strong><h5>Property Owner</h5></strong> Company Name:<strong> <%= project.oCoName %></strong>
+                                            <br> Contact Name:<strong><%= project.oContact %></strong>
+                                            <br> Address:
+                                            <strong> <%= project.oAddress %>,
+                                    <%= project.oCity %>,
+                                    <%= project.oState %>
+                                    <%= project.oZip %></strong>
+                                            <br> Phone 1:<strong>
+                                        <% if (!project.oPhon1) { %>
+                                        No Number Entered </strong>
+                                            <% } else { %>(
+                                                <%= project.oPhon1.substring(0,3) %> )
+                                                    <%= project.oPhon1.substring(3, 6) %>-
+                                                        <%= project.oPhon1.substring(6, 10) %>
+                                                            </Strong>
+                                                            <% } %>
+                                                                <br> Phone 2:
+                                                                <strong><% if (!project.oPhone2) { %>
+                        No Number Entered</strong>
+                                                                <% } else { %>(
+                                                                    <%= project.oPhone2.substring(0,3) %> )
+                                                                        <%= project.oPhone2.substring(3, 6) %>-
+                                                                            <%= project.oPhone2.substring(6, 10) %>
+                                                                                </strong>
+                                                                                <% } %>
+                                                                                    <br> Email:
+                                                                                    <strong><%= project.oEmail %></strong><br>
+                                        </div>
+                                        <div class="col2">
+                                            <strong>
+                        <h5>Property Management Co.</h5>
+                    </strong>
+                                            <h6 class="mb-1">
+                                            </h6><br> Company Name:<strong> <%= project.pmCoName %></strong><br> Contact Name:<strong>
+                        <%= project.pmContact %></strong><br> Address:
+                                            <strong> <%= project.pmAddress %>,
+                        <%= project.pmCity %>,
+                        <%= project.pmState %>
+                        <%= project.pmZip %></strong><br> Phone 1:
+                                            <strong><% if (!project.pmPhon1) { %>
+                        No Number Entered </strong>
+                                            <% } else { %>(
+                                                <%= project.pmPhon1.substring(0,3) %> )
+                                                    <%= project.pmPhon1.substring(3, 6) %>-
+                                                        <%= project.pmPhon1.substring(6, 10) %>
+                                                            </strong>
+                                                            <% } %>
+                                                                <br> Phone 2:
+                                                                <strong><% if (!project.pmPhone2) { %>
+                        No Number Entered </strong>
+                                                                <% } else { %>(
+                                                                    <%= project.pmPhone2.substring(0,3) %> )
+                                                                        <%= project.pmPhone2.substring(3, 6) %>-
+                                                                            <%= project.pmPhone2.substring(6, 10) %>
+                                                                                </strong>
+                                                                                <% } %><br> Email:
+                                                                                    <strong><%= project.pmEmail %></strong>
+                                                                                    <br>
+                                                                                    <br>
+                                                                                    <a href="/ownerInfoC/<%= project.id %>" class="btn-sm">Edit Owner Information</a>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                        <br>
+                        </article>
+                        <!-- General Information Section -->
+                        <article class="generalinfo">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <h6>General Information</h6>
+                                </div>
+                                <div class="col-sm">
+                                    <h6>Job:
+                                        <strong><%= project.id %></strong> - Project:
+                                        <strong><%= project.projectNo %></strong>
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    Sales Rep: <strong><%= project.sale.name %></strong>
+                                </div>
+                                <div class="col-sm">
+                                    Project Manager: <strong><%= project.supervisor.name %></strong>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <small>Date Entered: </small>
+                                    <small><strong><%= project.entDate.substring(5, 7) %>/<%= project.entDate.substring(8, 10) %>/<%= project.entDate.substring(0,4) %></strong></small>
+
+                                </div>
+                                <div class="col-sm">
+                                    <% if (!project.compDate) { %>
+                                        <small>Date Completed:<strong> N/A</strong></small>
+                                        <% } else { %>
+                                            <small>Date Completed:<strong>
+                                <%= project.compDate.substring(5, 7) %>/<%= project.compDate.substring(8, 10) %>/<%= project.compDate.substring(0,4) %></strong></small>
+                                            <% } %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <% if (!project.estDate) { %>
+                                        <small>Date to Estimating: <strong>N/A</strong></small>
+                                        <% } else { %>
+                                            <small>Date to Estimating:
+                            <strong><%= project.estDate.substring(5, 7) %>/<%= project.estDate.substring(8, 10) %>/<%= project.estDate.substring(0,4) %></strong></small>
+                                            <% } %>
+                                </div>
+                                <div class="col-sm">
+                                    <% if (!project.collectDate) { %>
+                                        <small>Date to Collections:<strong> N/A</strong></small>
+                                        <% } else { %>
+                                            <small>Date to Collection:<strong>
+                                <%= project.collectDate.substring(5, 7) %>/<%= project.collectDate.substring(8, 10) %>/<%= project.collectDate.substring(0,4) %></strong></small>
+                                            <% } %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <% if (!project.prodDate) { %>
+                                        <small>Date to Production:<strong> N/A</strong></small>
+                                        <% } else { %>
+                                            <small>Date to Production:<strong>
+                                <%= project.prodDate.substring(5, 7) %>/<%= project.prodDate.substring(8, 10) %>/<%= project.prodDate.substring(0,4) %></strong></small>
+                                            <% } %>
+                                </div>
+                                <div class="col-sm">
+                                    <% if (!project.cancelDate) { %>
+                                        <small>Date Canceled:<strong> N/A</strong></small>
+                                        <% } else { %>
+                                            <small>Date Canceled:<strong>
+                                <%= project.cancelDate.substring(5, 7) %>/<%= project.cancelDate.substring(8, 10) %>/<%= project.cancelDate.substring(0,4) %></strong></small>
+                                            <% } %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <% if (!project.wfiDate) { %>
+                                        <small>Date to Awaiting:<strong> N/A</strong></small>
+                                        <% } else { %>
+                                            <small>Date to Awaiting:<strong>
+                                <%= project.aiDate.substring(5, 7) %>/<%= project.aiDate.substring(8, 10) %>/<%= project.aiDate.substring(0,4) %></strong></small>
+                                            <% } %>
+                                </div>
+                                <div class="col-sm">
+                                    <% if (!project.cancelDate) { %>
+                                        <small>Date Denied:<strong> N/A</strong></small>
+                                        <% } else { %>
+                                            <small>Date Denied:<strong>
+                                <%= project.denyDate.substring(5, 7) %>/<%= project.denyDate.substring(8, 10) %>/<%= project.denyDate.substring(0,4) %></strong></small>
+                                            <% } %>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <% if (!project.closeDate) { %>
+                                        <small>Date to Close Out:<strong> N/A</strong></small>
+                                        <% } else { %>
+                                            <small>Date to Close Out:<strong>
+                                <%= project.closeDate.substring(5, 7) %>/<%= project.closeDate.substring(8, 10) %>/<%= project.closeDate.substring(0,4) %></strong></small>
+                                            <% } %>
+                                </div>
+                                <div class="col-sm">
+                                    <% if (!project.holdDate) { %>
+                                        <small>Date put on Hold:<strong> N/A</strong></small>
+                                        <% } else { %>
+                                            <small>Date put on Hold:
+                            <strong><%= project.holdDate.substring(5, 7) %>/<%= project.holdDate.substring(8, 10) %>/<%= project.holdDate.substring(0,4) %></strong></small>
+                                            <% } %>
+                                </div>
+                            </div>
+                            <a href="/generalInfo/<%= project.id %>" class="btn-sm">Edit General Information</a>
+                            <a href="/add-r-doc/<%= project.id %>" class="btn-sm">Add Documents</a>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                        </article>
+                        <!-- Insurance Information Section -->
+                        <article class="insuranceinfo">
+                            <h5>Insurance Company: <strong><%= project.insurance.coName %></strong></h5>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm">
+                                    Policy #: <strong><%= project.policyNo %></strong>
+                                </div>
+
+                                <div class="col-sm">
+                                    Claim #: <strong><%= project.claimNo %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    Date of Loss: <strong><%= project.dateLoss %></strong>
+                                </div>
+                                <div class="col-sm">Type of Loss: <strong><%= project.typeLoss %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    Origonal Scope Date:
+                                    <strong><%= project.oScopeDate.substring(5, 7) %>/<%= project.oScopeDate.substring(8, 10) %>/<%= project.oScopeDate.substring(0,4) %></strong>
+                                </div>
+                                <div class="col-sm">Origonal Scope RCV:
+                                    <strong><%= money.format(project.oScopeRCV) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    Final Scope Date:
+                                    <% if (!project.fScopeDate) { %>
+                                        <strong>Not Recieved</strong></div>
+                                <% } else { %>
+                                    <strong><%= project.fScopeDate.substring(5, 7) %>/<%= project.fScopeDate.substring(8, 10) %>/<%= project.fScopeDate.substring(0,4) %></strong>
+                            </div>
+                            <div class="col-sm">
+                                Final Scope RCV:
+                                <strong><%= money.format(project.fScopeRCV) %></strong>
+                            </div>
+                            <% } %>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        Adjuster's Name: <strong><%= project.adjName %></strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        Adjuster's Phone: <strong>( <%= project.adjPhone.substring(0,3) %>
+                        )<%= project.adjPhone.substring(3, 6) %>-<%= project.adjPhone.substring(6, 10) %></strong>
+                                    </div>
+                                </div>
+                                <br>
+                                <a href="/insuranceInfo/<%= project.id %>" class="btn-sm">Edit Insurance Information</a>
+                        </article>
+                        <!-- Finaincial Information Section -->
+                        <article class="financialinfo">
+                            <h5><strong>Financial Information</strong></h5>
+                            <div class="row">
+                                <div class="col-sm text-center">
+                                    <h6><strong>Total Project</strong></h6>
+                                </div>
+                                <div class="col-sm text-center">
+                                    <h6><strong>Projected Profit</strong></h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Original Scope RCV: <strong><%= money.format(project.oScopeRCV) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    <a href="/fundsReceived/<% project.id %>" class="btn-sm2">Funds Received: </a>
+                                    <strong><%= money.format(project.totalFundsRcvd) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Final Scope RCV: <strong><%= money.format(project.fScopeRCV) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    <a href="/jobCosts/<%= project.id %>" class="btn-sm2">Job Costs:   </a>
+                                    <strong><%= money.format(project.totalJobCosts) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Gross Supplement: <strong><%= money.format((project.fScopeRCV - project.oScopeRCV)) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    <a href="/commissions/<%= project.id %>" class="btn-sm2">Total Commissions:   </a>
+                                    <strong><%= money.format(project.totalRepPay) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <a href="/additions/<%= project.id %>" class="btn-sm2">Additions: </a>
+                                    <strong><%= money.format(project.rcvChange) %></strong>
+
+                                </div>
+                                <div class="col-sm text-right">
+                                    Gross Profit $: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <a href="/exclusions/<%= project.id %>" class="btn-sm2">Exclusions: </a>
+                                    <strong><%= money.format(project.totalExclusions) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    Gross Profit %: <strong><%= percent.format(project.amtOwnerOwes) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <a href="/ownerOOP/<%= project.id %>" class="btn-sm2">Owner Out of Pocket: </a>
+                                    <strong><%= money.format(project.totalExclusions) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    Owner Owes: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Total Project: <strong><%= money.format(project.totalExclusions) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    Project Profit $: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                </div>
+                            </div>
+                            <br>
+                            <a href="/financialinfo/<%= project.id %>" class="btn-sm">Edit Financial Information</a>
+                        </article>
+                        <article class="worktobedone">
+                            <h5 class="card-title">Work to be Done</h5>
+                            <p>A Breakout of work to be done by trade with budget information for each trade. To view and/or edit, click button below</p>
+                            <a href="/workinfo/<%= project.id %>" class="btn-sm">View/Edit Work to be Done</a>
+                        </article>
+                        <article class="notes">
+                            <h5><strong>Project Notes</strong></h5>
+                            <a href="/add-note/<%= project.id %>" class="btn-sm">Add Note</a>
+                            <br>
+                            <!-- <div class="d-flex w-100 justify-content-between"> -->
+                            <br>
+                            <div class="form-row">
+                                <ul>
+                                    <% for (let notes of note) { %>
+                                        <li>
+                                            <%=notes.enteredBy %>
+                                                <em><%=notes.entryDate.substring(5, 7) %>/
+                                            <%=notes.entryDate.substring(8, 10) %>/
+                                                <%=notes.entryDate.substring(0,4) %>: </em>
+                                                <%=notes.note %>
+                                        </li>
+                                        <br>
+                                        <% } %>
+                                </ul>
+                            </div>
+                            <!-- </div> -->
+                        </article>
+                    </main>
+
+                    <%- include('../includes/footer.ejs') %>
+                        <script src="/js/status.js"></script>

@@ -1,0 +1,93 @@
+.ownerinfo {
+    margin: auto;
+}
+
+.insuranceinfo {
+    width: 50%;
+    margin: auto;
+}
+
+.form-control {
+    margin-top: 5px;
+    margin-left: 5px;
+    background-color: lightcyan;
+    border: none;
+}
+
+.form-control input {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 200px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.form-row {
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.form-controla input {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.form-controlb input {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 50px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.form-controlc input {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 100px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.form-controld input {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 500px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.form-controle input {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 150px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.updatebtn {
+    position: relative;
+    bottom: 5px;
+    right: 5px;
+    margin: 0;
+    background-color: darkblue;
+    color: white;
+}
+
+.updatebtn:hover {
+    background-color: white;
+    color: darkblue;
+}
+
+.select {
+    width: 400px;
+    margin: 2px;
+}
+
+.addproject {
+    width: 90%;
+    margin: auto;
+}

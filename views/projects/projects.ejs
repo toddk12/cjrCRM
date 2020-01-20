@@ -1,0 +1,85 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <% if (projs.length < 0) { %>
+                    <br>
+                    <div class="register">
+                        <h1 class="section-title">
+                            <%= stat.status %> Project List</h1>
+                        <br>
+                        <h4 class="section-title">There are no Projects on the List at this Time!</h4>
+                    </div>
+                    <% } else {%>
+                        <div class="register">
+                            <h1 class="section-title">
+                                <%= stat.status %> Project List</h1>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <% for (let project of projs) { %>
+                                <article class="col-5 " style="margin-left: 100px;">
+                                    <% if (!project.commercial) { %>
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">
+                                                <% if (!project.owner2Fn) { %>
+                                                    <%= project.owner1Fn %>
+                                                        <%= project.owner1Ln %>
+                                                            <% } else { %>
+                                                                <% if (project.owner1Ln === project.owner2Ln) { %>
+                                                                    <%= project.owner1Fn %><span> & </span>
+                                                                        <%= project.owner2Fn %><span> </span>
+                                                                            <%= project.owner1Ln %>
+                                                                                <% } else { %>
+                                                                                    <%= project.owner1Fn %>
+                                                                                        <%= project.owner1Ln %><span> & </span>
+                                                                                            <%= project.owner2Fn %>
+                                                                                                <%= project.owner2Ln %>
+                                                                                                    <% } %>
+                                                                                                        <% } %>
+                                            </h5>
+                                            <small>Job: <%= project.id %> - - Project: <%= project.projectNo %></small>
+                                        </div>
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">
+                                                <%= project.address %>,
+                                                    <%= project.city %>,
+                                                        <%= project.state %>
+                                                            <%= project.zip %>
+                                            </h6>
+                                            <% } else { %>
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h5 class="mb-1">
+                                                        <%= project.bName %> -
+                                                            <%= project.oCoName %> -
+                                                                <%= project.oContact %>
+                                                    </h5>
+                                                    <small>Job: <%= project.id %> - - Project: <%= project.projectNo %></small>
+                                                </div>
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-1">
+                                                        <%= project.bAddress %>,
+                                                            <%= project.bCity %>,
+                                                                <%= project.bState %>
+                                                                    <%= project.bZip %>
+                                                    </h6>
+                                                    <% } %>
+                                                        <small>Insurance Company: <%= project.insurance.coName %></small>
+                                                </div>
+                                                <h6><small>Sales Rep: <%= project.sale.name %> </small><span> - - </span><small>Project Manager: <%= project.supervisor.name %></small></h6>
+                                                <a class="detailsbtn" href="/project/<%= project.id %>">Details</a>
+                                </article>
+                                <br>
+                                <% } %>
+                                    <% } %>
+
+                                        </div>
+
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

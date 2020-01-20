@@ -1,0 +1,100 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/info.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <div class="centered">
+                    <br>
+                    <h1>Residential Owner Information </h1>
+                    <br>
+                </div>
+                <article class="ownerinfo">
+                    <form class="form" action="/ownerInfo" method="POST">
+                        <input type="hidden" name="commercial" id="commercial" value="<%= project.commercial %>">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="projectId"><strong>Project ID: </strong></label>
+                                <input type="text" name="projectId" id="projectId" value="<%= project.id %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="owner1Fn"><strong>Owner 1: First Name</strong></label>
+                                <input style="width:50%" type="text" name="owner1Fn" id="owner1Fn" value="<%= project.owner1Fn %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="owner1Ln"><strong>Last Name</strong></label>
+                                <input style="width:50%" type="text" name="owner1Ln" id="owner1Ln" value="<%= project.owner1Ln %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="owner2Fn"><strong>Owner 2: First Name</strong></label>
+                                <input style="width:50%" type="text" name="owner2Fn" id="owner2Fn" value="<%= project.owner2Fn %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="owner2Ln"><strong>Last Name</strong></label>
+                                <input style="width:50%" type="text" name="owner2Ln" id="owner2Ln" value="<%= project.owner2Ln %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="address"><strong>Address</strong></label>
+                                <input style="width: 500px" type="text" name="address" id="address" value="<%= project.address %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="city"><strong>City</strong></label>
+                                <input type="text" name="city" id="city" value="<%= project.city %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="state"><strong>State</strong></label>
+                                <input type="text" name="state" id="state" value="<%= project.state %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="zip"><strong>Zip Code</strong></label>
+                                <input type="text" name="zip" id="zip" value="<%= project.zip %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="hPhone"><strong>Home Phone</strong></label>
+                                <input id="hPhone" type="text" name="hPhone" value="<% project.hPhone %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="cPhone"><strong>Cell Phone</strong></label>
+                                <input type="text" name="cPhone" id="cPhone" value="<%= project.cPhone %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="oPhone"><strong>Other Phone</strong></label>
+                                <input type="text" name="oPhone" id="oPhone" value="<%= project.oPhone %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="email"><strong>Email Address</strong></label>
+                                <input style="width:500px" type="text" name="email" id="email" value="<%= project.email %>">
+                            </div>
+                        </div>
+                        <div class="centered">
+                            <br>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="updatebtn" type="submit">Update Owner Information</button>
+                            <br>
+                            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
+                        </div>
+                    </form>
+                </article>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

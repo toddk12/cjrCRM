@@ -1,0 +1,38 @@
+.section-title {
+    text-align: center;
+}
+
+article {
+    display: inline-block;
+    width: 30%;
+    padding-top: 2px;
+    padding-bottom: 8px;
+    border: 2px solid darkblue;
+}
+
+.changeStatus {
+    display: inline-block;
+    width: 62%;
+    padding-top: 2px;
+    padding-bottom: 8px;
+    border: 2px solid darkblue;
+}
+
+.list-group-item {
+    background-color: lightcyan;
+    border: 2px solid darkblue;
+    color: darkblue;
+}
+
+.list-group-item:hover {
+    border: 2px solid red;
+    color: red;
+}
+
+.form-check {
+    margin-top: 10px;
+}
+
+.financialinfo {
+    width: 1000px;
+}

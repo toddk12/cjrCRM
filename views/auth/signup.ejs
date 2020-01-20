@@ -1,0 +1,53 @@
+<%- include('../includes/header.ejs') %>
+    </head>
+
+    <body>
+        <main>
+            <%- include('../includes/navigation.ejs') %>
+
+                <div class="register">
+                    <% if (errorMessage) { %>
+                        <div class="alert alert-danger">
+                            <%= errorMessage %>
+                        </div>
+                        <% } %>
+                            <h2>Register New Employee </h2>
+                            <form class="signup-form" action="/signup" method="POST" novalidate>
+                                <div class="form-group">
+                                    <label for="ename">Name</label>
+                                    <input type="text" class="form-control" id="ename" name="ename" placeholder="Enter Your Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="role">Roles</label>
+                                    <select class="custom-select" id="role" name="role">
+                  <option selected>Choose...</option>
+                  <option value="1">Management</option>
+                  <option value="2">Accounting</option>
+                  <option value="3">Estimating</option>
+                  <option value="4">Production</option>
+                  <option value="5">Marketing</option>
+                  <option value="6">Sales</option>
+                </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                                </div>
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                </div>
+        </main>
+        <%- include('../includes/footer.ejs') %>

@@ -1,0 +1,164 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/info.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <div class="centered">
+                    <br>
+                    <h1>Commercial Owner Information </h1>
+                    <br>
+                </div>
+                <article style="width: 75%" class="ownerinfo">
+                    <form class="form" action="/ownerInfoC" method="POST">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="commercial"><strong>Commercial Project?</strong></label>
+                                <input type="text" name="commercial" id="commercial" value="<%= project.commercial %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="projectId"><strong>Project ID: </strong></label>
+                                <input type="text" name="projectId" id="projectId" value="<%= project.id %>">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="bName"><strong>Building Name</strong></label>
+                                <input style="width:300px" type="text" name="bName" id="bName" value="<%= project.bName %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="bAddress"><strong>Address</strong></label>
+                                <input style="width:300px" type="text" name="bAddress" id="bAddress" value="<%= project.bAddress %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="bCity"><strong>City</strong></label>
+                                <input type="text" name="bCity" id="bCity" value="<%= project.bCity %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="bState"><strong>State</strong></label>
+                                <input type="text" name="bState" id="bState" value="<%= project.bState %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="bZip"><strong>Zip Code</strong></label>
+                                <input type="text" name="bZip" id="bZip" value="<%= project.bZip %>">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="oCoName"><strong>Owner Company</strong></label>
+                                <input style="width:300px" ype="text" name="oCoName" id="oCoName" value="<%= project.oCoName %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="oAddress"><strong>Address</strong></label>
+                                <input style="width:300px" type="text" name="oAddress" id="oAddress" value="<%= project.oAddress %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="oCity"><strong>City</strong></label>
+                                <input type="text" name="oCity" id="oCity" value="<%= project.oCity %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="oState"><strong>State</strong></label>
+                                <input type="text" name="oState" id="oState" value="<%= project.oState %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="oZip"><strong>Zip Code</strong></label>
+                                <input type="text" name="oZip" id="oZip" value="<%= project.oZip %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="oPhon1"><strong>Office Phone</strong></label>
+                                <input type="text" name="oPhon1" id="oPhon1" value="<%= project.oPhon1 %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="oPhone2"><strong>Other Phone</strong></label>
+                                <input type="text" name="oPhone2" id="oPhone2" value="<%= project.oPhone2 %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="oEmail"><strong>Email Address</strong></label>
+                                <input type="text" name="oEmail" id="oEmail" value="<%= project.oEmail %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="oContact"><strong>Owner Contact</strong></label>
+                                <input type="text" name="oContact" id="oContact" value="<%= project.oContact %>">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="pmCoName"><strong>Property Management Company</strong></label>
+                                <input style="width:300px" type="text" name="pmCoName" id="pmCoName" value="<%= project.pmCoName %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="pmAddress"><strong>Address</strong></label>
+                                <input style="width:300px" type="text" name="pmAddress" id="pmAddress" value="<%= project.pmAddress %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="pmCity"><strong>City</strong></label>
+                                <input type="text" name="pmCity" id="pmCity" value="<%= project.pmCity %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="pmState"><strong>State</strong></label>
+                                <input type="text" name="pmState" id="pmState" value="<%= project.pmState %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="pmZip"><strong>Zip Code</strong></label>
+                                <input type="text" name="pmZip" id="pmZip" value="<%= project.pmZip %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="pmPhon1"><strong>Office Phone</strong></label>
+                                <input type="text" name="pmPhon1" id="pmPhon1" value="<%= project.pmPhon1 %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="pmPhone2"><strong>Other Phone</strong></label>
+                                <input type="text" name="pmPhone2" id="pmPhone2" value="<%= project.pmPhone2 %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="pmEmail"><strong>Email Address</strong></label>
+                                <input type="text" name="pmEmail" id="pmEmail" value="<%= project.pmEmail %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div dlass="row">
+                            <div class="col-sm">
+                                <label for="pmContact"><strong>Property Management Company</strong></label>
+                                <input type="text" name="pmContact" id="pmContact" value="<%= project.pmContact %>">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="centered">
+                            <br>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="updatebtn" type="submit">Update Owner Information</button>
+                            <br>
+                            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
+                        </div>
+                    </form>
+                </article>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

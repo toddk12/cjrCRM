@@ -1,0 +1,94 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/info.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <div class="centered">
+                    <br>
+                    <h1>Residential Owner Information </h1>
+                    <br>
+                </div>
+                <article class="ownerinfo">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">
+                            <form class="form-inline" action="/ownerInfo" method="POST">
+                                <div class="form-row">
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="commercial"><strong>Commercial Project?</strong></label>
+                                        <input type="text" name="commercial" id="commercial" value="<%= project.commercial %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="projectId"><strong>Project ID: </strong></label>
+                                        <input type="text" name="projectId" id="projectId" value="<%= project.id %>">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="owner1Fn"><strong>Owner 1: First Name</strong></label>
+                                        <input type="text" name="owner1Fn" id="owner1Fn" value="<%= project.owner1Fn %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="owner1Ln"><strong>Last Name</strong></label>
+                                        <input type="text" name="owner1Ln" id="owner1Ln" value="<%= project.owner1Ln %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="owner2Fn"><strong>Owner 2: First Name</strong></label>
+                                        <input type="text" name="owner2Fn" id="owner2Fn" value="<%= project.owner2Fn %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="owner2Ln"><strong>Last Name</strong></label>
+                                        <input type="text" name="owner2Ln" id="owner2Ln" value="<%= project.owner2Ln %>">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-row">
+                                    <div class="form-controla form-control-sm">
+                                        <label for="address"><strong>Address</strong></label>
+                                        <input type="text" name="address" id="address" value="<%= project.address %>">
+                                    </div>
+                                    <div class="form-control form-control-sm">
+                                        <label for="city"><strong>City</strong></label>
+                                        <input type="text" name="city" id="city" value="<%= project.city %>">
+                                    </div>
+                                    <div class="form-controlb form-control-sm">
+                                        <label for="state"><strong>State</strong></label>
+                                        <input type="text" name="state" id="state" value="<%= project.state %>">
+                                    </div>
+                                    <div class="form-controlc form-control-sm">
+                                        <label for="zip"><strong>Zip Code</strong></label>
+                                        <input type="text" name="zip" id="zip" value="<%= project.zip %>">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-controld form-control-sm mb-3 mr-sm-2">
+                                        <label for="hPhone"><strong>Home Phone</strong></label>
+                                        <input type="text" name="hPhone" id="hPhone" value="<%= project.hPhone %>">
+                                    </div>
+                                    <div class="form-controld form-control-sm mb-3 mr-sm-2">
+                                        <label for="cPhone"><strong>Cell Phone</strong></label>
+                                        <input type="text" name="cPhone" id="cPhone" value="<%= project.cPhone %>">
+                                    </div>
+                                    <div class="form-controld form-control-sm mb-3 mr-sm-2">
+                                        <label for="oPhone"><strong>Other Phone</strong></label>
+                                        <input type="text" name="oPhone" id="oPhone" value="<%= project.oPhone %>">
+                                    </div>
+                                    <div class="form-controla form-control-sm mb-3 mr-sm-2">
+                                        <label for="email"><strong>Email Address</strong></label>
+                                        <input type="text" name="email" id="email" value="<%= project.email %>">
+                                    </div>
+                                </div>
+                                <div class="centered">
+                                    <br>
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button class="updatebtn" type="submit">Update Financial Information</button>
+                                </div>
+                            </form>
+                        </h6>
+                    </div>
+                </article>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

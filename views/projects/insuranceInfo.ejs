@@ -1,0 +1,106 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/info.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <div class="centered">
+                    <br>
+                    <h1>Insurance Information </h1>
+                    <br>
+                </div>
+                <article class="insuranceinfo">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">
+                            <form class="form" action="/insuranceInfo" method="POST">
+                                <div class="row">
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="insuranceId"><strong>Insurance Company: </strong></label>
+                                        <select class="select" name="insuranceId" id="insuranceId">
+                                        <% for (let insco of insure) { %>
+                                            <option value="<%= insco.id %><%= insco.coName %>"></option>
+                                        <% } %>
+                                     </select>
+                                    </div>
+                                </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="policyNo"><strong>Policy #:</strong></label>
+                            <input type="text" name="policyNo" id="policyNo" value="<%= project.policyNo %>">
+                        </div>
+                        <div class="col-sm">
+                            <label for="claimNo"><strong>Claim #:</strong></label>
+                            <input type="text" name="claimNo" id="claimNo" value="<%= project.claimNo %>">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row" style="width: 100%">
+                        <div class="col-sm">
+                            <label for="dateLoss"><strong>Date of Loss:</strong></label>
+                            <input style="width: 50%" type="date" name="dateLoss" id="dateLoss" value="<%= project.dateLoss %>">
+                        </div>
+                        <div class="col-sm">
+                            <label for="typeLoss"><strong>Type of Loss:</strong></label>
+                            <input style="width: 25%" type="text" name="typeLoss" id="typeLoss" value="<%= project.typeLoss %>">
+                        </div>
+                        <div class="col-sm">
+                            <label for="deductible"><strong>Deductible:</strong></label>
+                            <input style="width: 25%" id="deductible" type="text" name="deductible" value="<% project.deductible %>">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row" style="width: 100%">
+                        <div class="col-sm">
+                            <label for="oScopeDate"><strong>Origonal Scope Date:</strong></label>
+                            <input style="width: 50%" id="oScopeDate" type="date" name="oScopeDate" value="<%project.oScopeDate %>">
+                        </div>
+                        <div class="col-sm">
+                            <label for="oScopeRCV"><strong>Origonal Scope RCV:</strong></label>
+                            <input style="width: 50%" id="oScopeRCV" type="text" name="oScopeRCV" value="<%project.oScopeRCV %>">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="fScopeDate"><strong>Final Scope Date:</strong></label>
+                            <input style="width: 50%" id="fScopeDate" type="date" name="fScopeDate" value="<%project.fScopeDate %>">
+                        </div>
+                        <div class="col-sm">
+                            <label for="fScopeRCV"><strong>Final Scope RCV:</strong></label>
+                            <input style="width: 50%" id="fScopeRCV" type="text" name="fScopeRCV" value="<%project.fScopeRCV %>">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="adjName"><strong>Adjuster's Name:</strong></label>
+                            <input style="width: 150px" id="adjName" type="text" name="adjName" value="<%project.adjName %>">
+                        </div>
+                        <div class="col-sm">
+                            <label for="adjPhone"><strong>Adjuster's Phone:</strong></label>
+                            <input style="width: 50px" id="adjPhone1" type="text" name="adjPhone1" value="<%project.adjPhone.substring(0,3) %>">
+                            <input style="width: 50px" id="adjPhone2" type="text" name="adjPhone2" value="<%project.adjPhone.substring(3,6) %>">
+                            <input style="width: 100px" id="adjPhone3" type="text" name="adjPhone3" value="<%project.adjPhone.substring(6,10) %>">
+                        </div>
+                    </div>
+                    <div class="centered">
+                        <br>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button class="updatebtn" type="submit">Update Insurance Information</button>
+                        <br>
+                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
+                    </div>
+                    </form>
+                    </h6>
+                    </div>
+                </article>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

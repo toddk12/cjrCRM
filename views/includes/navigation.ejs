@@ -1,0 +1,62 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar">
+        <a class="navbar-brand" href="#">CJ Restoration Portal     </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/home">     Home <span class="sr-only">(current)</span></a>
+                </li>
+                <% if (isAuthenticated) { %>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Project</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/add-project">Add Residential Project</a>
+                            <a class="dropdown-item" href="/add-c-project">Add Commercial Project</a>
+                            <a class="dropdown-item" href="/add-insurance">Add Insurance Company</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project Lists</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/projects/1">Entry</a>
+                            <a class="dropdown-item" href="/projects/2">Estimating</a>
+                            <a class="dropdown-item" href="/projects/3">Production</a>
+                            <a class="dropdown-item" href="/projects/4">Waiting for Inspection</a>
+                            <a class="dropdown-item" href="/projects/5">Close Out</a>
+                            <a class="dropdown-item" href="/projects/6">Completed</a>
+                            <a class="dropdown-item" href="/projects/7">Collections</a>
+                            <a class="dropdown-item" href="/projects/8">Canceled</a>
+                            <a class="dropdown-item" href="/projects/9">Denied</a>
+                            <a class="dropdown-item" href="/projects/10">On Hold</a>
+                        </div>
+                    </li>
+                    <li>
+                        <% if (isAuthenticated) { %>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/signup">Register New User</a>
+                                </div>
+                            </li>
+                            <% } %>
+                    </li>
+            </ul>
+        </div>
+        <% } %>
+            <% if (!isAuthenticated) { %>
+                <div class="logform">
+                    <a class="nav-link" href="/login">Login</a>
+                </div>
+                <% } else { %>
+                    <form class="logform" action="/logout" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button class="logout" type='submit'>Logout</button>
+                    </form>
+                    <% } %>
+
+    </nav>
+</header>

@@ -1,0 +1,193 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+            <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                <%- include('../includes/navigation.ejs') %>
+                    <main>
+                        <article class="financialinfo text-center">
+                            <h5><strong>Financial Information</strong></h5>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm text-center">
+                                    <h6><strong>Total Project</strong></h6>
+                                </div>
+
+                                <div class="col-sm text-center">
+                                    <h6><strong>Projected Profit</strong></h6>
+                                </div>
+                            </div>
+                            <form action="/financialInfo" method="post">
+                                <div class="row">
+                                    <div class="col-sm text-right">
+                                        Original Scope RCV: <strong><%= money.format(project.oScopeRCV) %></strong>
+                                    </div>
+
+                                    <div class="col-sm text-right">
+                                        <a href="/fundsReceived/<%= project.id %>" class="btn-sm2">Funds Received:   </a><strong><%= money.format(project.totalFundsRcvd) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm text-right">
+                                        Final Scope RCV: <strong><%= money.format(project.fScopeRCV) %></strong>
+                                    </div>
+                                    <div class="col-sm text-right">
+                                        <a href="/jobCosts/<%= project.id %>" class="btn-sm2">Job Costs:   </a><strong><%= money.format(project.totalInvoices) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm text-right">
+                                        Gross Supplement: <strong><%= money.format((project.fScopeRCV - project.oScopeRCV)) %></strong>
+                                    </div>
+                                    <div class="col-sm text-right">
+                                        Commission: <strong><%= money.format(project.totalInvoices) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm text-right">
+                                        <a href="/additions/<%= project.id %>" class="btn-sm2">Additions: </a><strong><%= money.format(project.rcvChange) %></strong>
+
+                                    </div>
+                                    <div class="col-sm text-right">
+                                        Gross Profit $: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm text-right">
+                                        <a href="/exclusions/<%= project.id %>" class="btn-sm2">Exclusions: </a><strong><%= money.format(project.totalExclusions) %></strong>
+                                    </div>
+                                    <div class="col-sm text-right">
+                                        Gross Profit %: <strong><%= percent.format(project.amtOwnerOwes) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm text-right">
+                                        <a href="/ownerOOP/<%= project.id %>" class="btn-sm2">Owner Out of Pocket: </a><strong><%= money.format(project.totalExclusions) %></strong>
+                                    </div>
+                                    <div class="col-sm text-right">
+                                        Owner Owes: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm text-right">
+                                        Total Project: <strong><%= money.format(project.totalExclusions) %></strong>
+                                    </div>
+                                    <div class="col-sm text-right">
+                                        Commission Owed: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-sm text-right">
+                                        Net Supplement: <strong><%= money.format(project.totalExclusions) %></strong>
+                                    </div>
+                                    <div class="col-sm text-right">
+                                        Project Profit $: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm text-right">
+                                        Net Supplement %: <strong><%= percent.format(project.totalExclusions) %></strong>
+                                    </div>
+                                    <div class="col-sm text-right">
+                                        Projected Profit %: <strong><%= percent.format(project.amtOwnerOwes) %></strong>
+                                    </div>
+                                </div>
+                                <br>
+                                <a href="/financialinfo/<%= project.id %>" class="btn-sm">Edit Financial Information</a>
+                            </form>
+                        </article>
+                        <article class="financialinfo text-center">
+                            <h5><strong>Commission Information</strong></h5>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm text-center">
+                                    <h6><strong>% of Profit</strong></h6>
+                                </div>
+
+                                <div class="col-sm text-center">
+                                    <h6><strong>% of Funds Recieved</strong></h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Funds Recieved: <strong><%= money.format(project.totalFundsRcvd) %></strong>
+                                </div>
+
+                                <div class="col-sm text-right">
+                                    Funds Recieved: <strong><%= money.format(project.totalFundsRcvd) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Job Costs: <strong><%= money.format(project.totalInvoices) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    Overhead: <strong><%= money.format(project.overhead) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Overhead: <strong><%= money.format(project.overhead) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    Commissionable Funds: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Cap-out Profit: <strong><%= money.format(project.totalExclusions) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    Commission %: <strong><%= percent.format(project.amtOwnerOwes) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Commission %: <strong><%= percent.format(project.totalExclusions) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    Total Commission: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Total Commission: <strong><%= money.format(project.totalExclusions) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    Sales Rep Paid: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Sales Rep Paid: <strong><%= money.format(project.totalExclusions) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    Sales Rep Owed: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm text-right">
+                                    Sales Rep Owed: <strong><%= money.format(project.totalExclusions) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    Estimator Commission: <strong><%= money.format(project.totalExclusions) %></strong>
+                                </div>
+                                <div class="col-sm text-right">
+                                    Over-Ride Commission: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                </div>
+                            </div>
+                            <br>
+                            <a href="/financialinfo/<%= project.id %>" class="btn-sm">Edit Financial Information</a>
+                        </article>
+
+                    </main>
+
+                    <%- include('../includes/footer.ejs') %>

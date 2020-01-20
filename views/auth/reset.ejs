@@ -1,0 +1,29 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/main.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <div class="container">
+                    <% if (errorMessage) { %>
+                        <div class="alert alert-danger">
+                            <%= errorMessage %>
+                        </div>
+                        <% } %>
+                            <h3>Enter your email below to recieve an Email to rest your password</h3>
+                            <br>
+                            <form class="login-form" action="reset" method="POST">
+                                <div class="login-form-control">
+                                    <label for="email ">Email Address: </label>
+                                    <input type="email" name="email" id="email">
+                                </div>
+                                <br>
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="btn" type="submit">Reset Password</button>
+                            </form>
+                </div>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

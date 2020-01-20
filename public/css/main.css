@@ -1,0 +1,245 @@
+    @import url('https://fonts.googleapis.com/css?family=Hind+Vadodara:400,700');
+    * {
+        box-sizing: border-box;
+        background-color: lightcyan;
+    }
+    
+    body {
+        padding: 0;
+        margin: 0;
+        font-family: 'Hind Vadara', sans-serif;
+        background-color: lightcyan;
+    }
+    
+    main {
+        padding: 0;
+        margin: auto;
+    }
+    
+    .register {
+        width: 50%;
+        padding: 15px;
+        margin: auto;
+    }
+    
+    .container {
+        color: black;
+        margin: auto;
+    }
+    
+    .detailLabel {
+        color: black;
+    }
+    
+    .logout {
+        font-family: inherit;
+        background-color: lightcyan;
+        border: none;
+        color: darkblue;
+        margin: 8px;
+    }
+    
+    form {
+        display: inline;
+    }
+    
+    .centered {
+        text-align: center;
+    }
+    
+    h3 {
+        margin: 5px 0;
+    }
+    
+    .image {
+        height: 20rem;
+    }
+    
+    .image img {
+        height: 100%;
+    }
+    
+    article {
+        vertical-align: top;
+        background-color: lightcyan;
+        display: inline-block;
+        padding: 16px;
+        margin: 10px;
+        width: 100%;
+        border: 2px solid darkgreen;
+    }
+    
+    .ownerinfo {
+        width: 55%;
+    }
+    
+    .generalinfo {
+        width: 35%
+    }
+    
+    .col1 {
+        width: 45%;
+        float: left;
+    }
+    
+    .col2 {
+        width: 45%;
+        float: right;
+    }
+    
+    .colA {
+        width: 30%;
+        float: left;
+    }
+    
+    .colB {
+        width: 30%;
+        float: middle;
+    }
+    
+    .colC {
+        width: 30%;
+        float: right;
+    }
+    
+    .worktobedone {
+        width: 30%;
+    }
+    
+    .notes {
+        width: 90%;
+    }
+    
+    .navbar {
+        background-color: darkblue;
+        color: white;
+    }
+    
+    .navbar-brand {
+        background-color: darkblue;
+        color: white;
+    }
+    
+    .collapse {
+        background-color: darkblue;
+        color: white;
+    }
+    
+    .navbar-collapse {
+        background-color: darkblue;
+        color: white;
+    }
+    
+    .nav-item {
+        background-color: darkblue;
+        color: white;
+    }
+    
+    .nav-link {
+        background-color: darkblue;
+        color: white;
+    }
+    
+    .nav-item:hover,
+    .nav-link:hover {
+        background-color: darkblue;
+        color: white;
+    }
+    
+    .dropdown-menu,
+    .dropdown-item {
+        color: darkblue;
+    }
+    
+    .dropdown-menu:hover,
+    .dropdown-item:hover {
+        background-color: cyan;
+        color: darkblue;
+    }
+    
+    .logform {
+        background-color: darkblue;
+        color: white;
+    }
+    
+    li.logout {
+        background-color: darkblue;
+        color: white;
+    }
+    
+    .auth-inline {
+        background-color: darkblue;
+    }
+    
+    .logs {
+        font-family: inherit;
+        background-color: darkblue;
+        color: white;
+    }
+    
+    .detailsbtn {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        margin: 0;
+        background-color: darkblue;
+        color: white;
+    }
+    
+    .detailsbtn:hover {
+        background-color: white;
+        color: darkblue;
+    }
+    
+    .btn-sm {
+        background-color: darkblue;
+        color: white;
+        margin-top: 4px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    
+    .btn-sm:hover {
+        background-color: white;
+        color: darkblue;
+        margin-top: 4px;
+    }
+    
+    .grid {
+        display: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: stretch;
+    }
+    
+    .btnsm1 {
+        background-color: lightblue;
+        color: grey;
+        margin-top: 4px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    
+    .btnsm1:hover {
+        background-color: grey;
+        color: lightblue;
+        margin-top: 4px;
+    }
+    
+    .btn-sm2 {
+        color: black;
+        margin-top: 4px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    
+    .form-controlz {
+        width: 700px;
+        height: 50px;
+    }
+    
+    .form-control.mb-3.mr-sm-2 {
+        background-color: lightcyan;
+        margin: 0;
+        border: none;
+    }

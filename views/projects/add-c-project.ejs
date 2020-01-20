@@ -1,0 +1,214 @@
+<%- include('../includes/headerform.ejs') %>
+    <link rel="stylesheet" href="/css/info.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <br>
+                <div class="centered">
+                    <h1> Add Residential Project</h1>
+                </div>
+                <article class="addproject">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">
+                            <form class="form-inline" action="/add-c-project" method="POST">
+                                <div class="form-row">
+
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="projectNo"><strong>Project #: </strong></label>
+                                        <input type="text" name="projectNo" id="projectNo" value="<%= project.projectNo %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="statusId">Change to: </label>
+                                        <select class="select" name="statusId" id="statusId">
+                                                <% for (let stat of status) { %>
+                                                <option value="<%= stat.id %>"><%= stat.status %></option>
+                                                <% } %>
+                                            </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-row">
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="bName"><strong>Building Name</strong></label>
+                                        <input type="text" name="bName" id="bName" value="<%= project.bName %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="bAddress"><strong>Building Address</strong></label>
+                                        <input type="text" name="bAddress" id="bAddress" value="<%= project.bAddress %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="bCity"><strong>City</strong></label>
+                                        <input type="text" name="bCity" id="bCity" value="<%= project.bCity %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="bState"><strong>State</strong></label>
+                                        <input type="text" name="bState" id="bState" value="<%= project.bState %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="bZip"><strong>Zip Code</strong></label>
+                                        <input type="text" name="bZip" id="bZip" value="<%= project.bZip %>">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-row">
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="oCoName"><strong>Owner Name</strong></label>
+                                        <input type="text" name="oCoName" id="oCoName" value="<%= project.oCoName %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="oContact"><strong>Owner Contact</strong></label>
+                                        <input type="text" name="oContact" id="oContact" value="<%= project.oContact %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="oAddress"><strong>Address</strong></label>
+                                        <input type="text" name="oAddress" id="oAddress" value="<%= project.oAddress %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="oCity"><strong>City</strong></label>
+                                        <input type="text" name="oCity" id="oCity" value="<%= project.oCity %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="oState"><strong>State</strong></label>
+                                        <input type="text" name="oState" id="oState" value="<%= project.oState %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="oZip"><strong>Zip Code</strong></label>
+                                        <input type="text" name="oZip" id="oZip" value="<%= project.oZip %>">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="oPhon1"><strong>Office Phone</strong></label>
+                                        <input type="text" name="oPhon1" id="oPhon1" value="<%= project.oPhon1 %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="oPhone2"><strong>Other Phone</strong></label>
+                                        <input type="text" name="oPhone2" id="oPhone2" value="<%= project.oPhone2 %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="oEmail"><strong>Email Address</strong></label>
+                                        <input type="email" name="oEmail" id="oEmail" value="<%= project.oEmail %>">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="pmCoName"><strong>Property Management Co.</strong></label>
+                                        <input type="text" name="pmCoName" id="pmCoName" value="<%= project.pmCoName %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="pmContact"><strong>Contact</strong></label>
+                                        <input type="text" name="pmContact" id="pmContact" value="<%= project.pmContact %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="pmAddress"><strong>Address</strong></label>
+                                        <input type="text" name="pmAddress" id="pmAddress" value="<%= project.pmAddress %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="pmCity"><strong>City</strong></label>
+                                        <input type="text" name="pmCity" id="pmCity" value="<%= project.pmCity %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="pmState"><strong>State</strong></label>
+                                        <input type="text" name="pmState" id="pmState" value="<%= project.pmState %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="pmZip"><strong>Zip Code</strong></label>
+                                        <input type="text" name="pmZip" id="pmZip" value="<%= project.pmZip %>">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="pmPhon1"><strong>Office Phone</strong></label>
+                                        <input type="text" name="pmPhon1" id="pmPhon1" value="<%= project.pmPhon1 %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="pmPhone2"><strong>Other Phone</strong></label>
+                                        <input type="text" name="pmPhone2" id="pmPhone2" value="<%= project.pmPhone2 %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="pmEmail"><strong>Email Address</strong></label>
+                                        <input type="email" name="pmEmail" id="pmEmail" value="<%= project.pmEmail %>">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-controla">
+                                        <label for="saleId">Sales Rep: </label>
+                                        <select class="select" name="saleId" id="saleId">
+                                                <% for (let sale of sal) { %>
+                                                <option value="<%= sale.id %>"><%= sale.name %></option>
+                                                <% } %>
+                                            </select>
+                                    </div>
+                                    <div class="form-controla">
+                                        <label for="supervisorId">Field Supervisor: </label>
+                                        <select class="select" name="supervisorId" id="supervisorId">
+                                                <% for (let sups of supers) { %>
+                                                <option value="<%= sups.id %>"><%= sups.name %></option>
+                                                <% } %>
+                                            </select>
+                                    </div>
+                                    <div class="form-controla">
+                                        <label for="insuranceId">Insurance Company: </label>
+                                        <select class="select" name="insuranceId" id="insuranceId">
+                                                <% for (let insco of ins) { %>
+                                                <option value="<%= insco.id %>"><%= insco.coName %></option>
+                                                <% } %>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="policyNo"><strong>Policy No: </strong></label>
+                                        <input type="text" name="policyNo" id="policyNo" value="<%= project.policyNo %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="claimNo"><strong>Claim No: </strong></label>
+                                        <input type="text" name="claimNo" id="claimNo" value="<%= project.claimNo %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="dateLoss"><strong>Date of Loss: </strong></label>
+                                        <input type="date" name="dateLoss" id="dateLoss" value="<%= project.dateLoss %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="typeLoss"><strong>Type of Loss: </strong></label>
+                                        <input type="text" name="typeLoss" id="typeLoss" value="<%= project.typeLoss %>">
+                                    </div>
+
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="deductible"><strong>Deductible: </strong></label>
+                                        <input type="text" name="deductible" id="deductible" value="<%= project.deductible %>">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="oScopeDate"><strong>Origonal Scope Date: </strong></label>
+                                        <input type="date" name="oScopeDate" id="oScopeDate" value="<%= project.oScopeDate %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="oScopeRCV"><strong>Origonal Scope RCV: </strong></label>
+                                        <input type="text" name="oScopeRCV" id="oScopeRCV" value="<%= project.oScopeRCV %>">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="adjName"><strong>Adjuster's Name: </strong></label>
+                                        <input type="text" name="adjName" id="adjName" value="<%= project.adjName %>">
+                                    </div>
+                                    <div class="form-control mb-3 mr-sm-2">
+                                        <label for="adjPhone"><strong>Adjuster's Phone: </strong></label>
+                                        <input type="text" name="adjPhone" id="adjPhone" value="<%= project.adjPhone %>">
+                                    </div>
+                                    <div class="centered">
+                                        <br>
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button class="updatebtn" type="submit">Add Project</button>
+                                    </div>
+                            </form>
+                        </h6>
+                        </div>
+                </article>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>
