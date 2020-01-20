@@ -18,7 +18,7 @@ const OwnerOop = sequelize.define('ownerOop', {
         type: Sequelize.DATEONLY,
         allowNull: false
     },
-    oopAmt: { type: Sequelize.DECIMAL(10, 2) },
+    oopAmt: { type: Sequelize.FLOAT(10, 2) },
     oopMemo: { type: Sequelize.STRING },
 
 });

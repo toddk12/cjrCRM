@@ -8,6 +8,9 @@
             <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
                 <%- include('../includes/navigation.ejs') %>
                     <main>
+                        <div class="centered">
+                            <h1><strong>Funds Received</strong></h1>
+                        </div>
                         <article class="notes">
                             <form class="form-inline" action="/fundsReceived" method="POST">
                                 <div class="row">

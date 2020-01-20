@@ -67,4 +67,8 @@ router.get('/jobCosts/:projectId', isAuth, projectsController.getJobCosts);
 
 router.post('/jobCosts', isAuth, projectsController.postJobCosts);
 
+router.get('/additions/:projectId', isAuth, projectsController.getAdditions);
+
+router.post('/additions', isAuth, projectsController.postAdditions);
+
 module.exports = router;

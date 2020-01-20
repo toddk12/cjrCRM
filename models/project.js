@@ -92,66 +92,66 @@ const Project = sequelize.define('project', {
     dateLoss: Sequelize.DATEONLY,
     typeLoss: Sequelize.STRING,
     deductible: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     oScopeDate: Sequelize.DATEONLY,
-    oScopeRCV: Sequelize.DECIMAL(10, 2),
-    oScopeACV: Sequelize.DECIMAL(10, 2),
+    oScopeRCV: Sequelize.FLOAT(10, 2),
+    oScopeACV: Sequelize.FLOAT(10, 2),
     fScopeDate: Sequelize.DATEONLY,
-    fScopeRCV: Sequelize.DECIMAL(10, 2),
-    fScopeACV: Sequelize.DECIMAL(10, 2),
+    fScopeRCV: Sequelize.FLOAT(10, 2),
+    fScopeACV: Sequelize.FLOAT(10, 2),
     adjName: Sequelize.STRING,
     adjPhone: Sequelize.STRING,
     ownerOOP: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     totalFundsRcvd: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     totalJobCosts: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     estComplete: Sequelize.BOOLEAN,
     totalRepPay: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     totalProject: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     amtOwedRep: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     amtOwnerOwes: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     capOutProfit: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
-    overhead: Sequelize.DECIMAL(5, 4),
-    repPercent: Sequelize.DECIMAL(5, 4),
+    overhead: Sequelize.FLOAT(5, 4),
+    repPercent: Sequelize.FLOAT(5, 4),
     grossProfit: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     totalExclusions: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     adjFScope: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     rcvChange: {
-        type: Sequelize.DECIMAL(10, 2),
+        type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
 

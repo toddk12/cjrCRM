@@ -15,7 +15,7 @@ const JobCosts = sequelize.define('jobCosts', {
         type: Sequelize.DATEONLY,
         allowNull: false
     },
-    costAmt: { type: Sequelize.DECIMAL(10, 2) },
+    costAmt: { type: Sequelize.FLOAT(10, 2) },
     costMemo: { type: Sequelize.STRING }
 
 });

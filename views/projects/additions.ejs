@@ -9,10 +9,10 @@
                 <%- include('../includes/navigation.ejs') %>
                     <main>
                         <div class="centered">
-                            <h1><strong>Job Costs</strong></h1>
+                            <h1><strong>Additions</strong></h1>
                         </div>
                         <article class="notes">
-                            <form class="form" action="/jobCosts" method="POST">
+                            <form class="form" action="/additions" method="POST">
                                 <div class="row">
 
                                     <div class="col-sm">
@@ -21,7 +21,7 @@
                                     </div>
                                     <div class="col-sm">
                                         <label for="entryDate"><strong>Entered On: </strong></label>
-                                        <input type="text" name="entryDate" id="entryDate" value="<%= new Date() %>">
+                                        <input type="date" name="entryDate" id="entryDate" value="<%= new Date() %>">
                                     </div>
                                     <div class="col-sm">
                                         <label for="enteredBy"><strong>Entered By: </strong></label>
@@ -38,12 +38,12 @@
                                 </select>
                                     </div>
                                     <div class="col-sm">
-                                        <label for="costAmt"><strong>Amount: </strong></label>
-                                        <input type="currency" name="costAmt" id="costAmt">
+                                        <label for="addAmt"><strong>Amount: </strong></label>
+                                        <input type="currency" name="addAmt" id="addAmt">
                                     </div>
                                     <div class="col-sm">
-                                        <label for="costMemo"><strong>Description: </strong></label>
-                                        <textarea cols="50" rows="1" type="text" name="costMemo" id="costMemo"></textarea>
+                                        <label for="addMemo"><strong>Description: </strong></label>
+                                        <textarea cols="50" rows="1" type="text" name="addMemo" id="addMemo"></textarea>
                                     </div>
                                 </div>
                                 <br>
@@ -76,20 +76,20 @@
                                     Description
                                 </div>
                             </div></strong>
-                            <% for (let cost of jC) { %>
+                            <% for (let adds of aD) { %>
                                 <div class="row">
                                     <div class="col-sm">
-                                        <%= cost.enteredBy %>
+                                        <%= adds.enteredBy %>
                                     </div>
                                     <div class="col-sm">
-                                        <%= cost.entryDate %>
+                                        <%= adds.entryDate %>
                                     </div>
                                     <div class="col-sm">
                                         <%= money.format(cost.costAmt) %>
-                                            <% project.totalJobCosts += cost.costAmt %>
+                                            <% project.rcvChange += adds.addAmt %>
                                     </div>
                                     <div class="col-sm">
-                                        <%= cost.costMemo %>
+                                        <%= adds.addMemo %>
                                     </div>
                                     <br>
                                 </div>
@@ -97,7 +97,7 @@
                                     <article>
                                         <div class="row">
                                             <div class="col-sm">
-                                                <%= money.format(project.totalJobCosts) %>
+                                                <%= money.format(project.rcvChange) %>
                                             </div>
                                         </div>
                                     </article>

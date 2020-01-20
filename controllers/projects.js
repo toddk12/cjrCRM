@@ -1018,7 +1018,7 @@ exports.getJobCosts = (req, res, next) => {
                             }]
                         })
                         .then(project => {
-                            project.totlJobCosts = tots;
+                            project.totalJobCosts = tots;
                             return project.save();
                         })
                         .then(project => {
@@ -1052,6 +1052,69 @@ exports.postJobCosts = (req, res, next) => {
             costAmt: req.body.costAmt,
             costMemo: req.body.costMemo,
             tradeId: req.body.tradeId
+        })
+        .then(project => {
+            res.redirect('back');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.getAdditions = (req, res, next) => {
+    const projId = req.params.projectId;
+    const userName = req.user.ename;
+    const userId = req.user.id;
+    Trades.findAll()
+        .then(trades => {
+            Additions.findAll({
+                    where: { projectId: projId }
+                })
+                .then(additions => {
+                    const allAdds = additions;
+                    let tots = 0;
+                    for (a of allAdds) {
+                        tots += a.addAmt;
+                    };
+                    Project.findByPk(projId)
+                        .then(project => {
+                            project.rcvChange = tots;
+                            return project.save();
+                        })
+                        .then(project => {
+                            res.render('projects/additions', {
+                                pageTitle: "Additions",
+                                path: '/additions',
+                                project: project,
+                                projId: projId,
+                                trade: trades,
+                                userName: userName,
+                                userId: userId,
+                                aD: additions,
+                                totals: tots
+                            });
+                        })
+                })
+        })
+        .catch(err => {
+            console.log(err);
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.postAdditions = (req, res, next) => {
+
+    Additions.create({
+            enteredBy: req.body.enteredBy,
+            entryDate: req.body.entryDate,
+            addAmt: req.body.addAmt,
+            addMemo: req.body.addMemo,
+            tradeId: req.body.tradeId,
+            projectId: req.body.projectId
         })
         .then(project => {
             res.redirect('back');
