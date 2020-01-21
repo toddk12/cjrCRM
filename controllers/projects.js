@@ -1078,7 +1078,11 @@ exports.getAdditions = (req, res, next) => {
                     for (a of allAdds) {
                         tots += a.addAmt;
                     };
-                    Project.findByPk(projId)
+                    Project.findByPk(projId, {
+                            include: [{
+                                model: Additions
+                            }]
+                        })
                         .then(project => {
                             project.rcvChange = tots;
                             return project.save();
