@@ -17,6 +17,7 @@ const Additions = sequelize.define('additions', {
         type: Sequelize.DATEONLY,
         allowNull: false
     },
+    tradeName: Sequelize.STRING,
     addAmt: { type: Sequelize.FLOAT(10, 2) },
     addMemo: { type: Sequelize.STRING },
 });

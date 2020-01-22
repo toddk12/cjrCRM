@@ -418,7 +418,7 @@
                             <div class="row">
                                 <div class="col-sm text-right">
                                     <a href="/ownerOOP/<%= project.id %>" class="btn-sm2">Owner Out of Pocket: </a>
-                                    <strong><%= money.format(project.totalExclusions) %></strong>
+                                    <strong><%= money.format(project.ownerOOP) %></strong>
                                 </div>
                                 <div class="col-sm text-right">
                                     Owner Owes: <strong><%= money.format(project.amtOwnerOwes) %></strong>
@@ -426,7 +426,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm text-right">
-                                    Total Project: <strong><%= money.format(project.totalExclusions) %></strong>
+                                    Total Project: <strong><%= money.format(project.fScopeRCV + project.rcvChange - project.totalExclusions + project.ownerOOP) %></strong>
                                 </div>
                                 <div class="col-sm text-right">
                                     Project Profit $: <strong><%= money.format(project.amtOwnerOwes) %></strong>

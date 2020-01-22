@@ -1117,7 +1117,74 @@ exports.postAdditions = (req, res, next) => {
             entryDate: req.body.entryDate,
             addAmt: req.body.addAmt,
             addMemo: req.body.addMemo,
-            tradeId: req.body.tradeId,
+            tradeName: req.body.tradeName,
+            projectId: req.body.projectId
+        })
+        .then(project => {
+            res.redirect('back');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.getExclusions = (req, res, next) => {
+    const projId = req.params.projectId;
+    const userName = req.user.ename;
+    const userId = req.user.id;
+    Trades.findAll()
+        .then(trades => {
+            Exclusions.findAll({
+                    where: { projectId: projId }
+                })
+                .then(exclusions => {
+                    const allExcl = exclusions;
+                    let tots = 0;
+                    for (a of allExcl) {
+                        tots += a.exclAmt;
+                    };
+                    Project.findByPk(projId, {
+                            include: [{
+                                model: Exclusions
+                            }]
+                        })
+                        .then(project => {
+                            project.totalExclusions = tots;
+                            return project.save();
+                        })
+                        .then(project => {
+                            res.render('projects/exclusions', {
+                                pageTitle: "Exclusions",
+                                path: '/exclusions',
+                                project: project,
+                                projId: projId,
+                                trade: trades,
+                                userName: userName,
+                                userId: userId,
+                                aD: exclusions,
+                                totals: tots
+                            });
+                        })
+                })
+        })
+        .catch(err => {
+            console.log(err);
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.postExclusions = (req, res, next) => {
+
+    Exclusions.create({
+            enteredBy: req.body.enteredBy,
+            entryDate: req.body.entryDate,
+            exclAmt: req.body.exclAmt,
+            exclMemo: req.body.exclMemo,
+            tradeName: req.body.tradeName,
             projectId: req.body.projectId
         })
         .then(project => {

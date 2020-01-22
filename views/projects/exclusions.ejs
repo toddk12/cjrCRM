@@ -9,10 +9,10 @@
                 <%- include('../includes/navigation.ejs') %>
                     <main>
                         <div class="centered">
-                            <h1><strong>Additions</strong></h1>
+                            <h1><strong>Exclusions</strong></h1>
                         </div>
                         <article class="notes">
-                            <form class="form" action="/additions" method="POST">
+                            <form class="form" action="/exclusions" method="POST">
                                 <div class="row">
 
                                     <div class="col-sm">
@@ -38,12 +38,12 @@
                                 </select>
                                     </div>
                                     <div class="col-sm">
-                                        <label for="addAmt"><strong>Amount: </strong></label>
-                                        <input type="currency" name="addAmt" id="addAmt">
+                                        <label for="exclAmt"><strong>Amount: </strong></label>
+                                        <input type="currency" name="exclAmt" id="exclAmt">
                                     </div>
                                     <div class="col-sm">
-                                        <label for="addMemo"><strong>Description: </strong></label>
-                                        <textarea cols="50" rows="1" type="text" name="addMemo" id="addMemo"></textarea>
+                                        <label for="exclMemo"><strong>Description: </strong></label>
+                                        <textarea cols="50" rows="1" type="text" name="exclMemo" id="exclMemo"></textarea>
                                     </div>
                                 </div>
                                 <br>
@@ -91,11 +91,11 @@
                                         <%= adds.tradeName %>
                                     </div>
                                     <div class="col-sm">
-                                        <%= money.format(adds.addAmt) %>
-                                            <% project.rcvChange %>
+                                        <%= money.format(adds.exclAmt) %>
+                                            <% project.totalExclusions %>
                                     </div>
                                     <div class="col-sm">
-                                        <%= adds.addMemo %>
+                                        <%= adds.exclMemo %>
                                     </div>
                                     <br>
                                 </div>
@@ -103,7 +103,7 @@
                                     <article>
                                         <div class="row">
                                             <div class="col-sm">
-                                                <%= money.format(project.rcvChange) %>
+                                                <%= money.format(project.totalExclusions) %>
                                             </div>
                                         </div>
                                     </article>

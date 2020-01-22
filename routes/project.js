@@ -71,4 +71,8 @@ router.get('/additions/:projectId', isAuth, projectsController.getAdditions);
 
 router.post('/additions', isAuth, projectsController.postAdditions);
 
+router.get('/exclusions/:projectId', isAuth, projectsController.getExclusions);
+
+router.post('/exclusions', isAuth, projectsController.postExclusions);
+
 module.exports = router;
