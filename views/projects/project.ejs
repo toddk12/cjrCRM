@@ -15,55 +15,56 @@
                             <h6> Project Status: </h6>
                             <% if (project.statusId === 1) { %>
                                 <button class="btn-sm" type="button" disabled>Entry</a>
-            <% } else { %>
-                <button class="btnsm1" type="button" onclick="chgStat1(this)">Entry</button>
+                            <% } else { %>
+                                <button class="btnsm1" type="button" onclick="chgStat1(this)">Entry</button>
                                 <% } %>
                                     <% if (project.statusId === 2) { %>
                                         <button class="btn-sm" type="button" disabled>Estimating</a>
-            <% } else { %>
-                <button class="btnsm1" type="button" onclick="chgStat2(this)">Estimating</button>
+                            <% } else { %>
+                                <button class="btnsm1" type="button" onclick="chgStat2(this)">Estimating</button>
                                         <% } %>
                                             <% if (project.statusId === 3) { %>
                                                 <button class="btn-sm" type="button" disabled>Production</a>
-            <% } else { %>
-                <button class="btnsm1" type="button" onclick="chgStat3(this)">Production</button>
+                            <% } else { %>
+                                <button class="btnsm1" type="button" onclick="chgStat3(this)">Production</button>
                                                 <% } %>
                                                     <% if (project.statusId === 4) { %>
                                                         <button class="btn-sm" type="button" disabled>Awaiting Inspection</a>
-            <% } else { %>
-                <button class="btnsm1" type="button" onclick="chgStat4(this)">Awaiting Inspection</button>
+                            <% } else { %>
+                                <button class="btnsm1" type="button" onclick="chgStat4(this)">Awaiting Inspection</button>
                                                         <% } %>
                                                             <% if (project.statusId === 5) { %>
                                                                 <button class="btn-sm" type="button" disabled>Close-Out</a>
-            <% } else { %>
-                <button class="btnsm1" type="button" onclick="chgStat5(this)">Close-Out</a>
-            <% } %>
-            <% if (project.statusId === 6) { %>
-                <button class="btn-sm" type="button" disabled>Completed</a>
-            <% } else { %>
-                <button class="btnsm1" type="button" onclick="chgStat6(this)">Completed</button>
+                            <% } else { %>
+                                <button class="btnsm1" type="button" onclick="chgStat5(this)">Close-Out</a>
+                            <% } %>
+                            <% if (project.statusId === 6) { %>
+                                <button class="btn-sm" type="button" disabled>Completed</a>
+                            <% } else { %>
+                                <button class="btnsm1" type="button" onclick="chgStat6(this)">Completed</button>
                                                                 <% } %>
                                                                     <% if (project.statusId === 7) { %>
                                                                         <button class="btn-sm" type="button" disabled>Collections</a>
-            <% } else { %>
-                <button class="btnsm1" type="button" onclick="chgStat7(this)">Collections</button>
+                            <% } else { %>
+                                <button class="btnsm1" type="button" onclick="chgStat7(this)">Collections</button>
                                                                         <% } %>
                                                                             <% if (project.statusId === 8) { %>
                                                                                 <button class="btn-sm" type="button" disabled>Canceled</a>
-            <% } else { %>
-                <button class="btnsm1" type="button" onclick="chgStat8(this)">Canceled</button>
+                            <% } else { %>
+                                <button class="btnsm1" type="button" onclick="chgStat8(this)">Canceled</button>
                                                                                 <% } %>
                                                                                     <% if (project.statusId === 9) { %>
                                                                                         <button class="btn-sm" type="button" disabled>Denied</a>
-            <% } else { %>
-                <button class="btnsm1" type="button" onclick="chgStat9(this)">Denied</button>
+                            <% } else { %>
+                                <button class="btnsm1" type="button" onclick="chgStat9(this)">Denied</button>
                                                                                         <% } %>
                                                                                             <% if (project.statusId === 10) { %>
                                                                                                 <button class="btn-sm" type="button" disabled>On Hold</a>
-            <% } else { %>
-                <button class="btnsm1" type="button" onclick="chgStat10(this)">On Hold</button>
+                            <% } else { %>
+                                <button class="btnsm1" type="button" onclick="chgStat10(this)">On Hold</button>
                                                                                                 <% } %>
-                        </article><br>
+                        </article>
+                        <br>
                         <!-- Owner Information Section -->
                         <article class="ownerinfo">
                             <% if (!project.commercial) { %>
@@ -151,9 +152,7 @@
                                                                                     <strong><%= project.oEmail %></strong><br>
                                         </div>
                                         <div class="col2">
-                                            <strong>
-                        <h5>Property Management Co.</h5>
-                    </strong>
+                                            <h5><strong>Property Management Co.</strong></h5>
                                             <h6 class="mb-1">
                                             </h6><br> Company Name:<strong> <%= project.pmCoName %></strong><br> Contact Name:<strong>
                         <%= project.pmContact %></strong><br> Address:

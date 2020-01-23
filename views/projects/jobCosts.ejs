@@ -38,12 +38,12 @@
                                 </select>
                                     </div>
                                     <div class="col-sm">
-                                        <label for="costAmt"><strong>Amount: </strong></label>
-                                        <input type="currency" name="costAmt" id="costAmt">
-                                    </div>
-                                    <div class="col-sm">
                                         <label for="costMemo"><strong>Description: </strong></label>
                                         <textarea cols="50" rows="1" type="text" name="costMemo" id="costMemo"></textarea>
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="costAmt"><strong>Amount: </strong></label>
+                                        <input type="currency" name="costAmt" id="costAmt">
                                     </div>
                                 </div>
                                 <br>
@@ -71,10 +71,10 @@
                                     Trade
                                 </div>
                                 <div class="col-sm">
-                                    Amount
+                                    Description
                                 </div>
                                 <div class="col-sm">
-                                    Description
+                                    Amount
                                 </div>
                             </div></strong>
                             <% for (let cost of jC) { %>
