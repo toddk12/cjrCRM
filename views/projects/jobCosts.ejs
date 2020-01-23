@@ -21,7 +21,7 @@
                                     </div>
                                     <div class="col-sm">
                                         <label for="entryDate"><strong>Entered On: </strong></label>
-                                        <input type="text" name="entryDate" id="entryDate" value="<%= new Date() %>">
+                                        <input type="datetime" name="entryDate" id="entryDate" value="<%= new Date() %>">
                                     </div>
                                     <div class="col-sm">
                                         <label for="enteredBy"><strong>Entered By: </strong></label>
@@ -57,8 +57,6 @@
                             </form><br>
                         </article>
                         <br>
-                        <br><br>
-                        <br><br>
                         <br>
                         <br>
                         <article class="notes">
@@ -68,6 +66,9 @@
                                 </div>
                                 <div class="col-sm">
                                     Date Entered
+                                </div>
+                                <div class="col-sm">
+                                    Trade
                                 </div>
                                 <div class="col-sm">
                                     Amount
@@ -85,15 +86,19 @@
                                         <%= cost.entryDate %>
                                     </div>
                                     <div class="col-sm">
+                                        <%= cost.tradeName %>
+                                    </div>
+                                    <div class="col-sm">
                                         <%= money.format(cost.costAmt) %>
                                             <% project.totalJobCosts += cost.costAmt %>
                                     </div>
                                     <div class="col-sm">
                                         <%= cost.costMemo %>
                                     </div>
-                                    <br>
+
                                 </div>
                                 <% } %>
+                                    <br>
                                     <article>
                                         <div class="row">
                                             <div class="col-sm">

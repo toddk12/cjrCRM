@@ -1051,7 +1051,7 @@ exports.postJobCosts = (req, res, next) => {
             entryDate: req.body.entryDate,
             costAmt: req.body.costAmt,
             costMemo: req.body.costMemo,
-            tradeId: req.body.tradeId
+            tradeName: req.body.tradeName
         })
         .then(project => {
             res.redirect('back');
