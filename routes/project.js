@@ -27,8 +27,6 @@ router.get('/generalInfo/:projectId', isAuth, projectsController.getGeneralInfo)
 
 router.post('/generalInfo/', isAuth, projectsController.postGeneralInfo);
 
-router.post('/savePg/:projectId', isAuth, projectsController.postGeneralRep);
-
 router.get('/insuranceInfo/:projectId', isAuth, projectsController.getInsuranceInfo);
 
 router.post('/insuranceInfo/', isAuth, projectsController.postInsuranceInfo);

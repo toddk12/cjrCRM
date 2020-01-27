@@ -77,6 +77,11 @@
         width: 35%
     }
     
+    .docList {
+        width: 45%;
+        height: 80px;
+    }
+    
     .col1 {
         width: 45%;
         float: left;
@@ -242,4 +247,20 @@
         background-color: lightcyan;
         margin: 0;
         border: none;
+    }
+    
+    .btn-smx {
+        background-color: darkblue;
+        height: 30px;
+        color: white;
+        margin-top: 4px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    
+    .btn-smx:hover {
+        background-color: white;
+        height: 30px;
+        color: darkblue;
+        margin-top: 4px;
     }

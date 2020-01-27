@@ -487,29 +487,6 @@ exports.getGeneralInfo = (req, res, next) => {
         });
 };
 
-exports.postGeneralRep = (req, res, next) => {
-    const projId = req.body.projectId;
-    const updatedSaleId = req.body.saleId;
-    console.log("Hello !!!!!!!!!");
-    Project.findByPk(projId, {
-            include: [{
-                model: Sales
-            }]
-        })
-        .then(project => {
-            project.saleId = updatedSaleId;
-            return project.save();
-        }).then(project => {
-            res.redirect('back');
-        })
-        .catch(err => {
-            console.log("Hello !!!!!!!!!");
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
-};
-
 exports.postGeneralInfo = (req, res, next) => {
     const projId = req.body.projectId;
     const updatedProjectNo = req.body.projectNo;
@@ -736,14 +713,19 @@ exports.getAddRDoc = (req, res, next) => {
 };
 
 exports.postAddRDoc = (req, res, next) => {
-
+    console.log(req.body.proj);
+    console.log(req.body.docName);
+    console.log(req.body.docFile);
     Document.create({
             projectId: req.body.proj,
-            rTypeId: '1',
-            docFile: req.body.docFile
+            docName: req.body.docName,
+            docFile: req.body.docFile,
+            createdAt: new Date(),
+            updatedAt: new Date()
         })
         .then(documents => {
-            res.redirect('/home');
+            console.log("Here I am");
+            res.redirect('back');
             // res.render('projects/docInfo', {
             //     pageTitle: projId,
             //     path: '/docInfo',
