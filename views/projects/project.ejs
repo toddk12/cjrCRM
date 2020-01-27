@@ -10,7 +10,7 @@
                     <main>
                         <!-- Status Section -->
                         <article class="changeStatus">
-                            <input type="hidden" value="<%= project.id %>" name="projectId">
+                            <input type="hidden" name="projectId" value="<%= project.id %>">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <h6> Project Status: </h6>
                             <% if (project.statusId === 1) { %>

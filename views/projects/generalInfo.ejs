@@ -42,22 +42,19 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="/savePg/<%= project.id %>" method="POST">
-                                                <div class="modal-body">
-                                                    <label for="saleId">Sales Rep: </label>
-                                                    <select class="select" name="saleId" id="saleId">
+                                            <div class="modal-body">
+                                                <label for="saleId">Sales Rep: </label>
+                                                <select class="select" name="saleId" id="saleId">
                                                         <% for (let sale of sal) { %>
                                                         <option value="<%= sale.id %>">
                                                         <%= sale.name %></option>
                                                         <% } %>
                                                     </select>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                                    <button type="button" class="btn-sm" data-dismiss="modal">Close</button>
-                                                    <button class="btn-sm" type="submit">Save changes</button>
-                                                </div>
-                                            </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn-sm" data-dismiss="modal">Close</button>
+                                                <button class="btnsm2" type="submit" onclick="chgRep(this)">Save changes</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
