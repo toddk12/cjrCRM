@@ -719,9 +719,7 @@ exports.postAddRDoc = (req, res, next) => {
     Document.create({
             projectId: req.body.proj,
             docName: req.body.docName,
-            docFile: req.body.docFile,
-            createdAt: new Date(),
-            updatedAt: new Date()
+            docFile: req.body.docFile
         })
         .then(documents => {
             console.log("Here I am");

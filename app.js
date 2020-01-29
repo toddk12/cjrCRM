@@ -24,6 +24,7 @@ const JobCosts = require('./models/jobCosts');
 const Notes = require('./models/notes');
 const OwnerOop = require('./models/ownerOop');
 const Project = require('./models/project');
+const RType = require('./models/rType');
 const Sales = require('./models/sales');
 const Status = require('./models/status');
 const Supervisor = require('./models/supervisor');
@@ -136,6 +137,8 @@ Notes.belongsTo(Project)
 Project.hasMany(Notes);
 Project.belongsTo(Trades)
 Trades.hasMany(Project);
+RType.belongsTo(Document);
+Document.hasMany(RType);
 
 sequelize
 // .sync({ force: true })

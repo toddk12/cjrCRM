@@ -15,7 +15,14 @@
                     <form action="/add-r-doc" method="POST">
                         <div class="row">
                             <div class="col-sm" style="width: 300px">
-                                <input id="docName" name="docName" Value="ST - Contingency Agreement">"
+                                Document to Add:
+                                <select class="select" name="saleId" id="saleId">
+                                    <option value="<%= project.sale.id %>">
+                                    <% for (let sale of sal) { %>
+                                    <option value="<%= sale.id %>">
+                                    <%= sale.name %></option>
+                                    <% } %>
+                                </select>
                                 <br>
                             </div>
                             <div class="col-sm">
