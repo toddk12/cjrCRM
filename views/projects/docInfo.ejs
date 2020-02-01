@@ -10,33 +10,7 @@
                     <h1 class="section-title">Documents List</h1>
                     <br>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">ST - Contingency Agreement</h5>
-                                <% if (!documents.rTypeId) { %>
-                                    <div class="form-control">
-                                        <label for="docFile">Document</label>
-                                        <input type="file" name="docFile" id="docFile"></input>
-                                    </div>
-                                    <a href="#" class="btn btn-primary">Add Document</a>
-                                    <%} else { %>
-                                        <div class="card_image">
-                                            <img src="/<%= document.docFile %> ">
-                                        </div>
-                                        <div class="card__content">
-                                            <p>Uploaded on:
-                                                <%= document.createdAt %>
-                                            </p>
-                                        </div>
-                                        <a href="#" class="btn btn-primary">Change Document</a>
-                                        <a href="#" class="btn btn-primary">Delete Document</a>
-                                        <% } %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             </main>

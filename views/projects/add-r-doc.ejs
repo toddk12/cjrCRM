@@ -18,9 +18,9 @@
                                 Document to Add:
                                 <select class="select" name="saleId" id="saleId">
                                     <option value="<%= project.sale.id %>">
-                                    <% for (let sale of sal) { %>
-                                    <option value="<%= sale.id %>">
-                                    <%= sale.name %></option>
+                                    <% for (let types of type) { %>
+                                    <option value="<%= types.id %>">
+                                    <%= types.title %></option>
                                     <% } %>
                                 </select>
                                 <br>

@@ -97,7 +97,7 @@
                                 </select>
                                     </div>
                                     <div class="col-sm" style="width: 25%">
-                                        <label for="supervisorId">Sales Rep: </label>
+                                        <label for="supervisorId">Supervisor: </label>
                                         <select class="select" name="supervisorId" id="supervisorId">
                                     <% for (let sup of supers) { %>
                                     <option value="<%= sup.id %>">
@@ -109,7 +109,8 @@
                                         <label for="insuranceId">Insurance Company: </label>
                                         <select class="select" name="insuranceId" id="insuranceId">
                                             <% for (let insco of ins) { %>
-                                                <option value="<%= insco.id %>"><%= insco.coName %></option>
+                                                <option value="<%= insco.id %>">
+                                                <%= insco.coName %></option>
                                             <% } %>
                                          </select>
                                     </div>

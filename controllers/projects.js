@@ -12,6 +12,7 @@ const Exclusions = require('../models/exclusions');
 const OwnerOop = require('../models/ownerOop');
 const JobCosts = require('../models/jobCosts');
 const Trades = require('../models/trades');
+const RType = require('../models/rType');
 
 
 exports.getAddProject = (req, res, next) => {
@@ -679,24 +680,19 @@ exports.postInsuranceInfo = (req, res, next) => {
 
 exports.getDocInfo = (req, res, next) => {
     const projId = req.params.projectId;
-    Documents.findAll({
-            where: { projectId: projId }
-        })
-        .then(documents => {
-            if (!documents) {
-                res.render('projects/add-r-doc', {
-                    pageTitle: 'Add Document',
-                    path: '/add-r-doc'
-                })
-            } else {
+    console.log("I am Here!");
+    Documents.findByPk(projId)
+        .then(documents => {      
+                console.log("Well . . .")
                 res.render('projects/docInfo', {
-                    pageTitle: projId,
+                    pageTitle: "Documents",
                     path: '/docInfo',
-                    documents: documents
+                    docs: documents,
+                    projId: projId
                 });
-            }
         })
         .catch(err => {
+            console.log.og("ERRRRRRRrrrrrrr");
             const error = new Error(err);
             error.httpStatusCode = 500;
             return next(error);
@@ -705,11 +701,24 @@ exports.getDocInfo = (req, res, next) => {
 
 exports.getAddRDoc = (req, res, next) => {
     const projId = req.params.projectId;
-    res.render('projects/add-r-doc', {
-        pageTitle: 'Add Document',
-        path: '/add-r-doc',
-        proj: projId
+    RType.findAll()
+    .then(rType => {
+        Document.findAll()
+            .then(document => {
+                res.render('projects/add-r-doc', {
+                    pageTitle: "Add Document",
+                    path: '/add-r-doc',
+                    docs: document,
+                    projId: projId,
+                    type: rType
+                });
+            })
     })
+    .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    });
 };
 
 exports.postAddRDoc = (req, res, next) => {
