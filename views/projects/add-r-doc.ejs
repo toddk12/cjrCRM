@@ -6,37 +6,75 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
             <main>
-                <div class="register">
-                    <h1 class="section-title">Project #:
-                        <%= proj %> Documents List</h1>
-                    <br>
+                <div class="centered">
+                    <h1><strong>Documents</strong></h1>
                 </div>
-                <article class="docList">
-                    <form action="/add-r-doc" method="POST">
+                <article class="notes">
+                    <form class="form" action="/add-r-doc" method="POST" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-sm" style="width: 300px">
-                                Document to Add:
-                                <select class="select" name="saleId" id="saleId">
-                                    <option value="<%= project.sale.id %>">
-                                    <% for (let types of type) { %>
-                                    <option value="<%= types.id %>">
-                                    <%= types.title %></option>
+                            <div class="col-sm">
+                                <label for="projectId"><strong>Project Id: </strong></label>
+                                <input type="text" name="projectId" id="projectId" value="<%= projId %>">
+                            </div>
+                            <div class="col-sm" style="width: 200px">
+                                <label for="rType"><strong>Trade: </strong></label>
+                                <select style="width: 200px" class="select" name="rType" id="rType">
+                                    <% for (let type of types) { %>
+                                    <option value="<%= type.id %>">
+                                    <%= type.title %></option>
                                     <% } %>
                                 </select>
-                                <br>
+                            </div>
+                            <% if (types.id === 17) { %>
+                                <div class="col-sm">
+                                    <label for="docName"><strong>Name of Document: </strong></label>
+                                    <input type="text" name="docName" id="docName">
+                                </div>
+                                <% } else { let docName = types.title }%>
+                                    <div class="col-sm">
+                                        <label for="docFile"><strong>Document File: </strong></label>
+                                        <input type="file" name="docFile" id="docFile">
+                                    </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <br>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Document</button>
+                            <br>
+                            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
+                        </div>
+                    </form><br>
+                </article>
+                <br>
+                <br>
+                <article class="notes">
+                    <strong><div class="row">
+                                <div class="col-sm">
+                                    Project Id: 
+                                </div>
+                                <div class="col-sm">
+                                    Document Name:
+                                </div>
+                                <div class="col-sm">
+                                    Document File
+                                </div>
+                            </div></strong>
+                    <% for (let doc of docs) { %>
+                        <div class="row">
+                            <div class="col-sm">
+                                <%= doc.projectId %>
                             </div>
                             <div class="col-sm">
-                                <input type="file" name="docFile" id="docFile"></input>
+                                <%= doc.documentName %>
                             </div>
-                            <br>
-                            <input type="hidden" name="proj" value="<%= proj %>">
-                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                            <button class="btn-smx" type="submit">Add Document</button>
-                        </div>
-                    </form>
+                            <div class="col-sm">
+                                <%= doc.docFile %>
+                            </div>
+                            <% } %>
+                                <br>
                 </article>
-
-
             </main>
 
             <%- include('../includes/footer.ejs') %>
+                <script src="/js/status.js"></script>

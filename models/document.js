@@ -13,10 +13,6 @@ const Document = sequelize.define('document', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    rTypeId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
     docFile: {
         type: Sequelize.STRING
     },

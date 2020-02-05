@@ -680,55 +680,37 @@ exports.postInsuranceInfo = (req, res, next) => {
 
 exports.getDocInfo = (req, res, next) => {
     const projId = req.params.projectId;
-    console.log("I am Here!");
-    Documents.findByPk(projId)
-        .then(documents => {      
-                console.log("Well . . .")
-                res.render('projects/docInfo', {
-                    pageTitle: "Documents",
-                    path: '/docInfo',
-                    docs: documents,
-                    projId: projId
-                });
+    RType.findAll()
+        .then(rType => {
+            Document.findByPk(projId)
+                .then(document => {
+                    res.render('projects/add-r-doc', {
+                        pageTitle: "Add Document",
+                        path: '/add-r-doc',
+                        docs: document,
+                        projId: projId,
+                        types: rType
+                    });
+                })
         })
         .catch(err => {
-            console.log.og("ERRRRRRRrrrrrrr");
             const error = new Error(err);
             error.httpStatusCode = 500;
             return next(error);
         });
 };
 
-exports.getAddRDoc = (req, res, next) => {
-    const projId = req.params.projectId;
-    RType.findAll()
-    .then(rType => {
-        Document.findAll()
-            .then(document => {
-                res.render('projects/add-r-doc', {
-                    pageTitle: "Add Document",
-                    path: '/add-r-doc',
-                    docs: document,
-                    projId: projId,
-                    type: rType
-                });
-            })
-    })
-    .catch(err => {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    });
-};
-
-exports.postAddRDoc = (req, res, next) => {
-    console.log(req.body.proj);
+exports.postDocInfo = (req, res, next) => {
+    console.log(req.body.projectId);
     console.log(req.body.docName);
     console.log(req.body.docFile);
+    const newProjId = (req.body.projectId);
+    const newDocName = (req.body.docName);
+    const newDocFile = (req.body.docFile);
     Document.create({
-            projectId: req.body.proj,
-            docName: req.body.docName,
-            docFile: req.body.docFile
+            projectId: newProjId,
+            docName: newDocName,
+            docFile: newDocFile
         })
         .then(documents => {
             console.log("Here I am");
