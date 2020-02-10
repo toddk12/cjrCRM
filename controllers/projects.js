@@ -680,17 +680,22 @@ exports.postInsuranceInfo = (req, res, next) => {
 
 exports.getDocInfo = (req, res, next) => {
     const projId = req.params.projectId;
+    console.log("getDocInfo");
     RType.findAll()
         .then(rType => {
             Document.findByPk(projId)
                 .then(document => {
-                    res.render('projects/add-r-doc', {
-                        pageTitle: "Add Document",
-                        path: '/add-r-doc',
-                        docs: document,
-                        projId: projId,
-                        types: rType
-                    });
+                    Project.findByPk(projId)
+                        .then(project => {
+                            res.render('projects/docInfo', {
+                                pageTitle: "Documents",
+                                path: '/docInfo',
+                                project: project,
+                                docs: document,
+                                projId: projId,
+                                types: rType
+                            });
+                        })
                 })
         })
         .catch(err => {
@@ -701,31 +706,13 @@ exports.getDocInfo = (req, res, next) => {
 };
 
 exports.postDocInfo = (req, res, next) => {
-    console.log(req.body.projectId);
-    console.log(req.body.docName);
-    console.log(req.body.docFile);
     const newProjId = (req.body.projectId);
     const newDocName = (req.body.docName);
-    const newDocFile = (req.body.docFile);
-    Document.create({
-            projectId: newProjId,
-            docName: newDocName,
-            docFile: newDocFile
-        })
-        .then(documents => {
-            console.log("Here I am");
-            res.redirect('back');
-            // res.render('projects/docInfo', {
-            //     pageTitle: projId,
-            //     path: '/docInfo',
-            //     documents: documents'
-            // });
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
+    const newDocFile = (req.file);
+    console.log(newProjId);
+    console.log(newDocName);
+    console.log(newDocFile);
+
 };
 
 exports.getFinancialInfo = (req, res, next) => {

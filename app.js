@@ -46,10 +46,10 @@ const csrfProtection = csrf();
 
 const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'images');
+        cb(null, 'public/documents');
     },
     filename: (req, file, cb) => {
-        cb(null, new Date().toISOString + '-' + file.origonalname);
+        cb(null, Date.now() + '-' + file.originalname);
     }
 })
 
@@ -61,9 +61,10 @@ const mainRoutes = require('./routes/main');
 const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(multer({ storage: fileStorage }).single('docFile'));
 app.use(express.json());
-app.use(multer({ dest: 'images', storage: fileStorage }).single('image'));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(session({
     secret: 'sshh it is a secret',

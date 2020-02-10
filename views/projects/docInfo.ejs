@@ -16,12 +16,12 @@
                                 <label for="projectId"><strong>Project Id: </strong></label>
                                 <input type="text" name="projectId" id="projectId" value="<%= projId %>">
                             </div>
-                            <div class="col-sm" style="width: 200px">
+                            <div class="col-sm">
                                 <label for="docName"><strong>Trade: </strong></label>
-                                <select style="width: 200px" class="select" name="docName" id="docName">
+                                <select style="width: 250px" class="select" name="docName" id="docName">
                                     <% for (let type of types) { %>
-                                    <option value="<%= type.id %>">
-                                    <%= type.title %></option>
+                                    <option value="<%= type.title %>">
+                                        <%= type.title %></option>
                                     <% } %>
                                 </select>
                             </div>
@@ -30,7 +30,7 @@
                                     <label for="docName"><strong>Name of Document: </strong></label>
                                     <input type="text" name="docName" id="docName">
                                 </div>
-                                <% } else { let docName = types.title }%>
+                                <% }%>
                                     <div class="col-sm">
                                         <label for="docFile"><strong>Document File: </strong></label>
                                         <input type="file" name="docFile" id="docFile">
@@ -47,33 +47,26 @@
                     </form><br>
                 </article>
                 <br>
-                <br>
+
                 <article class="notes">
                     <strong><div class="row">
-                                <div class="col-sm">
-                                    Project Id: 
-                                </div>
-                                <div class="col-sm">
-                                    Document Name:
-                                </div>
-                                <div class="col-sm">
-                                    Document File
-                                </div>
-                            </div></strong>
-                    <% for (let doc of docs) { %>
-                        <div class="row">
-                            <div class="col-sm">
-                                <%= doc.projectId %>
-                            </div>
-                            <div class="col-sm">
-                                <%= doc.documentName %>
-                            </div>
-                            <div class="col-sm">
-                                <%= doc.docFile %>
-                            </div>
-                            <% } %>
-                                <br>
+            <div class="col-sm">
+                Project Id: 
+            </div>
+            <div class="col-sm">
+                Document Name:
+            </div>
+            <div class="col-sm">
+                Document File
+            </div>
+        </div></strong>
+
+
+                    <br>
+
                 </article>
+                <br>
+
             </main>
 
             <%- include('../includes/footer.ejs') %>
