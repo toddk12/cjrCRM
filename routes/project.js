@@ -51,6 +51,14 @@ router.get('/docInfo/:projectId', isAuth, projectsController.getDocInfo);
 
 router.post('/docInfo', projectsController.postDocInfo);
 
+router.get('/docAdd/:projectId', isAuth, projectsController.getDocAdd);
+
+router.post('/docAdd', projectsController.postDocAdd);
+
+router.get('/docEdit/:projectId', isAuth, projectsController.getDocEdit);
+
+router.post('/docEdit', projectsController.postDocEdit);
+
 router.get('/add-note/:projectId', isAuth, projectsController.getAddNote);
 
 router.post('/add-note/', isAuth, projectsController.postAddNote);

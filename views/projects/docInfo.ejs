@@ -8,40 +8,452 @@
             <main>
                 <div class="centered">
                     <h1><strong>Documents</strong></h1>
+                    <h4>
+                        <div class="row">
+                            <div class="col-sm">
+                                Project#:
+                                <%= project.projectNo %>
+                            </div>
+                            <div class="col-sm">
+                                Owner:
+                                <%= project.owner1Fn %>
+                                    <%= project.owner1Ln %>
+                            </div>
+                            <div class="col-sm">
+                                Address:
+                                <%= project.address %>
+                            </div>
+                            <div class="col-sm">
+                                City:
+                                <%= project.city %>
+                            </div>
+                        </div>
+                    </h4>
                 </div>
                 <article class="notes">
-                    <div class="row">
-                        <div class="col-sm">
-                            <strong>Project Id: </strong>
-                        </div>
-                        <div class="col-sm">
-                            <strong>Document Name: </strong>
-                        </div>
-                        <div class="col-sm">
-                            <strong>Document File: </strong>
-                        </div>
-                    </div>
                     <% if (!docs) { %>
-                        <strong><h5>There are no Documents for this project at this time</h5></strong>
-                        <% } else { %>
-                            <div class="row">
-                                <% for (Let doc of docs) { %>
-                                    <div class="col-sm">
-                                        <%= doc.docName %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= doc.docFile %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a class="btn-sm text-center" style="width: 150px" href="/docAdd/<%= doc.id %>">Add Document</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a class="btn-sm text-center" style="width: 150px" href="/docEdit/<%= doc.id %>">Edit Document</a>
-                                    </div>
-                                    <% } %>
-                                        <% } %>
-                                            <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                Document Name: <strong>Contingency Agreement</strong>
                             </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                Document Name: <strong>SOW Addendum</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>Materials & Colors</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>PreCon Evaluation</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>Insurance Authorization</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>Mortgage Authorization</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>Original Scope</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>Final Scope</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>Supplement</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>Photo Report</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>GC Letter</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>Assignment</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>Contruction Contract</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                File Name: <strong>Construction Addendum</strong>
+                            </div>
+                            <div class="col-sm">
+                                File Name: <strong>Filename</strong>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                            </div>
+                            <div class="col-sm">
+                                <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                            </div>
+                        </div>
+                        <% } else { %>
+                            <% for (let doc of docs) { %>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        Document Name: <strong>Contingency Agreement</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        Document Name: <strong>SOW Addendum</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>Materials & Colors</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>PreCon Evaluation</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>Insurance Authorization</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>Mortgage Authorization</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>Original Scope</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>Final Scope</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>Supplement</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>Photo Report</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>GC Letter</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>Assignment</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>Contruction Contract</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        File Name: <strong>Construction Addendum</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        File Name: <strong>Filename</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docAdd/<%= project.id %>" class="btn-sm">Upload File</a>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a href="/docEdit/<%= project.id %>" class="btn-sm">Download File</a>
+                                    </div>
+                                </div>
+                                <% } %>
+                                    <% } %>
                 </article>
                 <br>
             </main>

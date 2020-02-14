@@ -1,79 +1,24 @@
-<%- include('../includes/header.ejs') %>
-    <link rel="stylesheet" href="/css/projects.css">
+<article class="notes">
 
-    </head>
-
-    <body>
-        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
-            <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
-                <%- include('../includes/navigation.ejs') %>
-                    <main>
-                        <div class="centered">
-                            <h1><strong>Job Costs</strong></h1>
-                        </div>
-                        <article class="notes">
-                            <form class="form" action="/add-r-doc" method="POST" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <label for="projectId"><strong>Project Id: </strong></label>
-                                        <input type="text" name="projectId" id="projectId" value="<%= projId %>">
-                                    </div>
-                                    <div class="col-sm" style="width: 200px">
-                                        <label for="rType"><strong>Trade: </strong></label>
-                                        <select style="width: 200px" class="select" name="rType" id="rType">
-                                    <% for (let type of types) { %>
-                                    <option value="<%= type.id %>">
-                                    <%= type.title %></option>
-                                    <% } %>
-                                </select>
-                                    </div>
-                                    <% if (types.id === 17) { %>
-                                        <div class="col-sm">
-                                            <label for="docName"><strong>Name of Document: </strong></label>
-                                            <input type="test" name="docName" id="docName">
-                                        </div>
-                                        <% } else { let docName = types.title }%>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <br>
-                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                    <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Document</button>
-                                    <br>
-                                    <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to FinancialInfo</a>
-                                </div>
-                            </form><br>
-                        </article>
-                        <br>
-                        <br>
-                        <br>
-                        <article class="notes">
-                            <strong><div class="row">
-                                <div class="col-sm">
-                                    Project Id: 
-                                </div>
-                                <div class="col-sm">
-                                    Document Name:
-                                </div>
-                                <div class="col-sm">
-                                    Document File
-                                </div>
-                            </div></strong>
-                            <% for (let doc of docs) { %>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <%= doc.projectId %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= doc.documentName %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= doc.docFile %>
-                                    </div>
-                                    <% } %>
-                                        <br>
-                        </article>
-                    </main>
-
-                    <%- include('../includes/footer.ejs') %>
-                        <script src="/js/status.js"></script>
+    <div class="row">
+        <div class="col-sm">
+            Project #: <strong>Project Number</strong>
+        </div>
+        <div class="col-sm">
+            Document Name: <strong>Contingency Agreement</strong>
+        </div>
+        <div class="col-sm">
+            <% if (doc.docName="Contingency Agreement") { %>
+                File Name: <strong>Filename</strong>
+                <% } else { %>
+                    <strong>No Contingency Agreement Attached</strong>
+                    <% } %>
+        </div>
+        <div class="col-sm">
+            <a href="/docAdd/<%= project.id %>" class="btn-sm">Add Document</a>
+        </div>
+        <div class="col-sm">
+            <a href="/docEdit/<%= project.id %>" class="btn-sm">Edit Document</a>
+        </div>
+    </div>
+</article>

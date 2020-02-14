@@ -681,15 +681,48 @@ exports.postInsuranceInfo = (req, res, next) => {
 exports.getDocInfo = (req, res, next) => {
     const projId = req.params.projectId;
     console.log("getDocInfo");
+    Document.findByPk(projId)
+        .then(document => {
+            Project.findByPk(projId)
+                .then(project => {
+                    res.render('projects/docInfo', {
+                        pageTitle: "Documents",
+                        path: '/docInfo',
+                        project: project,
+                        docs: document,
+                        projId: projId
+                    });
+                })
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.postDocInfo = (req, res, next) => {
+    const newProjId = (req.body.projectId);
+    const newDocName = (req.body.docName);
+    const newDocFile = (req.file);
+    console.log(newProjId);
+    console.log(newDocName);
+    console.log(newDocFile);
+
+};
+
+exports.getDocAdd = (req, res, next) => {
+    const projId = req.params.projectId;
+    console.log("getDocInfo");
     RType.findAll()
         .then(rType => {
             Document.findByPk(projId)
                 .then(document => {
                     Project.findByPk(projId)
                         .then(project => {
-                            res.render('projects/docInfo', {
-                                pageTitle: "Documents",
-                                path: '/docInfo',
+                            res.render('projects/docAdd', {
+                                pageTitle: "Add Document",
+                                path: '/docAdd',
                                 project: project,
                                 docs: document,
                                 projId: projId,
@@ -705,7 +738,44 @@ exports.getDocInfo = (req, res, next) => {
         });
 };
 
-exports.postDocInfo = (req, res, next) => {
+exports.postDocAdd = (req, res, next) => {
+    const newProjId = (req.body.projectId);
+    const newDocName = (req.body.docName);
+    const newDocFile = (req.file);
+    console.log(newProjId);
+    console.log(newDocName);
+    console.log(newDocFile);
+
+};
+
+exports.getDocEdit = (req, res, next) => {
+    const projId = req.params.projectId;
+    console.log("getDocInfo");
+    RType.findAll()
+        .then(rType => {
+            Document.findByPk(projId)
+                .then(document => {
+                    Project.findByPk(projId)
+                        .then(project => {
+                            res.render('projects/docEdit', {
+                                pageTitle: "Edit Document",
+                                path: '/docEdit',
+                                project: project,
+                                docs: document,
+                                projId: projId,
+                                types: rType
+                            });
+                        })
+                })
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.postDocEdit = (req, res, next) => {
     const newProjId = (req.body.projectId);
     const newDocName = (req.body.docName);
     const newDocFile = (req.file);
