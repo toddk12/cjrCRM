@@ -1,0 +1,49 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <div class="centered">
+                    <h1><strong>Edit Document</strong></h1>
+                </div>
+                <article class="notes">
+                    <form class="form" action="/docInfo" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="projectId"><strong>Project Id: </strong></label>
+                                <input type="text" name="projectId" id="projectId" value="<%= projId %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="docName"><strong>Trade: </strong></label>
+                                <select style="width: 250px" class="select" name="docName" id="docName">
+                    <% for (let type of types) { %>
+                    <option value="<%= type.title %>">
+                        <%= type.title %></option>
+                    <% } %>
+                </select>
+                            </div>
+                            <% if (types.id === 17) { %>
+                                <div class="col-sm">
+                                    <label for="docName"><strong>Name of Document: </strong></label>
+                                    <input type="text" name="docName" id="docName">
+                                </div>
+                                <% }%>
+                                    <div class="col-sm">
+                                        <label for="docFile"><strong>Document File: </strong></label>
+                                        <input type="file" name="docFile" id="docFile">
+                                    </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <br>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Document</button>
+                            <br>
+                            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
+                        </div>
+                    </form><br>
+                </article>
+                <br>
