@@ -680,7 +680,8 @@ exports.postInsuranceInfo = (req, res, next) => {
 
 exports.getDocInfo = (req, res, next) => {
     const projId = req.params.projectId;
-    console.log("getDocInfo");
+    const CA = Document.findByPk(projId, {where: {docName: "Contingency Agreement"}});
+    console.log(CA);
     Document.findByPk(projId)
         .then(document => {
             Project.findByPk(projId)
