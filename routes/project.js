@@ -35,8 +35,6 @@ router.get('/add-insurance', isAuth, projectsController.getAddInsurance);
 
 router.post('/add-insurance', isAuth, projectsController.postAddInsurance);
 
-router.get('/financialinfo/:projectId', isAuth, projectsController.getFinancialInfo);
-
 router.get('/add-project', isAuth, projectsController.getAddProject);
 
 router.post('/add-project', isAuth, projectsController.postAddProject);

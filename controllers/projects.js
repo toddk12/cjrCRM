@@ -180,78 +180,67 @@ exports.postAddCProject = (req, res, next) => {
         });
 };
 
-exports.getProjects = (req, res, next) => {
+exports.getProjects = async(req, res, next) => {
     const statId = req.params.stat;
-    Sales.findAll()
-        .then(sales => {
-            Status.findOne({
-                    where: { id: statId }
-                })
-                .then(status => {
-                    Project.findAll({
-                            where: { statusId: statId },
-                            include: [{
-                                model: Sales
-                            }, {
-                                model: Supervisor
-                            }, {
-                                model: Insurance
-                            }, {
-                                model: Status
-                            }]
-                        })
-                        .then(projects => {
-                            res.render('projects/projects', {
-                                projs: projects,
-                                stat: status,
-                                sal: sales,
-                                pageTitle: 'Projects',
-                                path: '/projects',
-                            });
-                        })
-                })
+    try {
+        const sales = await Sales.findAll()
+        const status = await Status.findOne({ where: { id: statId } })
+        const projects = await Project.findAll({
+            where: { statusId: statId },
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Insurance
+            }, {
+                model: Status
+            }]
         })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+        res.render('projects/projects', {
+            projs: projects,
+            stat: status,
+            sal: sales,
+            pageTitle: 'Projects',
+            path: '/projects',
         });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
 };
 
-exports.getProject = (req, res, next) => {
+exports.getProject = async(req, res, next) => {
     const projId = req.params.projectId;
     const username = req.session.username;
     const userid = req.session.userid;
-    Notes.findAll({
-            where: { projectId: projId }
+    try {
+        const notes = await Notes.findAll({ where: { projectId: projId } })
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Status
+            }, {
+                model: Insurance
+            }]
         })
-        .then(notes => {
-            Project.findByPk(projId, {
-                    include: [{
-                        model: Sales
-                    }, {
-                        model: Supervisor
-                    }, {
-                        model: Status
-                    }, {
-                        model: Insurance
-                    }]
-                })
-                .then(project => {
-                    res.render('projects/project', {
-                        project: project,
-                        note: notes,
-                        pageTitle: project.projectNo,
-                        path: '/project',
-                    });
-                })
-        })
-        .catch(err => {
-            const error = new Error(err);
-            console.log(error);
-            error.httpStatusCode = 500;
-            return next(error);
+        res.render('projects/project', {
+            project: project,
+            note: notes,
+            pageTitle: project.projectNo,
+            path: '/project',
         });
+    } catch (err) {
+        const error = new Error(err);
+        console.log(error);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
 };
 
 exports.getIndex = (req, res, next) => {
@@ -282,9 +271,10 @@ exports.postDeleteProject = (req, res, next) => {
         });
 };
 
-exports.getOwnerInfo = (req, res, next) => {
+exports.getOwnerInfo = async(req, res, next) => {
     const projId = req.params.projectId;
-    Project.findByPk(projId, {
+    try {
+        const project = await Project.findByPk(projId, {
             include: [{
                 model: Sales
             }, {
@@ -295,18 +285,16 @@ exports.getOwnerInfo = (req, res, next) => {
                 model: Insurance
             }]
         })
-        .then(project => {
-            res.render('projects/ownerInfo', {
-                project: project,
-                pageTitle: project.projectNo,
-                path: '/ownerInfo',
-            });
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+        res.render('projects/ownerInfo', {
+            project: project,
+            pageTitle: project.projectNo,
+            path: '/ownerInfo',
         });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
 };
 
 exports.postOwnerInfo = (req, res, next) => {
@@ -360,9 +348,10 @@ exports.postOwnerInfo = (req, res, next) => {
         });
 };
 
-exports.getOwnerInfoC = (req, res, next) => {
+exports.getOwnerInfoC = async(req, res, next) => {
     const projId = req.params.projectId;
-    Project.findByPk(projId, {
+    try {
+        const project = await Project.findByPk(projId, {
             include: [{
                 model: Sales
             }, {
@@ -373,18 +362,16 @@ exports.getOwnerInfoC = (req, res, next) => {
                 model: Insurance
             }]
         })
-        .then(project => {
-            res.render('projects/ownerInfoC', {
-                project: project,
-                pageTitle: project.projectNo,
-                path: '/ownerInfo',
-            });
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+        res.render('projects/ownerInfoC', {
+            project: project,
+            pageTitle: project.projectNo,
+            path: '/ownerInfo',
         });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
 };
 
 exports.postOwnerInfoC = (req, res, next) => {
@@ -457,35 +444,30 @@ exports.postOwnerInfoC = (req, res, next) => {
         });
 };
 
-exports.getGeneralInfo = (req, res, next) => {
+exports.getGeneralInfo = async(req, res, next) => {
     const projId = req.params.projectId;
-    Sales.findAll()
-        .then(sales => {
-            Supervisor.findAll()
-                .then(supervisor => {
-                    Project.findByPk(projId, {
-                            include: [{
-                                model: Sales
-                            }, {
-                                model: Supervisor
-                            }]
-                        })
-                        .then(project => {
-                            res.render('projects/generalInfo', {
-                                pageTitle: project.projectNo,
-                                path: '/generalInfo',
-                                project: project,
-                                supers: supervisor,
-                                sal: sales
-                            });
-                        })
-                })
+    try {
+        const sales = await Sales.findAll()
+        const supervisor = await Supervisor.findAll()
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }]
         })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+        res.render('projects/generalInfo', {
+            pageTitle: project.projectNo,
+            path: '/generalInfo',
+            project: project,
+            supers: supervisor,
+            sal: sales
         });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
 };
 
 exports.postGeneralInfo = (req, res, next) => {
@@ -540,21 +522,20 @@ exports.postGeneralInfo = (req, res, next) => {
         });
 };
 
-exports.getAddInsurance = (req, res, next) => {
-    Insurance.findAll()
-        .then(insurance => {
-            res.render('projects/add-insurance', {
-                pageTitle: "Add Insurance Company",
-                path: '/add-insurance',
-                insurance: insurance,
-            });
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+exports.getAddInsurance = async(req, res, next) => {
+    try {
+        const insurance = await Insurance.findAll()
+        res.render('projects/add-insurance', {
+            pageTitle: "Add Insurance Company",
+            path: '/add-insurance',
+            insurance: insurance,
         });
-}
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
 
 exports.postAddInsurance = (req, res, next) => {
 
@@ -584,32 +565,27 @@ exports.postAddInsurance = (req, res, next) => {
         });
 };
 
-exports.getInsuranceInfo = (req, res, next) => {
+exports.getInsuranceInfo = async(req, res, next) => {
     const projId = req.params.projectId;
-    const username = req.session.username;
-    const userid = req.session.userid;
-    Insurance.findAll()
-        .then(insurance => {
-            Project.findByPk(projId, {
-                    include: [{
-                        model: Insurance
-                    }]
-                })
-                .then(project => {
-                    res.render('projects/insuranceInfo', {
-                        pageTitle: project.projectNo,
-                        project: project,
-                        insure: insurance,
-                        path: '/insuranceInfo'
-                    });
-                })
+    try {
+        const insurance = await Insurance.findAll()
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: Insurance
+            }]
         })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+        res.render('projects/insuranceInfo', {
+            pageTitle: "Insurance Details",
+            project: project,
+            insure: insurance,
+            path: '/insuranceInfo'
         });
-}
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
 
 exports.postInsuranceInfo = (req, res, next) => {
     const projId = req.body.projectId;
@@ -785,37 +761,6 @@ exports.postDocEdit = (req, res, next) => {
 
 };
 
-exports.getFinancialInfo = (req, res, next) => {
-    const projId = req.params.projectId;
-    Sales.findAll()
-        .then(sales => {
-            Supervisor.findAll()
-                .then(supervisor => {
-                    Project.findByPk(projId, {
-                            include: [{
-                                model: Sales
-                            }, {
-                                model: Supervisor
-                            }]
-                        })
-                        .then(project => {
-                            res.render('projects/financialinfo', {
-                                pageTitle: project.projectNo,
-                                path: '/financialinfo',
-                                project: project,
-                                supers: supervisor,
-                                sal: sales
-                            });
-                        })
-                })
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
-};
-
 exports.postChangeStatus2 = (req, res, next) => {
     let projId = req.params.projId;
     let updatedStatus = req.body.newStat;
@@ -905,36 +850,33 @@ exports.postChangeStatus2 = (req, res, next) => {
         });
 };
 
-exports.getAddNote = (req, res, next) => {
+exports.getAddNote = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
-    Notes.findAll({
+    try {
+        const notes = await Notes.findAll({
             where: { projectId: projId }
         })
-        .then(notes => {
-            Project.findByPk(projId, {
-                    include: [{
-                        model: Notes
-                    }]
-                })
-                .then(project => {
-                    res.render('projects/add-note', {
-                        pageTitle: project.projectNo,
-                        path: '/add-note',
-                        project: project,
-                        projId: projId,
-                        userName: userName,
-                        userId: userId,
-                        note: notes
-                    });
-                })
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: Notes
+            }]
         })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+        res.render('projects/add-note', {
+            pageTitle: project.projectNo,
+            path: '/add-note',
+            project: project,
+            projId: projId,
+            userName: userName,
+            userId: userId,
+            note: notes
         });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    };
 };
 
 exports.postAddNote = (req, res, next) => {
@@ -956,48 +898,41 @@ exports.postAddNote = (req, res, next) => {
         });
 };
 
-exports.getFundsReceived = (req, res, nexct) => {
+exports.getFundsReceived = async(req, res, nexct) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
-    FundsRcvd.findAll({
-            where: { projectId: projId }
+    try {
+        const fundsRcvd = await FundsRcvd.findAll({ where: { projectId: projId } })
+        const allfunds = fundsRcvd;
+        let tots = 0;
+        for (a of allfunds) {
+            tots += a.fundsAmt;
+        };
+        console.log(tots);
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: FundsRcvd
+            }]
         })
-        .then(fundsRcvd => {
-            const allfunds = fundsRcvd;
-            let tots = 0;
-            for (a of allfunds) {
-                tots += a.fundsAmt;
-            };
-            console.log(tots);
-            Project.findByPk(projId, {
-                    include: [{
-                        model: FundsRcvd
-                    }]
-                })
-                .then(project => {
-                    project.totalFundsRcvd = tots;
-                    return project.save();
-                })
-                .then(project => {
-                    res.render('projects/fundsReceived', {
-                        pageTitle: "Funds Received",
-                        path: '/fundsReceived',
-                        project: project,
-                        projId: projId,
-                        userName: userName,
-                        userId: userId,
-                        fR: fundsRcvd,
-                        totals: tots
-                    });
-                })
-        })
-        .catch(err => {
-            console.log(fundsRcvd);
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+        project.totalFundsRcvd = tots;
+        project.save();
+        res.render('projects/fundsReceived', {
+            pageTitle: "Funds Received",
+            path: '/fundsReceived',
+            project: project,
+            projId: projId,
+            userName: userName,
+            userId: userId,
+            fR: fundsRcvd,
+            totals: tots
         });
+    } catch (err) {
+        console.log(fundsRcvd);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    };
 };
 
 exports.postFundsReceived = (req, res, next) => {
@@ -1025,50 +960,41 @@ exports.postFundsReceived = (req, res, next) => {
         });
 };
 
-exports.getJobCosts = (req, res, next) => {
+exports.getJobCosts = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
-    Trades.findAll()
-        .then(trades => {
-            JobCosts.findAll({
-                    where: { projectId: projId }
-                })
-                .then(jobCosts => {
-                    const allCosts = jobCosts;
-                    let tots = 0;
-                    for (a of allCosts) {
-                        tots += a.costAmt;
-                    };
-                    Project.findByPk(projId, {
-                            include: [{
-                                model: JobCosts
-                            }]
-                        })
-                        .then(project => {
-                            project.totalJobCosts = tots;
-                            return project.save();
-                        })
-                        .then(project => {
-                            res.render('projects/jobCosts', {
-                                pageTitle: "Job Costs",
-                                path: '/jobCosts',
-                                project: project,
-                                projId: projId,
-                                trade: trades,
-                                userName: userName,
-                                userId: userId,
-                                jC: jobCosts,
-                                totals: tots
-                            });
-                        })
-                })
+    try {
+        const trades = await Trades.findAll()
+        const jobCosts = await JobCosts.findAll({ where: { projectId: projId } })
+        const allCosts = jobCosts;
+        let tots = 0;
+        for (a of allCosts) {
+            tots += a.costAmt;
+        };
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: JobCosts
+            }]
         })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+        project.totalJobCosts = tots;
+        project.save();
+        res.render('projects/jobCosts', {
+            pageTitle: "Job Costs",
+            path: '/jobCosts',
+            project: project,
+            projId: projId,
+            trade: trades,
+            userName: userName,
+            userId: userId,
+            jC: jobCosts,
+            totals: tots
         });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
 };
 
 exports.postJobCosts = (req, res, next) => {
@@ -1091,51 +1017,44 @@ exports.postJobCosts = (req, res, next) => {
         });
 };
 
-exports.getAdditions = (req, res, next) => {
+exports.getAdditions = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
-    Trades.findAll()
-        .then(trades => {
-            Additions.findAll({
-                    where: { projectId: projId }
-                })
-                .then(additions => {
-                    const allAdds = additions;
-                    let tots = 0;
-                    for (a of allAdds) {
-                        tots += a.addAmt;
-                    };
-                    Project.findByPk(projId, {
-                            include: [{
-                                model: Additions
-                            }]
-                        })
-                        .then(project => {
-                            project.rcvChange = tots;
-                            return project.save();
-                        })
-                        .then(project => {
-                            res.render('projects/additions', {
-                                pageTitle: "Additions",
-                                path: '/additions',
-                                project: project,
-                                projId: projId,
-                                trade: trades,
-                                userName: userName,
-                                userId: userId,
-                                aD: additions,
-                                totals: tots
-                            });
-                        })
-                })
+    try {
+        const trades = await Trades.findAll()
+        const additions = await Additions.findAll({
+            where: { projectId: projId }
         })
-        .catch(err => {
-            console.log(err);
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+        const allAdds = additions;
+        let tots = 0;
+        for (a of allAdds) {
+            tots += a.addAmt;
+        };
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: Additions
+            }]
+        })
+        project.rcvChange = tots;
+        project.save();
+        res.render('projects/additions', {
+            pageTitle: "Additions",
+            path: '/additions',
+            project: project,
+            projId: projId,
+            trade: trades,
+            userName: userName,
+            userId: userId,
+            aD: additions,
+            totals: tots
         });
+    } catch (err) {
+        console.log(err);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
 };
 
 exports.postAdditions = (req, res, next) => {
@@ -1158,51 +1077,45 @@ exports.postAdditions = (req, res, next) => {
         });
 };
 
-exports.getExclusions = (req, res, next) => {
+exports.getExclusions = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
-    Trades.findAll()
-        .then(trades => {
-            Exclusions.findAll({
-                    where: { projectId: projId }
-                })
-                .then(exclusions => {
-                    const allExcl = exclusions;
-                    let tots = 0;
-                    for (a of allExcl) {
-                        tots += a.exclAmt;
-                    };
-                    Project.findByPk(projId, {
-                            include: [{
-                                model: Exclusions
-                            }]
-                        })
-                        .then(project => {
-                            project.totalExclusions = tots;
-                            return project.save();
-                        })
-                        .then(project => {
-                            res.render('projects/exclusions', {
-                                pageTitle: "Exclusions",
-                                path: '/exclusions',
-                                project: project,
-                                projId: projId,
-                                trade: trades,
-                                userName: userName,
-                                userId: userId,
-                                aD: exclusions,
-                                totals: tots
-                            });
-                        })
-                })
+    try {
+        const trades = await Trades.findAll()
+        const exclusions = await Exclusions.findAll({
+            where: { projectId: projId }
         })
-        .catch(err => {
-            console.log(err);
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+        const allExcl = exclusions;
+        let tots = 0;
+        for (a of allExcl) {
+            tots += a.exclAmt;
+        };
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: Exclusions
+            }]
+        })
+
+        project.totalExclusions = tots;
+        project.save();
+        res.render('projects/exclusions', {
+            pageTitle: "Exclusions",
+            path: '/exclusions',
+            project: project,
+            projId: projId,
+            trade: trades,
+            userName: userName,
+            userId: userId,
+            aD: exclusions,
+            totals: tots
         });
+    } catch (err) {
+        console.log(err);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    };
 };
 
 exports.postExclusions = (req, res, next) => {
