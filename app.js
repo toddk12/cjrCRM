@@ -138,8 +138,8 @@ Notes.belongsTo(Project)
 Project.hasMany(Notes);
 Project.belongsTo(Trades)
 Trades.hasMany(Project);
-RType.belongsTo(Document);
-Document.hasMany(RType);
+Document.belongsTo(RType);
+RType.hasMany(Document);
 
 sequelize
 // .sync({ force: true })

@@ -656,7 +656,7 @@ exports.postInsuranceInfo = (req, res, next) => {
 
 exports.getDocInfo = (req, res, next) => {
     const projId = req.params.projectId;
-    const CA = Document.findByPk(projId, {where: {docName: "Contingency Agreement"}});
+    const CA = Document.findByPk(projId, { where: { docName: "Contingency Agreement" } });
     console.log(CA);
     Document.findByPk(projId)
         .then(document => {
@@ -1126,6 +1126,66 @@ exports.postExclusions = (req, res, next) => {
             entryDate: req.body.entryDate,
             exclAmt: req.body.exclAmt,
             exclMemo: req.body.exclMemo,
+            tradeName: req.body.tradeName,
+            projectId: req.body.projectId
+        })
+        .then(project => {
+            res.redirect('back');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.getOwnerOop = async(req, res, next) => {
+    const projId = req.params.projectId;
+    const userName = req.user.ename;
+    const userId = req.user.id;
+    try {
+        const trades = await Trades.findAll()
+        const ownerOop = await OwnerOop.findAll({
+            where: { projectId: projId }
+        })
+        const allOop = ownerOop;
+        let tots = 0;
+        for (a of allOop) {
+            tots += a.oopAmt;
+        };
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: OwnerOop
+            }]
+        })
+        project.ownerOop = tots;
+        project.save();
+        res.render('projects/ownerOop', {
+            pageTitle: "Owner Out of Pocket",
+            path: '/ownerOop',
+            project: project,
+            projId: projId,
+            trade: trades,
+            userName: userName,
+            userId: userId,
+            oops: ownerOop,
+            totals: tots
+        });
+    } catch (err) {
+        console.log(err);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    };
+};
+
+exports.postOwnerOop = (req, res, next) => {
+
+    OwnerOop.create({
+            enteredBy: req.body.enteredBy,
+            entryDate: req.body.entryDate,
+            oopAmt: req.body.oopAmt,
+            oopMemo: req.body.oopMemo,
             tradeName: req.body.tradeName,
             projectId: req.body.projectId
         })

@@ -77,4 +77,8 @@ router.get('/exclusions/:projectId', isAuth, projectsController.getExclusions);
 
 router.post('/exclusions', isAuth, projectsController.postExclusions);
 
+router.get('/ownerOop/:projectId', isAuth, projectsController.getOwnerOop);
+
+router.post('/ownerOop', isAuth, projectsController.postOwnerOop);
+
 module.exports = router;
