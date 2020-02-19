@@ -1158,7 +1158,7 @@ exports.getOwnerOop = async(req, res, next) => {
                 model: OwnerOop
             }]
         })
-        project.ownerOop = tots;
+        project.totalOwnerOop = tots;
         project.save();
         res.render('projects/ownerOop', {
             pageTitle: "Owner Out of Pocket",

@@ -103,7 +103,7 @@ const Project = sequelize.define('project', {
     fScopeACV: Sequelize.FLOAT(10, 2),
     adjName: Sequelize.STRING,
     adjPhone: Sequelize.STRING,
-    ownerOOP: {
+    totalOwnerOop: {
         type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
