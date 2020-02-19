@@ -388,7 +388,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm text-right">
-                                    Gross Supplement: <strong><%= money.format((project.fScopeRCV - project.oScopeRCV)) %></strong>
+                                    <% if (project.fScopeRCV == null) { %>
+                                        Gross Supplement: <strong><%= money.format(project.fScopeRCV) %></strong>
+                                        <% } else { %>
+                                            Gross Supplement: <strong><%= money.format((project.fScopeRCV - project.oScopeRCV)) %></strong>
+                                            <% } %>
+
                                 </div>
                                 <div class="col-sm text-right">
                                     <a href="/commissions/<%= project.id %>" class="btn-sm2">Total Commissions:   </a>
@@ -402,7 +407,7 @@
 
                                 </div>
                                 <div class="col-sm text-right">
-                                    Gross Profit $: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                    Gross Profit $: <strong><%= money.format((project.totalFundsRcvd - project.totalJobCosts - project.totalRepPay)) %></strong>
                                 </div>
                             </div>
                             <div class="row">
@@ -411,7 +416,7 @@
                                     <strong><%= money.format(project.totalExclusions) %></strong>
                                 </div>
                                 <div class="col-sm text-right">
-                                    Gross Profit %: <strong><%= percent.format(project.amtOwnerOwes) %></strong>
+                                    Gross Profit %: <strong><%= percent.format(((project.totalFundsRcvd - project.totalJobCosts - project.totalRepPay)/project.totalFundsRcvd)) %></strong>
                                 </div>
                             </div>
                             <div class="row">
@@ -420,15 +425,23 @@
                                     <strong><%= money.format(project.totalOwnerOop) %></strong>
                                 </div>
                                 <div class="col-sm text-right">
-                                    Owner Owes: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+                                    <% if (project.fScopeRCV == null) { %>
+                                        Owner Owes: <strong><%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) - project.totalFundsRcvd)) %></strong>
+                                        <% } else { %>
+                                            Owner Owes: <strong><%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) - project.totalFundsRcvd)) %></strong>
+                                            <% } %>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm text-right">
-                                    Total Project: <strong><%= money.format(project.fScopeRCV + project.rcvChange - project.totalExclusions + project.ownerOOP) %></strong>
+                                    <% if (project.fScopeRCV == null) { %>
+                                        Total Project: <strong><%= money.format(project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) %></strong>
+                                        <% } else { %>
+                                            Total Project: <strong><%= money.format(project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) %></strong>
+                                            <% } %>
                                 </div>
                                 <div class="col-sm text-right">
-                                    Project Profit $: <strong><%= money.format(project.amtOwnerOwes) %></strong>
+
                                 </div>
                             </div>
                         </article>

@@ -1168,8 +1168,7 @@ exports.getOwnerOop = async(req, res, next) => {
             trade: trades,
             userName: userName,
             userId: userId,
-            oops: ownerOop,
-            totals: tots
+            oops: ownerOop
         });
     } catch (err) {
         console.log(err);

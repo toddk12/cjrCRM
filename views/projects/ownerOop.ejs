@@ -29,8 +29,8 @@
                                         <input type="hidden" name="enteredID" value="<%= userId %>">
                                     </div>
                                     <div class="col-sm" style="width: 200px">
-                                        <label for="tradeId"><strong>Trade: </strong></label>
-                                        <select style="width: 200px" class="select" name="tradeId" id="tradeId">
+                                        <label for="tradeName"><strong>Trade: </strong></label>
+                                        <select style="width: 200px" class="select" name="tradeName" id="tradeName">
                                     <% for (let trades of trade) { %>
                                     <option value="<%= trades.id %>">
                                     <%= trades.trade %></option>
@@ -89,11 +89,11 @@
                                         <%= oop.tradeName %>
                                     </div>
                                     <div class="col-sm">
-                                        <%= oop.oopMemo %>
+                                        <%= money.format(oop.oopAmt) %>
+                                            <% project.totalOwnerOop %>
                                     </div>
                                     <div class="col-sm">
-                                        <%= money.format(oop.oopAmt) %>
-                                            <% project.totalOwnerOop += oop.oopAmt %>
+                                        <%= oop.oopMemo %>
                                     </div>
 
                                 </div>
@@ -102,7 +102,7 @@
                                     <article>
                                         <div class="row">
                                             <div class="col-sm">
-                                                <%= money.format(project.ownerOop) %>
+                                                <%= money.format(project.totalOwnerOop) %>
                                             </div>
                                         </div>
                                     </article>
