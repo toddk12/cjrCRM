@@ -1,3 +1,8 @@
+.docs {
+    width: 90%;
+    font-size: small;
+}
+
 .section-title {
     text-align: center;
 }
@@ -8,6 +13,12 @@ article {
     padding-top: 2px;
     padding-bottom: 8px;
     border: 2px solid darkblue;
+}
+
+.btn-xsm {
+    background-color: blue;
+    color: white;
+    padding: 2px;
 }
 
 .changeStatus {
