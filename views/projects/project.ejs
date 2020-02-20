@@ -446,12 +446,15 @@
                             </div>
                         </article>
                         <!-- Work to be done section -->
-                        <article class="worktobedone">
+                        <article class="worktobedone" style="width: 450px">
                             <h5 class="card-title">Production</h5>
-                            <p>A Breakout of work to be done by trade with budget information for each trade. To view and/or edit, click button below</p>
-                            <a href="/workinfo/<%= project.id %>" class="btn-sm">View/Edit Work to be Done</a>
+                            <a href="/workinfo/<%= project.id %>" class="btn-sm">Work to be Done</a>
+                            <a href="/workinfo/<%= project.id %>" class="btn-sm">Work Orders</a>
+                            <a href="/workinfo/<%= project.id %>" class="btn-sm">Roof Calculator</a>
+                            <br>
+                            <p> </p>
                         </article>
-                        <article class="notes">
+                        <article class="notes" style="width: 1285px">
                             <h5><strong>Project Notes</strong></h5>
                             <a href="/add-note/<%= project.id %>" class="btn-sm">Add Note</a>
                             <br>

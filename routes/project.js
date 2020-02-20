@@ -11,6 +11,8 @@ router.get('/', projectsController.getIndex);
 
 router.get('/projects/:stat', isAuth, projectsController.getProjects);
 
+router.get('/projects', isAuth, projectsController.getAllProjects);
+
 router.get('/project/:projectId', isAuth, projectsController.getProject);
 
 router.post('/project/:projId', isAuth, projectsController.postChangeStatus2);

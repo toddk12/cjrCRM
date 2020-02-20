@@ -42,7 +42,7 @@
                                                                                                     <% } %>
                                                                                                         <% } %>
                                             </h5>
-                                            <small>Job: <%= project.id %> - - Project: <%= project.projectNo %></small>
+                                            <small>Status: <strong><%= project.status.status %></strong> - - Project: <%= project.projectNo %></small>
                                         </div>
                                         <div class="d-flex w-100 justify-content-between">
                                             <h6 class="mb-1">
@@ -58,7 +58,7 @@
                                                             <%= project.oCoName %> -
                                                                 <%= project.oContact %>
                                                     </h5>
-                                                    <small>Job: <%= project.id %> - - Project: <%= project.projectNo %></small>
+                                                    <small>Status: <strong><%= project.status.status %></strong> - - Project: <%= project.projectNo %></small>
                                                 </div>
                                                 <div class="d-flex w-100 justify-content-between">
                                                     <h6 class="mb-1">

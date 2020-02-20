@@ -16,11 +16,23 @@ const RType = require('../models/rType');
 
 
 exports.getAddProject = (req, res, next) => {
-    Sales.findAll()
+    Sales.findAll({
+            order: [
+                ['name', 'ASC']
+            ]
+        })
         .then(sales => {
-            Insurance.findAll()
+            Insurance.findAll({
+                    order: [
+                        ['coName', 'ASC']
+                    ]
+                })
                 .then(insurance => {
-                    Supervisor.findAll()
+                    Supervisor.findAll({
+                            order: [
+                                ['name', 'ASC']
+                            ]
+                        })
                         .then(supervisor => {
                             Status.findAll()
                                 .then(status => {
@@ -94,11 +106,23 @@ exports.postAddProject = (req, res, next) => {
 };
 
 exports.getAddCProject = (req, res, next) => {
-    Sales.findAll()
+    Sales.findAll({
+            order: [
+                ['name', 'ASC']
+            ]
+        })
         .then(sales => {
-            Insurance.findAll()
+            Insurance.findAll({
+                    order: [
+                        ['coName', 'ASC']
+                    ]
+                })
                 .then(insurance => {
-                    Supervisor.findAll()
+                    Supervisor.findAll({
+                            order: [
+                                ['name', 'ASC']
+                            ]
+                        })
                         .then(supervisor => {
                             Status.findAll()
                                 .then(status => {
@@ -180,6 +204,39 @@ exports.postAddCProject = (req, res, next) => {
         });
 };
 
+exports.getAllProjects = async(req, res, next) => {
+    try {
+        const sales = await Sales.findAll()
+        const status = await Status.findAll()
+        const projects = await Project.findAll({
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Insurance
+            }, {
+                model: Status
+            }],
+            order: [
+                ['owner1Ln', 'ASC']
+            ]
+        })
+        res.render('projects/projects', {
+            projs: projects,
+            stat: status,
+            sal: sales,
+            pageTitle: 'Projects',
+            path: '/projects',
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
+};
+
 exports.getProjects = async(req, res, next) => {
     const statId = req.params.stat;
     try {
@@ -195,7 +252,10 @@ exports.getProjects = async(req, res, next) => {
                 model: Insurance
             }, {
                 model: Status
-            }]
+            }],
+            order: [
+                ['owner1Ln', 'ASC']
+            ]
         })
         res.render('projects/projects', {
             projs: projects,
@@ -447,8 +507,16 @@ exports.postOwnerInfoC = (req, res, next) => {
 exports.getGeneralInfo = async(req, res, next) => {
     const projId = req.params.projectId;
     try {
-        const sales = await Sales.findAll()
-        const supervisor = await Supervisor.findAll()
+        const sales = await Sales.findAll({
+            order: [
+                ['name', 'ASC']
+            ]
+        })
+        const supervisor = await Supervisor.findAll({
+            order: [
+                ['name', 'ASC']
+            ]
+        })
         const project = await Project.findByPk(projId, {
             include: [{
                 model: Sales
@@ -524,7 +592,11 @@ exports.postGeneralInfo = (req, res, next) => {
 
 exports.getAddInsurance = async(req, res, next) => {
     try {
-        const insurance = await Insurance.findAll()
+        const insurance = await Insurance.findAll({
+            order: [
+                ['coName', 'ASC']
+            ]
+        })
         res.render('projects/add-insurance', {
             pageTitle: "Add Insurance Company",
             path: '/add-insurance',
@@ -568,7 +640,11 @@ exports.postAddInsurance = (req, res, next) => {
 exports.getInsuranceInfo = async(req, res, next) => {
     const projId = req.params.projectId;
     try {
-        const insurance = await Insurance.findAll()
+        const insurance = await Insurance.findAll({
+            order: [
+                ['coName', 'ASC']
+            ]
+        })
         const project = await Project.findByPk(projId, {
             include: [{
                 model: Insurance

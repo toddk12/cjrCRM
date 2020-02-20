@@ -12,7 +12,7 @@
                 </li>
                 <% if (isAuthenticated) { %>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Project</a>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add Information</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/add-project">Add Residential Project</a>
                             <a class="dropdown-item" href="/add-c-project">Add Commercial Project</a>
@@ -22,6 +22,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Project Lists</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/projects">All</a>
                             <a class="dropdown-item" href="/projects/1">Entry</a>
                             <a class="dropdown-item" href="/projects/2">Estimating</a>
                             <a class="dropdown-item" href="/projects/3">Production</a>
@@ -34,12 +35,28 @@
                             <a class="dropdown-item" href="/projects/12">On Hold</a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Searches</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/add-project">By Owner Last Name</a>
+                            <a class="dropdown-item" href="/add-c-project">By Building Name</a>
+                            <a class="dropdown-item" href="/add-insurance">By Building Address</a>
+                            <a class="dropdown-item" href="/add-insurance">By Building City</a>
+                        </div>
+                    </li>
                     <li>
                         <% if (isAuthenticated) { %>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/signup">Register New User</a>
+                                    <a class="dropdown-item" href="/signup">Edit User</a>
+                                    <a class="dropdown-item" href="/add-insurance">Add Sales Representative</a>
+                                    <a class="dropdown-item" href="/add-insurance">Add Document Type</a>
+                                    <a class="dropdown-item" href="/add-insurance">Add Estimator</a>
+                                    <a class="dropdown-item" href="/add-insurance">Add Supervisor</a>
+                                    <a class="dropdown-item" href="/add-insurance">Add Sub-Contractor</a>
+                                    <a class="dropdown-item" href="/add-insurance">Add Supplier</a>
                                 </div>
                             </li>
                             <% } %>
