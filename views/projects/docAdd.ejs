@@ -10,7 +10,7 @@
                     <h1><strong>Add Document</strong></h1>
                 </div>
                 <article class="notes">
-                    <form class="form" action="/docInfo" method="POST" enctype="multipart/form-data">
+                    <form class="form" action="/docAdd" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm">
                                 <label for="projectId"><strong>Project Id: </strong></label>
@@ -25,16 +25,10 @@
                     <% } %>
                 </select>
                             </div>
-                            <% if (types.id === 17) { %>
-                                <div class="col-sm">
-                                    <label for="docName"><strong>Name of Document: </strong></label>
-                                    <input type="text" name="docName" id="docName">
-                                </div>
-                                <% }%>
-                                    <div class="col-sm">
-                                        <label for="docFile"><strong>Document File: </strong></label>
-                                        <input type="file" name="docFile" id="docFile">
-                                    </div>
+                            <div class="col-sm">
+                                <label for="docFile"><strong>Document File: </strong></label>
+                                <input type="file" name="docFile" id="docFile">
+                            </div>
                         </div>
                         <br>
                         <div class="row">

@@ -732,9 +732,9 @@ exports.postInsuranceInfo = (req, res, next) => {
 
 exports.getDocInfo = (req, res, next) => {
     const projId = req.params.projectId;
-    const CA = Document.findByPk(projId, { where: { docName: "Contingency Agreement" } });
-    console.log(CA);
-    Document.findByPk(projId)
+    Document.findAll({
+            where: { projectId: projId }
+        })
         .then(document => {
             Project.findByPk(projId)
                 .then(project => {
@@ -754,19 +754,8 @@ exports.getDocInfo = (req, res, next) => {
         });
 };
 
-exports.postDocInfo = (req, res, next) => {
-    const newProjId = (req.body.projectId);
-    const newDocName = (req.body.docName);
-    const newDocFile = (req.file);
-    console.log(newProjId);
-    console.log(newDocName);
-    console.log(newDocFile);
-
-};
-
 exports.getDocAdd = (req, res, next) => {
     const projId = req.params.projectId;
-    console.log("getDocInfo");
     RType.findAll()
         .then(rType => {
             Document.findByPk(projId)
@@ -792,13 +781,22 @@ exports.getDocAdd = (req, res, next) => {
 };
 
 exports.postDocAdd = (req, res, next) => {
-    const newProjId = (req.body.projectId);
-    const newDocName = (req.body.docName);
-    const newDocFile = (req.file);
-    console.log(newProjId);
-    console.log(newDocName);
-    console.log(newDocFile);
-
+    console.log(req.body.projectId);
+    console.log(req.file.originalname);
+    console.log(req.body.docName);
+    Document.create({
+            projectId: req.body.projectId,
+            docFile: req.file.originalname,
+            docName: req.body.docName
+        })
+        .then(document => {
+            res.redirect('back');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
 };
 
 exports.getDocEdit = (req, res, next) => {

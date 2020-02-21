@@ -32,454 +32,190 @@
                 </div>
                 <article class="docs">
                     <% if (!docs) { %>
-                        <div class="row">
-                            <div class="col-sm">
-                                Document Name: <strong>Contingency Agreement</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=1>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=1>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
                         <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                Document Name: <strong>SOW Addendum</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=2>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=2>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>Materials & Colors</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=3>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=3>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>PreCon Evaluation</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=6>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=6>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>Insurance Authorization</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=5>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=5>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>Mortgage Authorization</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=4>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=4>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>Original Scope</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=11>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=11>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>Final Scope</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=15>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=15>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>Supplement</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=14>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=14>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>Photo Report</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=13>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=13>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>GC Letter</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=8>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=8>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>Assignment</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=7>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=7>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>Contruction Contract</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=9>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=9>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-sm">
-                                File Name: <strong>Construction Addendum</strong>
-                            </div>
-                            <div class="col-sm">
-                                File Name: <strong>Filename</strong>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=10>
-                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                            </div>
-                            <div class="col-sm">
-                                <input type="hidden" name="type" value=10>
-                                <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                            </div>
-                        </div>
+                        <h5>No Documents</h5>
                         <% } else { %>
                             <% for (let doc of docs) { %>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        Document Name: <strong>Contingency Agreement</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=1> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
+                                    <% if(doc.docName === "Contingency Agreement") { %>
+                                        <div class="col-sm">
+                                            Document Name: <strong><%= doc.docName %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            File Name: <strong><%= doc.docFile %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="col-sm">
+                                                Document Name: <strong>Contingency Agreement</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                File Name: <strong>No File Uploaded</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                            </div>
+                                            <% } %>
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        Document Name: <strong>SOW Addendum</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=2> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
+                                    <% if(doc.docName === "SOW Addendum") { %>
+                                        <div class="col-sm">
+                                            Document Name: <strong><%= doc.docName %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            File Name: <strong><%= doc.docFile %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="col-sm">
+                                                Document Name: <strong>SOW Addendum</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                File Name: <strong>No File Uploaded</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                            </div>
+                                            <% } %>
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>Materials & Colors</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=3> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
+                                    <% if(doc.docName === "Material & Color Selection") { %>
+                                        <div class="col-sm">
+                                            Document Name: <strong><%= doc.docName %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            File Name: <strong><%= doc.docFile %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="col-sm">
+                                                Document Name: <strong>Material & Color Selection</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                File Name: <strong>No File Uploaded</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                            </div>
+                                            <% } %>
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>PreCon Evaluation</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=6> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
+                                    <% if(doc.docName === "Mortgagge Auth") { %>
+                                        <div class="col-sm">
+                                            Document Name: <strong><%= doc.docName %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            File Name: <strong><%= doc.docFile %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="col-sm">
+                                                Document Name: <strong>Mortgagge Auth</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                File Name: <strong>No File Uploaded</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                            </div>
+                                            <% } %>
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>Insurance Authorization</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=5> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
+                                    <% if(doc.docName === "Insurance Auth") { %>
+                                        <div class="col-sm">
+                                            Document Name: <strong><%= doc.docName %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            File Name: <strong><%= doc.docFile %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="col-sm">
+                                                Document Name: <strong>Insurance Auth</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                File Name: <strong>No File Uploaded</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                            </div>
+                                            <% } %>
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>Mortgage Authorization</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=4> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
+                                    <% if(doc.docName === "PreCon Evaluation") { %>
+                                        <div class="col-sm">
+                                            Document Name: <strong><%= doc.docName %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            File Name: <strong><%= doc.docFile %></strong>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                        </div>
+                                        <div class="col-sm">
+                                            <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="col-sm">
+                                                Document Name: <strong>PreCon Evaluation</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                File Name: <strong>No File Uploaded</strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
+                                            </div>
+                                            <div class="col-sm">
+                                                <a href="/docAdd/<%= project.id %>" class="btn-xsm">Download File</a>
+                                            </div>
+                                            <% } %>
                                 </div>
                                 <br>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>Original Scope</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=11> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>Final Scope</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=15> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>Supplement</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=14> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>Photo Report</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=13> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>GC Letter</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=8> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>Assignment</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=7> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>Contruction Contract</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=9> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        File Name: <strong>Construction Addendum</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <input type="hidden" name="type" value=10> File Name: <strong>Filename</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docAdd/<%= project.id %>" class="btn-xsm">Upload File</a>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a href="/docEdit/<%= project.id %>" class="btn-xsm">Download File</a>
-                                    </div>
-                                </div>
                                 <% } %>
                                     <% } %>
                 </article>
