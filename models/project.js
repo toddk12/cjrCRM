@@ -10,6 +10,7 @@ const Project = sequelize.define('project', {
         primaryKey: true
     },
     projectNo: Sequelize.STRING,
+    ownerCoName: Sequelize.STRING,
     owner1Fn: Sequelize.STRING,
     owner1Ln: Sequelize.STRING,
     owner2Fn: Sequelize.STRING,
@@ -40,18 +41,6 @@ const Project = sequelize.define('project', {
         defaultValue: "CO"
     },
     bZip: Sequelize.STRING,
-    oCoName: Sequelize.STRING,
-    oContact: Sequelize.STRING,
-    oAddress: Sequelize.STRING,
-    oCity: Sequelize.STRING,
-    oState: {
-        type: Sequelize.STRING,
-        defaultValue: "CO"
-    },
-    oZip: Sequelize.STRING,
-    oPhon1: Sequelize.STRING,
-    oPhone2: Sequelize.STRING,
-    oEmail: Sequelize.STRING,
     pmCoName: Sequelize.STRING,
     pmContact: Sequelize.STRING,
     pmAddress: Sequelize.STRING,
