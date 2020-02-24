@@ -279,7 +279,12 @@ exports.getProject = async(req, res, next) => {
     const username = req.session.username;
     const userid = req.session.userid;
     try {
-        const notes = await Notes.findAll({ where: { projectId: projId } })
+        const notes = await Notes.findAll({
+            where: { projectId: projId },
+            order: [
+                ['entryDate', 'DESC']
+            ]
+        })
         const project = await Project.findByPk(projId, {
             include: [{
                 model: Sales
@@ -936,7 +941,10 @@ exports.getAddNote = async(req, res, next) => {
     const userId = req.user.id;
     try {
         const notes = await Notes.findAll({
-            where: { projectId: projId }
+            where: { projectId: projId },
+            order: [
+                ['entryDate', 'DESC']
+            ]
         })
         const project = await Project.findByPk(projId, {
             include: [{
@@ -983,7 +991,12 @@ exports.getFundsReceived = async(req, res, nexct) => {
     const userName = req.user.ename;
     const userId = req.user.id;
     try {
-        const fundsRcvd = await FundsRcvd.findAll({ where: { projectId: projId } })
+        const fundsRcvd = await FundsRcvd.findAll({
+            where: { projectId: projId },
+            order: [
+                [entryDate, 'DESC']
+            ]
+        })
         const allfunds = fundsRcvd;
         let tots = 0;
         for (a of allfunds) {
@@ -1046,7 +1059,9 @@ exports.getJobCosts = async(req, res, next) => {
     const userId = req.user.id;
     try {
         const trades = await Trades.findAll()
-        const jobCosts = await JobCosts.findAll({ where: { projectId: projId } })
+        const jobCosts = await JobCosts.findAll({
+            where: { projectId: projId }
+        })
         const allCosts = jobCosts;
         let tots = 0;
         for (a of allCosts) {
