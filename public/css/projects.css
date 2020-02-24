@@ -12,7 +12,7 @@ article {
     width: 30%;
     padding-top: 2px;
     padding-bottom: 8px;
-    border: 2px solid darkblue;
+    border: 2px solid darkgreen;
 }
 
 .btn-xsm {
@@ -26,13 +26,13 @@ article {
     width: 62%;
     padding-top: 2px;
     padding-bottom: 8px;
-    border: 2px solid darkblue;
+    border: 2px solid darkgreen;
 }
 
 .list-group-item {
-    background-color: lightcyan;
-    border: 2px solid darkblue;
-    color: darkblue;
+    background-color: rgb(242, 255, 224);
+    border: 2px solid darkgreen;
+    color: darkgreen;
 }
 
 .list-group-item:hover {

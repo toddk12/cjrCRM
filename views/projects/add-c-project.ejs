@@ -10,21 +10,20 @@
                     <h1> Add Commercial Project</h1>
                 </div>
                 <article class="addproject">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1">
-                            <form class="form" action="/add-project" method="POST">
+
+                            <form class="form" action="/add-c-project" method="POST">
                                 <div class="row">
                                     <div class="col-sm">
                                         <label for="projectNo"><strong>Project #: </strong></label>
-                                        <input type="text" name="projectNo" id="projectNo" value="<%= project.projectNo %>">
+                                        <input style="width: 100px" type="text" name="projectNo" id="projectNo" value="<%= project.projectNo %>">
                                     </div>
                                     <div class="col-sm">
                                         <label for="bName"><strong>Building Name</strong></label>
-                                        <input type="text" name="bName" id="bName" value="<%= project.bName %>">
+                                        <input style="width: 350px" type="text" name="bName" id="bName" value="<%= project.bName %>">
                                     </div>
                                     <div class="col-sm">
                                         <label for="statusId">Change to: </label>
-                                        <select class="select" name="statusId" id="statusId">
+                                        <select style="width: 350px" class="select" name="statusId" id="statusId">
                                     <% for (let stat of status) { %>
                                     <option value="<%= stat.id %>">
                                     <%= stat.status %></option>
@@ -54,20 +53,16 @@
                                     <br>
                                 <div class="row">
                                     <div class="col-sm">
+                                        <label for="ownerCoName"><strong>Owning Company Name</strong></label>
+                                        <input type="text" name="ownerCoName" id="ownerCoName" value="<%= project.ownerCoName %>">
+                                    </div>
+                                    <div class="col-sm">
                                         <label for="owner1Fn"><strong>Owner 1: First Name</strong></label>
                                         <input type="text" name="owner1Fn" id="owner1Fn" value="<%= project.owner1Fn %>">
                                     </div>
                                     <div class="col-sm">
                                         <label for="owner1Ln"><strong>Last Name</strong></label>
                                         <input type="text" name="owner1Ln" id="owner1Ln" value="<%= project.owner1Ln %>">
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="owner2Fn"><strong>Owner 2: First Name</strong></label>
-                                        <input type="text" name="owner2Fn" id="owner2Fn" value="<%= project.owner2Fn %>">
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="owner2Ln"><strong>Last Name</strong></label>
-                                        <input type="text" name="owner2Ln" id="owner2Ln" value="<%= project.owner2Ln %>">
                                     </div>
                                 </div>
                                 <br>
@@ -109,6 +104,7 @@
                                     </div>
                                 </div>
                                 <br>
+                                <hr style="border: 1px solid darkgreen">
                                 <br>
                                 <div class="row">
                                     <div class="col-sm">
@@ -156,10 +152,12 @@
                                     </div>
                                 </div>
                                 <br>
+                                <hr style="border: 1px solid darkgreen">
+                                <br>
                                 <div class="row">
                                     <div class="col-sm" style="width: 200px">
                                         <label for="saleId">Sales Rep: </label>
-                                        <select class="select" name="saleId" id="saleId">
+                                        <select style="width: auto" class="select" name="saleId" id="saleId">
                                     <% for (let sale of sal) { %>
                                     <option value="<%= sale.id %>">
                                     <%= sale.name %></option>
@@ -168,7 +166,7 @@
                                     </div>
                                     <div class="col-sm" style="width: 200px">
                                         <label for="supervisorId">Supervisor: </label>
-                                        <select class="select" name="supervisorId" id="supervisorId">
+                                        <select style="width: auto" class="select" name="supervisorId" id="supervisorId">
                                     <% for (let sup of supers) { %>
                                     <option value="<%= sup.id %>">
                                     <%= sup.name %></option>
@@ -177,7 +175,7 @@
                                     </div>
                                     <div class="col-sm" style="width: 200px">
                                         <label for="insuranceId">Insurance Company: </label>
-                                        <select class="select" name="insuranceId" id="insuranceId">
+                                        <select style="width: auto" class="select" name="insuranceId" id="insuranceId">
                                             <% for (let insco of ins) { %>
                                                 <option value="<%= insco.id %>">
                                                 <%= insco.coName %></option>
@@ -240,8 +238,6 @@
                                     <button class="updatebtn" type="submit">Add Project</button>
                                 </div>
                             </form>
-                        </h6>
-                    </div>
                 </article>
             </main>
 

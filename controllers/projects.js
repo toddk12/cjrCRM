@@ -160,15 +160,17 @@ exports.postAddCProject = (req, res, next) => {
             bCity: req.body.bCity,
             bState: req.body.bState,
             bZip: req.body.bZip,
-            oCoName: req.body.oCoName,
-            oContact: req.body.oContact,
-            oAddress: req.body.oAddress,
-            oCity: req.body.oCity,
-            oState: req.body.oState,
-            oZip: req.body.oZip,
-            oPhone1: req.body.oPhone1,
-            oPhone2: req.body.oPhone2,
-            oEmail: req.body.oEmail,
+            ownerCoName: req.body.ownerCoName,
+            owner1Fn: req.body.owner1Fn,
+            owner1Ln: req.body.owner1Ln,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            hPhone: req.body.hPhone,
+            cPhone: req.body.cPhone,
+            oPhone: req.body.oPhone,
+            email: req.body.email,
             pmCoName: req.body.pmCoName,
             pmContact: req.body.pmContact,
             pmAddress: req.body.pmAddress,
@@ -359,8 +361,6 @@ exports.getOwnerInfo = async(req, res, next) => {
 
 exports.postOwnerInfo = (req, res, next) => {
     const projId = req.body.projectId;
-    const updatedbName = req.body.bName;
-    const updatedbAddress = req.body.bAddress;
     const updatedOwner1Fn = req.body.owner1Fn;
     const updatedOwner1Ln = req.body.owner1Ln;
     const updatedOwner2Fn = req.body.owner2Fn;
@@ -441,15 +441,17 @@ exports.postOwnerInfoC = (req, res, next) => {
     const updatedbCity = req.body.bCity;
     const updatedbState = req.body.bState;
     const updatedbZip = req.body.bZip;
-    const updatedoCoName = req.body.oCoName;
-    const updatedoContact = req.body.oContact;
-    const updatedoAddress = req.body.oAddress;
-    const updatedoCity = req.body.oCity;
-    const updatedoState = req.body.oState;
-    const updatedoZip = req.body.oZip;
-    const updatedoPhon1 = req.body.oPhon1;
-    const updatedoPhone2 = req.body.oPhone2;
-    const updatedoEmail = req.body.oEmail;
+    const updatedownerCoName = req.body.ownerCoName;
+    const updatedowner1Fn = req.body.owner1Fn;
+    const updatedowner1Ln = req.body.owner1Ln;
+    const updatedaddress = req.body.address;
+    const updatedcity = req.body.city;
+    const updatedstate = req.body.state;
+    const updatedzip = req.body.zip;
+    const updatedhPhone = req.body.hPhone;
+    const updatedcPhone = req.body.cPhone;
+    const updatedoPhone = req.body.oPhone;
+    const updatedEmail = req.body.email;
     const updatedpmCoName = req.body.pmCoName;
     const updatedpmContact = req.body.pmContact;
     const updatedpmAddress = req.body.pmAddress;
@@ -476,18 +478,21 @@ exports.postOwnerInfoC = (req, res, next) => {
             project.bCity = updatedbCity;
             project.bState = updatedbState;
             project.bZip = updatedbZip;
-            project.oCoName = updatedoCoName;
-            project.oContact = updatedoContact;
-            project.oAddress = updatedoAddress;
-            project.oCity = updatedoCity;
-            project.oState = updatedoState;
-            project.oZip = updatedoZip;
-            project.oPhon1 = updatedoPhon1;
-            project.oPhone2 = updatedoPhone2;
-            project.oEmail = updatedoEmail;
+            project.ownerCoName = updatedownerCoName;
+            project.owner1Fn = updatedowner1Fn;
+            project.owner1Ln = updatedowner1Ln;
+            project.address = updatedaddress;
+            project.city = updatedcity;
+            project.state = updatedstate;
+            project.zip = updatedzip;
+            project.hPhone = updatedhPhone;
+            project.cPhone = updatedcPhone;
+            project.oPhone = updatedoPhone;
+            project.email = updatedEmail;
             project.pmCoName = updatedpmCoName;
             project.pmContact = updatedpmContact;
             project.pmAddress = updatedpmAddress;
+            project.pmCity = updatedpmCity;
             project.pmState = updatedpmState;
             project.pmZip = updatedpmZip;
             project.pmPhon1 = updatedpmPhon1;

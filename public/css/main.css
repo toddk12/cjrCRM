@@ -1,14 +1,14 @@
     @import url('https://fonts.googleapis.com/css?family=Hind+Vadodara:400,700');
     * {
         box-sizing: border-box;
-        background-color: lightcyan;
+        background-color: rgb(242, 255, 224);
     }
     
     body {
         padding: 0;
         margin: 0;
         font-family: 'Hind Vadara', sans-serif;
-        background-color: lightcyan;
+        background-color: rgb(242, 255, 224);
     }
     
     main {
@@ -33,9 +33,9 @@
     
     .logout {
         font-family: inherit;
-        background-color: lightcyan;
+        background-color: rgb(242, 255, 224);
         border: none;
-        color: darkblue;
+        color: darkgreen;
         margin: 8px;
     }
     
@@ -61,7 +61,7 @@
     
     article {
         vertical-align: top;
-        background-color: lightcyan;
+        background-color: rgb(242, 255, 224);
         display: inline-block;
         padding: 16px;
         margin: 10px;
@@ -116,69 +116,69 @@
     }
     
     .navbar {
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
     }
     
     .navbar-brand {
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
     }
     
     .collapse {
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
     }
     
     .navbar-collapse {
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
     }
     
     .nav-item {
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
     }
     
     .nav-link {
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
     }
     
     .nav-item:hover,
     .nav-link:hover {
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
     }
     
     .dropdown-menu,
     .dropdown-item {
-        color: darkblue;
+        color: darkgreen;
     }
     
     .dropdown-menu:hover,
     .dropdown-item:hover {
         background-color: cyan;
-        color: darkblue;
+        color: darkgreen;
     }
     
     .logform {
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
     }
     
     li.logout {
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
     }
     
     .auth-inline {
-        background-color: darkblue;
+        background-color: darkgreen;
     }
     
     .logs {
         font-family: inherit;
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
     }
     
@@ -187,17 +187,17 @@
         bottom: 5px;
         right: 5px;
         margin: 0;
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
     }
     
     .detailsbtn:hover {
         background-color: white;
-        color: darkblue;
+        color: darkgreen;
     }
     
     .btn-sm {
-        background-color: darkblue;
+        background-color: darkgreen;
         color: white;
         margin-top: 4px;
         margin-right: 10px;
@@ -206,7 +206,7 @@
     
     .btn-sm:hover {
         background-color: white;
-        color: darkblue;
+        color: darkgreen;
         margin-top: 4px;
     }
     
@@ -218,7 +218,7 @@
     }
     
     .btnsm1 {
-        background-color: lightblue;
+        background-color: lightgreen;
         color: grey;
         margin-top: 4px;
         margin-right: 10px;
@@ -227,7 +227,7 @@
     
     .btnsm1:hover {
         background-color: grey;
-        color: lightblue;
+        color: lightgreen;
         margin-top: 4px;
     }
     
@@ -244,13 +244,13 @@
     }
     
     .form-control.mb-3.mr-sm-2 {
-        background-color: lightcyan;
+        background-color: rgb(242, 255, 224);
         margin: 0;
         border: none;
     }
     
     .btn-smx {
-        background-color: darkblue;
+        background-color: darkgreen;
         height: 30px;
         color: white;
         margin-top: 4px;
@@ -261,6 +261,6 @@
     .btn-smx:hover {
         background-color: white;
         height: 30px;
-        color: darkblue;
+        color: darkgreen;
         margin-top: 4px;
     }

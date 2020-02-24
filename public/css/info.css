@@ -10,7 +10,7 @@
 .form-control {
     margin-top: 5px;
     margin-left: 5px;
-    background-color: lightcyan;
+    background-color: rgb(242, 255, 224);
     border: none;
 }
 
@@ -73,13 +73,13 @@
     bottom: 5px;
     right: 5px;
     margin: 0;
-    background-color: darkblue;
+    background-color: darkgreen;
     color: white;
 }
 
 .updatebtn:hover {
     background-color: white;
-    color: darkblue;
+    color: darkgreen;
 }
 
 .select {

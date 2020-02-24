@@ -113,6 +113,7 @@
                                         <a href="/ownerInfo/<%= project.id %>" class="btn-sm">Edit Owner Information</a>
                                     </h6>
                                 </div>
+<!-- Comercial Proerties -->
                                 <% } else { %>
                                     <div class="d-flex w-100 justify-content-between">
                                         <div class="col1">
@@ -123,33 +124,43 @@
                                         <%= project.bState %>
                                         <%= project.bZip %></strong></h6>
                                             <br>
-                                            <strong><h5>Property Owner</h5></strong> Company Name:<strong> <%= project.oCoName %></strong>
-                                            <br> Contact Name:<strong><%= project.oContact %></strong>
+                                            <strong><h5>Property Owner</h5></strong> Company Name:<strong> <%= project.ownerCoName %></strong>
+                                            <br> Owner Name:<strong><%= project.owner1Fn %> 
+                                                <%= project.owner1Ln %></strong>
                                             <br> Address:
-                                            <strong> <%= project.oAddress %>,
-                                    <%= project.oCity %>,
-                                    <%= project.oState %>
-                                    <%= project.oZip %></strong>
+                                            <strong> <%= project.address %>,
+                                    <%= project.city %>,
+                                    <%= project.state %>
+                                    <%= project.zip %></strong>
                                             <br> Phone 1:<strong>
-                                        <% if (!project.oPhon1) { %>
+                                        <% if (!project.hPhone) { %>
                                         No Number Entered </strong>
                                             <% } else { %>(
-                                                <%= project.oPhon1.substring(0,3) %> )
-                                                    <%= project.oPhon1.substring(3, 6) %>-
-                                                        <%= project.oPhon1.substring(6, 10) %>
+                                                <%= project.hPhone.substring(0,3) %> )
+                                                    <%= project.hPhone.substring(3, 6) %>-
+                                                        <%= project.hPhone.substring(6, 10) %>
                                                             </Strong>
                                                             <% } %>
                                                                 <br> Phone 2:
-                                                                <strong><% if (!project.oPhone2) { %>
+                                                                <strong><% if (!project.cPhone) { %>
                         No Number Entered</strong>
                                                                 <% } else { %>(
-                                                                    <%= project.oPhone2.substring(0,3) %> )
-                                                                        <%= project.oPhone2.substring(3, 6) %>-
-                                                                            <%= project.oPhone2.substring(6, 10) %>
+                                                                    <%= project.cPhone.substring(0,3) %> )
+                                                                        <%= project.cPhone.substring(3, 6) %>-
+                                                                            <%= project.cPhone.substring(6, 10) %>
+                                                                                </strong>
+                                                                                <% } %>
+                                                                                <br> Phone 3:
+                                                                <strong><% if (!project.oPhone) { %>
+                        No Number Entered</strong>
+                                                                <% } else { %>(
+                                                                    <%= project.oPhone.substring(0,3) %> )
+                                                                        <%= project.oPhone.substring(3, 6) %>-
+                                                                            <%= project.oPhone.substring(6, 10) %>
                                                                                 </strong>
                                                                                 <% } %>
                                                                                     <br> Email:
-                                                                                    <strong><%= project.oEmail %></strong><br>
+                                                                                    <strong><%= project.email %></strong><br>
                                         </div>
                                         <div class="col2">
                                             <h5><strong>Property Management Co.</strong></h5>
@@ -296,7 +307,7 @@
                                 </div>
                             </div>
                             <a href="/generalInfo/<%= project.id %>" class="btn-sm">Edit General Information</a>
-                            <a href="/docInfo/<%= project.id %>" class="btn-sm">Add Documents</a>
+                            <a href="/docInfo/<%= project.id %>" class="btn-sm">Documents</a>
                             </div>
                             </div>
                             </div>
