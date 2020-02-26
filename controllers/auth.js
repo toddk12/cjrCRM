@@ -32,7 +32,7 @@ exports.getLogin = (req, res, next) => {
     });
 };
 
-exports.postLogin = (req, res, next) => {
+exports.postLogin = async(req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
     const errors = validationResult(req);
@@ -43,38 +43,37 @@ exports.postLogin = (req, res, next) => {
             errorMessage: errors.array()[0].msg
         });
     }
-    User.findOne({
+    try {
+        const user = await User.findOne({
             where: { username: username }
         })
-        .then(user => {
-            console.log(user);
-            if (!user) {
-                req.flash('error', 'Invalid Username');
-                return res.redirect('/login');
-            }
-            bcrypt
-                .compare(password, user.password)
-                .then(doMatch => {
-                    if (doMatch) {
-                        req.session.isLoggedIn = true;
-                        req.session.user = user;
-                        return req.session.save(err => {
-                            res.redirect('/home');
-                        })
-                    }
-                    req.flash('error', 'Invalid Password');
-                    res.redirect('/login');
-                })
-                .catch(err => {
-                    console.log(err);
-                    res.redirect('/login');
-                });
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
+        if (!user) {
+            req.flash('error', 'Invalid Username');
+            return res.redirect('/login');
+        }
+        bcrypt
+            .compare(password, user.password)
+            .then(doMatch => {
+                if (doMatch) {
+                    req.session.isLoggedIn = true;
+                    req.session.user = user;
+                    return req.session.save(err => {
+                        res.redirect('/home');
+                    })
+                }
+                req.flash('error', 'Invalid Password');
+                res.redirect('/login');
+            })
+            .catch(err => {
+                console.log(err);
+                res.redirect('/login');
+            });
+    } catch (err) {
+        console.log(fundsRcvd);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    };
 };
 
 exports.getSignup = (req, res, next) => {

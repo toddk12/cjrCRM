@@ -33,18 +33,6 @@ router.get('/insuranceInfo/:projectId', isAuth, projectsController.getInsuranceI
 
 router.post('/insuranceInfo/', isAuth, projectsController.postInsuranceInfo);
 
-router.get('/add-insurance', isAuth, projectsController.getAddInsurance);
-
-router.post('/add-insurance', isAuth, projectsController.postAddInsurance);
-
-router.get('/add-project', isAuth, projectsController.getAddProject);
-
-router.post('/add-project', isAuth, projectsController.postAddProject);
-
-router.get('/add-c-project', isAuth, projectsController.getAddCProject);
-
-router.post('/add-c-project', isAuth, projectsController.postAddCProject);
-
 router.post('/delete-project', isAuth, projectsController.postDeleteProject);
 
 router.get('/docInfo/:projectId', isAuth, projectsController.getDocInfo);
@@ -56,10 +44,6 @@ router.post('/docAdd', projectsController.postDocAdd);
 router.get('/docEdit/:projectId', isAuth, projectsController.getDocEdit);
 
 router.post('/docEdit', projectsController.postDocEdit);
-
-router.get('/add-note/:projectId', isAuth, projectsController.getAddNote);
-
-router.post('/add-note/', isAuth, projectsController.postAddNote);
 
 router.get('/fundsReceived/:projectId', isAuth, projectsController.getFundsReceived);
 
