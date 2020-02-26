@@ -1,0 +1,84 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/info.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <div class="centered">
+                    <br>
+                    <h1>Add Supplier</h1>
+                    <br>
+                </div>
+                <article class="ownerinfo">
+                    <div class="d-flex w-100 justify-content-between">
+                        <form class="form" action="/add-supplier" method="POST">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="coName"><strong>Company Name:</strong></label>
+                                    <input style="width: 500px" type="text" name="coName" id="coName" value="<%= supplier.coName %>">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="address"><strong>Address:</strong></label>
+                                    <input style="width: 500px" type="text" name="address" id="address" value="<%= supplier.address %>">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="address2"><strong>Address 2:</strong></label>
+                                    <input style="width: 500px" type="text" name="address2" id="address2" value="<%= supplier.address2 %>">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" style="width: 100%">
+                                <div class="col-sm">
+                                    <label for="city"><strong>City:</strong></label>
+                                    <input type="text" name="city" id="city" value="<%= supplier.city %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="state"><strong>State:</strong></label>
+                                    <input type="text" name="state" id="state" value="<%= supplier.state %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="zip"><strong>Zip:</strong></label>
+                                    <input id="zip" type="text" name="zip" value="<% supplier.zip %>">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="phone"><strong>Phone 1:</strong></label>
+                                    <input id="phone" type="text" name="phone" value="<%supplier.phone %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="email"><strong>Email 1:</strong></label>
+                                    <input style="width: 300px" type="text" name="email" id="email" value="<%= supplier.email %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="active"><strong>Active?</strong></label>
+                                    <input class="form-check-input" style="width: 100px" type="checkbox" name="active" id="active" value="<%= estimator.active %>">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="notes"><strong>Notes:</strong></label>
+                                    <textarea cols="95" rows="6" type="text" name="notes" id="notes" value="<%= supplier.notes %>"></textarea>
+                                </div>
+                            </div>
+                            <div class="centered">
+                                <br>
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="updatebtn" type="submit">Add Insurance Company</button>
+                            </div>
+                        </form>
+                    </div>
+                </article>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

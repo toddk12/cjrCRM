@@ -35,4 +35,12 @@ router.get('/add-supervisor', isAuth, addController.getAddSupervisor);
 
 router.post('/add-supervisor', isAuth, addController.postAddSupervisor);
 
+router.get('/add-contractor', isAuth, addController.getAddContractor);
+
+router.post('/add-contractor', isAuth, addController.postAddContractor);
+
+router.get('/add-supplier', isAuth, addController.getAddSupplier);
+
+router.post('/add-supplier', isAuth, addController.postAddSupplier);
+
 module.exports = router;

@@ -14,6 +14,8 @@ const OwnerOop = require('../models/ownerOop');
 const JobCosts = require('../models/jobCosts');
 const Trades = require('../models/trades');
 const RType = require('../models/rType');
+const Contractor = require('./models/contractor');
+const Supplier = require('./models/supplier');
 
 exports.getAddInsurance = async(req, res, next) => {
     try {
@@ -47,7 +49,7 @@ exports.postAddInsurance = (req, res, next) => {
             phone2: req.body.phone2,
             phone3: req.body.phone3,
             email1: req.body.email1,
-            email2: req.body.cPhone,
+            email2: req.body.email2,
             entBy: req.user.id
         })
         .then(result => {
@@ -394,6 +396,96 @@ exports.postAddSupervisor = (req, res, next) => {
         .then(result => {
 
             console.log('Supervisor Added');
+            res.redirect('/home');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.getAddContractor = async(req, res, next) => {
+    try {
+        const contractor = await Contractor.findAll({
+            order: [
+                ['coName', 'ASC']
+            ]
+        })
+        res.render('add/add-contractor', {
+            pageTitle: "Add Sub-Contractor",
+            path: '/add-contractor',
+            contractor: contractor,
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postAddContractor = (req, res, next) => {
+
+    Contractor.create({
+            coName: req.body.coName,
+            address: req.body.address,
+            address2: req.body.address2,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            phone1: req.body.phone1,
+            email: req.body.email,
+            active: req.body.active,
+            notes: req.body.notes
+        })
+        .then(result => {
+
+            console.log('Sub Contractor Added');
+            res.redirect('/home');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.getAddSupplier = async(req, res, next) => {
+    try {
+        const supplier = await Supplier.findAll({
+            order: [
+                ['coName', 'ASC']
+            ]
+        })
+        res.render('add/add-supplier', {
+            pageTitle: "Add Supplier",
+            path: '/add-supplier',
+            supplier: supplier,
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postAddSupplier = (req, res, next) => {
+
+    Supplier.create({
+            coName: req.body.coName,
+            address: req.body.address,
+            address2: req.body.address2,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            phone1: req.body.phone1,
+            email: req.body.email,
+            active: req.body.active,
+            notes: req.body.notes
+        })
+        .then(result => {
+
+            console.log('Supplier Added');
             res.redirect('/home');
         })
         .catch(err => {
