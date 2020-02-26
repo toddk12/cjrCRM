@@ -992,10 +992,7 @@ exports.getFundsReceived = async(req, res, nexct) => {
     const userId = req.user.id;
     try {
         const fundsRcvd = await FundsRcvd.findAll({
-            where: { projectId: projId },
-            order: [
-                [entryDate, 'DESC']
-            ]
+            where: { projectId: projId }
         })
         const allfunds = fundsRcvd;
         let tots = 0;
