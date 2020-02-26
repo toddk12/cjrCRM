@@ -4,6 +4,7 @@ const Status = require('../models/status');
 const Insurance = require('../models/insurance');
 const Supervisor = require('../models/supervisor');
 const Sales = require('../models/sales');
+const Estimator = require('../models/estimator');
 const Document = require('../models/document');
 const Notes = require('../models/notes');
 const Additions = require('../models/additions');
@@ -295,6 +296,105 @@ exports.postAddNote = (req, res, next) => {
         })
         .then(project => {
             res.redirect('back');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.getAddEstimator = async(req, res, next) => {
+    try {
+        const estimator = await Estimator.findAll({})
+        res.render('add/add-estimator', {
+            pageTitle: "Add Estimator",
+            path: '/add-estimator',
+            estimator: estimator,
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postAddEstimator = (req, res, next) => {
+
+    Estimator.create({
+            name: req.body.name,
+            active: req.body.active,
+        })
+        .then(result => {
+
+            console.log('Estimator Added');
+            res.redirect('/home');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.getAddSales = async(req, res, next) => {
+    try {
+        const sales = await Sales.findAll({})
+        res.render('add/add-sales', {
+            pageTitle: "Add Sales Representative",
+            path: '/add-sales',
+            sales: sales,
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postAddSales = (req, res, next) => {
+
+    Sales.create({
+            name: req.body.name,
+            active: req.body.active,
+        })
+        .then(result => {
+
+            console.log('Sales Representative Added');
+            res.redirect('/home');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.getAddSupervisor = async(req, res, next) => {
+    try {
+        const supervisor = await Supervisor.findAll({})
+        res.render('add/add-supervisor', {
+            pageTitle: "Add Supervisor",
+            path: '/add-supervisor',
+            supervisor: supervisor,
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postAddSupervisor = (req, res, next) => {
+
+    Supervisor.create({
+            name: req.body.name,
+            active: req.body.active,
+        })
+        .then(result => {
+
+            console.log('Supervisor Added');
+            res.redirect('/home');
         })
         .catch(err => {
             const error = new Error(err);

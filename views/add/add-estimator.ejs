@@ -1,0 +1,39 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/info.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <div class="centered">
+                    <br>
+                    <h1>Add Estimator</h1>
+                    <br>
+                </div>
+                <article class="ownerinfo">
+                    <form class="form" action="/add-estimator" method="POST">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="name"><strong>Estimator Name:</strong></label>
+                                <input style="width: 500px" type="text" name="name" id="name" value="<%= estimator.name %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="active"><strong>Active?</strong></label>
+                                <input class="form-check-input" style="width: 100px" type="checkbox" name="active" id="active" value="<%= estimator.active %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="centered">
+                            <br>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="updatebtn" type="submit">Add Estimator</button>
+                        </div>
+                    </form>
+                </article>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

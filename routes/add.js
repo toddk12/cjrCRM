@@ -23,4 +23,16 @@ router.get('/add-note/:projectId', isAuth, addController.getAddNote);
 
 router.post('/add-note/', isAuth, addController.postAddNote);
 
+router.get('/add-estimator', isAuth, addController.getAddEstimator);
+
+router.post('/add-estimator', isAuth, addController.postAddEstimator);
+
+router.get('/add-sales', isAuth, addController.getAddSales);
+
+router.post('/add-sales', isAuth, addController.postAddSales);
+
+router.get('/add-supervisor', isAuth, addController.getAddSupervisor);
+
+router.post('/add-supervisor', isAuth, addController.postAddSupervisor);
+
 module.exports = router;
