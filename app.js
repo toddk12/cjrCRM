@@ -30,7 +30,7 @@ const Status = require('./models/status');
 const Supervisor = require('./models/supervisor');
 const Trades = require('./models/trades');
 const User = require('./models/user');
-const Contractor = require('./models/contractor');
+const Subcontractor = require('./models/subcontractor');
 const Supplier = require('./models/supplier');
 
 const app = express();
@@ -144,16 +144,10 @@ Project.belongsTo(Trades)
 Trades.hasMany(Project);
 Document.belongsTo(RType);
 RType.hasMany(Document);
-Project.belongsTo(Contractor)
-Contractor.hasMany(Trades);
-Project.belongsTo(Supplier)
-Supplier.hasMany(Trades);
 
 sequelize
-// .sync({ force: true })
     .sync()
     .then(result => {
-        // console.log(result);
         app.listen(3002);;
     })
     .catch(err => {

@@ -8,74 +8,69 @@
             <main>
                 <div class="centered">
                     <br>
-                    <h1>Add Sub-Contractor</h1>
+                    <h1>Add Subcontractor</h1>
                     <br>
                 </div>
                 <article class="ownerinfo">
                     <div class="d-flex w-100 justify-content-between">
-                        <form class="form" action="/add-contractor" method="POST">
+                        <form class="form" action="/add-subcontractor" method="POST">
                             <div class="row">
                                 <div class="col-sm">
                                     <label for="coName"><strong>Company Name:</strong></label>
-                                    <input style="width: 500px" type="text" name="coName" id="coName" value="<%= contractor.coName %>">
+                                    <input style="width: 500px" type="text" name="coName" id="coName" value="<%= subcontractor.coName %>">
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col-sm">
                                     <label for="address"><strong>Address:</strong></label>
-                                    <input style="width: 500px" type="text" name="address" id="address" value="<%= contractor.address %>">
+                                    <input style="width: 500px" type="text" name="address" id="address" value="<%= subcontractor.address %>">
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col-sm">
                                     <label for="address2"><strong>Address 2:</strong></label>
-                                    <input style="width: 500px" type="text" name="address2" id="address2" value="<%= contractor.address2 %>">
+                                    <input style="width: 500px" type="text" name="address2" id="address2" value="<%= subcontractor.address2 %>">
                                 </div>
                             </div>
                             <br>
                             <div class="row" style="width: 100%">
                                 <div class="col-sm">
                                     <label for="city"><strong>City:</strong></label>
-                                    <input type="text" name="city" id="city" value="<%= contractor.city %>">
+                                    <input type="text" name="city" id="city" value="<%= subcontractor.city %>">
                                 </div>
                                 <div class="col-sm">
                                     <label for="state"><strong>State:</strong></label>
-                                    <input type="text" name="state" id="state" value="<%= contractor.state %>">
+                                    <input type="text" name="state" id="state" value="<%= subcontractor.state %>">
                                 </div>
                                 <div class="col-sm">
                                     <label for="zip"><strong>Zip:</strong></label>
-                                    <input id="zip" type="text" name="zip" value="<% contractor.zip %>">
+                                    <input id="zip" type="text" name="zip" value="<% subcontractor.zip %>">
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col-sm">
-                                    <label for="phone"><strong>Phone 1:</strong></label>
-                                    <input id="phone" type="text" name="phone" value="<%contractor.phone %>">
+                                    <label for="phone"><strong>Phone:</strong></label>
+                                    <input id="phone" type="text" name="phone" value="<%subcontractor.phone%>">
                                 </div>
                                 <div class="col-sm">
-                                    <label for="email"><strong>Email 1:</strong></label>
-                                    <input style="width: 300px" type="text" name="email" id="email" value="<%= contractor.email %>">
-                                </div>
-                                <div class="col-sm">
-                                    <label for="active"><strong>Active?</strong></label>
-                                    <input class="form-check-input" style="width: 100px" type="checkbox" name="active" id="active" value="<%= estimator.active %>">
+                                    <label for="email"><strong>Email:</strong></label>
+                                    <input style="width: 300px" type="text" name="email" id="email" value="<%= subcontractor.email %>">
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col-sm">
                                     <label for="notes"><strong>Notes:</strong></label>
-                                    <textarea cols="95" rows="6" type="text" name="notes" id="notes" value="<%= contractor.notes %>"></textarea>
+                                    <textarea cols="95" rows="6" type="text" name="notes" id="notes" value="<%= subcontractor.notes %>"></textarea>
                                 </div>
                             </div>
-                            <br>
                             <div class="centered">
                                 <br>
                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                <button class="updatebtn" type="submit">Add Insurance Company</button>
+                                <button class="updatebtn" type="submit">Add Subcontractor</button>
                             </div>
                         </form>
                     </div>

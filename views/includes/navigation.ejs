@@ -16,7 +16,6 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/add-project">Add Residential Project</a>
                             <a class="dropdown-item" href="/add-c-project">Add Commercial Project</a>
-                            <a class="dropdown-item" href="/add-insurance">Add Insurance Company</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -47,19 +46,30 @@
                     <li>
                         <% if (isAuthenticated) { %>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration</a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add to Lists</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/signup">Register New User</a>
-                                    <a class="dropdown-item" href="/signup">Edit User</a>
-                                    <a class="dropdown-item" href="/add-sales">Add Sales Representative</a>
                                     <a class="dropdown-item" href="/add-estimator">Add Estimator</a>
+                                    <a class="dropdown-item" href="/add-insurance">Add Insurance Company</a>
+                                    <a class="dropdown-item" href="/add-sales">Add Sales Representative</a>
+                                    <a class="dropdown-item" href="/add-subcontractor">Add Subcontractor</a>
                                     <a class="dropdown-item" href="/add-supervisor">Add Supervisor</a>
-                                    <a class="dropdown-item" href="/add-insurance">Add Sub-Contractor</a>
-                                    <a class="dropdown-item" href="/add-insurance">Add Supplier</a>
+                                    <a class="dropdown-item" href="/add-supplier">Add Supplier</a>
                                 </div>
                             </li>
                             <% } %>
                     </li>
+                    <li>
+                        <% if (isAuthenticated) { %>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/signup">Register New User</a>
+                                    <a class="dropdown-item" href="/signup">Edit User</a>
+                                </div>
+                            </li>
+                            <% } %>
+                    </li>
+
             </ul>
         </div>
         <% } %>

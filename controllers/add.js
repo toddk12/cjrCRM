@@ -8,14 +8,14 @@ const Estimator = require('../models/estimator');
 const Document = require('../models/document');
 const Notes = require('../models/notes');
 const Additions = require('../models/additions');
+const Subcontractor = require('../models/subcontractor');
+const Supplier = require('../models/supplier');
 const FundsRcvd = require('../models/fundsRcvd');
 const Exclusions = require('../models/exclusions');
 const OwnerOop = require('../models/ownerOop');
 const JobCosts = require('../models/jobCosts');
 const Trades = require('../models/trades');
 const RType = require('../models/rType');
-const Contractor = require('./models/contractor');
-const Supplier = require('./models/supplier');
 
 exports.getAddInsurance = async(req, res, next) => {
     try {
@@ -405,17 +405,17 @@ exports.postAddSupervisor = (req, res, next) => {
         });
 };
 
-exports.getAddContractor = async(req, res, next) => {
+exports.getAddSubcontractor = async(req, res, next) => {
     try {
-        const contractor = await Contractor.findAll({
+        const subcontractor = await Subcontractor.findAll({
             order: [
                 ['coName', 'ASC']
             ]
         })
-        res.render('add/add-contractor', {
-            pageTitle: "Add Sub-Contractor",
-            path: '/add-contractor',
-            contractor: contractor,
+        res.render('add/add-subcontractor', {
+            pageTitle: "Add Subcontractor",
+            path: '/add-subcontractor',
+            subcontractor: subcontractor,
         });
     } catch (err) {
         const error = new Error(err);
@@ -424,23 +424,22 @@ exports.getAddContractor = async(req, res, next) => {
     }
 };
 
-exports.postAddContractor = (req, res, next) => {
+exports.postAddSubcontractor = (req, res, next) => {
 
-    Contractor.create({
+    Subcontractor.create({
             coName: req.body.coName,
             address: req.body.address,
             address2: req.body.address2,
             city: req.body.city,
             state: req.body.state,
             zip: req.body.zip,
-            phone1: req.body.phone1,
+            phone: req.body.phone,
             email: req.body.email,
-            active: req.body.active,
             notes: req.body.notes
         })
         .then(result => {
 
-            console.log('Sub Contractor Added');
+            console.log('Subcontractor');
             res.redirect('/home');
         })
         .catch(err => {
@@ -478,14 +477,13 @@ exports.postAddSupplier = (req, res, next) => {
             city: req.body.city,
             state: req.body.state,
             zip: req.body.zip,
-            phone1: req.body.phone1,
+            phone: req.body.phone,
             email: req.body.email,
-            active: req.body.active,
             notes: req.body.notes
         })
         .then(result => {
 
-            console.log('Supplier Added');
+            console.log('Supplier');
             res.redirect('/home');
         })
         .catch(err => {

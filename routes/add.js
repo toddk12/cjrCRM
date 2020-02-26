@@ -35,9 +35,9 @@ router.get('/add-supervisor', isAuth, addController.getAddSupervisor);
 
 router.post('/add-supervisor', isAuth, addController.postAddSupervisor);
 
-router.get('/add-contractor', isAuth, addController.getAddContractor);
+router.get('/add-subcontractor', isAuth, addController.getAddSubcontractor);
 
-router.post('/add-contractor', isAuth, addController.postAddContractor);
+router.post('/add-subcontractor', isAuth, addController.postAddSubcontractor);
 
 router.get('/add-supplier', isAuth, addController.getAddSupplier);
 

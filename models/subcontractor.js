@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../util/database');
 
-const Contractor = sequelize.define('contractor', {
+const Subcontractor = sequelize.define('subcontractor', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -13,7 +13,6 @@ const Contractor = sequelize.define('contractor', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    contract: Sequelize.STRING,
     address: Sequelize.STRING,
     address2: Sequelize.STRING,
     city: Sequelize.STRING,
@@ -21,11 +20,7 @@ const Contractor = sequelize.define('contractor', {
     zip: Sequelize.STRING,
     phone: Sequelize.STRING,
     email: Sequelize.STRING,
-    notes: Sequelize.STRING,
-    active: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: 1
-    }
+    notes: Sequelize.STRING
 });
 
-module.exports = Contractor;
+module.exports = Subcontractor;
