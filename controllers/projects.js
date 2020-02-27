@@ -126,7 +126,6 @@ exports.getIndex = (req, res, next) => {
             path: '/',
         });
     })
-
 };
 
 exports.postDeleteProject = (req, res, next) => {
@@ -997,4 +996,11 @@ exports.postOwnerOop = (req, res, next) => {
             error.httpStatusCode = 500;
             return next(error);
         });
+};
+
+exports.getWtb = (req, res, next) => {
+    res.render('wtb', {
+        pageTitle: 'WTBD',
+        path: '/',
+    });
 };

@@ -11,4 +11,6 @@ const router = express.Router();
 
 router.get('/home', isAuth, mainController.getHome);
 
+router.get('/closed', mainController.getClosed);
+
 module.exports = router;

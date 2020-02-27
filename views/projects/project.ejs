@@ -113,7 +113,7 @@
                                         <a href="/ownerInfo/<%= project.id %>" class="btn-sm">Edit Owner Information</a>
                                     </h6>
                                 </div>
-<!-- Comercial Proerties -->
+                                <!-- Comercial Proerties -->
                                 <% } else { %>
                                     <div class="d-flex w-100 justify-content-between">
                                         <div class="col1">
@@ -150,17 +150,17 @@
                                                                             <%= project.cPhone.substring(6, 10) %>
                                                                                 </strong>
                                                                                 <% } %>
-                                                                                <br> Phone 3:
-                                                                <strong><% if (!project.oPhone) { %>
+                                                                                    <br> Phone 3:
+                                                                                    <strong><% if (!project.oPhone) { %>
                         No Number Entered</strong>
-                                                                <% } else { %>(
-                                                                    <%= project.oPhone.substring(0,3) %> )
-                                                                        <%= project.oPhone.substring(3, 6) %>-
-                                                                            <%= project.oPhone.substring(6, 10) %>
-                                                                                </strong>
-                                                                                <% } %>
-                                                                                    <br> Email:
-                                                                                    <strong><%= project.email %></strong><br>
+                                                                                    <% } else { %>(
+                                                                                        <%= project.oPhone.substring(0,3) %> )
+                                                                                            <%= project.oPhone.substring(3, 6) %>-
+                                                                                                <%= project.oPhone.substring(6, 10) %>
+                                                                                                    </strong>
+                                                                                                    <% } %>
+                                                                                                        <br> Email:
+                                                                                                        <strong><%= project.email %></strong><br>
                                         </div>
                                         <div class="col2">
                                             <h5><strong>Property Management Co.</strong></h5>
@@ -459,7 +459,7 @@
                         <!-- Work to be done section -->
                         <article class="worktobedone" style="width: 450px">
                             <h5 class="card-title">Production</h5>
-                            <a href="/workinfo/<%= project.id %>" class="btn-sm">Work to be Done</a>
+                            <a href="/wtb/<%= project.id %>" class="btn-sm">Work to be Done</a>
                             <a href="/workinfo/<%= project.id %>" class="btn-sm">Work Orders</a>
                             <a href="/workinfo/<%= project.id %>" class="btn-sm">Roof Calculator</a>
                             <br>
