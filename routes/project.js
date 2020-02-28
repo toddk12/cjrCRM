@@ -67,4 +67,6 @@ router.post('/ownerOop', isAuth, projectsController.postOwnerOop);
 
 router.get('/wtb/:projectId', isAuth, projectsController.getWtb);
 
+router.post('/wtb', isAuth, projectsController.postWtb);
+
 module.exports = router;

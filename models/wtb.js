@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../util/database');
 
-const Trades = sequelize.define('trades', {
+const Wtb = sequelize.define('wtb', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -21,11 +21,7 @@ const Trades = sequelize.define('trades', {
     line: { type: Sequelize.STRING },
     rcv: { type: Sequelize.STRING },
     op: { type: Sequelize.STRING },
-    trade: { type: Sequelize.STRING },
-    trade: { type: Sequelize.STRING },
-    trade: { type: Sequelize.STRING },
-    trade: { type: Sequelize.STRING },
-    trade: { type: Sequelize.STRING }
+    net: { type: Sequelize.STRING }
 });
 
-module.exports = Trades;
+module.exports = Wtb;

@@ -998,9 +998,47 @@ exports.postOwnerOop = (req, res, next) => {
         });
 };
 
-exports.getWtb = (req, res, next) => {
-    res.render('wtb', {
-        pageTitle: 'WTBD',
-        path: '/',
-    });
+exports.getWtb = async(req, res, next) => {
+    const projId = req.params.projectId;
+    const userName = req.user.ename;
+    const userId = req.user.id;
+    try {
+        const trades = await Trades.findAll()
+        const wtb = await Wtb.findAll({
+            where: { projectId: projId }
+        })
+        res.render('projects/wtb', {
+            pageTitle: "Scope Work By Trade",
+            path: '/wtb',
+            projId: projId,
+            trade: trades,
+            userName: userName,
+            userId: userId,
+            wtbs: wtb,
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postWtb = (req, res, next) => {
+    const calcNet = (req.body.rcv - req.body.op);
+    Wtb.create({
+            projectId: req.body.projectId,
+            line: req.body.line,
+            rcv: req.body.rcv,
+            trade: req.body.tradeName,
+            op: req.body.op,
+            net: calcNet,
+        })
+        .then(result => {
+            res.redirect('back');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
 };

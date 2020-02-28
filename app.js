@@ -32,6 +32,7 @@ const Trades = require('./models/trades');
 const User = require('./models/user');
 const Subcontractor = require('./models/subcontractor');
 const Supplier = require('./models/supplier');
+const Wtb = require('./models/wtb');
 
 const app = express();
 
@@ -138,12 +139,16 @@ JobCosts.belongsTo(Trades);
 Project.hasMany(JobCosts);
 OwnerOop.belongsTo(Trades);
 Project.hasMany(OwnerOop);
-Notes.belongsTo(Project)
+Notes.belongsTo(Project);
 Project.hasMany(Notes);
 Project.belongsTo(Trades)
 Trades.hasMany(Project);
 Document.belongsTo(RType);
 RType.hasMany(Document);
+Wtb.belongsTo(Project);
+Project.hasMany(Wtb);
+Wtb.belongsTo(Trades)
+Trades.hasMany(Wtb);
 
 sequelize
     .sync()

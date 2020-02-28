@@ -7,377 +7,105 @@
         <%- include('../includes/navigation.ejs') %>
             <main>
                 <div class="centered">
-                    <h1><strong>Project Work by Trade</strong></h1>
-                    <h4>
+                    <h1>Project Work by Trade</h1>
+                    <article class="fullA">
+                        <form class="form" action="/wtb" method="POST"></form>
                         <div class="row">
-                            <div class="col-xsm">
-                                Trade: <strong>Roof</strong>
+                            <div class="col-sm">
+                                <strong>Line #</strong>
                             </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Gutters</strong>
+                            <div class="col-sm">
+                                <strong>Trade</strong>
                             </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Siding</strong>
+                            <div class="col-sm">
+                                <strong>RCV</strong>
                             </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Windows</strong>
+                            <div class="col-sm">
+                                <strong>O & P</strong>
                             </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Trash</strong>
+                            <div class="col-sm">
+                                <strong>Net</strong>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xsm">
-                                RCV <strong>$12,345.46</strong>
+                            <div class="col-sm">
+                                <label for="line"><strong>Line(s): </strong></label>
+                                <input type="text" name="line" id="line" value="<%= line %>">
+                                <input type="hidden" name="projectId" value="<%= projId %>">
                             </div>
-                            <div class="col-xsm">
-                                RCV <strong>$4,326.98</strong>
+                            <div class="col-sm" style="width: 200px">
+                                <label for="tradeId"><strong>Trade: </strong></label>
+                                <select style="width: 200px" class="select" name="tradeId" id="tradeId">
+                                    <% for (let trades of trade) { %>
+                                    <option value="<%= trades.id %>">
+                                    <%= trades.trade %></option>
+                                    <% } %>
+                                </select>
                             </div>
-                            <div class="col-xsm">
-                                RCV <strong>$11,236.45</strong>
+                            <div class="col-sm">
+                                <label for="RCV"><strong>RCV: </strong></label>
+                                <input type="text" name="rcv" id="rcv" value="<%= rcv %>">
                             </div>
-                            <div class="col-xsm">
-                                RCV <strong>$10,386.54</strong>
+                            <div class="col-sm">
+                                <label for="OP"><strong>O & P: </strong></label>
+                                <input type="text" name="op" id="op" value="<%= op %>">
                             </div>
-                            <div class="col-xsm">
-                                RCV <strong>$536.00</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                O & P <strong>$1,234.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$437.56</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$1,134.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$1,234.43</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$55.00</strong>
+                            <div class="col-sm">
+                                <strong>Net:</strong>
+                                <%= rcv - op %>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xsm">
-                                Net <strong>$1,234.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$437.56</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$1,134.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$1,234.43</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$55.00</strong>
-                            </div>
+                            <br>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Line Item</button>
+                            <br>
+                            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back Details</a>
                         </div>
-                        <hr>
+                    </article>
+
+                    <article class="fullA">
                         <div class="row">
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
+                            <div class="col-sm">
+                                <strong>Line #</strong>
                             </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
+                            <div class="col-sm">
+                                <strong>Trade</strong>
                             </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
+                            <div class="col-sm">
+                                <strong>RCV</strong>
                             </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
+                            <div class="col-sm">
+                                <strong>O & P</strong>
                             </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                Trade: <strong>Painting</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Doors</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Fence</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Outbuildings</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Deck</strong>
+                            <div class="col-sm">
+                                <strong>Net</strong>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                RCV <strong>$12,345.46</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$4,326.98</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$11,236.45</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$10,386.54</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$536.00</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                O & P <strong>$1,234.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$437.56</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$1,134.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$1,234.43</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$55.00</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                Net <strong>$1,234.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$437.56</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$1,134.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$1,234.43</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$55.00</strong>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                Trade: <strong>Interior</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Electrical</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Plumbing</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>HVAC</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Solar Panels</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                RCV <strong>$12,345.46</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$4,326.98</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$11,236.45</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$10,386.54</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$536.00</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                O & P <strong>$1,234.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$437.56</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$1,134.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$1,234.43</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$55.00</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                Net <strong>$1,234.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$437.56</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$1,134.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$1,234.43</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$55.00</strong>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                Trade: <strong>Awnings/Canopies</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Signage</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Supervision</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Rental Equipment</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Other</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                RCV <strong>$12,345.46</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$4,326.98</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$11,236.45</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$10,386.54</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$536.00</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                O & P <strong>$1,234.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$437.56</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$1,134.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$1,234.43</strong>
-                            </div>
-                            <div class="col-xsm">
-                                O & P <strong>$55.00</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                Net <strong>$1,234.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$437.56</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$1,134.34</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$1,234.43</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Net <strong>$55.00</strong>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Line #: <strong>1 - 12</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                Trade: <strong>Personal Property</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Overhead & Profit</strong>
-                            </div>
-                            <div class="col-xsm">
-                                Trade: <strong>Sales Tax</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xsm">
-                                RCV <strong>$12,345.46</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$4,326.98</strong>
-                            </div>
-                            <div class="col-xsm">
-                                RCV <strong>$11,236.45</strong>
-                            </div>
-                        </div>
-                        <br>
+                        <% for (let wtb of wtbs) { %>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <%= wtb.line %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= wtb.trade %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= wtb.rcv %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= wtb.op %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= wtb.net %>
+                                </div>
+                            </div>
+                            <% } %>
+                    </article>
+
+                    <br>
                 </div>
-                <br>
+
             </main>
 
             <%- include('../includes/footer.ejs') %>
