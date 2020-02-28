@@ -6,106 +6,86 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
             <main>
-                <div class="centered">
-                    <h1>Project Work by Trade</h1>
-                    <article class="fullA">
-                        <form class="form" action="/wtb" method="POST"></form>
-                        <div class="row">
-                            <div class="col-sm">
-                                <strong>Line #</strong>
-                            </div>
-                            <div class="col-sm">
-                                <strong>Trade</strong>
-                            </div>
-                            <div class="col-sm">
-                                <strong>RCV</strong>
-                            </div>
-                            <div class="col-sm">
-                                <strong>O & P</strong>
-                            </div>
-                            <div class="col-sm">
-                                <strong>Net</strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm">
-                                <label for="line"><strong>Line(s): </strong></label>
-                                <input type="text" name="line" id="line" value="<%= line %>">
-                                <input type="hidden" name="projectId" value="<%= projId %>">
-                            </div>
-                            <div class="col-sm" style="width: 200px">
-                                <label for="tradeId"><strong>Trade: </strong></label>
-                                <select style="width: 200px" class="select" name="tradeId" id="tradeId">
+                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                        <div class="centered">
+                            <h1>Project Work by Trade</h1>
+                            <article class="fullA">
+                                <form class="form" action="/wtb" method="POST">
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label for="line"><strong>Line(s): </strong></label>
+                                            <input type="text" name="line" id="line">
+                                        </div>
+                                        <div class="col-sm" style="width: 200px">
+                                            <label for="tradeId"><strong>Trade: </strong></label>
+                                            <select style="width: 200px" class="select" name="tradeId" id="tradeId">
                                     <% for (let trades of trade) { %>
                                     <option value="<%= trades.id %>">
                                     <%= trades.trade %></option>
                                     <% } %>
                                 </select>
-                            </div>
-                            <div class="col-sm">
-                                <label for="RCV"><strong>RCV: </strong></label>
-                                <input type="text" name="rcv" id="rcv" value="<%= rcv %>">
-                            </div>
-                            <div class="col-sm">
-                                <label for="OP"><strong>O & P: </strong></label>
-                                <input type="text" name="op" id="op" value="<%= op %>">
-                            </div>
-                            <div class="col-sm">
-                                <strong>Net:</strong>
-                                <%= rcv - op %>
-                            </div>
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="rcv"><strong>RCV: </strong></label>
+                                            <input type="text" name="rcv" id="rcv">
+                                        </div>
+                                        <div class="col-sm ">
+                                            <label for="op"><strong>O & P: </strong></label>
+                                            <input type="text " name="op" id="op">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <br>
+                                        <input type="hidden" name="projectId" value="<%= projId %>">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Line Item</button>
+                                        <br>
+                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back Details</a>
+                                    </div>
+                                </form>
+                            </article>
                         </div>
-                        <div class="row">
-                            <br>
-                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                            <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Line Item</button>
-                            <br>
-                            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back Details</a>
+                        <div class="centered">
+                            <article class="fullA">
+                                <div class="row" style="text-align: right">
+                                    <div class="col-sm">
+                                        <strong>Line #</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <strong>Trade</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <strong>RCV</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <strong>O & P</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <strong>Net</strong>
+                                    </div>
+                                </div>
+                                <% for (let wtb of wtbs) { %>
+                                    <div class="row" style="text-align: right">
+                                        <div class="col-sm">
+                                            <%= wtb.line %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <%= wtb.trade.trade %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <%= money.format(wtb.rcv) %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <%= money.format(wtb.op) %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <%= money.format(wtb.net) %>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </article>
                         </div>
-                    </article>
-
-                    <article class="fullA">
-                        <div class="row">
-                            <div class="col-sm">
-                                <strong>Line #</strong>
-                            </div>
-                            <div class="col-sm">
-                                <strong>Trade</strong>
-                            </div>
-                            <div class="col-sm">
-                                <strong>RCV</strong>
-                            </div>
-                            <div class="col-sm">
-                                <strong>O & P</strong>
-                            </div>
-                            <div class="col-sm">
-                                <strong>Net</strong>
-                            </div>
-                        </div>
-                        <% for (let wtb of wtbs) { %>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <%= wtb.line %>
-                                </div>
-                                <div class="col-sm">
-                                    <%= wtb.trade %>
-                                </div>
-                                <div class="col-sm">
-                                    <%= wtb.rcv %>
-                                </div>
-                                <div class="col-sm">
-                                    <%= wtb.op %>
-                                </div>
-                                <div class="col-sm">
-                                    <%= wtb.net %>
-                                </div>
-                            </div>
-                            <% } %>
-                    </article>
-
-                    <br>
-                </div>
-
             </main>
 
             <%- include('../includes/footer.ejs') %>

@@ -10,18 +10,10 @@ const Wtb = sequelize.define('wtb', {
         primaryKey: true
     },
 
-    enteredBy: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    entryDate: {
-        type: Sequelize.DATEONLY,
-        allowNull: false
-    },
     line: { type: Sequelize.STRING },
-    rcv: { type: Sequelize.STRING },
-    op: { type: Sequelize.STRING },
-    net: { type: Sequelize.STRING }
+    rcv: { type: Sequelize.FLOAT(10, 2) },
+    op: { type: Sequelize.FLOAT(10, 2) },
+    net: { type: Sequelize.FLOAT(10, 2) }
 });
 
 module.exports = Wtb;

@@ -13,6 +13,7 @@ const OwnerOop = require('../models/ownerOop');
 const JobCosts = require('../models/jobCosts');
 const Trades = require('../models/trades');
 const RType = require('../models/rType');
+const Wtb = require('../models/wtb');
 
 exports.getAllProjects = async(req, res, next) => {
     try {
@@ -1000,20 +1001,22 @@ exports.postOwnerOop = (req, res, next) => {
 
 exports.getWtb = async(req, res, next) => {
     const projId = req.params.projectId;
-    const userName = req.user.ename;
-    const userId = req.user.id;
+    console.log("Goodbye");
     try {
         const trades = await Trades.findAll()
         const wtb = await Wtb.findAll({
-            where: { projectId: projId }
+            where: { projectId: projId },
+            include: [{
+                model: Trades
+            }]
         })
+        const project = await Project.findByPk(projId)
         res.render('projects/wtb', {
             pageTitle: "Scope Work By Trade",
             path: '/wtb',
+            project: project,
             projId: projId,
             trade: trades,
-            userName: userName,
-            userId: userId,
             wtbs: wtb,
         });
     } catch (err) {
@@ -1024,14 +1027,26 @@ exports.getWtb = async(req, res, next) => {
 };
 
 exports.postWtb = (req, res, next) => {
-    const calcNet = (req.body.rcv - req.body.op);
+    const projId = req.body.projectId
+    const tradeId = req.body.tradeId;
+    const line = req.body.line;
+    const rcv = req.body.rcv;
+    const op = req.body.op;
+    const net = (rcv - op);
+    console.log(projId);
+    console.log(tradeId);
+    console.log(line);
+    console.log(rcv);
+    console.log(op);
+    console.log(net);
+
     Wtb.create({
-            projectId: req.body.projectId,
-            line: req.body.line,
-            rcv: req.body.rcv,
-            trade: req.body.tradeName,
-            op: req.body.op,
-            net: calcNet,
+            projectId: projId,
+            line: line,
+            rcv: rcv,
+            tradeId: tradeId,
+            op: op,
+            net: net,
         })
         .then(result => {
             res.redirect('back');
