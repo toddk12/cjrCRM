@@ -1057,3 +1057,60 @@ exports.postWtb = (req, res, next) => {
             return next(error);
         });
 };
+
+exports.getWtbTot = async(req, res, next) => {
+    const projId = req.params.projectId;
+    console.log("TaTa");
+    try {
+        // const trades = await Trades.findAll()
+        // const wtb = await Wtb.findAll({ where: { projectId: projId}, include: [{ model: Trades}]})
+        const net1 = await Wtb.sum({ where: { projectId: projId, tradeId: 1 } })
+        // const project = await Project.findByPk(projId)
+        console.log(net1);
+        res.render('projects/wtbTot', {
+            pageTitle: "Budget By Trade",
+            path: '/wtbTot',
+            // project: project,
+            // projId: projId,
+            // trade: trades,
+            // wtbs: wtb,
+            net1: net1
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postWtbTot = (req, res, next) => {
+    const projId = req.body.projectId
+    const tradeId = req.body.tradeId;
+    const line = req.body.line;
+    const rcv = req.body.rcv;
+    const op = req.body.op;
+    const net = (rcv - op);
+    console.log(projId);
+    console.log(tradeId);
+    console.log(line);
+    console.log(rcv);
+    console.log(op);
+    console.log(net);
+
+    Wtb.create({
+            projectId: projId,
+            line: line,
+            rcv: rcv,
+            tradeId: tradeId,
+            op: op,
+            net: net,
+        })
+        .then(result => {
+            res.redirect('back');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
