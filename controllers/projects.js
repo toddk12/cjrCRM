@@ -1063,11 +1063,33 @@ exports.getWtbTot = async(req, res, next) => {
     console.log("TaTa");
     try {
         // const trades = await Trades.findAll()
-        const wtb = await Wtb.findAll({ where: { projectId: projId}, include: [{ model: Trades}]})
-        const net1 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 1 } })
-        const net2 = 100
+        const wtb = await Wtb.findAll({ where: { projectId: projId }, include: [{ model: Trades }] })
+        const net0 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 1 } })
+        const net2 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 2 } })
+        const net3 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 3 } })
+        const net4 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 4 } })
+        const net5 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 5 } })
+        const net6 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 6 } })
+        const net7 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 7 } })
+        const net8 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 8 } })
+        const net9 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 9 } })
+        const net10 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 10 } })
+        const net11 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 11 } })
+        const net12 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 12 } })
+        const net13 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 13 } })
+        const net14 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 14 } })
+        const net15 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 15 } })
+        const net16 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 16 } })
+        const net17 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 17 } })
+        const net18 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 18 } })
+        const net19 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 19 } })
+        const net20 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 20 } })
+        const net21 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 21 } })
+        const net22 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 22 } })
+        const net23 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 23 } })
         const project = await Project.findByPk(projId)
-        console.log(net1);
+        console.log(net0);
+        console.log(net2);
         res.render('projects/wtbTot', {
             pageTitle: "Budget By Trade",
             path: '/wtbTot',
@@ -1075,8 +1097,29 @@ exports.getWtbTot = async(req, res, next) => {
             projId: projId,
             // trade: trades,
             wtbs: wtb,
-            net1: net1,
-            net2: net2
+            net0: net0,
+            net2: net2,
+            net3: net3,
+            net4: net4,
+            net5: net5,
+            net6: net6,
+            net7: net7,
+            net8: net8,
+            net9: net9,
+            net10: net10,
+            net11: net11,
+            net12: net12,
+            net13: net13,
+            net14: net14,
+            net15: net15,
+            net16: net16,
+            net17: net17,
+            net18: net18,
+            net19: net19,
+            net20: net20,
+            net21: net21,
+            net22: net22,
+            net23: net23
         });
     } catch (err) {
         const error = new Error(err);
