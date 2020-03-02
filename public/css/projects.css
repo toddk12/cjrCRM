@@ -53,5 +53,10 @@ article {
 }
 
 .trades {
-    width: auto;
+    width: 15%;
+}
+
+.tradesTot {
+    width: 15%;
+    border: 4px solid darkgreen;
 }
