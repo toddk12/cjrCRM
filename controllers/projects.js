@@ -1063,18 +1063,20 @@ exports.getWtbTot = async(req, res, next) => {
     console.log("TaTa");
     try {
         // const trades = await Trades.findAll()
-        // const wtb = await Wtb.findAll({ where: { projectId: projId}, include: [{ model: Trades}]})
-        const net1 = await Wtb.sum({ where: { projectId: projId, tradeId: 1 } })
-        // const project = await Project.findByPk(projId)
+        const wtb = await Wtb.findAll({ where: { projectId: projId}, include: [{ model: Trades}]})
+        const net1 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 1 } })
+        const net2 = 100
+        const project = await Project.findByPk(projId)
         console.log(net1);
         res.render('projects/wtbTot', {
             pageTitle: "Budget By Trade",
             path: '/wtbTot',
-            // project: project,
-            // projId: projId,
+            project: project,
+            projId: projId,
             // trade: trades,
-            // wtbs: wtb,
-            net1: net1
+            wtbs: wtb,
+            net1: net1,
+            net2: net2
         });
     } catch (err) {
         const error = new Error(err);

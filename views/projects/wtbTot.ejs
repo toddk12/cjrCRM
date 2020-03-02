@@ -1,30 +1,78 @@
 <%- include('../includes/header.ejs') %>
-    <link rel="stylesheet" href="/css/projects.css">
+<link rel="stylesheet" href="/css/projects.css">
 
-    </head>
+</head>
 
-    <body>
-        <%- include('../includes/navigation.ejs') %>
-            <main>
-                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
-                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
-                        <div class="centered">
-                            <h1>Budget by Trade</h1>
-                        </div>
-                        <div class="centered">
-                            <article class="fullA">
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+        <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+        <div class="centered">
+            <h1>Budget by Trade</h1>
+        </div>
+        <div class="centered">
+            <article class="trades">
+                <!-- Roof Trade -->
+                <div class="row">
+                    <div class="col-sm">
+                        <strong>Roof</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm" style="text-align: right">
+                        Scope Net RCV: <%= money.format( net1) %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm" style="text-align: right">
+                        Budget Goal: <%= money.format( (net1 * .60 )) %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm" style="text-align: right">
+                        Costs: <%= money.format( project.totalJobCosts) %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm" style="text-align: right">
+                        Profit: <%= percent.format( (project.totalJobCosts / net1 )) %>
+                    </div>
+                </div>
+            </article>
 
-                               
-                                    <div class="row" style="text-align: right">
-                                        <div class="col-sm">
-                                           <%= money.format( net1) %>
-                                        </div>
-                                        
+            <!-- Gutter Trade -->
+            <article class="trades">
+                <div class="row">
+                    <div class="col-sm">
+                        <strong>Gutters</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm" style="text-align: right">
+                        Scope Net RCV: <%= money.format( net2) %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm" style="text-align: right">
+                        Budget Goal: <%= money.format( (net2 * .60 )) %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm" style="text-align: right">
+                        Costs: <%= money.format( project.totalJobCosts) %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm" style="text-align: right">
+                        Profit: <%= percent.format( (project.totalJobCosts / net2 )) %>
+                    </div>
+                </div>
 
+            </article>
 
-                            </article>
-                        </div>
-            </main>
+        </div>
+    </main>
 
-            <%- include('../includes/footer.ejs') %>
-                <script src="/js/status.js"></script>
+    <%- include('../includes/footer.ejs') %>
+    <script src="/js/status.js"></script>
