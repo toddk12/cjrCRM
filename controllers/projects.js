@@ -1062,9 +1062,8 @@ exports.getWtbTot = async(req, res, next) => {
     const projId = req.params.projectId;
     console.log("TaTa");
     try {
-        // const trades = await Trades.findAll()
         const wtb = await Wtb.findAll({ where: { projectId: projId }, include: [{ model: Trades }] })
-        const net0 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 1 } })
+        const net1 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 1 } })
         const net2 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 2 } })
         const net3 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 3 } })
         const net4 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 4 } })
@@ -1088,7 +1087,7 @@ exports.getWtbTot = async(req, res, next) => {
         const net22 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 22 } })
         const net23 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 23 } })
         const project = await Project.findByPk(projId)
-        console.log(net0);
+        console.log(net1);
         console.log(net2);
         res.render('projects/wtbTot', {
             pageTitle: "Budget By Trade",
@@ -1097,7 +1096,7 @@ exports.getWtbTot = async(req, res, next) => {
             projId: projId,
             // trade: trades,
             wtbs: wtb,
-            net0: net0,
+            net1: net1,
             net2: net2,
             net3: net3,
             net4: net4,
@@ -1126,36 +1125,4 @@ exports.getWtbTot = async(req, res, next) => {
         error.httpStatusCode = 500;
         return next(error);
     }
-};
-
-exports.postWtbTot = (req, res, next) => {
-    const projId = req.body.projectId
-    const tradeId = req.body.tradeId;
-    const line = req.body.line;
-    const rcv = req.body.rcv;
-    const op = req.body.op;
-    const net = (rcv - op);
-    console.log(projId);
-    console.log(tradeId);
-    console.log(line);
-    console.log(rcv);
-    console.log(op);
-    console.log(net);
-
-    Wtb.create({
-            projectId: projId,
-            line: line,
-            rcv: rcv,
-            tradeId: tradeId,
-            op: op,
-            net: net,
-        })
-        .then(result => {
-            res.redirect('back');
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
 };
