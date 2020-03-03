@@ -14,6 +14,10 @@
                                 <form class="form" action="/wtbEdit" method="POST">
                                     <div class="row">
                                         <div class="col-sm">
+                                            <label for="wtbId"><strong>wtbId(s): </strong></label>
+                                            <input type="text" name="wtbId" id="wtbId" value="<%= wtb.id %>">
+                                        </div>
+                                        <div class="col-sm">
                                             <label for="line"><strong>Line(s): </strong></label>
                                             <input type="text" name="line" id="line" value="<%= wtb.line %>">
                                         </div>
@@ -39,11 +43,11 @@
                                     </div>
                                     <div class="row">
                                         <br>
-
+                                        <input type="hidden" name="projectId" value="<%= wtb.projectId %>">
                                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                         <button class="btn-sm text-center" style="width: 125px" type="submit"> Save Line Item</button>
                                         <br>
-
+                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
                                     </div>
                                 </form>
                             </article>

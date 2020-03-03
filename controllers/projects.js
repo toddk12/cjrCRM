@@ -1329,27 +1329,32 @@ exports.getWtbEdit = async(req, res, next) => {
 };
 
 exports.postWtbEdit = async(req, res, next) => {
-    const wtbId = req.body.wtbId;
-    const updatedTradeId = req.body.tradeId;
+    const wtbId = req.body.wtbId
+    const projId = req.body.projectId;
     const updatedLine = req.body.line;
     const updatedRcv = req.body.rcv;
     const updatedOp = req.body.op;
     const updatedNet = (updatedRcv - updatedOp);
+    const updatedTradeId = req.body.tradeId;
+    console.log(wtbId);
+    console.log(projId);
+    console.log(updatedTradeId);
+    console.log(updatedLine);
+    console.log(updatedRcv);
+    console.log(updatedOp);
+    console.log(updatedNet);
     try {
-        const wtb = await Wtb.findByPk(wtbId, {
-            include: [{
-                model: Trades
-            }, {
-                model: Project
-            }]
-        })
-        wtb.tradeId = updatedTradeId;
+        const wtb = await Wtb.findByPk(wtbId)
+
         wtb.line = updatedLine;
         wtb.rcv = updatedRcv;
-        wtb.tradeId = updatedOp;
-        wtb.op = updatedNet;
-        wtb.save();
+        wtb.op = updatedOp;
+        wtb.net = updatedNet;
+        wtb.tradeId = updatedTradeId;
+        await wtb.save();
+
         res.redirect('back');
+
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
