@@ -69,6 +69,10 @@ router.get('/wtb/:projectId', isAuth, projectsController.getWtb);
 
 router.post('/wtb', isAuth, projectsController.postWtb);
 
+router.get('/wtbEdit/:wtbId', isAuth, projectsController.getWtbEdit);
+
+router.post('/wtbEdit', isAuth, projectsController.postWtbEdit);
+
 router.get('/wtbTot/:projectId', isAuth, projectsController.getWtbTot);
 
 module.exports = router;

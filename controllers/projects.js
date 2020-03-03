@@ -1301,3 +1301,58 @@ exports.getWtbTot = async(req, res, next) => {
         return next(error);
     }
 };
+
+exports.getWtbEdit = async(req, res, next) => {
+    const wtbId = req.params.wtbId;
+
+    try {
+        const trades = await Trades.findAll()
+        const wtb = await Wtb.findByPk(wtbId, {
+            include: [{
+                model: Trades
+            }]
+        })
+        const project = await Project.findByPk(wtb.projectId)
+        res.render('projects/wtbEdit', {
+            pageTitle: "Edit Scope Line Item",
+            path: '/wtbEdit',
+            wtbId: wtbId,
+            project: project,
+            trade: trades,
+            wtb: wtb,
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postWtbEdit = async(req, res, next) => {
+    const wtbId = req.body.wtbId;
+    const updatedTradeId = req.body.tradeId;
+    const updatedLine = req.body.line;
+    const updatedRcv = req.body.rcv;
+    const updatedOp = req.body.op;
+    const updatedNet = (updatedRcv - updatedOp);
+    try {
+        const wtb = await Wtb.findByPk(wtbId, {
+            include: [{
+                model: Trades
+            }, {
+                model: Project
+            }]
+        })
+        wtb.tradeId = updatedTradeId;
+        wtb.line = updatedLine;
+        wtb.rcv = updatedRcv;
+        wtb.tradeId = updatedOp;
+        wtb.op = updatedNet;
+        wtb.save();
+        res.redirect('back');
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
