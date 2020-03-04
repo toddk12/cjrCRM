@@ -49,6 +49,10 @@ router.get('/fundsReceived/:projectId', isAuth, projectsController.getFundsRecei
 
 router.post('/fundsReceived', isAuth, projectsController.postFundsReceived);
 
+router.get('/frEdit/:frId', isAuth, projectsController.getFrEdit);
+
+router.post('/FrEdit', isAuth, projectsController.postFrEdit);
+
 router.get('/jobCosts/:projectId', isAuth, projectsController.getJobCosts);
 
 router.post('/jobCosts', isAuth, projectsController.postJobCosts);

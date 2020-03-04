@@ -21,6 +21,11 @@ article {
     padding: 2px;
 }
 
+.btn-esm {
+    color: darkgreen;
+    padding: 2px;
+}
+
 .changeStatus {
     display: inline-block;
     width: 62%;

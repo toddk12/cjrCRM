@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="col-sm">
                                         <label for="fundsDescription"><strong>Description: </strong></label>
-                                        <textarea cols="50" rows="1" type="text" name="fundsDescription" id="fundsDescription"></textarea>
+                                        <input style="width: 400px" type="text" name="fundsDescription" id="fundsDescription">
                                     </div>
                                 </div>
                                 <br>
@@ -55,6 +55,9 @@
                         <article class="notes">
                             <strong><div class="row">
                                 <div class="col-sm">
+                                    Project Id
+                                </div>
+                                <div class="col-sm">
                                     Entered By
                                 </div>
                                 <div class="col-sm">
@@ -66,9 +69,16 @@
                                 <div class="col-sm">
                                     Description
                                 </div>
-                            </div></strong>
+                                <div class="col-sm">
+                                    <strong></strong>
+                            </div>
+                            </div>
+                            </strong>
                             <% for (let funds of fR) { %>
                                 <div class="row">
+                                    <div class="col-sm">
+                                        <%= funds.projectId %>
+                                    </div>
                                     <div class="col-sm">
                                         <%= funds.enteredBy %>
                                     </div>
@@ -80,6 +90,9 @@
                                     </div>
                                     <div class="col-sm">
                                         <%= funds.fundsDescription %>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a class="btn-esm text-center" style="width: 150px" href="/frEdit/<%= funds.id %>">Edit</a>
                                     </div>
                                     <br>
                                 </div>

@@ -1,0 +1,58 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                        <div class="centered">
+                            <h1>Project Work by Trade</h1>
+                            <article class="notes">
+                                <form class="form-inline" action="/frEdit" method="POST">
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label for="frId"><strong>Id: </strong></label>
+                                            <input type="text" name="frId" id="frId" value="<%= funds.id %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="projectId"><strong>Project Id: </strong></label>
+                                            <input type="text" name="projectId" id="projectId" value="<%= funds.projectId %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="entryDate"><strong>Entered On: </strong></label>
+                                            <input type="text" name="entryDate" id="entryDate" value="<%= funds.entryDate %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="enteredBy"><strong>Entered By: </strong></label>
+                                            <input type="text" name="enteredBy" id="enteredBy" value="<%= funds.enteredBy %>">
+                                            <input type="hidden" name="enteredID" value="<%= userId %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="fundsAmt"><strong>Amount: </strong></label>
+                                            <input type="currency" name="fundsAmt" id="fundsAmt" value="<%= money.format(funds.fundsAmt) %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="fundsDescription"><strong>Description: </strong></label>
+                                            <input style="width: 350px" type="text" name="fundsDescription" id="fundsDescription" value="<%= funds.fundsDescription %>">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <br>
+                                        <input type="hidden" name="projectId" value="<%= funds.projectId %>">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button class="btn-sm text-center" style="width: 125px" type="submit"> Save</button>
+                                        <br>
+                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= funds.projectId %>">Back to Details</a>
+                                    </div>
+                                </form>
+                                <br>
+                            </article>
+                        </div>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>
+                <script src="/js/status.js"></script>

@@ -704,19 +704,13 @@ exports.getFundsReceived = async(req, res, nexct) => {
         const fundsRcvd = await FundsRcvd.findAll({
             where: { projectId: projId }
         })
-        const allfunds = fundsRcvd;
-        let tots = 0;
-        for (a of allfunds) {
-            tots += a.fundsAmt;
-        };
-        console.log(tots);
+        const tots = await FundsRcvd.sum('fundsAmt', { where: { projectId: projId } })
+
         const project = await Project.findByPk(projId, {
             include: [{
                 model: FundsRcvd
             }]
         })
-        project.totalFundsRcvd = tots;
-        project.save();
         res.render('projects/fundsReceived', {
             pageTitle: "Funds Received",
             path: '/fundsReceived',
@@ -1352,12 +1346,97 @@ exports.postWtbEdit = async(req, res, next) => {
         wtb.net = updatedNet;
         wtb.tradeId = updatedTradeId;
         await wtb.save();
-
-        res.redirect('back');
+        const trades = await Trades.findAll()
+        const wtbBack = await Wtb.findAll({
+            where: { projectId: projId },
+            include: [{
+                model: Trades
+            }]
+        })
+        const project = await Project.findByPk(projId)
+        res.render('projects/wtb', {
+            pageTitle: "Scope Work By Trade",
+            path: '/wtb',
+            project: project,
+            projId: projId,
+            trade: trades,
+            wtbs: wtbBack
+        })
 
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
         return next(error);
     }
+};
+
+exports.getFrEdit = async(req, res, next) => {
+    const frId = req.params.frId;
+    const userName = req.user.ename;
+    const userId = req.user.id;
+
+    try {
+        const fundsRcvd = await FundsRcvd.findByPk(frId)
+        const project = await Project.findByPk(fundsRcvd.projectId)
+        res.render('projects/frEdit', {
+            pageTitle: "Edit Scope Line Item",
+            path: '/frEdit',
+            frId: frId,
+            userName: userName,
+            userId: userId,
+            project: project,
+            funds: fundsRcvd
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postFrEdit = async(req, res, next) => {
+    const frId = req.body.frId
+    const projId = req.body.projectId;
+    const userName = req.user.ename;
+    const userId = req.user.id;
+    const updatedEnteredBy = req.body.enteredBy;
+    const updatedEntryDate = req.body.entryDate;
+    const updatedFundsAmt = req.body.fundsAmt;
+    const updatedFundsDescription = req.body.fundsDescription;
+    console.log("HEY !!!");
+    console.log(frId);
+    try {
+        const fundsRcvd = await FundsRcvd.findByPk(frId)
+
+        fundsRcvd.enteredBy = updatedEnteredBy;
+        fundsRcvd.entryDate = updatedEntryDate;
+        fundsRcvd.fundsAmt = updatedFundsAmt;
+        fundsRcvd.fundsDescription = updatedFundsDescription;
+        await fundsRcvd.save();
+
+        const frBack = await FundsRcvd.findAll({
+            where: { projectId: projId }
+        })
+        const tots = await FundsRcvd.sum('fundsAmt', { where: { projectId: projId } })
+
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: FundsRcvd
+            }]
+        })
+        res.render('projects/fundsReceived', {
+            pageTitle: "Funds Received",
+            path: '/fundsReceived',
+            project: project,
+            projId: projId,
+            userName: userName,
+            userId: userId,
+            fR: frBack,
+            totals: tots
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    };
 };

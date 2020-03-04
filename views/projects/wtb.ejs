@@ -64,6 +64,9 @@
                                     <div class="col-sm">
                                         <strong>Net</strong>
                                     </div>
+                                    <div class="col-sm">
+                                        <strong></strong>
+                                    </div>
                                 </div>
                                 <% for (let wtb of wtbs) { %>
                                     <div class="row" style="text-align: right">
@@ -83,7 +86,7 @@
                                             <%= money.format(wtb.net) %>
                                         </div>
                                         <div class="col-sm">
-                                            <a class="btn-sm text-center" style="width: 150px" href="/wtbEdit/<%= wtb.id %>">Edit Line Item</a>
+                                            <a class="btn-esm text-center" style="width: 150px" href="/wtbEdit/<%= wtb.id %>">Edit</a>
                                         </div>
                                     </div>
                                     <% } %>
