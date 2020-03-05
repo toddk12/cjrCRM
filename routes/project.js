@@ -57,6 +57,10 @@ router.get('/jobCosts/:projectId', isAuth, projectsController.getJobCosts);
 
 router.post('/jobCosts', isAuth, projectsController.postJobCosts);
 
+router.get('/jcEdit/:jcId', isAuth, projectsController.getJcEdit);
+
+router.post('/jcEdit', isAuth, projectsController.postJcEdit);
+
 router.get('/additions/:projectId', isAuth, projectsController.getAdditions);
 
 router.post('/additions', isAuth, projectsController.postAdditions);

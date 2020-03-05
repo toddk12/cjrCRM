@@ -1,0 +1,58 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                        <div class="centered">
+                            <h1>Project Work by Trade</h1>
+                            <article class="fullA">
+                                <form class="form" action="/jcEdit" method="POST">
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label for="jcId"><strong>jcId: </strong></label>
+                                            <input type="text" name="jcId" id="jcId" value="<%= jc.id %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="line"><strong>Line(s): </strong></label>
+                                            <input type="text" name="line" id="line" value="<%= jc.line %>">
+                                        </div>
+                                        <div class="col-sm" style="width: 200px">
+                                            <label for="tradeId"><strong>Trade: </strong></label>
+                                            <select style="width: 200px" class="select" name="tradeId" id="tradeId">
+                                                <option value="<%= jc.trade.id %>">
+                                                    <%= jc.trade.trade %></option>
+                                    <% for (let trades of trade) { %>
+                                    <option value="<%= trades.id %>">
+                                    <%= trades.trade %></option>
+                                    <% } %>
+                                </select>
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="rcv"><strong>RCV: </strong></label>
+                                            <input type="text" name="rcv" id="rcv" value="<%= jc.rcv %>">
+                                        </div>
+                                        <div class="col-sm ">
+                                            <label for="op"><strong>O & P: </strong></label>
+                                            <input type="text " name="op" id="op" value="<%= jc.op %>">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <br>
+                                        <input type="hidden" name="projectId" value="<%= jc.projectId %>">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button class="btn-sm text-center" style="width: 125px" type="submit">Save</button>
+                                        <br>
+                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
+                                    </div>
+                                </form>
+                            </article>
+                        </div>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>
+                <script src="/js/status.js"></script>

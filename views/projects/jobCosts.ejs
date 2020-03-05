@@ -71,12 +71,16 @@
                                     Trade
                                 </div>
                                 <div class="col-sm">
+                                    Amount
+                                </div>
+                                <div class="col-sm">
                                     Description
                                 </div>
                                 <div class="col-sm">
-                                    Amount
-                                </div>
-                            </div></strong>
+                                    <strong></strong>
+                            </div>
+                            </div>
+                            </strong>
                             <% for (let cost of jC) { %>
                                 <div class="row">
                                     <div class="col-sm">
@@ -87,8 +91,9 @@
                                     </div>
                                     <div class="col-sm" style="width: 200px">
                                         <select style="width: 200px" class="select">
-                                    <% for (let trades of trade) { %>
-                                    <option value="<%= trades.id %>">
+                                            <option value="<%= cost.tradeId %>"></option>
+                                            <% for (let trades of trade) { %>
+                                                <option value="<%= trades.id %>">
                                     <%= trades.trade %></option>
                                     <% } %>
                                 </select>
@@ -99,6 +104,9 @@
                                     </div>
                                     <div class="col-sm">
                                         <%= cost.costMemo %>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a class="btn-esm text-center" style="width: 150px" href="/jcEdit/<%= cost.id %>">Edit</a>
                                     </div>
 
                                 </div>

@@ -762,7 +762,10 @@ exports.getJobCosts = async(req, res, next) => {
     try {
         const trades = await Trades.findAll()
         const jobCosts = await JobCosts.findAll({
-            where: { projectId: projId }
+            where: { projectId: projId },
+            include: [{
+                model: Trade
+            }]
         })
         const allCosts = jobCosts;
         let tots = 0;
@@ -1423,7 +1426,7 @@ exports.postFrEdit = async(req, res, next) => {
     const updatedFundsAmt = req.body.fundsAmt;
     const updatedFundsDescription = req.body.fundsDescription;
     console.log("HEY !!!");
-    console.log(frId);
+    console.log(updatedFundsAmt);
     console.log(req.body.projectId);
     try {
         const fundsRcvd = await FundsRcvd.findByPk(frId)
@@ -1436,29 +1439,102 @@ exports.postFrEdit = async(req, res, next) => {
 
         // res.redirect('home');
 
-        const notes = await Notes.findAll({
-            where: { projectId: projId },
-            order: [
-                ['entryDate', 'DESC']
-            ]
+        const fundsRcvdBack = await FundsRcvd.findAll({
+            where: { projectId: projId }
         })
+        const tots = await FundsRcvd.sum('fundsAmt', { where: { projectId: projId } })
+
         const project = await Project.findByPk(projId, {
             include: [{
-                model: Sales
-            }, {
-                model: Supervisor
-            }, {
-                model: Status
-            }, {
-                model: Insurance
+                model: FundsRcvd
             }]
         })
-        res.render('projects/project', {
+        project.totalFundsRcvd = tots;
+        await project.save();
+        res.render('projects/fundsReceived', {
+            pageTitle: "Funds Received",
+            path: '/fundsReceived',
             project: project,
-            note: notes,
-            pageTitle: project.projectNo,
-            path: '/project',
+            projId: projId,
+            userName: userName,
+            userId: userId,
+            fR: fundsRcvdBack,
+            totals: tots
         });
+
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.getJcEdit = async(req, res, next) => {
+    const jcId = req.params.jcId;
+
+    try {
+        const trades = await Trades.findAll()
+        const jobCost = await JobCost.findByPk(jcId, {
+            include: [{
+                model: Trades
+            }]
+        })
+        const project = await Project.findByPk(jc.projectId)
+        res.render('projects/jcEdit', {
+            pageTitle: "Edit Job Cost Item",
+            path: '/jcEdit',
+            jcId: jcId,
+            project: project,
+            trade: trades,
+            jc: jc,
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postJcEdit = async(req, res, next) => {
+    const jcId = req.body.jcId
+    const projId = req.body.projectId;
+    const updatedLine = req.body.line;
+    const updatedRcv = req.body.rcv;
+    const updatedOp = req.body.op;
+    const updatedNet = (updatedRcv - updatedOp);
+    const updatedTradeId = req.body.tradeId;
+    console.log(jcId);
+    console.log(projId);
+    console.log(updatedTradeId);
+    console.log(updatedLine);
+    console.log(updatedRcv);
+    console.log(updatedOp);
+    console.log(updatedNet);
+    try {
+        const jc = await jc.findByPk(jcId)
+
+        jc.line = updatedLine;
+        jc.rcv = updatedRcv;
+        jc.op = updatedOp;
+        jc.net = updatedNet;
+        jc.tradeId = updatedTradeId;
+        await jc.save();
+        const trades = await Trades.findAll()
+        const jcBack = await jc.findAll({
+            where: { projectId: projId },
+            include: [{
+                model: Trades
+            }]
+        })
+        const project = await Project.findByPk(projId)
+        res.render('projects/jc', {
+            pageTitle: "Scope Work By Trade",
+            path: '/jc',
+            project: project,
+            projId: projId,
+            trade: trades,
+            jcs: jcBack
+        })
 
     } catch (err) {
         const error = new Error(err);
