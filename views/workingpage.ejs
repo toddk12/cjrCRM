@@ -1,36 +1,3 @@
-<article class="fullA">
-    <form class="form" action="/wtbEdit" method="POST">
-        <div class="row">
-            <div class="col-sm">
-                <label for="line"><strong>Line(s): </strong></label>
-                <input type="text" name="line" id="line" value="<%= wtb.line %>">
-            </div>
-            <div class="col-sm" style="width: 200px">
-                <label for="tradeId"><strong>Trade: </strong></label>
-                <select style="width: 200px" class="select" name="tradeId" id="tradeId">
-        <% for (let trades of trade) { %>
-        <option value="<%= trades.id %>">
-        <%= trades.trade %></option>
-        <% } %>
-    </select>
-            </div>
-            <div class="col-sm">
-                <label for="rcv"><strong>RCV: </strong></label>
-                <input type="text" name="rcv" id="rcv" value="<%= wtb.rcv %>">
-            </div>
-            <div class="col-sm ">
-                <label for="op"><strong>O & P: </strong></label>
-                <input type="text " name="op" id="op" value="<%= wtb.op %>">
-            </div>
-        </div>
-        <div class="row">
-            <br>
-            <input type="hidden" name="projectId" value="<%= projId %>">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Line Item</button>
-            <br>
-            <a class="btn-sm text-center" style="width: 150px" href="/wtb/<%= project.id %>">Back Line Items</a>
-        </div>
-    </form>
-</article>
-</div>
+// const projId = req.body.projectId; // const userName = req.user.ename; // const userId = req.user.id; // const updatedEnteredBy = req.body.enteredBy; // const updatedEntryDate = req.body.entryDate; // const updatedFundsAmt = req.body.fundsAmt; // const
+updatedFundsDescription = req.body.fundsDescription; // console.log("HEY !!!"); // console.log(frId); // try { // const fundsRcvd = await FundsRcvd.findByPk(frId) // fundsRcvd.enteredBy = updatedEnteredBy; // fundsRcvd.entryDate = updatedEntryDate; //
+fundsRcvd.fundsAmt = updatedFundsAmt; // fundsRcvd.fundsDescription = updatedFundsDescription; // await fundsRcvd.save();

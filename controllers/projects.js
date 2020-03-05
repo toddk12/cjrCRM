@@ -700,6 +700,7 @@ exports.getFundsReceived = async(req, res, nexct) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
+
     try {
         const fundsRcvd = await FundsRcvd.findAll({
             where: { projectId: projId }
@@ -1077,6 +1078,8 @@ exports.getWtbTot = async(req, res, next) => {
         const net21 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 21 } })
         const net22 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 22 } })
         const net23 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 23 } })
+        const net24 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 24 } })
+        const net25 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 25 } })
         const netTot = await Wtb.sum('net', { where: { projectId: projId } })
         const additions = await Additions.findAll({ where: { projectId: projId }, include: [{ model: Trades }] })
         const add1 = await Additions.sum('addAmt', { where: { projectId: projId, tradeId: 1 } })
@@ -1102,6 +1105,8 @@ exports.getWtbTot = async(req, res, next) => {
         const add21 = await Additions.sum('addAmt', { where: { projectId: projId, tradeId: 21 } })
         const add22 = await Additions.sum('addAmt', { where: { projectId: projId, tradeId: 22 } })
         const add23 = await Additions.sum('addAmt', { where: { projectId: projId, tradeId: 23 } })
+        const add24 = await Additions.sum('addAmt', { where: { projectId: projId, tradeId: 24 } })
+        const add25 = await Additions.sum('addAmt', { where: { projectId: projId, tradeId: 25 } })
         const addTot = await Additions.sum('addAmt', { where: { projectId: projId } })
         const exclusions = await Exclusions.findAll({ where: { projectId: projId }, include: [{ model: Trades }] })
         const excl1 = await Exclusions.sum('exclAmt', { where: { projectId: projId, tradeId: 1 } })
@@ -1127,6 +1132,8 @@ exports.getWtbTot = async(req, res, next) => {
         const excl21 = await Exclusions.sum('exclAmt', { where: { projectId: projId, tradeId: 21 } })
         const excl22 = await Exclusions.sum('exclAmt', { where: { projectId: projId, tradeId: 22 } })
         const excl23 = await Exclusions.sum('exclAmt', { where: { projectId: projId, tradeId: 23 } })
+        const excl24 = await Exclusions.sum('exclAmt', { where: { projectId: projId, tradeId: 24 } })
+        const excl25 = await Exclusions.sum('exclAmt', { where: { projectId: projId, tradeId: 25 } })
         const exclTot = await Exclusions.sum('exclAmt', { where: { projectId: projId } })
         const ownerOop = await OwnerOop.findAll({ where: { projectId: projId }, include: [{ model: Trades }] })
         const oop1 = await OwnerOop.sum('oopAmt', { where: { projectId: projId, tradeId: 1 } })
@@ -1152,6 +1159,8 @@ exports.getWtbTot = async(req, res, next) => {
         const oop21 = await OwnerOop.sum('oopAmt', { where: { projectId: projId, tradeId: 21 } })
         const oop22 = await OwnerOop.sum('oopAmt', { where: { projectId: projId, tradeId: 22 } })
         const oop23 = await OwnerOop.sum('oopAmt', { where: { projectId: projId, tradeId: 23 } })
+        const oop24 = await OwnerOop.sum('oopAmt', { where: { projectId: projId, tradeId: 24 } })
+        const oop25 = await OwnerOop.sum('oopAmt', { where: { projectId: projId, tradeId: 25 } })
         const oopTot = await OwnerOop.sum('oopAmt', { where: { projectId: projId } })
         const adj1 = (add1 - excl1 + oop1)
         const adj2 = (add2 - excl2 + oop2)
@@ -1176,6 +1185,8 @@ exports.getWtbTot = async(req, res, next) => {
         const adj21 = (add21 - excl21 + oop21)
         const adj22 = (add22 - excl22 + oop22)
         const adj23 = (add23 - excl23 + oop23)
+        const adj24 = (add24 - excl24 + oop24)
+        const adj25 = (add25 - excl25 + oop25)
         const adjTot = (addTot - exclTot + oopTot)
         const jobCosts = await JobCosts.findAll({ where: { projectId: projId }, include: [{ model: Trades }] })
         const jc1 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 1 } })
@@ -1201,6 +1212,8 @@ exports.getWtbTot = async(req, res, next) => {
         const jc21 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 21 } })
         const jc22 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 22 } })
         const jc23 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 23 } })
+        const jc24 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 24 } })
+        const jc25 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 25 } })
         const jcTot = await JobCosts.sum('costAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId)
         console.log(net1);
@@ -1239,6 +1252,8 @@ exports.getWtbTot = async(req, res, next) => {
             net21: net21,
             net22: net22,
             net23: net23,
+            net24: net24,
+            net25: net25,
             netTot: netTot,
             adj1: adj1,
             adj2: adj2,
@@ -1263,6 +1278,8 @@ exports.getWtbTot = async(req, res, next) => {
             adj21: adj21,
             adj22: adj22,
             adj23: adj23,
+            adj24: adj24,
+            adj25: adj25,
             adjTot: adjTot,
             jc1: jc1,
             jc2: jc2,
@@ -1287,6 +1304,8 @@ exports.getWtbTot = async(req, res, next) => {
             jc21: jc21,
             jc22: jc22,
             jc23: jc23,
+            jc24: jc24,
+            jc25: jc25,
             jcTot: jcTot
         });
     } catch (err) {
@@ -1395,7 +1414,7 @@ exports.getFrEdit = async(req, res, next) => {
 };
 
 exports.postFrEdit = async(req, res, next) => {
-    const frId = req.body.frId
+    const frId = req.body.frId;
     const projId = req.body.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -1405,6 +1424,7 @@ exports.postFrEdit = async(req, res, next) => {
     const updatedFundsDescription = req.body.fundsDescription;
     console.log("HEY !!!");
     console.log(frId);
+    console.log(req.body.projectId);
     try {
         const fundsRcvd = await FundsRcvd.findByPk(frId)
 
@@ -1414,29 +1434,35 @@ exports.postFrEdit = async(req, res, next) => {
         fundsRcvd.fundsDescription = updatedFundsDescription;
         await fundsRcvd.save();
 
-        const frBack = await FundsRcvd.findAll({
-            where: { projectId: projId }
-        })
-        const tots = await FundsRcvd.sum('fundsAmt', { where: { projectId: projId } })
+        // res.redirect('home');
 
+        const notes = await Notes.findAll({
+            where: { projectId: projId },
+            order: [
+                ['entryDate', 'DESC']
+            ]
+        })
         const project = await Project.findByPk(projId, {
             include: [{
-                model: FundsRcvd
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Status
+            }, {
+                model: Insurance
             }]
         })
-        res.render('projects/fundsReceived', {
-            pageTitle: "Funds Received",
-            path: '/fundsReceived',
+        res.render('projects/project', {
             project: project,
-            projId: projId,
-            userName: userName,
-            userId: userId,
-            fR: frBack,
-            totals: tots
+            note: notes,
+            pageTitle: project.projectNo,
+            path: '/project',
         });
+
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
         return next(error);
-    };
+    }
 };

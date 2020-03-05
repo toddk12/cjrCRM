@@ -34,7 +34,7 @@
                             <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
                         </div>
                         <div class="centered" style="font-size: .8em;">
-                            <!-- Roof Trade -->
+                            <!-- Roof  Trade -->
                             <% if((net1 -adj1) != 0) { %>
                                 <article class="trades">
                                     <div class="row">
@@ -74,849 +74,929 @@
                                     </div>
                                 </article>
                                 <% } %>
-                                    <% if((net2 -adj2) != 0) { %>
-                                        <!-- Gutter Trade -->
+                                    <!-- Roof  # 2 Trade -->
+                                    <% if((net24 -adj24) != 0) { %>
                                         <article class="trades">
                                             <div class="row">
                                                 <div class="col-sm">
-                                                    <strong>Gutters</strong>
+                                                    <strong>Roof #2</strong>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm" style="text-align: right;">
-                                                    Scope RCV: <strong><%= money.format(net2) %></strong>
+                                                    Scope RCV: <strong><%= money.format(net24) %></strong>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm" style="text-align: right;">
-                                                    Adjustments: <strong><%= money.format(adj2) %></strong>
+                                                    Adjustments: <strong><%= money.format(adj24) %></strong>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm" style="text-align: right;">
-                                                    Net RCV: <strong><%= money.format((net2 -adj2)) %></strong>
+                                                    Net RCV: <strong><%= money.format((net24 -adj24)) %></strong>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm" style="text-align: right;">
-                                                    Budget: <strong><%= money.format(((net2 -adj2)*.75)) %></strong>
+                                                    Budget: <strong><%= money.format(((net24 -adj24)*.75)) %></strong>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm" style="text-align: right;">
-                                                    Invoices: <strong><%= money.format(jc2) %></strong>
+                                                    Invoices: <strong><%= money.format(jc24) %></strong>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm" style="text-align: right;">
-                                                    Profit: <strong><%= percent.format(((net2-adj2-jc2)/(net2-adj2))) %></strong>
+                                                    Profit: <strong><%= percent.format(((net24-adj24-jc24)/(net24-adj24))) %></strong>
                                                 </div>
                                             </div>
                                         </article>
-                                        <!-- Siding Trade -->
                                         <% } %>
-                                            <% if((net3 -adj3) != 0) { %>
+                                            <!-- Roof #3 Trade -->
+                                            <% if((net25 -adj25) != 0) { %>
                                                 <article class="trades">
                                                     <div class="row">
                                                         <div class="col-sm">
-                                                            <strong>Siding</strong>
+                                                            <strong>Roof #3</strong>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm" style="text-align: right;">
-                                                            Scope RCV: <strong><%= money.format(net3) %></strong>
+                                                            Scope RCV: <strong><%= money.format(net25) %></strong>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm" style="text-align: right;">
-                                                            Adjustments: <strong><%= money.format(adj3) %></strong>
+                                                            Adjustments: <strong><%= money.format(adj25) %></strong>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm" style="text-align: right;">
-                                                            Net RCV: <strong><%= money.format((net3 -adj3)) %></strong>
+                                                            Net RCV: <strong><%= money.format((net25 -adj25)) %></strong>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm" style="text-align: right;">
-                                                            Budget: <strong><%= money.format(((net3 -adj3)*.75)) %></strong>
+                                                            Budget: <strong><%= money.format(((net25 -adj25)*.75)) %></strong>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm" style="text-align: right;">
-                                                            Invoices: <strong><%= money.format(jc3) %></strong>
+                                                            Invoices: <strong><%= money.format(jc25) %></strong>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm" style="text-align: right;">
-                                                            Profit: <strong><%= percent.format(((net3-adj3-jc3)/(net3-adj3))) %></strong>
+                                                            Profit: <strong><%= percent.format(((net25-adj25-jc25)/(net25-adj25))) %></strong>
                                                         </div>
                                                     </div>
                                                 </article>
-                                                <!-- Windows Trade -->
                                                 <% } %>
-                                                    <% if((net4 -adj4) != 0) { %>
+                                                    <% if((net2 -adj2) != 0) { %>
+                                                        <!-- Gutter Trade -->
                                                         <article class="trades">
                                                             <div class="row">
                                                                 <div class="col-sm">
-                                                                    <strong>Windows</strong>
+                                                                    <strong>Gutters</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-sm" style="text-align: right;">
-                                                                    Scope RCV: <strong><%= money.format(net4) %></strong>
+                                                                    Scope RCV: <strong><%= money.format(net2) %></strong>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-sm" style="text-align: right;">
-                                                                    Adjustments: <strong><%= money.format(adj4) %></strong>
+                                                                    Adjustments: <strong><%= money.format(adj2) %></strong>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-sm" style="text-align: right;">
-                                                                    Net RCV: <strong><%= money.format((net4 -adj4)) %></strong>
+                                                                    Net RCV: <strong><%= money.format((net2 -adj2)) %></strong>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-sm" style="text-align: right;">
-                                                                    Budget: <strong><%= money.format(((net4 -adj4)*.75)) %></strong>
+                                                                    Budget: <strong><%= money.format(((net2 -adj2)*.75)) %></strong>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-sm" style="text-align: right;">
-                                                                    Invoices: <strong><%= money.format(jc4) %></strong>
+                                                                    Invoices: <strong><%= money.format(jc2) %></strong>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-sm" style="text-align: right;">
-                                                                    Profit: <strong><%= percent.format(((net4-adj4-jc4)/(net4-adj4))) %></strong>
+                                                                    Profit: <strong><%= percent.format(((net2-adj2-jc2)/(net2-adj2))) %></strong>
                                                                 </div>
                                                             </div>
                                                         </article>
-                                                        <!-- Trash Trade -->
+                                                        <!-- Siding Trade -->
                                                         <% } %>
-                                                            <% if((net5 -adj5) != 0) { %>
+                                                            <% if((net3 -adj3) != 0) { %>
                                                                 <article class="trades">
                                                                     <div class="row">
                                                                         <div class="col-sm">
-                                                                            <strong>Trash</strong>
+                                                                            <strong>Siding</strong>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-sm" style="text-align: right;">
-                                                                            Scope RCV: <strong><%= money.format(net5) %></strong>
+                                                                            Scope RCV: <strong><%= money.format(net3) %></strong>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-sm" style="text-align: right;">
-                                                                            Adjustments: <strong><%= money.format(adj5) %></strong>
+                                                                            Adjustments: <strong><%= money.format(adj3) %></strong>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-sm" style="text-align: right;">
-                                                                            Net RCV: <strong><%= money.format((net5 -adj5)) %></strong>
+                                                                            Net RCV: <strong><%= money.format((net3 -adj3)) %></strong>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-sm" style="text-align: right;">
-                                                                            Budget: <strong><%= money.format(((net5 -adj5)*.75)) %></strong>
+                                                                            Budget: <strong><%= money.format(((net3 -adj3)*.75)) %></strong>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-sm" style="text-align: right;">
-                                                                            Invoices: <strong><%= money.format(jc5) %></strong>
+                                                                            Invoices: <strong><%= money.format(jc3) %></strong>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-sm" style="text-align: right;">
-                                                                            Profit: <strong><%= percent.format(((net5-adj5-jc5)/(net5-adj5))) %></strong>
+                                                                            Profit: <strong><%= percent.format(((net3-adj3-jc3)/(net3-adj3))) %></strong>
                                                                         </div>
                                                                     </div>
                                                                 </article>
-                                                                <!-- Painting Trade -->
+                                                                <!-- Windows Trade -->
                                                                 <% } %>
-                                                                    <% if((net6 -adj6) != 0) { %>
+                                                                    <% if((net4 -adj4) != 0) { %>
                                                                         <article class="trades">
                                                                             <div class="row">
                                                                                 <div class="col-sm">
-                                                                                    <strong>Painting</strong>
+                                                                                    <strong>Windows</strong>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                    Scope RCV: <strong><%= money.format(net6) %></strong>
+                                                                                    Scope RCV: <strong><%= money.format(net4) %></strong>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                    Adjustments: <strong><%= money.format(adj6) %></strong>
+                                                                                    Adjustments: <strong><%= money.format(adj4) %></strong>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                    Net RCV: <strong><%= money.format((net6 -adj6)) %></strong>
+                                                                                    Net RCV: <strong><%= money.format((net4 -adj4)) %></strong>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                    Budget: <strong><%= money.format(((net6 -adj6)*.75)) %></strong>
+                                                                                    Budget: <strong><%= money.format(((net4 -adj4)*.75)) %></strong>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                    Invoices: <strong><%= money.format(jc6) %></strong>
+                                                                                    Invoices: <strong><%= money.format(jc4) %></strong>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                    Profit: <strong><%= percent.format(((net6-adj6-jc6)/(net6-adj6))) %></strong>
+                                                                                    Profit: <strong><%= percent.format(((net4-adj4-jc4)/(net4-adj4))) %></strong>
                                                                                 </div>
                                                                             </div>
                                                                         </article>
-                                                                        <!-- Doors Trade -->
+                                                                        <!-- Trash Trade -->
                                                                         <% } %>
-                                                                            <% if((net7 -adj7) != 0) { %>
+                                                                            <% if((net5 -adj5) != 0) { %>
                                                                                 <article class="trades">
                                                                                     <div class="row">
                                                                                         <div class="col-sm">
-                                                                                            <strong>Doors</strong>
+                                                                                            <strong>Trash</strong>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="row">
                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                            Scope RCV: <strong><%= money.format(net7) %></strong>
+                                                                                            Scope RCV: <strong><%= money.format(net5) %></strong>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="row">
                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                            Adjustments: <strong><%= money.format(adj7) %></strong>
+                                                                                            Adjustments: <strong><%= money.format(adj5) %></strong>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="row">
                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                            Net RCV: <strong><%= money.format((net7 -adj7)) %></strong>
+                                                                                            Net RCV: <strong><%= money.format((net5 -adj5)) %></strong>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="row">
                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                            Budget: <strong><%= money.format(((net7 -adj7)*.75)) %></strong>
+                                                                                            Budget: <strong><%= money.format(((net5 -adj5)*.75)) %></strong>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="row">
                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                            Invoices: <strong><%= money.format(jc7) %></strong>
+                                                                                            Invoices: <strong><%= money.format(jc5) %></strong>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="row">
                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                            Profit: <strong><%= percent.format(((net7-adj7-jc7)/(net7-adj7))) %></strong>
+                                                                                            Profit: <strong><%= percent.format(((net5-adj5-jc5)/(net5-adj5))) %></strong>
                                                                                         </div>
                                                                                     </div>
                                                                                 </article>
-                                                                                <!-- Fence Trade -->
+                                                                                <!-- Painting Trade -->
                                                                                 <% } %>
-                                                                                    <% if((net8 -adj8) != 0) { %>
+                                                                                    <% if((net6 -adj6) != 0) { %>
                                                                                         <article class="trades">
                                                                                             <div class="row">
                                                                                                 <div class="col-sm">
-                                                                                                    <strong>Fencer</strong>
+                                                                                                    <strong>Painting</strong>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="row">
                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                    Scope RCV: <strong><%= money.format(net8) %></strong>
+                                                                                                    Scope RCV: <strong><%= money.format(net6) %></strong>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="row">
                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                    Adjustments: <strong><%= money.format(adj8) %></strong>
+                                                                                                    Adjustments: <strong><%= money.format(adj6) %></strong>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="row">
                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                    Net RCV: <strong><%= money.format((net8 -adj8)) %></strong>
+                                                                                                    Net RCV: <strong><%= money.format((net6 -adj6)) %></strong>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="row">
                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                    Budget: <strong><%= money.format(((net8 -adj8)*.75)) %></strong>
+                                                                                                    Budget: <strong><%= money.format(((net6 -adj6)*.75)) %></strong>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="row">
                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                    Invoices: <strong><%= money.format(jc8) %></strong>
+                                                                                                    Invoices: <strong><%= money.format(jc6) %></strong>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="row">
                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                    Profit: <strong><%= percent.format(((net8-adj8-jc8)/(net8-adj8))) %></strong>
+                                                                                                    Profit: <strong><%= percent.format(((net6-adj6-jc6)/(net6-adj6))) %></strong>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </article>
-                                                                                        <!-- Outbuildings Trade -->
+                                                                                        <!-- Doors Trade -->
                                                                                         <% } %>
-                                                                                            <% if((net9 -adj9) != 0) { %>
+                                                                                            <% if((net7 -adj7) != 0) { %>
                                                                                                 <article class="trades">
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm">
-                                                                                                            <strong>Outbuildings</strong>
+                                                                                                            <strong>Doors</strong>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                            Scope RCV: <strong><%= money.format(net9) %></strong>
+                                                                                                            Scope RCV: <strong><%= money.format(net7) %></strong>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                            Adjustments: <strong><%= money.format(adj9) %></strong>
+                                                                                                            Adjustments: <strong><%= money.format(adj7) %></strong>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                            Net RCV: <strong><%= money.format((net9 -adj9)) %></strong>
+                                                                                                            Net RCV: <strong><%= money.format((net7 -adj7)) %></strong>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                            Budget: <strong><%= money.format(((net9 -adj9)*.75)) %></strong>
+                                                                                                            Budget: <strong><%= money.format(((net7 -adj7)*.75)) %></strong>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                            Invoices: <strong><%= money.format(jc9) %></strong>
+                                                                                                            Invoices: <strong><%= money.format(jc7) %></strong>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <div class="row">
                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                            Profit: <strong><%= percent.format(((net9-adj9-jc9)/(net9-adj9))) %></strong>
+                                                                                                            Profit: <strong><%= percent.format(((net7-adj7-jc7)/(net7-adj7))) %></strong>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </article>
-                                                                                                <!-- Deck Trade -->
+                                                                                                <!-- Fence Trade -->
                                                                                                 <% } %>
-                                                                                                    <% if((net10 -adj10) != 0) { %>
+                                                                                                    <% if((net8 -adj8) != 0) { %>
                                                                                                         <article class="trades">
                                                                                                             <div class="row">
                                                                                                                 <div class="col-sm">
-                                                                                                                    <strong>Deck</strong>
+                                                                                                                    <strong>Fencer</strong>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div class="row">
                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                    Scope RCV: <strong><%= money.format(net10) %></strong>
+                                                                                                                    Scope RCV: <strong><%= money.format(net8) %></strong>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div class="row">
                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                    Adjustments: <strong><%= money.format(adj10) %></strong>
+                                                                                                                    Adjustments: <strong><%= money.format(adj8) %></strong>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div class="row">
                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                    Net RCV: <strong><%= money.format((net10 -adj10)) %></strong>
+                                                                                                                    Net RCV: <strong><%= money.format((net8 -adj8)) %></strong>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div class="row">
                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                    Budget: <strong><%= money.format(((net10 -adj10)*.75)) %></strong>
+                                                                                                                    Budget: <strong><%= money.format(((net8 -adj8)*.75)) %></strong>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div class="row">
                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                    Invoices: <strong><%= money.format(jc10) %></strong>
+                                                                                                                    Invoices: <strong><%= money.format(jc8) %></strong>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div class="row">
                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                    Profit: <strong><%= percent.format(((net10-adj10-jc10)/(net10-adj10))) %></strong>
+                                                                                                                    Profit: <strong><%= percent.format(((net8-adj8-jc8)/(net8-adj8))) %></strong>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </article>
-                                                                                                        <!-- Interior Trade -->
+                                                                                                        <!-- Outbuildings Trade -->
                                                                                                         <% } %>
-                                                                                                            <% if((net11 -adj11) != 0) { %>
+                                                                                                            <% if((net9 -adj9) != 0) { %>
                                                                                                                 <article class="trades">
                                                                                                                     <div class="row">
                                                                                                                         <div class="col-sm">
-                                                                                                                            <strong>Interior</strong>
+                                                                                                                            <strong>Outbuildings</strong>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                     <div class="row">
                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                            Scope RCV: <strong><%= money.format(net11) %></strong>
+                                                                                                                            Scope RCV: <strong><%= money.format(net9) %></strong>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                     <div class="row">
                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                            Adjustments: <strong><%= money.format(adj11) %></strong>
+                                                                                                                            Adjustments: <strong><%= money.format(adj9) %></strong>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                     <div class="row">
                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                            Net RCV: <strong><%= money.format((net11 -adj11)) %></strong>
+                                                                                                                            Net RCV: <strong><%= money.format((net9 -adj9)) %></strong>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                     <div class="row">
                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                            Budget: <strong><%= money.format(((net11 -adj11)*.75)) %></strong>
+                                                                                                                            Budget: <strong><%= money.format(((net9 -adj9)*.75)) %></strong>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                     <div class="row">
                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                            Invoices: <strong><%= money.format(jc11) %></strong>
+                                                                                                                            Invoices: <strong><%= money.format(jc9) %></strong>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                     <div class="row">
                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                            Profit: <strong><%= percent.format(((net11-adj11-jc11)/(net11-adj11))) %></strong>
+                                                                                                                            Profit: <strong><%= percent.format(((net9-adj9-jc9)/(net9-adj9))) %></strong>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                 </article>
-                                                                                                                <!-- Electrical Trade -->
+                                                                                                                <!-- Deck Trade -->
                                                                                                                 <% } %>
-                                                                                                                    <% if((net12 -adj12) != 0) { %>
+                                                                                                                    <% if((net10 -adj10) != 0) { %>
                                                                                                                         <article class="trades">
                                                                                                                             <div class="row">
                                                                                                                                 <div class="col-sm">
-                                                                                                                                    <strong>Electrical</strong>
+                                                                                                                                    <strong>Deck</strong>
                                                                                                                                 </div>
                                                                                                                             </div>
                                                                                                                             <div class="row">
                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                    Scope RCV: <strong><%= money.format(net12) %></strong>
+                                                                                                                                    Scope RCV: <strong><%= money.format(net10) %></strong>
                                                                                                                                 </div>
                                                                                                                             </div>
                                                                                                                             <div class="row">
                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                    Adjustments: <strong><%= money.format(adj12) %></strong>
+                                                                                                                                    Adjustments: <strong><%= money.format(adj10) %></strong>
                                                                                                                                 </div>
                                                                                                                             </div>
                                                                                                                             <div class="row">
                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                    Net RCV: <strong><%= money.format((net12 -adj12)) %></strong>
+                                                                                                                                    Net RCV: <strong><%= money.format((net10 -adj10)) %></strong>
                                                                                                                                 </div>
                                                                                                                             </div>
                                                                                                                             <div class="row">
                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                    Budget: <strong><%= money.format(((net12 -adj12)*.75)) %></strong>
+                                                                                                                                    Budget: <strong><%= money.format(((net10 -adj10)*.75)) %></strong>
                                                                                                                                 </div>
                                                                                                                             </div>
                                                                                                                             <div class="row">
                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                    Invoices: <strong><%= money.format(jc12) %></strong>
+                                                                                                                                    Invoices: <strong><%= money.format(jc10) %></strong>
                                                                                                                                 </div>
                                                                                                                             </div>
                                                                                                                             <div class="row">
                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                    Profit: <strong><%= percent.format(((net12-adj12-jc12)/(net12-adj12))) %></strong>
+                                                                                                                                    Profit: <strong><%= percent.format(((net10-adj10-jc10)/(net10-adj10))) %></strong>
                                                                                                                                 </div>
                                                                                                                             </div>
                                                                                                                         </article>
-                                                                                                                        <!-- Plumbing Trade -->
+                                                                                                                        <!-- Interior Trade -->
                                                                                                                         <% } %>
-                                                                                                                            <% if((net13 -adj13) != 0) { %>
+                                                                                                                            <% if((net11 -adj11) != 0) { %>
                                                                                                                                 <article class="trades">
                                                                                                                                     <div class="row">
                                                                                                                                         <div class="col-sm">
-                                                                                                                                            <strong>Plumbing</strong>
+                                                                                                                                            <strong>Interior</strong>
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                     <div class="row">
                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                            Scope RCV: <strong><%= money.format(net13) %></strong>
+                                                                                                                                            Scope RCV: <strong><%= money.format(net11) %></strong>
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                     <div class="row">
                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                            Adjustments: <strong><%= money.format(adj13) %></strong>
+                                                                                                                                            Adjustments: <strong><%= money.format(adj11) %></strong>
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                     <div class="row">
                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                            Net RCV: <strong><%= money.format((net13 -adj13)) %></strong>
+                                                                                                                                            Net RCV: <strong><%= money.format((net11 -adj11)) %></strong>
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                     <div class="row">
                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                            Budget: <strong><%= money.format(((net13 -adj13)*.75)) %></strong>
+                                                                                                                                            Budget: <strong><%= money.format(((net11 -adj11)*.75)) %></strong>
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                     <div class="row">
                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                            Invoices: <strong><%= money.format(jc13) %></strong>
+                                                                                                                                            Invoices: <strong><%= money.format(jc11) %></strong>
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                     <div class="row">
                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                            Profit: <strong><%= percent.format(((net13-adj13-jc13)/(net13-adj13))) %></strong>
+                                                                                                                                            Profit: <strong><%= percent.format(((net11-adj11-jc11)/(net11-adj11))) %></strong>
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                 </article>
-                                                                                                                                <!-- HVAC Trade -->
+                                                                                                                                <!-- Electrical Trade -->
                                                                                                                                 <% } %>
-                                                                                                                                    <% if((net14 -adj14) != 0) { %>
+                                                                                                                                    <% if((net12 -adj12) != 0) { %>
                                                                                                                                         <article class="trades">
                                                                                                                                             <div class="row">
                                                                                                                                                 <div class="col-sm">
-                                                                                                                                                    <strong>HVAC</strong>
+                                                                                                                                                    <strong>Electrical</strong>
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                             <div class="row">
                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                    Scope RCV: <strong><%= money.format(net14) %></strong>
+                                                                                                                                                    Scope RCV: <strong><%= money.format(net12) %></strong>
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                             <div class="row">
                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                    Adjustments: <strong><%= money.format(adj14) %></strong>
+                                                                                                                                                    Adjustments: <strong><%= money.format(adj12) %></strong>
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                             <div class="row">
                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                    Net RCV: <strong><%= money.format((net14 -adj14)) %></strong>
+                                                                                                                                                    Net RCV: <strong><%= money.format((net12 -adj12)) %></strong>
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                             <div class="row">
                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                    Budget: <strong><%= money.format(((net14 -adj14)*.75)) %></strong>
+                                                                                                                                                    Budget: <strong><%= money.format(((net12 -adj12)*.75)) %></strong>
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                             <div class="row">
                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                    Invoices: <strong><%= money.format(jc14) %></strong>
+                                                                                                                                                    Invoices: <strong><%= money.format(jc12) %></strong>
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                             <div class="row">
                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                    Profit: <strong><%= percent.format(((net14-adj14-jc14)/(net14-adj14))) %></strong>
+                                                                                                                                                    Profit: <strong><%= percent.format(((net12-adj12-jc12)/(net12-adj12))) %></strong>
                                                                                                                                                 </div>
                                                                                                                                             </div>
                                                                                                                                         </article>
-                                                                                                                                        <!-- Solar Panels Trade -->
+                                                                                                                                        <!-- Plumbing Trade -->
                                                                                                                                         <% } %>
-                                                                                                                                            <% if((net15 -adj15) != 0) { %>
+                                                                                                                                            <% if((net13 -adj13) != 0) { %>
                                                                                                                                                 <article class="trades">
                                                                                                                                                     <div class="row">
                                                                                                                                                         <div class="col-sm">
-                                                                                                                                                            <strong>Solar Panels</strong>
+                                                                                                                                                            <strong>Plumbing</strong>
                                                                                                                                                         </div>
                                                                                                                                                     </div>
                                                                                                                                                     <div class="row">
                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                            Scope RCV: <strong><%= money.format(net15) %></strong>
+                                                                                                                                                            Scope RCV: <strong><%= money.format(net13) %></strong>
                                                                                                                                                         </div>
                                                                                                                                                     </div>
                                                                                                                                                     <div class="row">
                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                            Adjustments: <strong><%= money.format(adj15) %></strong>
+                                                                                                                                                            Adjustments: <strong><%= money.format(adj13) %></strong>
                                                                                                                                                         </div>
                                                                                                                                                     </div>
                                                                                                                                                     <div class="row">
                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                            Net RCV: <strong><%= money.format((net15 -adj15)) %></strong>
+                                                                                                                                                            Net RCV: <strong><%= money.format((net13 -adj13)) %></strong>
                                                                                                                                                         </div>
                                                                                                                                                     </div>
                                                                                                                                                     <div class="row">
                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                            Budget: <strong><%= money.format(((net15 -adj15)*.75)) %></strong>
+                                                                                                                                                            Budget: <strong><%= money.format(((net13 -adj13)*.75)) %></strong>
                                                                                                                                                         </div>
                                                                                                                                                     </div>
                                                                                                                                                     <div class="row">
                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                            Invoices: <strong><%= money.format(jc15) %></strong>
+                                                                                                                                                            Invoices: <strong><%= money.format(jc13) %></strong>
                                                                                                                                                         </div>
                                                                                                                                                     </div>
                                                                                                                                                     <div class="row">
                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                            Profit: <strong><%= percent.format(((net15-adj15-jc15)/(net15-adj15))) %></strong>
+                                                                                                                                                            Profit: <strong><%= percent.format(((net13-adj13-jc13)/(net13-adj13))) %></strong>
                                                                                                                                                         </div>
                                                                                                                                                     </div>
                                                                                                                                                 </article>
-                                                                                                                                                <!-- Awnings/Canopies Trade -->
+                                                                                                                                                <!-- HVAC Trade -->
                                                                                                                                                 <% } %>
-                                                                                                                                                    <% if((net16 -adj16) != 0) { %>
+                                                                                                                                                    <% if((net14 -adj14) != 0) { %>
                                                                                                                                                         <article class="trades">
                                                                                                                                                             <div class="row">
                                                                                                                                                                 <div class="col-sm">
-                                                                                                                                                                    <strong>Awnings/Canopies</strong>
+                                                                                                                                                                    <strong>HVAC</strong>
                                                                                                                                                                 </div>
                                                                                                                                                             </div>
                                                                                                                                                             <div class="row">
                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                    Scope RCV: <strong><%= money.format(net16) %></strong>
+                                                                                                                                                                    Scope RCV: <strong><%= money.format(net14) %></strong>
                                                                                                                                                                 </div>
                                                                                                                                                             </div>
                                                                                                                                                             <div class="row">
                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                    Adjustments: <strong><%= money.format(adj16) %></strong>
+                                                                                                                                                                    Adjustments: <strong><%= money.format(adj14) %></strong>
                                                                                                                                                                 </div>
                                                                                                                                                             </div>
                                                                                                                                                             <div class="row">
                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                    Net RCV: <strong><%= money.format((net16 -adj16)) %></strong>
+                                                                                                                                                                    Net RCV: <strong><%= money.format((net14 -adj14)) %></strong>
                                                                                                                                                                 </div>
                                                                                                                                                             </div>
                                                                                                                                                             <div class="row">
                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                    Budget: <strong><%= money.format(((net16 -adj16)*.75)) %></strong>
+                                                                                                                                                                    Budget: <strong><%= money.format(((net14 -adj14)*.75)) %></strong>
                                                                                                                                                                 </div>
                                                                                                                                                             </div>
                                                                                                                                                             <div class="row">
                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                    Invoices: <strong><%= money.format(jc16) %></strong>
+                                                                                                                                                                    Invoices: <strong><%= money.format(jc14) %></strong>
                                                                                                                                                                 </div>
                                                                                                                                                             </div>
                                                                                                                                                             <div class="row">
                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                    Profit: <strong><%= percent.format(((net16-adj16-jc16)/(net16-adj16))) %></strong>
+                                                                                                                                                                    Profit: <strong><%= percent.format(((net14-adj14-jc14)/(net14-adj14))) %></strong>
                                                                                                                                                                 </div>
                                                                                                                                                             </div>
                                                                                                                                                         </article>
-                                                                                                                                                        <!-- Signage Trade -->
+                                                                                                                                                        <!-- Solar Panels Trade -->
                                                                                                                                                         <% } %>
-                                                                                                                                                            <% if((net17 -adj17) != 0) { %>
+                                                                                                                                                            <% if((net15 -adj15) != 0) { %>
                                                                                                                                                                 <article class="trades">
                                                                                                                                                                     <div class="row">
                                                                                                                                                                         <div class="col-sm">
-                                                                                                                                                                            <strong>Signage</strong>
+                                                                                                                                                                            <strong>Solar Panels</strong>
                                                                                                                                                                         </div>
                                                                                                                                                                     </div>
                                                                                                                                                                     <div class="row">
                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                            Scope RCV: <strong><%= money.format(net17) %></strong>
+                                                                                                                                                                            Scope RCV: <strong><%= money.format(net15) %></strong>
                                                                                                                                                                         </div>
                                                                                                                                                                     </div>
                                                                                                                                                                     <div class="row">
                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                            Adjustments: <strong><%= money.format(adj17) %></strong>
+                                                                                                                                                                            Adjustments: <strong><%= money.format(adj15) %></strong>
                                                                                                                                                                         </div>
                                                                                                                                                                     </div>
                                                                                                                                                                     <div class="row">
                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                            Net RCV: <strong><%= money.format((net17 -adj17)) %></strong>
+                                                                                                                                                                            Net RCV: <strong><%= money.format((net15 -adj15)) %></strong>
                                                                                                                                                                         </div>
                                                                                                                                                                     </div>
                                                                                                                                                                     <div class="row">
                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                            Budget: <strong><%= money.format(((net17 -adj17)*.75)) %></strong>
+                                                                                                                                                                            Budget: <strong><%= money.format(((net15 -adj15)*.75)) %></strong>
                                                                                                                                                                         </div>
                                                                                                                                                                     </div>
                                                                                                                                                                     <div class="row">
                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                            Invoices: <strong><%= money.format(jc17) %></strong>
+                                                                                                                                                                            Invoices: <strong><%= money.format(jc15) %></strong>
                                                                                                                                                                         </div>
                                                                                                                                                                     </div>
                                                                                                                                                                     <div class="row">
                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                            Profit: <strong><%= percent.format(((net17-adj17-jc17)/(net17-adj17))) %></strong>
+                                                                                                                                                                            Profit: <strong><%= percent.format(((net15-adj15-jc15)/(net15-adj15))) %></strong>
                                                                                                                                                                         </div>
                                                                                                                                                                     </div>
                                                                                                                                                                 </article>
-                                                                                                                                                                <!-- Supervision Trade -->
+                                                                                                                                                                <!-- Awnings/Canopies Trade -->
                                                                                                                                                                 <% } %>
-                                                                                                                                                                    <% if((net18 -adj18) != 0) { %>
+                                                                                                                                                                    <% if((net16 -adj16) != 0) { %>
                                                                                                                                                                         <article class="trades">
                                                                                                                                                                             <div class="row">
                                                                                                                                                                                 <div class="col-sm">
-                                                                                                                                                                                    <strong>Supervision</strong>
+                                                                                                                                                                                    <strong>Awnings/Canopies</strong>
                                                                                                                                                                                 </div>
                                                                                                                                                                             </div>
                                                                                                                                                                             <div class="row">
                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                    Scope RCV: <strong><%= money.format(net18) %></strong>
+                                                                                                                                                                                    Scope RCV: <strong><%= money.format(net16) %></strong>
                                                                                                                                                                                 </div>
                                                                                                                                                                             </div>
                                                                                                                                                                             <div class="row">
                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                    Adjustments: <strong><%= money.format(adj18) %></strong>
+                                                                                                                                                                                    Adjustments: <strong><%= money.format(adj16) %></strong>
                                                                                                                                                                                 </div>
                                                                                                                                                                             </div>
                                                                                                                                                                             <div class="row">
                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                    Net RCV: <strong><%= money.format((net18 -adj18)) %></strong>
+                                                                                                                                                                                    Net RCV: <strong><%= money.format((net16 -adj16)) %></strong>
                                                                                                                                                                                 </div>
                                                                                                                                                                             </div>
                                                                                                                                                                             <div class="row">
                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                    Budget: <strong><%= money.format(((net18 -adj18)*.75)) %></strong>
+                                                                                                                                                                                    Budget: <strong><%= money.format(((net16 -adj16)*.75)) %></strong>
                                                                                                                                                                                 </div>
                                                                                                                                                                             </div>
                                                                                                                                                                             <div class="row">
                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                    Invoices: <strong><%= money.format(jc18) %></strong>
+                                                                                                                                                                                    Invoices: <strong><%= money.format(jc16) %></strong>
                                                                                                                                                                                 </div>
                                                                                                                                                                             </div>
                                                                                                                                                                             <div class="row">
                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                    Profit: <strong><%= percent.format(((net18-adj18-jc18)/(net18-adj18))) %></strong>
+                                                                                                                                                                                    Profit: <strong><%= percent.format(((net16-adj16-jc16)/(net16-adj16))) %></strong>
                                                                                                                                                                                 </div>
                                                                                                                                                                             </div>
                                                                                                                                                                         </article>
-                                                                                                                                                                        <!-- Rental Equipment Trade -->
+                                                                                                                                                                        <!-- Signage Trade -->
                                                                                                                                                                         <% } %>
-                                                                                                                                                                            <% if((net19 -adj19) != 0) { %>
+                                                                                                                                                                            <% if((net17 -adj17) != 0) { %>
                                                                                                                                                                                 <article class="trades">
                                                                                                                                                                                     <div class="row">
                                                                                                                                                                                         <div class="col-sm">
-                                                                                                                                                                                            <strong>Rental Equipment</strong>
+                                                                                                                                                                                            <strong>Signage</strong>
                                                                                                                                                                                         </div>
                                                                                                                                                                                     </div>
                                                                                                                                                                                     <div class="row">
                                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                            Scope RCV: <strong><%= money.format(net19) %></strong>
+                                                                                                                                                                                            Scope RCV: <strong><%= money.format(net17) %></strong>
                                                                                                                                                                                         </div>
                                                                                                                                                                                     </div>
                                                                                                                                                                                     <div class="row">
                                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                            Adjustments: <strong><%= money.format(adj19) %></strong>
+                                                                                                                                                                                            Adjustments: <strong><%= money.format(adj17) %></strong>
                                                                                                                                                                                         </div>
                                                                                                                                                                                     </div>
                                                                                                                                                                                     <div class="row">
                                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                            Net RCV: <strong><%= money.format((net19 -adj19)) %></strong>
+                                                                                                                                                                                            Net RCV: <strong><%= money.format((net17 -adj17)) %></strong>
                                                                                                                                                                                         </div>
                                                                                                                                                                                     </div>
                                                                                                                                                                                     <div class="row">
                                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                            Budget: <strong><%= money.format(((net19 -adj19)*.75)) %></strong>
+                                                                                                                                                                                            Budget: <strong><%= money.format(((net17 -adj17)*.75)) %></strong>
                                                                                                                                                                                         </div>
                                                                                                                                                                                     </div>
                                                                                                                                                                                     <div class="row">
                                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                            Invoices: <strong><%= money.format(jc19) %></strong>
+                                                                                                                                                                                            Invoices: <strong><%= money.format(jc17) %></strong>
                                                                                                                                                                                         </div>
                                                                                                                                                                                     </div>
                                                                                                                                                                                     <div class="row">
                                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                            Profit: <strong><%= percent.format(((net19-adj19-jc19)/(net19-adj19))) %></strong>
+                                                                                                                                                                                            Profit: <strong><%= percent.format(((net17-adj17-jc17)/(net17-adj17))) %></strong>
                                                                                                                                                                                         </div>
                                                                                                                                                                                     </div>
                                                                                                                                                                                 </article>
-                                                                                                                                                                                <!-- Other Trade -->
+                                                                                                                                                                                <!-- Supervision Trade -->
                                                                                                                                                                                 <% } %>
-                                                                                                                                                                                    <% if((net20 -adj20) != 0) { %>
+                                                                                                                                                                                    <% if((net18 -adj18) != 0) { %>
                                                                                                                                                                                         <article class="trades">
                                                                                                                                                                                             <div class="row">
                                                                                                                                                                                                 <div class="col-sm">
-                                                                                                                                                                                                    <strong>Other</strong>
+                                                                                                                                                                                                    <strong>Supervision</strong>
                                                                                                                                                                                                 </div>
                                                                                                                                                                                             </div>
                                                                                                                                                                                             <div class="row">
                                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                    Scope RCV: <strong><%= money.format(net20) %></strong>
+                                                                                                                                                                                                    Scope RCV: <strong><%= money.format(net18) %></strong>
                                                                                                                                                                                                 </div>
                                                                                                                                                                                             </div>
                                                                                                                                                                                             <div class="row">
                                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                    Adjustments: <strong><%= money.format(adj20) %></strong>
+                                                                                                                                                                                                    Adjustments: <strong><%= money.format(adj18) %></strong>
                                                                                                                                                                                                 </div>
                                                                                                                                                                                             </div>
                                                                                                                                                                                             <div class="row">
                                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                    Net RCV: <strong><%= money.format((net20 -adj20)) %></strong>
+                                                                                                                                                                                                    Net RCV: <strong><%= money.format((net18 -adj18)) %></strong>
                                                                                                                                                                                                 </div>
                                                                                                                                                                                             </div>
                                                                                                                                                                                             <div class="row">
                                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                    Budget: <strong><%= money.format(((net20 -adj20)*.75)) %></strong>
+                                                                                                                                                                                                    Budget: <strong><%= money.format(((net18 -adj18)*.75)) %></strong>
                                                                                                                                                                                                 </div>
                                                                                                                                                                                             </div>
                                                                                                                                                                                             <div class="row">
                                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                    Invoices: <strong><%= money.format(jc20) %></strong>
+                                                                                                                                                                                                    Invoices: <strong><%= money.format(jc18) %></strong>
                                                                                                                                                                                                 </div>
                                                                                                                                                                                             </div>
                                                                                                                                                                                             <div class="row">
                                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                    Profit: <strong><%= percent.format(((net20-adj20-jc20)/(net20-adj20))) %></strong>
+                                                                                                                                                                                                    Profit: <strong><%= percent.format(((net18-adj18-jc18)/(net18-adj18))) %></strong>
                                                                                                                                                                                                 </div>
                                                                                                                                                                                             </div>
                                                                                                                                                                                         </article>
-                                                                                                                                                                                        <!-- Personal Property Trade -->
+                                                                                                                                                                                        <!-- Rental Equipment Trade -->
                                                                                                                                                                                         <% } %>
-                                                                                                                                                                                            <% if((net21 -adj21) != 0) { %>
+                                                                                                                                                                                            <% if((net19 -adj19) != 0) { %>
                                                                                                                                                                                                 <article class="trades">
                                                                                                                                                                                                     <div class="row">
                                                                                                                                                                                                         <div class="col-sm">
-                                                                                                                                                                                                            <strong>Personal Property</strong>
+                                                                                                                                                                                                            <strong>Rental Equipment</strong>
                                                                                                                                                                                                         </div>
                                                                                                                                                                                                     </div>
                                                                                                                                                                                                     <div class="row">
                                                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                            Scope RCV: <strong><%= money.format(net21) %></strong>
+                                                                                                                                                                                                            Scope RCV: <strong><%= money.format(net19) %></strong>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="row">
+                                                                                                                                                                                                        <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                            Adjustments: <strong><%= money.format(adj19) %></strong>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="row">
+                                                                                                                                                                                                        <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                            Net RCV: <strong><%= money.format((net19 -adj19)) %></strong>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="row">
+                                                                                                                                                                                                        <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                            Budget: <strong><%= money.format(((net19 -adj19)*.75)) %></strong>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="row">
+                                                                                                                                                                                                        <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                            Invoices: <strong><%= money.format(jc19) %></strong>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div class="row">
+                                                                                                                                                                                                        <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                            Profit: <strong><%= percent.format(((net19-adj19-jc19)/(net19-adj19))) %></strong>
                                                                                                                                                                                                         </div>
                                                                                                                                                                                                     </div>
                                                                                                                                                                                                 </article>
-                                                                                                                                                                                                <!-- Overhead & Profit Trade -->
+                                                                                                                                                                                                <!-- Other Trade -->
                                                                                                                                                                                                 <% } %>
-                                                                                                                                                                                                    <% if((net22 -adj22) != 0) { %>
+                                                                                                                                                                                                    <% if((net20 -adj20) != 0) { %>
                                                                                                                                                                                                         <article class="trades">
                                                                                                                                                                                                             <div class="row">
                                                                                                                                                                                                                 <div class="col-sm">
-                                                                                                                                                                                                                    <strong>Overhead & Profit</strong>
+                                                                                                                                                                                                                    <strong>Other</strong>
                                                                                                                                                                                                                 </div>
                                                                                                                                                                                                             </div>
                                                                                                                                                                                                             <div class="row">
                                                                                                                                                                                                                 <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                                    Scope RCV: <strong><%= money.format(net22) %></strong>
+                                                                                                                                                                                                                    Scope RCV: <strong><%= money.format(net20) %></strong>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                                <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                    Adjustments: <strong><%= money.format(adj20) %></strong>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                                <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                    Net RCV: <strong><%= money.format((net20 -adj20)) %></strong>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                                <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                    Budget: <strong><%= money.format(((net20 -adj20)*.75)) %></strong>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                                <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                    Invoices: <strong><%= money.format(jc20) %></strong>
+                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                                <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                    Profit: <strong><%= percent.format(((net20-adj20-jc20)/(net20-adj20))) %></strong>
                                                                                                                                                                                                                 </div>
                                                                                                                                                                                                             </div>
                                                                                                                                                                                                         </article>
-                                                                                                                                                                                                        <!-- Sales Tax Trade -->
+                                                                                                                                                                                                        <!-- Personal Property Trade -->
                                                                                                                                                                                                         <% } %>
-                                                                                                                                                                                                            <% if((net23 -adj23) != 0) { %>
+                                                                                                                                                                                                            <% if((net21 -adj21) != 0) { %>
                                                                                                                                                                                                                 <article class="trades">
                                                                                                                                                                                                                     <div class="row">
                                                                                                                                                                                                                         <div class="col-sm">
-                                                                                                                                                                                                                            <strong>Sales Tax</strong>
+                                                                                                                                                                                                                            <strong>Personal Property</strong>
                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                     <div class="row">
                                                                                                                                                                                                                         <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                                            Scope RCV: <strong><%= money.format(net23) %></strong>
+                                                                                                                                                                                                                            Scope RCV: <strong><%= money.format(net21) %></strong>
                                                                                                                                                                                                                         </div>
                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                 </article>
-                                                                                                                                                                                                                <!-- Totals -->
+                                                                                                                                                                                                                <!-- Overhead & Profit Trade -->
                                                                                                                                                                                                                 <% } %>
-                                                                                                                                                                                                                    <article class="tradesTot">
-                                                                                                                                                                                                                        <div class="row">
-                                                                                                                                                                                                                            <div class="col-sm">
-                                                                                                                                                                                                                                <strong>Totals</strong>
+                                                                                                                                                                                                                    <% if((net22 -adj22) != 0) { %>
+                                                                                                                                                                                                                        <article class="trades">
+                                                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                                                <div class="col-sm">
+                                                                                                                                                                                                                                    <strong>Overhead & Profit</strong>
+                                                                                                                                                                                                                                </div>
                                                                                                                                                                                                                             </div>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <div class="row">
-                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                                                Scope RCV: <strong><%= money.format(netTot) %></strong>
+                                                                                                                                                                                                                            <div class="row">
+                                                                                                                                                                                                                                <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                                    Scope RCV: <strong><%= money.format(net22) %></strong>
+                                                                                                                                                                                                                                </div>
                                                                                                                                                                                                                             </div>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <div class="row">
-                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                                                Adjustments: <strong><%= money.format(adjTot) %></strong>
-                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <div class="row">
-                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                                                Net RCV: <strong><%= money.format((netTot -adjTot)) %></strong>
-                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <div class="row">
-                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                                                Budget: <strong><%= money.format(((netTot -adjTot)*.75)) %></strong>
-                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <div class="row">
-                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                                                Invoices: <strong><%= money.format(jcTot) %></strong>
-                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <div class="row">
-                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
-                                                                                                                                                                                                                                Profit: <strong><%= percent.format(((netTot-adjTot-jcTot)/(netTot-adjTot))) %></strong>
-                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                    </article>
+                                                                                                                                                                                                                        </article>
+                                                                                                                                                                                                                        <!-- Sales Tax Trade -->
+                                                                                                                                                                                                                        <% } %>
+                                                                                                                                                                                                                            <% if((net23 -adj23) != 0) { %>
+                                                                                                                                                                                                                                <article class="trades">
+                                                                                                                                                                                                                                    <div class="row">
+                                                                                                                                                                                                                                        <div class="col-sm">
+                                                                                                                                                                                                                                            <strong>Sales Tax</strong>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                    <div class="row">
+                                                                                                                                                                                                                                        <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                                            Scope RCV: <strong><%= money.format(net23) %></strong>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                </article>
+                                                                                                                                                                                                                                <!-- Totals -->
+                                                                                                                                                                                                                                <% } %>
+                                                                                                                                                                                                                                    <article class="tradesTot">
+                                                                                                                                                                                                                                        <div class="row">
+                                                                                                                                                                                                                                            <div class="col-sm">
+                                                                                                                                                                                                                                                <strong>Totals</strong>
+                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                        <div class="row">
+                                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                                                Scope RCV: <strong><%= money.format(netTot) %></strong>
+                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                        <div class="row">
+                                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                                                Adjustments: <strong><%= money.format(adjTot) %></strong>
+                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                        <div class="row">
+                                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                                                Net RCV: <strong><%= money.format((netTot -adjTot)) %></strong>
+                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                        <div class="row">
+                                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                                                Budget: <strong><%= money.format(((netTot -adjTot)*.75)) %></strong>
+                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                        <div class="row">
+                                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                                                Invoices: <strong><%= money.format(jcTot) %></strong>
+                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                        <div class="row">
+                                                                                                                                                                                                                                            <div class="col-sm" style="text-align: right;">
+                                                                                                                                                                                                                                                Profit: <strong><%= percent.format(((netTot-adjTot-jcTot)/(netTot-adjTot))) %></strong>
+                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                    </article>
 
             </main>
 
