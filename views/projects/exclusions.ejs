@@ -26,7 +26,6 @@
                                     <div class="col-sm">
                                         <label for="enteredBy"><strong>Entered By: </strong></label>
                                         <input type="text" name="enteredBy" id="enteredBy" value="<%= userName %>">
-                                        <input type="hidden" name="enteredID" value="<%= userId %>">
                                     </div>
                                     <div class="col-sm" style="width: 200px">
                                         <label for="tradeId"><strong>Trade: </strong></label>
@@ -50,7 +49,7 @@
                                 <div class="row">
                                     <br>
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                    <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Funds</button>
+                                    <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Exclusion</button>
                                     <br>
                                     <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to FinancialInfo</a>
                                 </div>
@@ -78,7 +77,11 @@
                                 <div class="col-sm">
                                     Description
                                 </div>
-                            </div></strong>
+                                <div class="col-sm">
+                                    <strong></strong>
+                            </div>
+                            </div>
+                            </strong>
                             <% for (let adds of aD) { %>
                                 <div class="row">
                                     <div class="col-sm">
@@ -87,13 +90,8 @@
                                     <div class="col-sm">
                                         <%= adds.entryDate %>
                                     </div>
-                                    <div class="col-sm" style="width: 200px">
-                                        <select style="width: 200px" class="select">
-                                    <% for (let trades of trade) { %>
-                                    <option value="<%= trades.id %>">
-                                    <%= trades.trade %></option>
-                                    <% } %>
-                                </select>
+                                    <div class="col-sm">
+                                        <%= adds.trade.trade %>
                                     </div>
                                     <div class="col-sm">
                                         <%= money.format(adds.exclAmt) %>
@@ -101,6 +99,9 @@
                                     </div>
                                     <div class="col-sm">
                                         <%= adds.exclMemo %>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a class="btn-esm text-center" style="width: 150px" href="/exclEdit/<%= adds.id %>">Edit</a>
                                     </div>
                                     <br>
                                 </div>

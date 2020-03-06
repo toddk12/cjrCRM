@@ -89,14 +89,8 @@
                                     <div class="col-sm">
                                         <%= cost.entryDate %>
                                     </div>
-                                    <div class="col-sm" style="width: 200px">
-                                        <select style="width: 200px" class="select">
-                                            <option value="<%= cost.tradeId %>"></option>
-                                            <% for (let trades of trade) { %>
-                                                <option value="<%= trades.id %>">
-                                    <%= trades.trade %></option>
-                                    <% } %>
-                                </select>
+                                    <div class="col-sm">
+                                        <%= cost.trade.trade %>
                                     </div>
                                     <div class="col-sm">
                                         <%= money.format(cost.costAmt) %>

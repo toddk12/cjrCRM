@@ -3,11 +3,14 @@ const path = require('path');
 const express = require('express');
 
 const projectsController = require('../controllers/projects');
+const mainController = require('../controllers/main');
 const isAuth = require('../middleware/is-auth');
 
 const router = express.Router();
 
 router.get('/', projectsController.getIndex);
+
+router.get('/close', mainController.getClosed);
 
 router.get('/projects/:stat', isAuth, projectsController.getProjects);
 
@@ -65,13 +68,25 @@ router.get('/additions/:projectId', isAuth, projectsController.getAdditions);
 
 router.post('/additions', isAuth, projectsController.postAdditions);
 
+router.get('/addEdit/:addId', isAuth, projectsController.getAddEdit);
+
+router.post('/addEdit', isAuth, projectsController.postAddEdit);
+
 router.get('/exclusions/:projectId', isAuth, projectsController.getExclusions);
 
 router.post('/exclusions', isAuth, projectsController.postExclusions);
 
+router.get('/exclEdit/:exclId', isAuth, projectsController.getExclEdit);
+
+router.post('/exclEdit', isAuth, projectsController.postExclEdit);
+
 router.get('/ownerOop/:projectId', isAuth, projectsController.getOwnerOop);
 
 router.post('/ownerOop', isAuth, projectsController.postOwnerOop);
+
+router.get('/oopEdit/:oopId', isAuth, projectsController.getOopEdit);
+
+router.post('/oopEdit', isAuth, projectsController.postOopEdit);
 
 router.get('/wtb/:projectId', isAuth, projectsController.getWtb);
 

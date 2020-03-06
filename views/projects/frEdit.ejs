@@ -28,7 +28,6 @@
                                         <div class="col-sm">
                                             <label for="enteredBy"><strong>Entered By: </strong></label>
                                             <input type="text" name="enteredBy" id="enteredBy" value="<%= funds.enteredBy %>">
-                                            <input type="hidden" name="enteredID" value="<%= userId %>">
                                         </div>
                                         <div class="col-sm">
                                             <label for="fundsAmt"><strong>Amount: </strong></label>
@@ -42,7 +41,6 @@
                                     <br>
                                     <div class="row">
                                         <br>
-
                                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                         <button class="btn-sm text-center" style="width: 125px" type="submit">Save</button>
                                         <br>

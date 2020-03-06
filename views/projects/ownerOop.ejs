@@ -26,7 +26,6 @@
                                     <div class="col-sm">
                                         <label for="enteredBy"><strong>Entered By: </strong></label>
                                         <input type="text" name="enteredBy" id="enteredBy" value="<%= userName %>">
-                                        <input type="hidden" name="enteredID" value="<%= userId %>">
                                     </div>
                                     <div class="col-sm" style="width: 200px">
                                         <label for="tradeId"><strong>Trade: </strong></label>
@@ -71,12 +70,16 @@
                                     Trade
                                 </div>
                                 <div class="col-sm">
-                                    Description
-                                </div>
-                                <div class="col-sm">
                                     Amount
                                 </div>
-                            </div></strong>
+                                <div class="col-sm">
+                                    Memo
+                                </div>
+                                <div class="col-sm">
+                                    <strong></strong>
+                            </div>
+                            </div>
+                            </strong>
                             <% for (let oop of oops) { %>
                                 <div class="row">
                                     <div class="col-sm">
@@ -85,13 +88,8 @@
                                     <div class="col-sm">
                                         <%= oop.entryDate %>
                                     </div>
-                                    <div class="col-sm" style="width: 200px">
-                                        <select style="width: 200px" class="select">
-                                    <% for (let trades of trade) { %>
-                                    <option value="<%= trades.id %>">
-                                    <%= trades.trade %></option>
-                                    <% } %>
-                                </select>
+                                    <div class="col-sm">
+                                        <%= oop.trade.trade %>
                                     </div>
                                     <div class="col-sm">
                                         <%= money.format(oop.oopAmt) %>
@@ -99,6 +97,9 @@
                                     </div>
                                     <div class="col-sm">
                                         <%= oop.oopMemo %>
+                                    </div>
+                                    <div class="col-sm">
+                                        <a class="btn-esm text-center" style="width: 150px" href="/oopEdit/<%= oop.id %>">Edit</a>
                                     </div>
 
                                 </div>
@@ -111,11 +112,6 @@
                                             </div>
                                         </div>
                                     </article>
-
-
-                        </article>
-
-
                     </main>
 
                     <%- include('../includes/footer.ejs') %>

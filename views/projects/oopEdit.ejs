@@ -1,0 +1,65 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                        <div class="centered">
+                            <h1>Owner Out of Pocket</h1>
+                            <article class="fullA">
+                                <form class="form" action="/oopEdit" method="POST">
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label for="oopId"><strong>Id: </strong></label>
+                                            <input type="text" name="oopId" id="oopId" value="<%= oop.id %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="projectId"><strong>Project Id: </strong></label>
+                                            <input type="text" name="projectId" id="projectId" value="<%= oop.projectId %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="enteredBy"><strong>Entered By: </strong></label>
+                                            <input type="text" name="enteredBy" id="enteredBy" value="<%= oop.enteredBy %>">
+                                        </div>
+                                        <div class="col-sm ">
+                                            <label for="entryDate"><strong>Entry Date: </strong></label>
+                                            <input type="text " name="entryDate" id="entryDate" value="<%= oop.entryDate %>">
+                                        </div>
+                                        <div class="col-sm" style="width: 200px">
+                                            <label for="tradeId"><strong>Trade: </strong></label>
+                                            <select style="width: 200px" class="select" name="tradeId" id="tradeId">
+                                                <option value="<%= oop.trade.id %>">
+                                                    <%= oop.trade.trade %></option>
+                                    <% for (let trades of trade) { %>
+                                    <option value="<%= trades.id %>">
+                                    <%= trades.trade %></option>
+                                    <% } %>
+                                </select>
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="oopAmt"><strong>Amount: </strong></label>
+                                            <input type="text" name="oopAmt" id="oopAmt" value="<%= oop.oopAmt %>">
+                                        </div>
+                                        <div class="col-sm ">
+                                            <label for="oopMemo"><strong>oopMemo: </strong></label>
+                                            <input type="text " name="oopMemo" id="oopMemo" value="<%= oop.oopMemo %>">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <br>
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button class="btn-sm text-center" style="width: 125px" type="submit">Save</button>
+                                        <br>
+                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
+                                    </div>
+                                </form>
+                            </article>
+                        </div>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>
+                <script src="/js/status.js"></script>

@@ -764,14 +764,10 @@ exports.getJobCosts = async(req, res, next) => {
         const jobCosts = await JobCosts.findAll({
             where: { projectId: projId },
             include: [{
-                model: Trade
+                model: Trades
             }]
         })
-        const allCosts = jobCosts;
-        let tots = 0;
-        for (a of allCosts) {
-            tots += a.costAmt;
-        };
+        const tots = await JobCosts.sum('fundsAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId, {
             include: [{
                 model: JobCosts
@@ -820,17 +816,16 @@ exports.postJobCosts = (req, res, next) => {
 exports.getAdditions = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
-    const userId = req.user.id;
+
     try {
         const trades = await Trades.findAll()
         const additions = await Additions.findAll({
-            where: { projectId: projId }
+            where: { projectId: projId },
+            include: [{
+                model: Trades
+            }]
         })
-        const allAdds = additions;
-        let tots = 0;
-        for (a of allAdds) {
-            tots += a.addAmt;
-        };
+        const tots = await Additions.sum('addAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId, {
             include: [{
                 model: Additions
@@ -847,7 +842,6 @@ exports.getAdditions = async(req, res, next) => {
             projId: projId,
             trade: trades,
             userName: userName,
-            userId: userId,
             aD: additions,
             totals: tots
         });
@@ -886,13 +880,12 @@ exports.getExclusions = async(req, res, next) => {
     try {
         const trades = await Trades.findAll()
         const exclusions = await Exclusions.findAll({
-            where: { projectId: projId }
+            where: { projectId: projId },
+            include: [{
+                model: Trades
+            }]
         })
-        const allExcl = exclusions;
-        let tots = 0;
-        for (a of allExcl) {
-            tots += a.exclAmt;
-        };
+        const tots = await Exclusions.sum('exclAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId, {
             include: [{
                 model: Exclusions
@@ -947,13 +940,12 @@ exports.getOwnerOop = async(req, res, next) => {
     try {
         const trades = await Trades.findAll()
         const ownerOop = await OwnerOop.findAll({
-            where: { projectId: projId }
+            where: { projectId: projId },
+            include: [{
+                model: Trades
+            }]
         })
-        const allOop = ownerOop;
-        let tots = 0;
-        for (a of allOop) {
-            tots += a.oopAmt;
-        };
+        const tots = await OwnerOop.sum('oopAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId, {
             include: [{
                 model: OwnerOop
@@ -1392,83 +1384,6 @@ exports.postWtbEdit = async(req, res, next) => {
     }
 };
 
-exports.getFrEdit = async(req, res, next) => {
-    const frId = req.params.frId;
-    const userName = req.user.ename;
-    const userId = req.user.id;
-
-    try {
-        const fundsRcvd = await FundsRcvd.findByPk(frId)
-        const project = await Project.findByPk(fundsRcvd.projectId)
-        res.render('projects/frEdit', {
-            pageTitle: "Edit Scope Line Item",
-            path: '/frEdit',
-            frId: frId,
-            userName: userName,
-            userId: userId,
-            project: project,
-            funds: fundsRcvd
-        });
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    }
-};
-
-exports.postFrEdit = async(req, res, next) => {
-    const frId = req.body.frId;
-    const projId = req.body.projectId;
-    const userName = req.user.ename;
-    const userId = req.user.id;
-    const updatedEnteredBy = req.body.enteredBy;
-    const updatedEntryDate = req.body.entryDate;
-    const updatedFundsAmt = req.body.fundsAmt;
-    const updatedFundsDescription = req.body.fundsDescription;
-    console.log("HEY !!!");
-    console.log(updatedFundsAmt);
-    console.log(req.body.projectId);
-    try {
-        const fundsRcvd = await FundsRcvd.findByPk(frId)
-
-        fundsRcvd.enteredBy = updatedEnteredBy;
-        fundsRcvd.entryDate = updatedEntryDate;
-        fundsRcvd.fundsAmt = updatedFundsAmt;
-        fundsRcvd.fundsDescription = updatedFundsDescription;
-        await fundsRcvd.save();
-
-        // res.redirect('home');
-
-        const fundsRcvdBack = await FundsRcvd.findAll({
-            where: { projectId: projId }
-        })
-        const tots = await FundsRcvd.sum('fundsAmt', { where: { projectId: projId } })
-
-        const project = await Project.findByPk(projId, {
-            include: [{
-                model: FundsRcvd
-            }]
-        })
-        project.totalFundsRcvd = tots;
-        await project.save();
-        res.render('projects/fundsReceived', {
-            pageTitle: "Funds Received",
-            path: '/fundsReceived',
-            project: project,
-            projId: projId,
-            userName: userName,
-            userId: userId,
-            fR: fundsRcvdBack,
-            totals: tots
-        });
-
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    }
-};
-
 exports.getJcEdit = async(req, res, next) => {
     const jcId = req.params.jcId;
 
@@ -1486,7 +1401,7 @@ exports.getJcEdit = async(req, res, next) => {
             jcId: jcId,
             project: project,
             trade: trades,
-            jc: jc,
+            jc: jobCost,
         });
     } catch (err) {
         const error = new Error(err);
@@ -1541,4 +1456,355 @@ exports.postJcEdit = async(req, res, next) => {
         error.httpStatusCode = 500;
         return next(error);
     }
+};
+
+exports.getAddEdit = async(req, res, next) => {
+    const addId = req.params.addId;
+    const userName = req.user.ename;
+    const userId = req.user.id;
+
+    try {
+        const trades = await Trades.findAll()
+        const add = await Additions.findByPk(addId, {
+            include: [{
+                model: Trades
+            }]
+        })
+        const project = await Project.findByPk(add.projectId)
+        res.render('projects/addEdit', {
+            pageTitle: "Edit Additions Line Item",
+            path: '/addEdit',
+            addId: addId,
+            userName: userName,
+            userId: userId,
+            project: project,
+            trade: trades,
+            add: add,
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postAddEdit = async(req, res, next) => {
+    const addId = req.body.addId
+    const projId = req.body.projectId;
+    const updatedEnteredBy = req.body.enteredBy;
+    const updatedEntryDate = req.body.entryDate;
+    const updatedAddAmt = req.body.addAmt;
+    const updatedAddMemo = req.body.addMemo;;
+    const updatedTradeId = req.body.tradeId;
+    const userName = req.user.ename;
+    console.log(addId);
+    console.log(req.body.projectId);
+    console.log(projId);
+    console.log(updatedEnteredBy);
+    console.log(updatedEntryDate);
+    console.log(updatedAddAmt);
+    console.log(updatedAddMemo);
+    console.log(updatedTradeId);
+    try {
+        const add = await Additions.findByPk(addId)
+
+        add.enteredBy = updatedEnteredBy;
+        add.entryDate = updatedEntryDate;
+        add.addAmt = updatedAddAmt;
+        add.addMemo = updatedAddMemo;
+        add.tradeId = updatedTradeId;
+        await add.save();
+
+        const trades = await Trades.findAll()
+        const addBack = await Additions.findAll({
+            where: { projectId: projId },
+            include: [{
+                model: Trades
+            }]
+        })
+        const tots = await Additions.sum('addAmt', { where: { projectId: projId } })
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: Additions
+            }, {
+                model: Trades
+            }]
+        })
+        project.rcvChange = tots;
+        project.save();
+        res.render('projects/additions', {
+            pageTitle: "Additions",
+            path: '/additions',
+            project: project,
+            projId: projId,
+            trade: trades,
+            userName: userName,
+            aD: addBack,
+            totals: tots
+        });
+    } catch (err) {
+        console.log(err);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.getExclEdit = async(req, res, next) => {
+    const exclId = req.params.exclId;
+    const userName = req.user.ename;
+    const userId = req.user.id;
+
+    try {
+        const trades = await Trades.findAll()
+        const excl = await Exclusions.findByPk(exclId, {
+            include: [{
+                model: Trades
+            }]
+        })
+        const project = await Project.findByPk(excl.projectId)
+        res.render('projects/exclEdit', {
+            pageTitle: "Edit Exclusions Line Item",
+            path: '/exclEdit',
+            exclId: exclId,
+            userName: userName,
+            userId: userId,
+            project: project,
+            trade: trades,
+            excl: excl,
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postExclEdit = async(req, res, next) => {
+    const exclId = req.body.exclId
+    const projId = req.body.projectId;
+    const updatedEnteredBy = req.body.enteredBy;
+    const updatedEntryDate = req.body.entryDate;
+    const updatedExclAmt = req.body.exclAmt;
+    const updatedExclMemo = req.body.exclMemo;;
+    const updatedTradeId = req.body.tradeId;
+    const userName = req.user.ename;
+    console.log(exclId);
+    console.log(req.body.projectId);
+    console.log(projId);
+    console.log(updatedEnteredBy);
+    console.log(updatedEntryDate);
+    console.log(updatedExclAmt);
+    console.log(updatedExclMemo);
+    console.log(updatedTradeId);
+    try {
+        const excl = await Exclusions.findByPk(exclId)
+
+        excl.enteredBy = updatedEnteredBy;
+        excl.entryDate = updatedEntryDate;
+        excl.exclAmt = updatedExclAmt;
+        excl.exclMemo = updatedExclMemo;
+        excl.tradeId = updatedTradeId;
+        await excl.save();
+
+        const trades = await Trades.findAll()
+        const exclBack = await Exclusions.findAll({
+            where: { projectId: projId },
+            include: [{
+                model: Trades
+            }]
+        })
+        const tots = await Exclusions.sum('exclAmt', { where: { projectId: projId } })
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: Additions
+            }, {
+                model: Trades
+            }]
+        })
+        project.totalExclusions = tots;
+        project.save();
+        res.render('projects/exclusions', {
+            pageTitle: "Exclusions",
+            path: '/exclusions',
+            project: project,
+            projId: projId,
+            trade: trades,
+            userName: userName,
+            aD: exclBack,
+            totals: tots
+        });
+    } catch (err) {
+        console.log(err);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.getOopEdit = async(req, res, next) => {
+    const oopId = req.params.oopId;
+    const userName = req.user.ename;
+    const userId = req.user.id;
+
+    try {
+        const trades = await Trades.findAll()
+        const oop = await OwnerOop.findByPk(oopId, {
+            include: [{
+                model: Trades
+            }]
+        })
+        const project = await Project.findByPk(oop.projectId)
+        res.render('projects/oopEdit', {
+            pageTitle: "Edit Owner Out of Pocket Line Item",
+            path: '/oopEdit',
+            oopId: oopId,
+            userName: userName,
+            userId: userId,
+            project: project,
+            trade: trades,
+            oop: oop,
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postOopEdit = async(req, res, next) => {
+    const oopId = req.body.oopId
+    const projId = req.body.projectId;
+    const updatedEnteredBy = req.body.enteredBy;
+    const updatedEntryDate = req.body.entryDate;
+    const updatedOopAmt = req.body.oopAmt;
+    const updatedOopMemo = req.body.oopMemo;;
+    const updatedTradeId = req.body.tradeId;
+    const userName = req.user.ename;
+    console.log(oopId);
+    console.log(req.body.projectId);
+    console.log(projId);
+    console.log(updatedEnteredBy);
+    console.log(updatedEntryDate);
+    console.log(updatedOopAmt);
+    console.log(updatedOopMemo);
+    console.log(updatedTradeId);
+    try {
+        const oop = await OwnerOop.findByPk(oopId)
+
+        oop.enteredBy = updatedEnteredBy;
+        oop.entryDate = updatedEntryDate;
+        oop.oopAmt = updatedOopAmt;
+        oop.oopMemo = updatedOopMemo;
+        oop.tradeId = updatedTradeId;
+        await oop.save();
+
+        const trades = await Trades.findAll()
+        const ownerOop = await OwnerOop.findAll({
+            where: { projectId: projId },
+            include: [{
+                model: Trades
+            }]
+        })
+        const tots = await OwnerOop.sum('oopAmt', { where: { projectId: projId } })
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: OwnerOop
+            }]
+        })
+        project.totalOwnerOop = tots;
+        project.save();
+        res.render('projects/ownerOop', {
+            pageTitle: "Owner Out of Pocket",
+            path: '/ownerOop',
+            project: project,
+            projId: projId,
+            trade: trades,
+            userName: userName,
+            oops: ownerOop
+        });
+    } catch (err) {
+        console.log(err);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    };
+};
+
+exports.getFrEdit = async(req, res, next) => {
+    const frId = req.params.frId;
+    const userName = req.user.ename;
+
+    try {
+        const trades = await Trades.findAll()
+        const fr = await FundsRcvd.findByPk(frId)
+        const project = await Project.findByPk(fr.projectId)
+        res.render('projects/frEdit', {
+            pageTitle: "Edit Funds Received Line Item",
+            path: '/frEdit',
+            frId: frId,
+            userName: userName,
+            project: project,
+            trade: trades,
+            funds: fr
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postFrEdit = async(req, res, next) => {
+    const frId = req.body.frId
+    const projId = req.body.projectId;
+    const updatedEnteredBy = req.body.enteredBy;
+    const updatedEntryDate = req.body.entryDate;
+    const updatedFundsAmt = req.body.fundsAmt;
+    const updatedFundsDescription = req.body.fundsDescription;
+    const userName = req.user.ename;
+    console.log(frId);
+    console.log(req.body.projectId);
+    console.log(projId);
+    console.log(updatedEnteredBy);
+    console.log(updatedEntryDate);
+    console.log(updatedFundsAmt);
+    console.log(updatedFundsDescription);
+    try {
+        const fr = await FundsRcvd.findByPk(frId)
+
+        fr.enteredBy = updatedEnteredBy;
+        fr.entryDate = updatedEntryDate;
+        fr.fundsAmt = updatedFundsAmt;
+        fr.fundsDescription = updatedFundsDescription;
+
+        await fr.save();
+
+        // const fundsRcvd = await FundsRcvd.findAll({
+        //     where: { projectId: projId }
+        // })
+        // const tots = await FundsRcvd.sum('fundsAmt', { where: { projectId: projId } })
+        // const project = await Project.findByPk(projId, {
+        //     include: [{
+        //         model: FundsRcvd
+        //     }]
+        // })
+        // project.totalFundsRcvd = tots;
+        // project.save();
+        // res.render('projects/fundsReceived', {
+        //     pageTitle: "Funds Recieved",
+        //     path: '/fundsReceived',
+        //     project: project,
+        //     projId: projId,
+        //     userName: userName,
+        //     fr: fundsRcvd
+        // });
+
+        res.redirect('home');
+    } catch (err) {
+        console.log(err);
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    };
 };
