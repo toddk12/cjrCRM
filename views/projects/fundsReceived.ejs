@@ -10,7 +10,28 @@
                     <main>
                         <div class="centered">
                             <h1><strong>Funds Received</strong></h1>
-                        </div>
+                            <h4>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        Project#:
+                                        <%= project.projectNo %>
+                                    </div>
+                                    <div class="col-sm">
+                                        Owner:
+                                        <%= project.owner1Fn %>
+                                            <%= project.owner1Ln %>
+                                    </div>
+                                    <div class="col-sm">
+                                        Address:
+                                        <%= project.address %>
+                                    </div>
+                                    <div class="col-sm">
+                                        City:
+                                        <%= project.city %>
+                                    </div>
+                                </div>
+                            </h4>
+
                         <article class="notes">
                             <form class="form-inline" action="/fundsReceived" method="POST">
                                 <div class="row">
@@ -105,10 +126,7 @@
                                             </div>
                                         </div>
                                     </article>
-
-                        </article>
-
-
+                                </div>
                     </main>
 
                     <%- include('../includes/footer.ejs') %>

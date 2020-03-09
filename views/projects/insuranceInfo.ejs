@@ -8,10 +8,30 @@
             <%- include('../includes/navigation.ejs') %>
                 <main>
                     <div class="centered">
-                        <br>
-                        <h1>Insurance Information </h1>
-                        <br>
+                        <h1><strong>Insurance Information</strong></h1>
+                        <h4>
+                            <div class="row">
+                                <div class="col-sm">
+                                    Project#:
+                                    <%= project.projectNo %>
+                                </div>
+                                <div class="col-sm">
+                                    Owner:
+                                    <%= project.owner1Fn %>
+                                        <%= project.owner1Ln %>
+                                </div>
+                                <div class="col-sm">
+                                    Address:
+                                    <%= project.address %>
+                                </div>
+                                <div class="col-sm">
+                                    City:
+                                    <%= project.city %>
+                                </div>
+                            </div>
+                        </h4>
                     </div>
+                    <br>
                     <article class="insuranceinfo">
                         <div class="d-flex w-100 justify-content-between">
                             <h6 class="mb-1">

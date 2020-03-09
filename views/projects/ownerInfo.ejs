@@ -6,11 +6,31 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
             <main>
-                <div class="centered">
-                    <br>
-                    <h1>Residential Owner Information </h1>
-                    <br>
+                < <div class="centered">
+                    <h1><strong>Owner Information</strong></h1>
+                    <h4>
+                        <div class="row">
+                            <div class="col-sm">
+                                Project#:
+                                <%= project.projectNo %>
+                            </div>
+                            <div class="col-sm">
+                                Owner:
+                                <%= project.owner1Fn %>
+                                    <%= project.owner1Ln %>
+                            </div>
+                            <div class="col-sm">
+                                Address:
+                                <%= project.address %>
+                            </div>
+                            <div class="col-sm">
+                                City:
+                                <%= project.city %>
+                            </div>
+                        </div>
+                    </h4>
                 </div>
+                <br>
                 <article class="ownerinfo">
                     <form class="form" action="/ownerInfo" method="POST">
                         <input type="hidden" name="commercial" id="commercial" value="<%= project.commercial %>">

@@ -241,6 +241,9 @@
     .form-controlz {
         width: 700px;
         height: 50px;
+        background-color: rgb(242, 255, 224);
+        margin: 0;
+        border: none;
     }
     
     .form-control.mb-3.mr-sm-2 {
@@ -264,3 +267,14 @@
         color: darkgreen;
         margin-top: 4px;
     }
+
+    .form-control {
+        width: 700px;
+        height: 50px;
+        background-color: rgb(242, 255, 224);
+        margin: 0;
+        border: none;
+    }
+
+   
+    

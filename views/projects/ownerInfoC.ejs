@@ -7,10 +7,30 @@
         <%- include('../includes/navigation.ejs') %>
             <main>
                 <div class="centered">
-                    <br>
-                    <h1>Commercial Owner Information </h1>
-                    <br>
+                    <h1><strong>Owner Information</strong></h1>
+                    <h4>
+                        <div class="row">
+                            <div class="col-sm">
+                                Project#:
+                                <%= project.projectNo %>
+                            </div>
+                            <div class="col-sm">
+                                Owner:
+                                <%= project.owner1Fn %>
+                                    <%= project.owner1Ln %>
+                            </div>
+                            <div class="col-sm">
+                                Address:
+                                <%= project.address %>
+                            </div>
+                            <div class="col-sm">
+                                City:
+                                <%= project.city %>
+                            </div>
+                        </div>
+                    </h4>
                 </div>
+                <br>
                 <article style="width: 75%" class="ownerinfo">
                     <form class="form" action="/ownerInfoC" method="POST">
                         <div class="row">

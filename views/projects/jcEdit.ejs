@@ -1,6 +1,5 @@
 <%- include('../includes/header.ejs') %>
     <link rel="stylesheet" href="/css/projects.css">
-
     </head>
 
     <body>
@@ -9,17 +8,18 @@
                 <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
                     <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
                         <div class="centered">
-                            <h1>Project Work by Trade</h1>
+                            <h1>Job Costs</h1>
                             <article class="fullA">
                                 <form class="form" action="/jcEdit" method="POST">
                                     <div class="row">
                                         <div class="col-sm">
-                                            <label for="jcId"><strong>jcId: </strong></label>
-                                            <input type="text" name="jcId" id="jcId" value="<%= jc.id %>">
+                                            <input type="hidden" name="jcId" id="jcId" value="<%= jc.id %>">
+                                            <label for="enteredBy"><strong>Entered By: </strong></label>
+                                            <input type="text" name="enteredBy" id="enteredBy" value="<%= jc.enteredBy %>">
                                         </div>
                                         <div class="col-sm">
-                                            <label for="line"><strong>Line(s): </strong></label>
-                                            <input type="text" name="line" id="line" value="<%= jc.line %>">
+                                            <label for="entryDate"><strong>Entry Date: </strong></label>
+                                            <input type="text" name="entryDate" id="entryDate" value="<%= jc.entryDate %>">
                                         </div>
                                         <div class="col-sm" style="width: 200px">
                                             <label for="tradeId"><strong>Trade: </strong></label>
@@ -33,12 +33,12 @@
                                 </select>
                                         </div>
                                         <div class="col-sm">
-                                            <label for="rcv"><strong>RCV: </strong></label>
-                                            <input type="text" name="rcv" id="rcv" value="<%= jc.rcv %>">
+                                            <label for="costAmt"><strong>Amount: </strong></label>
+                                            <input type="text" name="costAmt" id="costAmt" value="<%= jc.costAmt %>">
                                         </div>
                                         <div class="col-sm ">
-                                            <label for="op"><strong>O & P: </strong></label>
-                                            <input type="text " name="op" id="op" value="<%= jc.op %>">
+                                            <label for="costMemo"><strong>Description: </strong></label>
+                                            <input type="text " name="costMemo" id="costMemo" value="<%= jc.costMemo %>">
                                         </div>
                                     </div>
                                     <div class="row">
