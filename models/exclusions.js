@@ -18,7 +18,6 @@ const Exclusions = sequelize.define('exclusions', {
         type: Sequelize.DATEONLY,
         allowNull: false
     },
-    tradeName: Sequelize.STRING,
     exclAmt: { type: Sequelize.FLOAT(10, 2) },
     exclMemo: { type: Sequelize.STRING },
 

@@ -570,42 +570,6 @@ exports.postDocAdd = (req, res, next) => {
         });
 };
 
-exports.getDocEdit = (req, res, next) => {
-    const projId = req.params.projectId;
-    console.log("getDocInfo");
-    RType.findAll()
-        .then(rType => {
-            Document.findByPk(projId)
-                .then(document => {
-                    Project.findByPk(projId)
-                        .then(project => {
-                            res.render('projects/docEdit', {
-                                pageTitle: "Edit Document",
-                                path: '/docEdit',
-                                project: project,
-                                docs: document,
-                                projId: projId,
-                                types: rType
-                            });
-                        })
-                })
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
-};
-
-exports.postDocEdit = (req, res, next) => {
-    const newProjId = (req.body.projectId);
-    const newDocName = (req.body.docName);
-    const newDocFile = (req.file);
-    console.log(newProjId);
-    console.log(newDocName);
-    console.log(newDocFile);
-
-};
 
 exports.postChangeStatus2 = (req, res, next) => {
     let projId = req.params.projId;
@@ -1781,8 +1745,8 @@ exports.postJcEdit = async(req, res, next) => {
     const updatedTradeId = req.body.tradeId;
     const userName = req.user.ename;
     const userId = req.user.id;
-console.log(jcId);
-console.log(updatedCostAmt);
+    console.log(jcId);
+    console.log(updatedCostAmt);
     try {
         const jc = await JobCosts.findByPk(jcId)
 
