@@ -267,7 +267,7 @@
         color: darkgreen;
         margin-top: 4px;
     }
-
+    
     .form-control {
         width: 700px;
         height: 50px;
@@ -275,6 +275,7 @@
         margin: 0;
         border: none;
     }
-
-   
     
+    .login {
+        border: 0;
+    }

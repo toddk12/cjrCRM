@@ -1,0 +1,40 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+    </head>
+
+    <body>
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+            <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                <%- include('../includes/navigation.ejs') %>
+                    <main>
+                        <div class="centered">
+                            <h1><strong>Search by Owner's Last Name</strong></h1>
+                            <h4>
+                                <div class="row">
+                                    <article class="notes">
+                                        <form class="form" action="/searchLn" method="POST">
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <label for="o1Ln"><strong>Owner 1 Last Name: </strong></label>
+                                                    <input type="text" name="o1Ln" id="o1Ln">
+                                                </div>
+                                            </div>
+
+                                            <div class="centered">
+                                                <br>
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                                <button class="btn-sm text-center" style="width: 125px" type="submit">Search</button>
+                                                <br>
+
+                                            </div>
+                                        </form><br>
+                                    </article>
+                                </div>
+                            </h4>
+                        </div>
+
+                    </main>
+
+                    <%- include('../includes/footer.ejs') %>
+                        <script src="/js/status.js"></script>
