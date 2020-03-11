@@ -17,7 +17,7 @@ const Document = sequelize.define('document', {
         type: Sequelize.STRING
     },
 
-    docName: {
+    docPath: {
         type: Sequelize.STRING
     }
 });

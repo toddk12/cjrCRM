@@ -497,9 +497,15 @@ exports.postAddSupplier = (req, res, next) => {
 exports.getAddDoc = (req, res, next) => {
     const projId = req.params.projectId;
     console.log("Yo");
+
     RType.findAll()
         .then(rType => {
-            Document.findByPk(projId)
+            Document.findAll({
+                    where: { projectId: projId },
+                    include: [{
+                        model: RType
+                    }]
+                })
                 .then(document => {
                     Project.findByPk(projId)
                         .then(project => {
@@ -522,20 +528,46 @@ exports.getAddDoc = (req, res, next) => {
 };
 
 exports.postAddDoc = (req, res, next) => {
-    const projectId = req.body.projectId;
-    const docName = req.body.docName;
-    const docFile = req.file.originalFileName;
-    console.log("docFile");
-
+    const projId = req.body.projectId;
+    let docId = req.body.docId;
+    const docFile = req.file.originalname;
+    const docPath = req.file.path;
+    console.log(projId);
+    console.log(docId);
+    console.log(docFile);
+    console.log(docPath);
+    // if (docName === "Other") {
+    //     docName = docFile;
+    // }
     Document.create({
-            projectId: projectId,
-            docName: docName,
-            docFile: docFile
+            projectId: projId,
+            rTypeId: docId,
+            docFile: docFile,
+            docPath: docPath
         })
-        .then(result => {
-
-            console.log('Document Saved');
-            res.redirect('back');
+        .then(results => {
+            RType.findAll()
+                .then(rType => {
+                    Document.findAll({
+                            where: { projectId: projId },
+                            include: [{
+                                model: RType
+                            }]
+                        })
+                        .then(document => {
+                            Project.findByPk(projId)
+                                .then(project => {
+                                    res.render('add/add-doc', {
+                                        pageTitle: "Add Document",
+                                        path: '/add-doc',
+                                        project: project,
+                                        doc: document,
+                                        projId: projId,
+                                        types: rType
+                                    });
+                                })
+                        })
+                })
         })
         .catch(err => {
             const error = new Error(err);

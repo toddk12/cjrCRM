@@ -38,13 +38,13 @@
                                             <input type="text" name="projectId" id="projectId" value="<%= projId %>">
                                         </div>
                                         <div class="col-sm">
-                                            <label for="docName"><strong>Trade: </strong></label>
-                                            <select style="width: 250px" class="select" name="docName" id="docName">
-                        <% for (let type of types) { %>
-                        <option value="<%= type.title %>">
-                            <%= type.title %></option>
-                        <% } %>
-                    </select>
+                                            <label for="docId"><strong>Trade: </strong></label>
+                                            <select style="width: 250px" class="select" name="docId" id="docId">
+                                                <% for (let type of types) { %>
+                                                <option value="<%= type.id %>">
+                                                    <%= type.title %></option>
+                                                <% } %>
+                                            </select>
                                         </div>
                                         <div class="col-sm">
                                             <label for="docFile"><strong>Document File: </strong></label>
@@ -64,47 +64,47 @@
                         </div>
                         <br>
                         <div class="centered">
-                            <% if (!doc) { %>
-                                <h1> There are no Documents for this Project</h1>
-                                <% } else { %>
-                                    <article class="notes">
-                                        <strong><div class="row">
-                                <div class="col-sm">
-                                    Project Id
-                                </div>
-                                <div class="col-sm">
-                                Document Name
-                                </div>
-                                <div class="col-sm">
-                                    Document File
-                                </div>
-    
-                                <div class="col-sm">
-                                    <strong></strong>
-                        </div>
-                        </div>
-                        </strong>
-                        <% for (let docs of doc) { %>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <%= docs.projectId %>
-                                </div>
-                                <div class="col-sm">
-                                    <%= docs.docName %>
-                                </div>
-                                <div class="col-sm">
-                                    <%= docs.docFile %>
+                            <article class="notes">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        Project Id
+                                    </div>
+                                    <div class="col-sm">
+                                        Document Name
+                                    </div>
+                                    <div class="col-sm">
+                                        Document File
+                                    </div>
+                                    <div class="col-sm">
+                                        <strong></strong>>
+                                    </div>
                                 </div>
 
-                                <div class="col-sm">
-                                    <a class="btn-esm text-center" style="width: 150px" href="/docEdit/<%= docs.id %>">Edit</a>
-                                </div>
-                                <br>
-                            </div>
-                            <% } %>
-                                <% } %>
-                                    </article>
+                                <% for (let docs of doc) { %>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <%= docs.projectId %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <% if (docs.docId === 17) { %>
+                                                <%= doc.docFile %>
+                                                    <% } else { %>
+                                                        <%= docs.types.id %>
+                                                            <% } %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <%= docs.docFile %>
+                                        </div>
+
+                                        <div class="col-sm">
+                                            <a class="btn-esm text-center" style="width: 150px" href="/docEdit/<%= docs.id %>">Edit</a>
+                                        </div>
+                                        <br>
                                     </div>
+                                    <% } %>
+
+                            </article>
+                        </div>
 
                     </main>
 
