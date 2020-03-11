@@ -1,108 +1,112 @@
 <%- include('../includes/header.ejs') %>
     <link rel="stylesheet" href="/css/projects.css">
-
     </head>
 
     <body>
-        <%- include('../includes/navigation.ejs') %>
-            <main>
-                <div class="centered">
-                    <h1><strong>Documents</strong></h1>
-                    <h4>
-                        <div class="row">
-                            <div class="col-sm">
-                                Project#:
-                                <%= project.projectNo %>
-                            </div>
-                            <div class="col-sm">
-                                Owner:
-                                <%= project.owner1Fn %>
-                                    <%= project.owner1Ln %>
-                            </div>
-                            <div class="col-sm">
-                                Address:
-                                <%= project.address %>
-                            </div>
-                            <div class="col-sm">
-                                City:
-                                <%= project.city %>
-                            </div>
-                        </div>
-                    </h4>
-                    <article class="notes">
-                        <form class="form" action="/docAdd" method="POST" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <label for="projectId"><strong>Project Id: </strong></label>
-                                    <input type="text" name="projectId" id="projectId" value="<%= projId %>">
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+            <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                <%- include('../includes/navigation.ejs') %>
+                    <main>
+                        <div class="centered">
+                            <h1><strong>Documents</strong></h1>
+                            <h4>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        Project#:
+                                        <%= project.projectNo %>
+                                    </div>
+                                    <div class="col-sm">
+                                        Owner:
+                                        <%= project.owner1Fn %>
+                                            <%= project.owner1Ln %>
+                                    </div>
+                                    <div class="col-sm">
+                                        Address:
+                                        <%= project.address %>
+                                    </div>
+                                    <div class="col-sm">
+                                        City:
+                                        <%= project.city %>
+                                    </div>
                                 </div>
-                                <div class="col-sm">
-                                    <label for="docName"><strong>Trade: </strong></label>
-                                    <select style="width: 250px" class="select" name="docName" id="docName">
-                    <% for (let type of types) { %>
-                    <option value="<%= type.title %>">
-                        <%= type.title %></option>
-                    <% } %>
-                </select>
-                                </div>
-                                <div class="col-sm">
-                                    <label for="docFile"><strong>Document File: </strong></label>
-                                    <input type="file" name="docFile" id="docFile">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <br>
-                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Document</button>
-                                <br>
-                                <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
-                            </div>
-                        </form><br>
-                    </article>
-                </div>
-                <br>
-                <div class="centered">
-                    <% if (!doc) { %>
-                        <h1> There are no Documents for this Project</h1>
-                        <% } else { %>
+                            </h4>
                             <article class="notes">
-                                <strong><div class="row">
-                            <div class="col-sm">
-                                Project Id
-                            </div>
-                            <div class="col-sm">
-                            Document Name
-                            </div>
-                            <div class="col-sm">
-                                Document File
-                            </div>
-
-                            <div class="col-sm">
-                                <strong></strong>
-                </div>
-                </div>
-                </strong>
-                <% for (let docs of doc) { %>
-                    <div class="row">
-                        <div class="col-sm">
-                            <%= docs.projectId %>
-                        </div>
-                        <div class="col-sm">
-                            <%= docs.docName %>
-                        </div>
-                        <div class="col-sm">
-                            <%= docs.docFile %>
-                        </div>
-
-                        <div class="col-sm">
-                            <a class="btn-esm text-center" style="width: 150px" href="/docEdit/<%= docs.id %>">Edit</a>
+                                <form class="form" action="/docAdd" method="POST" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label for="projectId"><strong>Project Id: </strong></label>
+                                            <input type="text" name="projectId" id="projectId" value="<%= projId %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="docName"><strong>Trade: </strong></label>
+                                            <select style="width: 250px" class="select" name="docName" id="docName">
+                        <% for (let type of types) { %>
+                        <option value="<%= type.title %>">
+                            <%= type.title %></option>
+                        <% } %>
+                    </select>
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="docFile"><strong>Document File: </strong></label>
+                                            <input type="file" name="docFile" id="docFile">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <br>
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Document</button>
+                                        <br>
+                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
+                                    </div>
+                                </form><br>
+                            </article>
                         </div>
                         <br>
-                    </div>
-                    <% } %>
-                        <% } %>
-                            </article>
-                            </div>
+                        <div class="centered">
+                            <% if (!doc) { %>
+                                <h1> There are no Documents for this Project</h1>
+                                <% } else { %>
+                                    <article class="notes">
+                                        <strong><div class="row">
+                                <div class="col-sm">
+                                    Project Id
+                                </div>
+                                <div class="col-sm">
+                                Document Name
+                                </div>
+                                <div class="col-sm">
+                                    Document File
+                                </div>
+    
+                                <div class="col-sm">
+                                    <strong></strong>
+                        </div>
+                        </div>
+                        </strong>
+                        <% for (let docs of doc) { %>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <%= docs.projectId %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= docs.docName %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= docs.docFile %>
+                                </div>
 
-                            <br>
+                                <div class="col-sm">
+                                    <a class="btn-esm text-center" style="width: 150px" href="/docEdit/<%= docs.id %>">Edit</a>
+                                </div>
+                                <br>
+                            </div>
+                            <% } %>
+                                <% } %>
+                                    </article>
+                                    </div>
+
+                    </main>
+
+                    <%- include('../includes/footer.ejs') %>
+                        <script src="/js/status.js"></script>

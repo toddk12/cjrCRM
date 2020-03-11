@@ -42,7 +42,7 @@ router.get('/docInfo/:projectId', isAuth, projectsController.getDocInfo);
 
 router.get('/docAdd/:projectId', isAuth, projectsController.getDocAdd);
 
-router.post('/docAdd', projectsController.postDocAdd);
+router.post('/docAdd', isAuth, projectsController.postDocAdd);
 
 router.get('/fundsReceived/:projectId', isAuth, projectsController.getFundsReceived);
 

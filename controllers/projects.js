@@ -553,22 +553,26 @@ exports.getDocAdd = (req, res, next) => {
 };
 
 exports.postDocAdd = (req, res, next) => {
-    console.log(req.body.projectId);
-    console.log(req.file.originalname);
-    console.log(req.body.docName);
-    Document.create({
-            projectId: req.body.projectId,
-            docFile: req.file.originalname,
-            docName: req.body.docName
-        })
-        .then(document => {
-            res.redirect('back');
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
+    // const projectId = req.body.projectId;
+    // const docName = req.body.docName;
+    // const docFile = req.file.originalname;
+    // console.log(projectId);
+    // console.log(docFile);
+    // console.log(docName);
+    console.log("Heyya");
+    // Document.create({
+    //         projectId: projectId,
+    //         docFile: docFile,
+    //         docName: req.body.docName
+    // })
+    // .then(document => {
+    //         res.redirect('back');
+    //     })
+    //     .catch(err => {
+    //         const error = new Error(err);
+    //         error.httpStatusCode = 500;
+    //         return next(error);
+    //     });
 };
 
 
