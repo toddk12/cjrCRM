@@ -43,4 +43,8 @@ router.get('/add-supplier', isAuth, addController.getAddSupplier);
 
 router.post('/add-supplier', isAuth, addController.postAddSupplier);
 
+router.get('/add-doc/:projectId', isAuth, addController.getAddDoc);
+
+router.post('/add-doc', isAuth, addController.postAddDoc);
+
 module.exports = router;

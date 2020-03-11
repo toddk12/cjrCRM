@@ -40,10 +40,6 @@ router.post('/delete-project', isAuth, projectsController.postDeleteProject);
 
 router.get('/docInfo/:projectId', isAuth, projectsController.getDocInfo);
 
-router.get('/docAdd/:projectId', isAuth, projectsController.getDocAdd);
-
-router.post('/docAdd', isAuth, projectsController.postDocAdd);
-
 router.get('/fundsReceived/:projectId', isAuth, projectsController.getFundsReceived);
 
 router.post('/fundsReceived', isAuth, projectsController.postFundsReceived);

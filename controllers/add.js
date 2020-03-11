@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const { Op } = require('sequelize');
 const Project = require('../models/project');
 const Status = require('../models/status');
 const Insurance = require('../models/insurance');
@@ -485,6 +486,56 @@ exports.postAddSupplier = (req, res, next) => {
 
             console.log('Supplier');
             res.redirect('/home');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.getAddDoc = (req, res, next) => {
+    const projId = req.params.projectId;
+    console.log("Yo");
+    RType.findAll()
+        .then(rType => {
+            Document.findByPk(projId)
+                .then(document => {
+                    Project.findByPk(projId)
+                        .then(project => {
+                            res.render('add/add-doc', {
+                                pageTitle: "Add Document",
+                                path: '/add-doc',
+                                project: project,
+                                doc: document,
+                                projId: projId,
+                                types: rType
+                            });
+                        })
+                })
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
+};
+
+exports.postAddDoc = (req, res, next) => {
+    const projectId = req.body.projectId;
+    const docName = req.body.docName;
+    const docFile = req.file.originalFileName;
+    console.log("docFile");
+
+    Document.create({
+            projectId: projectId,
+            docName: docName,
+            docFile: docFile
+        })
+        .then(result => {
+
+            console.log('Document Saved');
+            res.redirect('back');
         })
         .catch(err => {
             const error = new Error(err);

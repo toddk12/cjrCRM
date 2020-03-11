@@ -526,56 +526,6 @@ exports.getDocInfo = (req, res, next) => {
         });
 };
 
-exports.getDocAdd = (req, res, next) => {
-    const projId = req.params.projectId;
-    RType.findAll()
-        .then(rType => {
-            Document.findByPk(projId)
-                .then(document => {
-                    Project.findByPk(projId)
-                        .then(project => {
-                            res.render('projects/docAdd', {
-                                pageTitle: "Add Document",
-                                path: '/docAdd',
-                                project: project,
-                                doc: document,
-                                projId: projId,
-                                types: rType
-                            });
-                        })
-                })
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
-};
-
-exports.postDocAdd = (req, res, next) => {
-    // const projectId = req.body.projectId;
-    // const docName = req.body.docName;
-    // const docFile = req.file.originalname;
-    // console.log(projectId);
-    // console.log(docFile);
-    // console.log(docName);
-    console.log("Heyya");
-    // Document.create({
-    //         projectId: projectId,
-    //         docFile: docFile,
-    //         docName: req.body.docName
-    // })
-    // .then(document => {
-    //         res.redirect('back');
-    //     })
-    //     .catch(err => {
-    //         const error = new Error(err);
-    //         error.httpStatusCode = 500;
-    //         return next(error);
-    //     });
-};
-
-
 exports.postChangeStatus2 = (req, res, next) => {
     let projId = req.params.projId;
     let updatedStatus = req.body.newStat;
