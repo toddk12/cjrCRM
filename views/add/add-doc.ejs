@@ -38,10 +38,10 @@
                                             <input type="text" name="projectId" id="projectId" value="<%= projId %>">
                                         </div>
                                         <div class="col-sm">
-                                            <label for="docId"><strong>Trade: </strong></label>
-                                            <select style="width: 250px" class="select" name="docId" id="docId">
+                                            <label for="docName"><strong>Trade: </strong></label>
+                                            <select style="width: 250px" class="select" name="docName" id="docName">
                                                 <% for (let type of types) { %>
-                                                <option value="<%= type.id %>">
+                                                <option value="<%= type.title %>">
                                                     <%= type.title %></option>
                                                 <% } %>
                                             </select>
@@ -76,7 +76,7 @@
                                         Document File
                                     </div>
                                     <div class="col-sm">
-                                        <strong></strong>>
+                                        <strong></strong>
                                     </div>
                                 </div>
 
@@ -86,11 +86,7 @@
                                             <%= docs.projectId %>
                                         </div>
                                         <div class="col-sm">
-                                            <% if (docs.docId === 17) { %>
-                                                <%= doc.docFile %>
-                                                    <% } else { %>
-                                                        <%= docs.types.id %>
-                                                            <% } %>
+                                            <%= docs.docName %>
                                         </div>
                                         <div class="col-sm">
                                             <%= docs.docFile %>

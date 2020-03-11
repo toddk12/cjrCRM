@@ -501,10 +501,7 @@ exports.getAddDoc = (req, res, next) => {
     RType.findAll()
         .then(rType => {
             Document.findAll({
-                    where: { projectId: projId },
-                    include: [{
-                        model: RType
-                    }]
+                    where: { projectId: projId }
                 })
                 .then(document => {
                     Project.findByPk(projId)
@@ -529,49 +526,52 @@ exports.getAddDoc = (req, res, next) => {
 
 exports.postAddDoc = (req, res, next) => {
     const projId = req.body.projectId;
-    let docId = req.body.docId;
+    const docName1 = req.body.docName;
     const docFile = req.file.originalname;
     const docPath = req.file.path;
     console.log(projId);
-    console.log(docId);
+    console.log(docName1);
     console.log(docFile);
     console.log(docPath);
-    // if (docName === "Other") {
-    //     docName = docFile;
-    // }
+
+    if (docName1 === "Other") {
+        var docName = req.file.originalname;
+    } else {
+        var docName = docName1;
+    }
+    console.log(docName);
     Document.create({
-            projectId: projId,
-            rTypeId: docId,
-            docFile: docFile,
-            docPath: docPath
-        })
-        .then(results => {
-            RType.findAll()
-                .then(rType => {
-                    Document.findAll({
-                            where: { projectId: projId },
-                            include: [{
-                                model: RType
-                            }]
-                        })
-                        .then(document => {
-                            Project.findByPk(projId)
-                                .then(project => {
-                                    res.render('add/add-doc', {
-                                        pageTitle: "Add Document",
-                                        path: '/add-doc',
-                                        project: project,
-                                        doc: document,
-                                        projId: projId,
-                                        types: rType
-                                    });
-                                })
-                        })
-                })
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
+        projectId: projId,
+        docName: docName,
+        docFile: docFile,
+        docPath: docPath
+    })
+
+    .then(results => {
+        RType.findAll()
+            .then(rType => {
+                Document.findAll({
+                        where: { projectId: projId }
+                    })
+                    .then(document => {
+                        Project.findByPk(projId)
+                            .then(project => {
+                                res.render('add/add-doc', {
+                                    pageTitle: "Add Document",
+                                    path: '/add-doc',
+                                    project: project,
+                                    doc: document,
+                                    projId: projId,
+                                    types: rType
+                                });
+                            })
+                    })
+            })
+    })
+
+    .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    });
 };
