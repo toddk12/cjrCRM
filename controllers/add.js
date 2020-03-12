@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 const Sequelize = require('sequelize');
 const { Op } = require('sequelize');
 const Project = require('../models/project');
@@ -526,20 +529,15 @@ exports.getAddDoc = (req, res, next) => {
 
 exports.postAddDoc = (req, res, next) => {
     const projId = req.body.projectId;
-    const docName1 = req.body.docName;
+    const docName = req.body.docName;
     const docFile = req.file.originalname;
-    const docPath = req.file.path;
+    const docPath = req.file.filename;
+    const file = req.file;
     console.log(projId);
-    console.log(docName1);
+    console.log(docName);
     console.log(docFile);
     console.log(docPath);
 
-    if (docName1 === "Other") {
-        var docName = req.file.originalname;
-    } else {
-        var docName = docName1;
-    }
-    console.log(docName);
     Document.create({
         projectId: projId,
         docName: docName,
@@ -574,4 +572,45 @@ exports.postAddDoc = (req, res, next) => {
         error.httpStatusCode = 500;
         return next(error);
     });
+};
+
+exports.getDownloadDoc = async(req, res, next) => {
+    const docId = req.params.docId;
+    console.log(docId);
+    try {
+        const document = await Document.findByPk(docId)
+        const filePath = path.join('public', 'documents', document.docPath);
+        const docFile = document.docFile;
+        console.log(filePath);
+        console.log("Yo Yo Yo!");
+        fs.readFile(filePath, (err, data) => {
+            if (err) {
+                return next(err);
+            }
+            res.setHeader('Content-Disposition', 'attachment; filename="' + docFile + '"');
+            res.send(data);
+        })
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
+};
+
+exports.postDeleteDoc = (req, res, next) => {
+    const docId = req.body.docId;
+    Document.findByPk(docId)
+        .then(document => {
+            return document.destroy();
+        })
+        .then(result => {
+            console.log('Deleted Document');
+            res.redirect('back');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
 };

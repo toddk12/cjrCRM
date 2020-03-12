@@ -1,0 +1,19 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+    </head>
+
+    <body>
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+            <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                <%- include('../includes/navigation.ejs') %>
+                    <main>
+                        <div class="centered">
+                            <h1><strong>Documents</strong></h1>
+                            <h4>
+                            </h4>
+                        </div>
+
+                    </main>
+
+                    <%- include('../includes/footer.ejs') %>
+                        <script src="/js/status.js"></script>

@@ -47,4 +47,8 @@ router.get('/add-doc/:projectId', isAuth, addController.getAddDoc);
 
 router.post('/add-doc', isAuth, addController.postAddDoc);
 
+router.get('/document/:docId', isAuth, addController.getDownloadDoc);
+
+
+
 module.exports = router;

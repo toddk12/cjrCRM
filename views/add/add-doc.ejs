@@ -30,7 +30,9 @@
                                     </div>
                                 </div>
                             </h4>
-                            <article class="notes">
+                        </div>
+                        <div class="centered">
+                            <article class="document">
                                 <form class="form" action="/add-doc" method="POST" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-sm">
@@ -38,7 +40,7 @@
                                             <input type="text" name="projectId" id="projectId" value="<%= projId %>">
                                         </div>
                                         <div class="col-sm">
-                                            <label for="docName"><strong>Trade: </strong></label>
+                                            <label for="docName"><strong>Document Type: </strong></label>
                                             <select style="width: 250px" class="select" name="docName" id="docName">
                                                 <% for (let type of types) { %>
                                                 <option value="<%= type.title %>">
@@ -52,11 +54,13 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="row">
+                                    <div class="rowc">
+                                        <h6>*Note: When adding a document not listed, use the Document Type "Other". Make certain that you rename the file you are uploading with a discriptive name prior to upload.</h6>
+                                    </div>
+                                    <div class="rowc">
                                         <br>
                                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                         <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Document</button>
-                                        <br>
                                         <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
                                     </div>
                                 </form><br>
@@ -67,16 +71,13 @@
                             <article class="notes">
                                 <div class="row">
                                     <div class="col-sm">
-                                        Project Id
+                                        <strong>Project Id</strong>
                                     </div>
                                     <div class="col-sm">
-                                        Document Name
+                                        <strong>Document Name</strong>
                                     </div>
                                     <div class="col-sm">
-                                        Document File
-                                    </div>
-                                    <div class="col-sm">
-                                        <strong></strong>
+                                        <strong>Document File</strong>
                                     </div>
                                 </div>
 
@@ -86,14 +87,13 @@
                                             <%= docs.projectId %>
                                         </div>
                                         <div class="col-sm">
-                                            <%= docs.docName %>
+                                            <%= docs.docName %> - <a href="/document/<%= docs.id %>">Download</a>
                                         </div>
                                         <div class="col-sm">
                                             <%= docs.docFile %>
                                         </div>
-
                                         <div class="col-sm">
-                                            <a class="btn-esm text-center" style="width: 150px" href="/docEdit/<%= docs.id %>">Edit</a>
+                                            <%= docs.docPath %>
                                         </div>
                                         <br>
                                     </div>

@@ -13,6 +13,11 @@ const Document = sequelize.define('document', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+
+    docName: {
+        type: Sequelize.STRING
+    },
+
     docFile: {
         type: Sequelize.STRING
     },

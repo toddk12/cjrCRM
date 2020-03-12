@@ -52,7 +52,7 @@ const fileStorage = multer.diskStorage({
         cb(null, 'public/documents');
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname + '-' + Date.now().toString());
+        cb(null, Date.now().toString() + '-' + file.originalname);
     }
 })
 
