@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const fileHelper = require('../util/delete');
 
 const Sequelize = require('sequelize');
 const { Op } = require('sequelize');
@@ -598,19 +599,21 @@ exports.getDownloadDoc = async(req, res, next) => {
 
 };
 
-exports.postDeleteDoc = (req, res, next) => {
-    const docId = req.body.docId;
-    Document.findByPk(docId)
-        .then(document => {
-            return document.destroy();
-        })
-        .then(result => {
-            console.log('Deleted Document');
-            res.redirect('back');
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
+exports.getDeleteDoc = async(req, res, next) => {
+    const docId = req.params.docId;
+    console.log(docId);
+    try {
+        const document = await Document.findByPk(docId)
+        const filePath = path.join('public', 'documents', document.docPath);
+        console.log(filePath);
+        console.log("Kill It!");
+        fileHelper.deleteFile(filePath);
+        document.destroy()
+        res.redirect('back');
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
 };

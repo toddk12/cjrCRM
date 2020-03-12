@@ -47,6 +47,10 @@
         text-align: center;
     }
     
+    .lefted {
+        text-align: left;
+    }
+    
     h3 {
         margin: 5px 0;
     }

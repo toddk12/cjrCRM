@@ -34,6 +34,7 @@
                         <div class="centered">
                             <article class="document">
                                 <form class="form" action="/add-doc" method="POST" enctype="multipart/form-data">
+                                    <br>
                                     <div class="row">
                                         <div class="col-sm">
                                             <label for="projectId"><strong>Project Id: </strong></label>
@@ -56,6 +57,7 @@
                                     <br>
                                     <div class="rowc">
                                         <h6>*Note: When adding a document not listed, use the Document Type "Other". Make certain that you rename the file you are uploading with a discriptive name prior to upload.</h6>
+                                        <h6>* And another thing: There should be only one document of each type (other than other) so if you need to replace one, delete it first and then upload the other.</h6>
                                     </div>
                                     <div class="rowc">
                                         <br>
@@ -69,36 +71,40 @@
                         <br>
                         <div class="centered">
                             <article class="notes">
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <strong>Project Id</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <strong>Document Name</strong>
-                                    </div>
-                                    <div class="col-sm">
-                                        <strong>Document File</strong>
-                                    </div>
-                                </div>
-
-                                <% for (let docs of doc) { %>
+                                <div class="lefted">
                                     <div class="row">
                                         <div class="col-sm">
-                                            <%= docs.projectId %>
+                                            <strong>Project Id</strong>
                                         </div>
                                         <div class="col-sm">
-                                            <%= docs.docName %> - <a href="/document/<%= docs.id %>">Download</a>
+                                            <strong>Document Name</strong>
                                         </div>
                                         <div class="col-sm">
-                                            <%= docs.docFile %>
+                                            <strong>Document File</strong>
                                         </div>
                                         <div class="col-sm">
-                                            <%= docs.docPath %>
+                                            <strong>Actual File Name</strong>
                                         </div>
-                                        <br>
                                     </div>
-                                    <% } %>
 
+                                    <% for (let docs of doc) { %>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <%= docs.projectId %>
+                                            </div>
+                                            <div class="col-sm">
+                                                <%= docs.docName %> - <a href="/document/<%= docs.id %>">Download</a> - <a href="/deadDoc/<%= docs.id %>">Delete</a>
+                                            </div>
+                                            <div class="col-sm">
+                                                <%= docs.docFile %>
+                                            </div>
+                                            <div class="col-sm">
+                                                <%= docs.docPath %>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <% } %>
+                                </div>
                             </article>
                         </div>
 

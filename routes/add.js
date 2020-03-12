@@ -49,6 +49,8 @@ router.post('/add-doc', isAuth, addController.postAddDoc);
 
 router.get('/document/:docId', isAuth, addController.getDownloadDoc);
 
+router.get('/deadDoc/:docId', isAuth, addController.getDeleteDoc);
+
 
 
 module.exports = router;
