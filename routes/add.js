@@ -51,6 +51,10 @@ router.get('/document/:docId', isAuth, addController.getDownloadDoc);
 
 router.get('/deadDoc/:docId', isAuth, addController.getDeleteDoc);
 
+router.get('/add-workOrder/:projectId', isAuth, addController.getAddWorkOrder);
+
+router.post('/add-workOrder', isAuth, addController.postAddWorkOrder);
+
 
 
 module.exports = router;

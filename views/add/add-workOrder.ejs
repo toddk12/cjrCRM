@@ -1,0 +1,295 @@
+<%- include('../includes/headerform.ejs') %>
+    <link rel="stylesheet" href="/css/info.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <br>
+                <div class="centered">
+                    <h1> Add Work Order</h1>
+                </div>
+                <article class="ownerinfo">
+                    <form action="/add-workOrder" method="POST">
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="projectNo"><strong>Project No:</strong></label>
+                                <input type="text" name="projectNo" id="projectNo" value="<%= project.projectNo %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="commercial"><strong>Commercial:</strong></label>
+                                <input type="text" name="commercial" id="commercial" value="<%= project.commercial %>">
+                            </div>
+                        </div>
+                        <br>
+                        <% if(!project.commercial) { %>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="owner1Fn"><strong>Owner 1 First Name:</strong></label>
+                                    <input type="text" name="owner1Fn" id="owner1Fn" value="<%= project.owner1Fn %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="owner1Ln"><strong>Owner 1 Last Name:</strong></label>
+                                    <input type="text" name="owner1Ln" id="owner1Ln" value="<%= project.owner1Ln %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="owner2Fn"><strong>Owner 2 First Name:</strong></label>
+                                    <input type="text" name="owner2Fn" id="owner2Fn" value="<%= project.owner2Fn %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="owner2Ln"><strong>Owner 2 Last Name:</strong></label>
+                                    <input type="text" name="owner2Ln" id="owner2Ln" value="<%= project.owner2Ln %>">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="address"><strong>Address:</strong></label>
+                                    <input type="text" name="address" id="address" value="<%= project.address %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="city"><strong>City:</strong></label>
+                                    <input type="text" name="city" id="city" value="<%= project.city %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="state"><strong>State:</strong></label>
+                                    <input type="text" name="state" id="state" value="<%= project.state %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="zip"><strong>Zip:</strong></label>
+                                    <input type="text" name="zip" id="zip" value="<%= project.zip %>">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="hPhone"><strong>Home Phone:</strong></label>
+                                    <input type="text" name="hPhone" id="hPhone" value="<%= project.hPhone %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="cPhone"><strong>Cell Phone:</strong></label>
+                                    <input type="text" name="cPhone" id="cPhone" value="<%= project.cPhone %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="oPhone"><strong>Other Phone:</strong></label>
+                                    <input type="text" name="oPhone" id="oPhone" value="<%= project.oPhone %>">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="email"><strong>Email:</strong></label>
+                                    <input type="text" name="email" id="email" value="<%= project.email %>">
+                                </div>
+                            </div>
+                            <% } else { %>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="bName"><strong>Bulding Name:</strong></label>
+                                        <input type="text" name="bName" id="bName" value="<%= project.bName %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="bAddress"><strong>Address:</strong></label>
+                                        <input type="text" name="bAddress" id="bAddress" value="<%= project.bAddress %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="bCity"><strong>City:</strong></label>
+                                        <input type="text" name="bCity" id="bCity" value="<%= project.bCity %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="bState"><strong>State:</strong></label>
+                                        <input type="text" name="bState" id="bState" value="<%= project.bState %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="bZip"><strong>Zip Code:</strong></label>
+                                        <input type="text" name="bZip" id="bZip" value="<%= project.bZip %>">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="ownerCoName"><strong>Zip Code:</strong></label>
+                                        <input type="text" name="ownerCoName" id="ownerCoName" value="<%= project.ownerCoName %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="owner1Fn"><strong>Owner First Name:</strong></label>
+                                        <input type="text" name="owner1Fn" id="owner1Fn" value="<%= project.owner1Fn %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="owner1Ln"><strong>Owner Last Name:</strong></label>
+                                        <input type="text" name="owner1Ln" id="owner1Ln" value="<%= project.owner1Ln %>">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="address"><strong>Address:</strong></label>
+                                        <input type="text" name="address" id="address" value="<%= project.address %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="city"><strong>City:</strong></label>
+                                        <input type="text" name="city" id="city" value="<%= project.city %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="state"><strong>State:</strong></label>
+                                        <input type="text" name="state" id="state" value="<%= project.state %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="zip"><strong>Zip:</strong></label>
+                                        <input type="text" name="zip" id="zip" value="<%= project.zip %>">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="hPhone"><strong>Home Phone:</strong></label>
+                                        <input type="text" name="hPhone" id="hPhone" value="<%= project.hPhone %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="cPhone"><strong>Cell Phone:</strong></label>
+                                        <input type="text" name="cPhone" id="cPhone" value="<%= project.cPhone %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="oPhone"><strong>Other Phone:</strong></label>
+                                        <input type="text" name="oPhone" id="oPhone" value="<%= project.oPhone %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="email"><strong>Email:</strong></label>
+                                        <input type="text" name="email" id="email" value="<%= project.email %>">
+                                    </div>
+                                </div>
+                                <% } %>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm" style="width: 200px">
+                                            <label for="subcontractorId"><strong>SubContractor: </strong></label>
+                                            <select style="width: 200px" class="select" name="subcontractorId" id="subcontractorId">
+                                    <% for (let sub of subs) { %>
+                                        <option value="<%= sub.id%>">
+                                        <%= sub.coName %></option>
+                                    <% } %>
+                                </select>
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="startDate"><strong>Start Date:</strong></label>
+                                            <input type="date" name="startDate" id="startDate">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="endDate"><strong>End Date:</strong></label>
+                                            <input type="date" name="endDate" id="endDate">
+                                        </div>
+                                        <div class="col-sm">
+                                            <input type="checkbox" name="complete" id="complete">
+                                            <label for="completeDate"><strong>Date Completed:</strong></label>
+                                            <input type="date" name="completeDate" id="completeDate">
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm" style="width: 200px">
+                                            <label for="salesRepId"><strong>Sales Rep: </strong></label>
+                                            <select style="width: 200px" class="select" name="salesRepId" id="salesRepId">
+                                <% for (let sale of sales) { %>
+                                    <option value="<%= sale.id%>">
+                                    <%= sale.name %></option>
+                                <% } %>
+                            </select>
+                                        </div>
+                                        <div class="col-sm" style="width: 200px">
+                                            <label for="superId"><strong>Supervisor: </strong></label>
+                                            <select style="width: 200px" class="select" name="superId" id="superId">
+                                        <% for (let sup of supers) { %>
+                                            <option value="<%= sup.id%>">
+                                            <%= sup.name %></option>
+                                        <% } %>
+                                    </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label for="description"><strong>Description of Work:</strong></label>
+                                            <textarea cols="140" rows="8" type="text" name="description"></textarea>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label for="trade1Id"><strong>Trade 1: </strong></label>
+                                            <select style="width: auto" class="select" name="trade1Id" id="trade1Id">
+                                    <% for (let trade of trades) { %>
+                                        <option value="<%= trade.id%>">
+                                        <%= trade.trade %></option>
+                                    <% } %>
+                                </select>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <label for="trade1Amt"><strong>Amount:</strong></label>
+                                            <input type="currency" name="trade1Amt" id="trade1Amt">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label for="trade2Id"><strong>Trade 2: </strong></label>
+                                            <select style="width: auto" class="select" name="trade2Id" id="trade2Id">
+                                    <% for (let trade of trades) { %>
+                                        <option value="<%= trade.id%>">
+                                        <%= trade.trade %></option>
+                                    <% } %>
+                                </select>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <label for="trade2Amt"><strong>Amount:</strong></label>
+                                            <input type="currency" name="trade2Amt" id="trade2Amt">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label for="trade3Id"><strong>Trade 3: </strong></label>
+                                            <select style="width: auto" class="select" name="trade3Id" id="trade3Id">
+                                        <% for (let trade of trades) { %>
+                                            <option value="<%= trade.id%>">
+                                            <%= trade.trade %></option>
+                                        <% } %>
+                                    </select>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <label for="trade3Amt"><strong>Amount:</strong></label>
+                                            <input type="currency" name="trade3Amt" id="trade3Amt">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <label for="trade4Id"><strong>Trade 4: </strong></label>
+                                            <select style="width: auto" class="select" name="trade4Id" id="trade4Id">
+                                        <% for (let trade of trades) { %>
+                                            <option value="<%= trade.id%>">
+                                            <%= trade.trade %></option>
+                                        <% } %>
+                                    </select>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <label for="trade4Amt"><strong>Amount:</strong></label>
+                                            <input type="currency" name="trade4Amt" id="trade4Amt">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <strong></strong>>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <label for="workTotal"><strong>Work Order Total:</strong></label>
+                                            <input type="currency" name="workTotal" id="workTotal">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <strong><p>The price shown on this work order is for the work detailed in the order. Should the price shown be insufficient to complete ther work, a new price would have to be agreed upon and a new work order issued PRIOR TO STARTING any work. NO COSTS ABOVE AND BEYOND THOSE SHOWN ON THIS WORK ORDER MAY BE INCURRED NOR WIL BE PAID.</p></strong>>
+                                        </div>
+                                    </div>
+                    </form>
+                </article>
+                </div>
+
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

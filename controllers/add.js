@@ -21,6 +21,7 @@ const OwnerOop = require('../models/ownerOop');
 const JobCosts = require('../models/jobCosts');
 const Trades = require('../models/trades');
 const RType = require('../models/rType');
+const WorkOrder = require('../models/workOrder');
 
 exports.getAddInsurance = async(req, res, next) => {
     try {
@@ -616,4 +617,83 @@ exports.getDeleteDoc = async(req, res, next) => {
         return next(error);
     }
 
+};
+
+exports.getAddWorkOrder = async(req, res, next) => {
+    const projId = req.params.projectId
+    try {
+        const subcontractor = await Subcontractor.findAll()
+        const sales = await Sales.findAll()
+        const supervisor = await Supervisor.findAll()
+        const trades = await Trades.findAll()
+        const workOrder = await WorkOrder.findAll()
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Trades
+            }, {
+                model: WorkOrder
+            }]
+        })
+        res.render('add/add-workOrder', {
+            pageTitle: 'Work Order',
+            path: '/add-workOrder',
+            subs: subcontractor,
+            sales: sales,
+            supers: supervisor,
+            trades: trades,
+            project: project
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
+};
+
+exports.postAddWorkOrder = (req, res, next) => {
+
+    Project.create({
+            projectNo: req.body.projectNo,
+            statusId: req.body.statusId,
+            owner1Fn: req.body.owner1Fn,
+            owner1Ln: req.body.owner1Ln,
+            owner2Fn: req.body.owner2Fn,
+            owner2Ln: req.body.owner2Ln,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            hPhone: req.body.hPhone,
+            cPhone: req.body.cPhone,
+            oPhone: req.body.oPhone,
+            email: req.body.email,
+            saleId: req.body.saleId,
+            supervisorId: req.body.supervisorId,
+            insuranceId: req.body.insuranceId,
+            policyNo: req.body.policyNo,
+            claimNo: req.body.claimNo,
+            dateLoss: req.body.dateLoss,
+            typeLoss: req.body.typeLoss,
+            deductible: req.body.deductible,
+            oScopeDate: req.body.oScopeDate,
+            oScopeRCV: req.body.oScopeRCV,
+            adjName: req.body.adjName,
+            adjPhone: req.body.adjPhone,
+            entBy: req.user.id
+        })
+        .then(result => {
+
+            console.log('Created Project');
+            res.redirect('/home');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        });
 };

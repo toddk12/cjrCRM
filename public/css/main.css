@@ -283,3 +283,12 @@
     .login {
         border: 0;
     }
+    
+    .workorder {
+        vertical-align: top;
+        background-color: rgb(242, 255, 224);
+        padding: 16px;
+        margin: 10px;
+        width: 75%;
+        border: 2px solid darkgreen;
+    }
