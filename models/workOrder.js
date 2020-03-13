@@ -18,7 +18,10 @@ const WorkOrder = sequelize.define('workOrder', {
     tradeAmt2: { type: Sequelize.FLOAT(10, 2) },
     tradeAmt3: { type: Sequelize.FLOAT(10, 2) },
     tradeAmt4: { type: Sequelize.FLOAT(10, 2) },
-    woTotal: { type: Sequelize.FLOAT(10, 2) }
+    woTotal: { type: Sequelize.FLOAT(10, 2) },
+    dependancy1: Sequelize.INTEGER,
+    dependancy2: Sequelize.INTEGER,
+    dependancy3: Sequelize.INTEGER
 });
 
 module.exports = WorkOrder;

@@ -120,16 +120,6 @@ exports.getProject = async(req, res, next) => {
     }
 };
 
-exports.getIndex = (req, res, next) => {
-    req.session.destroy(err => {
-        console.log(err);
-        res.render('index', {
-            pageTitle: 'CJ Restoration',
-            path: '/',
-        });
-    })
-};
-
 exports.postDeleteProject = (req, res, next) => {
     const projId = req.body.projectId;
     Project.findByPk(projId)

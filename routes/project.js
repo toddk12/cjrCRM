@@ -8,8 +8,6 @@ const isAuth = require('../middleware/is-auth');
 
 const router = express.Router();
 
-router.get('/', projectsController.getIndex);
-
 router.get('/close', mainController.getClosed);
 
 router.get('/projects/:stat', isAuth, projectsController.getProjects);

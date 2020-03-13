@@ -1,3 +1,13 @@
+exports.getIndex = (req, res, next) => {
+    req.session.destroy(err => {
+        console.log(err);
+        res.render('index', {
+            pageTitle: 'CJ Restoration',
+            path: '/',
+        });
+    })
+};
+
 exports.getHome = (req, res, next) => {
     res.render('home', {
         pageTitle: 'Home Page',
