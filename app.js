@@ -152,6 +152,12 @@ Wtb.belongsTo(Trades)
 Trades.hasMany(Wtb);
 WorkOrder.belongsTo(Project);
 Project.hasMany(WorkOrder);
+WorkOrder.belongsTo(Sales);
+Sales.hasMany(WorkOrder);
+WorkOrder.belongsTo(Supervisor);
+Supervisor.hasMany(WorkOrder);
+WorkOrder.belongsTo(Subcontractor);
+Subcontractor.hasMany(WorkOrder);
 
 sequelize
     .sync()

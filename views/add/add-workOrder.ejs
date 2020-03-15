@@ -13,6 +13,7 @@
                     <form action="/add-workOrder" method="POST">
                         <div class="row">
                             <div class="col-sm">
+                                <input type="hidden" name="projectId" id="projectId" value="<%= projId %>">
                                 <label for="projectNo"><strong>Project No:</strong></label>
                                 <input type="text" name="projectNo" id="projectNo" value="<%= project.projectNo %>">
                             </div>
@@ -194,8 +195,8 @@
                             </select>
                                         </div>
                                         <div class="col-sm" style="width: 200px">
-                                            <label for="superId"><strong>Supervisor: </strong></label>
-                                            <select style="width: 200px" class="select" name="superId" id="superId">
+                                            <label for="supervisorId"><strong>Supervisor: </strong></label>
+                                            <select style="width: 200px" class="select" name="supervisorId" id="supervisorId">
                                         <% for (let sup of supers) { %>
                                             <option value="<%= sup.id%>">
                                             <%= sup.name %></option>
@@ -286,6 +287,20 @@
                                             <strong><p>The price shown on this work order is for the work detailed in the order. Should the price shown be insufficient to complete ther work, a new price would have to be agreed upon and a new work order issued PRIOR TO STARTING any work. NO COSTS ABOVE AND BEYOND THOSE SHOWN ON THIS WORK ORDER MAY BE INCURRED NOR WIL BE PAID.</p></strong>>
                                         </div>
                                     </div>
+                                    <!-- <div class="row">
+                                        <div class="col-sm text-right">
+                                            <label for="dep1"><strong>Dependancy 1:</strong></label>
+                                            <input type="text" name="dep1" id="dep1">
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <label for="dep2"><strong>Dependancy 2:</strong></label>
+                                            <input type="text" name="dep2" id="dep2">
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <label for="dep3"><strong>Dependancy 3:</strong></label>
+                                            <input type="text" name="dep3" id="dep3">
+                                        </div>
+                                    </div> -->
                     </form>
                 </article>
                 </div>
