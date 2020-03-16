@@ -104,4 +104,11 @@ router.get('/searchCty', isAuth, projectsController.getSearchCty);
 
 router.post('/searchCty', isAuth, projectsController.postSearchCty);
 
+router.get('/workOrderTot/:projectId', isAuth, projectsController.getWorkOrderTot);
+
+router.get('/wos/:workId', isAuth, projectsController.getWos);
+
+router.post('/wos/:workId', isAuth, projectsController.postWos);
+
+
 module.exports = router;

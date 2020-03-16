@@ -4,6 +4,7 @@ const Project = require('../models/project');
 const Status = require('../models/status');
 const Insurance = require('../models/insurance');
 const Supervisor = require('../models/supervisor');
+const Subcontractor = require('../models/subcontractor');
 const Sales = require('../models/sales');
 const Document = require('../models/document');
 const Notes = require('../models/notes');
@@ -15,6 +16,7 @@ const JobCosts = require('../models/jobCosts');
 const Trades = require('../models/trades');
 const RType = require('../models/rType');
 const Wtb = require('../models/wtb');
+const WorkOrder = require('../models/workOrder');
 
 exports.getAllProjects = async(req, res, next) => {
     try {
@@ -1985,6 +1987,101 @@ exports.postSearchCty = async(req, res, next) => {
                 path: '/projects',
             });
         }
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
+};
+
+exports.getWorkOrderTot = async (req, res, next) => {
+    const projId = req.params.projectId
+    console.log(projId);
+    try {
+        const project = await Project.findByPk(projId)
+        const workOrder = await WorkOrder.findAll({
+            where: {
+                projectId: projId
+            },
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Subcontractor
+            }],
+        })
+        console.log("and here");
+        res.render('projects/workOrderTot', {
+            pageTitle: 'Work Orders',
+            path: '/workOrderTot',
+            project: project,
+            projId: projId,
+            works: workOrder
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
+};
+
+exports.getWos = async (req, res, next) => {
+    const workId = req.params.workId
+    console.log(projId);
+    try {
+        const workOrder = await WorkOrder.findByPk(workId, {
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            },{
+                model: Project
+            }, {
+                model: Subcontractor
+            }],
+        })
+
+        console.log("and here");
+        res.render('projects/wos', {
+            pageTitle: 'Work Order',
+            path: '/wos',
+            project: project,
+            projId: projId,
+            works: workOrder
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
+};
+
+exports.postWos = async (req, res, next) => {
+    const woTotal = (req.body.trade1Amt + req.body.trade2Amt + req.body.trade3Amt + req.body.trade4Amt);
+    console.log("HeyYa");
+    console.log(woTotal);
+try{
+    const workOder = await WorkOrder.findByPk(workId)
+
+        workOrder.subcontractorId = req.body.subcontractorId,
+        workOder.startDate = req.body.startDate,
+        workOder.endDate = req.body.endDate,
+        workOder.compDate = req.body.compDate,
+        workOder.complete = req.body.complete,
+        workOder.description = req.body.description,
+        workOder.tradeId1 = req.body.trade1Id,
+        workOder.tradeAmt1 = req.body.trade1Amt,
+        workOder.tradeId2 = req.body.trade2Id,
+        workOder.tradeAmt2 = req.body.trade2Amt,
+        workOder.tradeId3 = req.body.trade3Id,
+        workOder.tradeAmt3 = req.body.trade3Amt,
+        workOder.tradeId4 = req.body.trade4Id,
+        workOder.tradeAmt4 = req.body.trade4Amt,
+        workOder.woTotal = woTotal
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
