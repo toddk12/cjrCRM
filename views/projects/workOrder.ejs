@@ -1,0 +1,116 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                        <div class="centered">
+                            <h1>Work Orders</h1>
+                            <h4>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        Project#:
+                                        <%= project.projectNo %>
+                                    </div>
+                                    <div class="col-sm">
+                                        Owner:
+                                        <%= project.owner1Fn %>
+                                            <%= project.owner1Ln %>
+                                    </div>
+                                    <div class="col-sm">
+                                        Address:
+                                        <%= project.address %>
+                                    </div>
+                                    <div class="col-sm">
+                                        City:
+                                        <%= project.city %>
+                                    </div>
+                                </div>
+                            </h4>
+                            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
+                        </div>
+                        <div class="centered" style="font-size: .8em;">
+                            <article class="trades">
+                                <div class="row">
+                                    <div class="col-sm" style="text-align: right;">
+                                        Subcontractor: <strong><%= work.subcontractor.coName %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm" style="text-align: right;">
+                                        Start Date: <strong><%= work.startDate %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm" style="text-align: right;">
+                                        End Date: <strong><%= work.endDate %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm" style="text-align: right;">
+                                        <% if(work.completed) { %>
+                                            Completed: <strong><%= work.completed %></strong> Complete Date: <strong><%= work.completeDate %></strong>
+                                            <br>
+                                            <a href="/wos/<%= work.id %>">Edit</a> - <a href="/woEmail/<%= work.id %>">Email</a>
+                                            <% } else { %>
+                                                Completed: <strong> Not Yet Complete</strong>
+                                                <br>
+                                                <a href="/wos/<%= work.id %>">Edit</a> - <a href="/woEmail/<%= work.id %>">Email</a>
+                                                <% } %>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm" style="text-align: right;">
+                                        Description: <strong><%= work.description %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm" style="text-align: right;">
+                                        Trade 1: <strong><%= work.trade1 %></strong>
+                                    </div>
+                                    <div class="col-sm" style="text-align: right;">
+                                        Trade 1 Amount: <strong><%= money.format(work.trade1Amt) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm" style="text-align: right;">
+                                        Trade 2: <strong><%= work.trade2 %></strong>
+                                    </div>
+                                    <div class="col-sm" style="text-align: right;">
+                                        Trade 2 Amount: <strong><%= money.format(work.trade2Amt) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm" style="text-align: right;">
+                                        Trade 3: <strong><%= work.trade3 %></strong>
+                                    </div>
+                                    <div class="col-sm" style="text-align: right;">
+                                        Trade2 Amt: <strong><%= money.format(work.trade3Amt) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm" style="text-align: right;">
+                                        Trade 4: <strong><%= work.trade4 %></strong>
+                                    </div>
+                                    <div class="col-sm" style="text-align: right;">
+                                        Trade 4 Amt: <strong><%= money.format(work.trade4Amt) %></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm" style="text-align: right;">
+                                        Work Order Total: <strong><%= money.format(work.woTotal) %></strong>
+                                    </div>
+                                </div>
+
+                            </article>
+
+
+
+            </main>
+
+            <%- include('../includes/footer.ejs') %>
+                <script src="/js/status.js"></script>

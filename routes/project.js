@@ -108,7 +108,9 @@ router.get('/workOrderTot/:projectId', isAuth, projectsController.getWorkOrderTo
 
 router.get('/wos/:workId', isAuth, projectsController.getWos);
 
-router.post('/wos/:workId', isAuth, projectsController.postWos);
+router.post('/wos', isAuth, projectsController.postWos);
+
+router.get('/workOrder/:workId', isAuth, projectsController.getWorkOrder);
 
 
 module.exports = router;

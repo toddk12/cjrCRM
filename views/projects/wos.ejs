@@ -1,253 +1,306 @@
 <%- include('../includes/headerform.ejs') %>
-<link rel="stylesheet" href="/css/info.css">
-</head>
+    <link rel="stylesheet" href="/css/info.css">
+    </head>
 
-<body>
-    <%- include('../includes/navigation.ejs') %>
-    <main>
-        <br>
-        <div class="centered">
-            <h1> Add Work Order</h1>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                        <br>
+                        <div class="centered">
+                            <h1> Add Work Order</h1>
 
-            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
-            <br>
-        </div>
-        <br>
-        <article class="ownerinfo">
-            <form action="/wos" method="POST">
-                <div class="row">
-                    <div class="col-sm">
-                        <input type="hidden" name="projectId" id="projectId" value="<%= projId %>">
-                        <strong>Project No: </strong><%= project.projectNo %>
-                    </div>
-                    <div class="col-sm">
-                        <% if (project.commercial) { %>
-                        <strong>Commercial Project</strong>
-                        <% } else { %>
-                        <strong>Residential Project</strong>
-                        <% } %>
-                    </div>
-                </div>
-                <br>
-                <% if(!project.commercial) { %>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong>Owner 1 Name: </strong><%= project.owner1Fn %> <%= project.owner1Ln %>
-                    </div>
-                    <div class="col-sm">
-                        <strong>Owner 2 Name: </strong><%= project.owner2Fn %> <%= project.owner2Ln %>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong>Address: </strong><%= project.address %>
-                    </div>
-                    <div class="col-sm">
-                        <strong>City, State Zip Code: </strong> <%= project.city %>, <%= project.state %>
-                        <%= project.zip %>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong>Home Phone: </strong>(<%= project.hPhone.substring(0,3) %>)
-                        <%= project.hPhone.substring(3, 6) %>-<%= project.hPhone.substring(6, 10) %>
-                    </div>
-                    <div class="col-sm">
-                        <strong>Cell Phone: </strong>(<%= project.cPhone.substring(0,3) %>)
-                        <%= project.cPhone.substring(3, 6) %>-<%= project.cPhone.substring(6, 10) %>
-                    </div>
-                    <div class="col-sm">
-                        <strong>Other Phone: </strong>(<%= project.oPhone.substring(0,3) %>)
-                        <%= project.hPhone.substring(3, 6) %>-<%= project.hPhone.substring(6, 10) %>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong>Email: </strong><%= project.email %>
-                    </div>
-                </div>
-                <% } else { %>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong>Building Name: </strong><%= project.bName %>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong>Address: </strong><%= project.bAddress %>
-                    </div>
-                    <div class="col-sm">
-                        <strong>City, State Zip Code: </strong><%= project.bCity %>, <%= project.bState %>
-                        <%= project.bZip %>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong>Owning Company: </strong><%= project.ownerCoName %>
-                    </div>
-                    <div class="col-sm">
-                        <strong>Owner Name: </strong><%= project.owner1Fn %> <%= project.owner1Ln %>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong>Address: </strong><%= project.address %>
-                    </div>
-                    <div class="col-sm">
-                        <strong>City, State Zip: </strong><%= project.city %>, <%= project.state %> <%= project.zip %>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong>Home Phone: </strong>(<%= project.hPhone.substring(0,3) %>)
-                        <%= project.hPhone.substring(3, 6) %>-<%= project.hPhone.substring(6, 10) %>
-                    </div>
-                    <div class="col-sm">
-                        <strong>Cell Phone: </strong>(<%= project.cPhone.substring(0,3) %>)
-                        <%= project.cPhone.substring(3, 6) %>-<%= project.cPhone.substring(6, 10) %>
-                    </div>
-                    <div class="col-sm">
-                        <strong>Other Phone: </strong>(<%= project.oPhone.substring(0,3) %>)
-                        <%= project.hPhone.substring(3, 6) %>-<%= project.hPhone.substring(6, 10) %>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong>Email: </strong><%= project.email %>
-                    </div>
-                </div>
-                <% } %>
-                <br>
-                <div class="row">
-                    <div class="col-sm" style="width: 200px">
-                        <strong>Sales Rep: </strong><%= project.sale.name %>
-                    </div>
-                    <div class="col-sm" style="width: 200px">
-                        <strong>Supervisor: </strong><%= project.supervisor.name %>
-                    </div>
-                </div>                    <br>
-                <div class="row">
-                    <div class="col-sm" style="width: 200px">
-                        <label for="subcontractorId"><strong>SubContractor: </strong></label>
-                        <select style="width: 200px" class="select" name="subcontractorId" id="subcontractorId">
-                            <% for (let sub of subs) { %>
-                            <option value="<%= sub.id%>">
-                                <%= sub.coName %></option>
-                            <% } %>
-                        </select>
-                    </div>
-                    <div class="col-sm">
-                        <label for="startDate"><strong>Start Date:</strong></label>
-                        <input type="date" name="startDate" id="startDate">
-                    </div>
-                    <div class="col-sm">
-                        <label for="endDate"><strong>End Date:</strong></label>
-                        <input type="date" name="endDate" id="endDate">
-                    </div>
-                    <div class="col-sm">
-                        <input type="checkbox" name="complete" id="complete">
-                        <label for="completeDate"><strong>Date Completed:</strong></label>
-                        <input type="date" name="completeDate" id="completeDate">
-                    </div>
+                            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= projId %>">Back to Details</a>
+                            <br>
+                        </div>
+                        <br>
+                        <article class="ownerinfo">
+                            <form action="/wos" method="POST">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <strong>Project No: </strong>
+                                        <%= works.project.projectNo %>
+                                    </div>
 
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm">
-                        <label for="description"><strong>Description of Work:</strong></label>
-                        <textarea cols="140" rows="8" type="text" name="description"></textarea>
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm">
-                        <label for="trade1Id"><strong>Trade 1: </strong></label>
-                        <select style="width: auto" class="select" name="trade1Id" id="trade1Id">
-                            <% for (let trade of trades) { %>
-                            <option value="<%= trade.id%>">
-                                <%= trade.trade %></option>
-                            <% } %>
-                        </select>
-                    </div>
-                    <div class="col-sm text-right">
-                        <label for="trade1Amt"><strong>Amount:</strong></label>
-                        <input type="currency" name="trade1Amt" id="trade1Amt">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <label for="trade2Id"><strong>Trade 2: </strong></label>
-                        <select style="width: auto" class="select" name="trade2Id" id="trade2Id">
-                            <% for (let trade of trades) { %>
-                            <option value="<%= trade.id%>">
-                                <%= trade.trade %></option>
-                            <% } %>
-                        </select>
-                    </div>
-                    <div class="col-sm text-right">
-                        <label for="trade2Amt"><strong>Amount:</strong></label>
-                        <input type="currency" name="trade2Amt" id="trade2Amt">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <label for="trade3Id"><strong>Trade 3: </strong></label>
-                        <select style="width: auto" class="select" name="trade3Id" id="trade3Id">
-                            <% for (let trade of trades) { %>
-                            <option value="<%= trade.id%>">
-                                <%= trade.trade %></option>
-                            <% } %>
-                        </select>
-                    </div>
-                    <div class="col-sm text-right">
-                        <label for="trade3Amt"><strong>Amount:</strong></label>
-                        <input type="currency" name="trade3Amt" id="trade3Amt">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <label for="trade4Id"><strong>Trade 4: </strong></label>
-                        <select style="width: auto" class="select" name="trade4Id" id="trade4Id">
-                            <% for (let trade of trades) { %>
-                            <option value="<%= trade.id%>">
-                                <%= trade.trade %></option>
-                            <% } %>
-                        </select>
-                    </div>
-                    <div class="col-sm text-right">
-                        <label for="trade4Amt"><strong>Amount:</strong></label>
-                        <input type="currency" name="trade4Amt" id="trade4Amt">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong></strong>>
-                    </div>
-                    <div class="col-sm text-right">
-                        <label for="workTotal"><strong>Work Order Total:</strong></label>
-                        <input type="currency" name="workTotal" id="workTotal">
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm">
-                        <strong>
+                                </div>
+                                <br>
+                                <% if(!works.project.commercial) { %>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <strong>Owner 1 Name: </strong>
+                                            <%= works.project.owner1Fn %>
+                                                <%= works.project.owner1Ln %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <strong>Owner 2 Name: </strong>
+                                            <%= works.project.owner2Fn %>
+                                                <%= works.project.owner2Ln %>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <strong>Address: </strong>
+                                            <%= works.project.address %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <strong>City, State Zip Code: </strong>
+                                            <%= works.project.city %>,
+                                                <%= works.project.state %>
+                                                    <%= works.project.zip %>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <strong>Home Phone: </strong>(
+                                            <%= works.project.hPhone.substring(0,3) %>)
+                                                <%= works.project.hPhone.substring(3, 6) %>-
+                                                    <%= works.project.hPhone.substring(6, 10) %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <strong>Cell Phone: </strong>(
+                                            <%= works.project.cPhone.substring(0,3) %>)
+                                                <%= works.project.cPhone.substring(3, 6) %>-
+                                                    <%= works.project.cPhone.substring(6, 10) %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <strong>Other Phone: </strong>(
+                                            <%= works.project.oPhone.substring(0,3) %>)
+                                                <%= works.project.hPhone.substring(3, 6) %>-
+                                                    <%= works.project.hPhone.substring(6, 10) %>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <strong>Email: </strong>
+                                            <%= works.project.email %>
+                                        </div>
+                                    </div>
+                                    <% } else { %>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <strong>Building Name: </strong>
+                                                <%= works.project.bName %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <strong>Address: </strong>
+                                                <%= works.project.bAddress %>
+                                            </div>
+                                            <div class="col-sm">
+                                                <strong>City, State Zip Code: </strong>
+                                                <%= works.project.bCity %>,
+                                                    <%= works.project.bState %>
+                                                        <%= works.project.bZip %>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <strong>Owning Company: </strong>
+                                                <%= works.project.ownerCoName %>
+                                            </div>
+                                            <div class="col-sm">
+                                                <strong>Owner Name: </strong>
+                                                <%= works.project.owner1Fn %>
+                                                    <%= works.project.owner1Ln %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <strong>Address: </strong>
+                                                <%= works.project.address %>
+                                            </div>
+                                            <div class="col-sm">
+                                                <strong>City, State Zip: </strong>
+                                                <%= works.project.city %>,
+                                                    <%= works.project.state %>
+                                                        <%= works.project.zip %>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <strong>Home Phone: </strong>(
+                                                <%= works.project.hPhone.substring(0,3) %>)
+                                                    <%= works.project.hPhone.substring(3, 6) %>-
+                                                        <%= works.project.hPhone.substring(6, 10) %>
+                                            </div>
+                                            <div class="col-sm">
+                                                <strong>Cell Phone: </strong>(
+                                                <%= works.project.cPhone.substring(0,3) %>)
+                                                    <%= works.project.cPhone.substring(3, 6) %>-
+                                                        <%= works.project.cPhone.substring(6, 10) %>
+                                            </div>
+                                            <div class="col-sm">
+                                                <strong>Other Phone: </strong>(
+                                                <%= works.project.oPhone.substring(0,3) %>)
+                                                    <%= works.project.hPhone.substring(3, 6) %>-
+                                                        <%= works.project.hPhone.substring(6, 10) %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <strong>Email: </strong>
+                                                <%= works.project.email %>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <strong>Current Subcontractor1: </strong>
+                                                    <%= works.subcontractor.coName %>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <select style="width: 200px" class="select" name="subcontractorId" id="subcontractorId">
+                                                        <option value="<%= works.subcontractor.id %>">
+                                                            <%= works.subcontractor.coName %></option>
+                                                        <% for (let sub of subs) { %>
+                                                            <option value="<%= sub.id%>">
+                                                            <%= sub.coName %></option>
+                                                        <% } %>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm text-right">
+                                                    <label for="tradeAmt1"><strong>Amount:</strong></label>
+                                                    <input type="currency" name="tradeAmt1" id="tradeAmt1" value="<%= money.format(works.tradeAmt1) %>">
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <label for="startDate"><strong>Start Date:</strong></label>
+                                                    <input type="date" name="startDate" id="startDate" value="<%= works.startDate %>">
+                                                </div>
+                                                <div class="col-sm">
+                                                    <label for="endDate"><strong>End Date:</strong></label>
+                                                    <input type="date" name="endDate" id="endDate" value="<%= works.rndDate %>">
+                                                </div>
+                                                <div class="col-sm">
+                                                    <input type="checkbox" name="complete" id="complete" value="<%= works.complete %>">
+                                                    <label for="completeDate"><strong>Date Completed:</strong></label>
+                                                    <input type="date" name="completeDate" id="completeDate" value="<%= works.completeDate %>">
+                                                </div>
+
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <label for="description"><strong>Description of Work:</strong></label>
+                                                    <textarea cols="140" rows="8" type="text" name="description" value="<%= works.description %>"></textarea>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <strong>Current Trade 1: </strong>
+                                                    <%= works.trade1 %>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <select style="width: 200px" class="select" name="trade1" id="trade1">
+                                                        <option value="<%= works.trade1 %>">
+                                                            <%= works.trade1 %></option>
+                                                        <% for (let trade of trades) { %>
+                                                            <option value="<%= trade.id%>">
+                                                            <%= trade.trade %></option>
+                                                        <% } %>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm text-right">
+                                                    <label for="tradeAmt1"><strong>Amount:</strong></label>
+                                                    <input type="currency" name="tradeAmt1" id="tradeAmt1" value="<%= money.format(works.tradeAmt1) %>">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <strong>Current Trade 2: </strong>
+                                                    <%= works.trade2 %>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <select style="width: 200px" class="select" name="trade2" id="trade2">
+                                                    <option value="<%= works.trade2 %>">
+                                                        <%= works.trade2 %></option>
+                                                    <% for (let trade of trades) { %>
+                                                        <option value="<%= trade.id%>">
+                                                        <%= trade.trade %></option>
+                                                    <% } %>
+                                                </select>
+                                                </div>
+                                                <div class="col-sm text-right">
+                                                    <label for="tradeAmt2"><strong>Amount:</strong></label>
+                                                    <input type="currency" name="tradeAmt2" id="tradeAmt2" value="<%= money.format(works.tradeAmt2) %>">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <strong>Current Trade 3: </strong>
+                                                    <%= works.trade3 %>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <select style="width: 200px" class="select" name="trade3" id="trade3">
+                                                    <option value="<%= works.trade3 %>">
+                                                        <%= works.trade3 %></option>
+                                                    <% for (let trade of trades) { %>
+                                                        <option value="<%= trade.id%>">
+                                                        <%= trade.trade %></option>
+                                                    <% } %>
+                                                </select>
+                                                </div>
+                                                <div class="col-sm text-right">
+                                                    <label for="tradeAmt3"><strong>Amount:</strong></label>
+                                                    <input type="currency" name="tradeAmt3" id="tradeAmt3" value="<%= money.format(works.tradeAmt3) %>">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <strong>Current Trade 4: </strong>
+                                                    <%= works.trade4 %>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <select style="width: 200px" class="select" name="trade4" id="trade4">
+                                                    <option value="<%= works.trade4 %>">
+                                                        <%= works.trade4 %></option>
+                                                    <% for (let trade of trades) { %>
+                                                        <option value="<%= trade.id%>">
+                                                        <%= trade.trade %></option>
+                                                    <% } %>
+                                                </select>
+                                                </div>
+                                                <div class="col-sm text-right">
+                                                    <label for="tradeAmt2"><strong>Amount:</strong></label>
+                                                    <input type="currency" name="tradeAmt2" id="tradeAmt2" value="<%= money.format(works.tradeAmt2) %>">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <strong></strong>>
+                                                </div>
+                                                <div class="col-sm text-right">
+                                                    <label for="workTotal"><strong>Work Order Total:</strong></label>
+                                                    <input type="currency" name="workTotal" id="workTotal" value="<%= money.format(works.woTotal) %>">
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <strong>
                             <p>The price shown on this work order is for the work detailed in the order. Should the
                                 price shown be insufficient to complete ther work, a new price would have to be agreed
-                                upon and a new work order issued PRIOR TO STARTING any work. NO COSTS ABOVE AND BEYOND
+                                upon and a new work order issued PRIOR TO STARTING any works. NO COSTS ABOVE AND BEYOND
                                 THOSE SHOWN ON THIS WORK ORDER MAY BE INCURRED NOR WIL BE PAID.</p>
                         </strong>>
-                    </div>
-                </div>
-                <div class="centered">
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                    <button class="updatebtn" type="submit">Add Work Order</button>
-                </div>
-                <!-- <div class="row">
+                                                </div>
+                                            </div>
+                                            <div class="centered">
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                                <button class="updatebtn" type="submit">Add Work Order</button>
+                                            </div>
+                                            <!-- <div class="row">
                                         <div class="col-sm text-right">
                                             <label for="dep1"><strong>Dependancy 1:</strong></label>
                                             <input type="text" name="dep1" id="dep1">
@@ -261,10 +314,10 @@
                                             <input type="text" name="dep3" id="dep3">
                                         </div>
                                     </div> -->
-            </form>
-        </article>
-        </div>
+                            </form>
+                        </article>
+                        </div>
 
-    </main>
+            </main>
 
-    <%- include('../includes/footer.ejs') %>
+            <%- include('../includes/footer.ejs') %>

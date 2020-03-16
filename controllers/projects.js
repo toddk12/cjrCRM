@@ -1,5 +1,11 @@
 const Sequelize = require('sequelize');
 const { Op } = require('sequelize');
+
+const fs = require('fs');
+const path = require('path');
+
+const PDFDocument = require('pdfkit');
+
 const Project = require('../models/project');
 const Status = require('../models/status');
 const Insurance = require('../models/insurance');
@@ -1995,7 +2001,7 @@ exports.postSearchCty = async(req, res, next) => {
 
 };
 
-exports.getWorkOrderTot = async (req, res, next) => {
+exports.getWorkOrderTot = async(req, res, next) => {
     const projId = req.params.projectId
     console.log(projId);
     try {
@@ -2028,28 +2034,37 @@ exports.getWorkOrderTot = async (req, res, next) => {
 
 };
 
-exports.getWos = async (req, res, next) => {
-    const workId = req.params.workId
-    console.log(projId);
+exports.getWos = async(req, res, next) => {
+    const workId = req.params.workId;
+    console.log(workId);
     try {
+
+        const sales = await Sales.findAll()
+        const subcontractors = await Subcontractor.findAll()
+        const supervisor = await Supervisor.findAll()
+        const trades = await Trades.findAll()
         const workOrder = await WorkOrder.findByPk(workId, {
             include: [{
                 model: Sales
             }, {
                 model: Supervisor
-            },{
+            }, {
                 model: Project
             }, {
                 model: Subcontractor
             }],
         })
-
+        const projId = workOrder.projectId;
         console.log("and here");
         res.render('projects/wos', {
             pageTitle: 'Work Order',
             path: '/wos',
-            project: project,
+            workId: workId,
             projId: projId,
+            sale: sales,
+            subs: subcontractors,
+            trades: trades,
+            supers: supervisor,
             works: workOrder
         });
     } catch (err) {
@@ -2060,28 +2075,133 @@ exports.getWos = async (req, res, next) => {
 
 };
 
-exports.postWos = async (req, res, next) => {
-    const woTotal = (req.body.trade1Amt + req.body.trade2Amt + req.body.trade3Amt + req.body.trade4Amt);
+exports.postWos = async(req, res, next) => {
+    var woTotal = 0;
+    const amt1 = req.body.tradeAmt1;
+    const amt2 = req.body.tradeAmt2;
+    const amt3 = req.body.tradeAmt3;
+    const amt4 = req.body.tradeAmt4;
     console.log("HeyYa");
-    console.log(woTotal);
-try{
-    const workOder = await WorkOrder.findByPk(workId)
+    console.log('amt1', amt1);
+    console.log('amt2', amt2);
+    console.log('amt3', amt3);
+    console.log('amt4', amt4);
+    console.log('woTotal', woTotal);
+    try {
+        const workOder = await WorkOrder.findByPk(workId)
 
         workOrder.subcontractorId = req.body.subcontractorId,
-        workOder.startDate = req.body.startDate,
-        workOder.endDate = req.body.endDate,
-        workOder.compDate = req.body.compDate,
-        workOder.complete = req.body.complete,
-        workOder.description = req.body.description,
-        workOder.tradeId1 = req.body.trade1Id,
-        workOder.tradeAmt1 = req.body.trade1Amt,
-        workOder.tradeId2 = req.body.trade2Id,
-        workOder.tradeAmt2 = req.body.trade2Amt,
-        workOder.tradeId3 = req.body.trade3Id,
-        workOder.tradeAmt3 = req.body.trade3Amt,
-        workOder.tradeId4 = req.body.trade4Id,
-        workOder.tradeAmt4 = req.body.trade4Amt,
-        workOder.woTotal = woTotal
+            workOder.startDate = req.body.startDate,
+            workOder.endDate = req.body.endDate,
+            workOder.compDate = req.body.compDate,
+            workOder.complete = req.body.complete,
+            workOder.description = req.body.description,
+            workOder.trade1 = req.body.trade1,
+            workOder.tradeAmt1 = req.body.tradeAmt1,
+            workOder.trade2 = req.body.trade2,
+            workOder.tradeAmt2 = req.body.tradeAmt2,
+            workOder.trade3 = req.body.trade3,
+            workOder.tradeAmt3 = req.body.tradeAmt3,
+            workOder.trade4 = req.body.trade4,
+            workOder.tradeAmt4 = req.body.tradeAmt4,
+            workOder.woTotal = woTotal
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
+};
+
+exports.getWorkOrder = async(req, res, next) => {
+    const workId = req.params.workId;
+    console.log(workId);
+    try {
+        const workOrder = await WorkOrder.findByPk(workId, {
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Project
+            }, {
+                model: Subcontractor
+            }],
+        })
+
+        const woName = 'workOrder-' + workId + '.pdf';
+        const woPath = path.join('data', 'workOrders', woName);
+        const table1 = {
+            headers: ['Trade', 'Amount'],
+            rows: [
+                ['No Trades Entered', '$ 0.00'],
+                ['Total', '$ ' + workOrder.woTotal]
+            ]
+        };
+        const table2 = {
+            headers: ['Trade', 'Amount'],
+            rows: [
+                [workOrder.trade1, '$ ' + workOrder.tradeAmt1],
+                ['Total', '$ ' + workOrder.woTotal]
+            ]
+        };
+        const table3 = {
+            headers: ['Trade', 'Amount'],
+            rows: [
+                [workOrder.trade1, '$ ' + workOrder.tradeAmt1],
+                [workOrder.trade2, '$ ' + workOrder.tradeAmt2],
+                ['Total', '$ ' + workOrder.woTotal]
+            ]
+        };
+        const table4 = {
+            headers: ['Trade', 'Amount'],
+            rows: [
+                [workOrder.trade1, '$ ' + workOrder.tradeAmt1],
+                [workOrder.trade2, '$ ' + workOrder.tradeAmt2],
+                [workOrder.trade3, '$ ' + workOrder.tradeAmt3],
+                ['Total', '$ ' + workOrder.woTotal]
+            ]
+        };
+        const table5 = {
+            headers: ['Trade', 'Amount'],
+            rows: [
+                [workOrder.trade1, '$ ' + workOrder.tradeAmt1],
+                [workOrder.trade2, '$ ' + workOrder.tradeAmt2],
+                [workOrder.trade3, '$ ' + workOrder.tradeAmt3],
+                [workOrder.trade4, '$ ' + workOrder.tradeAmt4],
+                ['Total', '$ ' + workOrder.woTotal]
+            ]
+        };
+
+        const pdfDoc = new PDFDocument();
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'inline; filename="' + woName + '"');
+
+        pdfDoc.pipe(fs.createWriteStream(woPath));
+        pdfDoc.pipe(res);
+
+        pdfDoc.image('./public/images/logo.png', {
+            fit: [150, 200],
+            align: 'center'
+        });
+        pdfDoc.moveDown();
+        pdfDoc.fontSize(18).text('Work Order', {
+            underline: true
+        });
+        pdfDoc.moveDown().fontSize(12).text('Subcontractor: ' + workOrder.subcontractor.coName);
+        pdfDoc.text('Start Date: ' + workOrder.startDate);
+        pdfDoc.text('End Date: ' + workOrder.endDate);
+        pdfDoc.text('Complete: ' + workOrder.complete);
+        pdfDoc.text('Completion Date: ' + workOrder.compDate);
+        pdfDoc.moveDown().text('Description: ' + workOrder.description);
+        pdfDoc.moveDown().text('Work Order Total: ' + workOrder.woTotal);
+
+
+        pdfDoc.text('----------------------------------------------------------------------------------------------');
+        pdfDoc.text('The price shown on this work order is for the work detailed in the order. Should the price shown be insufficient to complete ther work, a new price would have to be agreed upon and a new work order issued PRIOR TO STARTING any work. NO COSTS ABOVE AND BEYOND THOSE SHOWN ON THIS WORK ORDER MAY BE INCURRED NOR WIL BE PAID.')
+
+        pdfDoc.end();
+
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;

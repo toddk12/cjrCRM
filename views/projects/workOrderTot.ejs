@@ -1,84 +1,83 @@
 <%- include('../includes/header.ejs') %>
-<link rel="stylesheet" href="/css/projects.css">
+    <link rel="stylesheet" href="/css/projects.css">
 
-</head>
+    </head>
 
-<body>
-    <%- include('../includes/navigation.ejs') %>
-    <main>
-        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
-        <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
-        <div class="centered">
-            <h1>Work Orders</h1>
-            <h4>
-                <div class="row">
-                    <div class="col-sm">
-                        Project#:
-                        <%= project.projectNo %>
-                    </div>
-                    <div class="col-sm">
-                        Owner:
-                        <%= project.owner1Fn %>
-                        <%= project.owner1Ln %>
-                    </div>
-                    <div class="col-sm">
-                        Address:
-                        <%= project.address %>
-                    </div>
-                    <div class="col-sm">
-                        City:
-                        <%= project.city %>
-                    </div>
-                </div>
-            </h4>
-            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
-        </div>
-        <div class="centered" style="font-size: .8em;">
-            <% for (let work of works) { %>
-            <article class="trades">
-                <div class="row">
-                    <div class="col-sm" style="text-align: right;">
-                        Subcontractor: <strong><%= work.subcontractor.coName %></strong>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm" style="text-align: right;">
-                        Work Order Total: <strong><%= money.format(work.woTotal) %></strong>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm" style="text-align: right;">
-                        Start Date: <strong><%= work.startDate %></strong>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm" style="text-align: right;">
-                        End Date: <strong><%= work.endDate %></strong>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm" style="text-align: right;">
-                        <% if(work.completed) { %>
-                            Completed: <strong><%= work.completed %></strong>
-                            Complete Date: <strong><%= work.completeDate %></strong>
-                            <br>
-                            <a href="/wos/<%= work.id %>">Edit</a> - <a href="/woEmail/<%= work.id %>">Email</a>
-                        <% } else { %>
-                            Completed: <strong> Not Yet Complete</strong>
-                            <br>
-                            <a href="/wos/<%= work.id %>">Edit</a> - <a href="/woEmail/<%= work.id %>">Email</a>
-                        <% } %>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                        <div class="centered">
+                            <h1>Work Orders</h1>
+                            <h4>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        Project#:
+                                        <%= project.projectNo %>
+                                    </div>
+                                    <div class="col-sm">
+                                        Owner:
+                                        <%= project.owner1Fn %>
+                                            <%= project.owner1Ln %>
+                                    </div>
+                                    <div class="col-sm">
+                                        Address:
+                                        <%= project.address %>
+                                    </div>
+                                    <div class="col-sm">
+                                        City:
+                                        <%= project.city %>
+                                    </div>
+                                </div>
+                            </h4>
+                            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
+                        </div>
+                        <div class="centered" style="font-size: .8em;">
+                            <% for (let work of works) { %>
+                                <article class="trades">
+                                    <div class="row">
+                                        <div class="col-sm" style="text-align: right;">
+                                            Subcontractor: <strong><%= work.subcontractor.coName %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm" style="text-align: right;">
+                                            Work Order Total: <strong><%= money.format(work.woTotal) %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm" style="text-align: right;">
+                                            Start Date: <strong><%= work.startDate %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm" style="text-align: right;">
+                                            End Date: <strong><%= work.endDate %></strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm" style="text-align: right;">
+                                            <% if(work.completed) { %>
+                                                Completed: <strong><%= work.completed %></strong> Complete Date: <strong><%= work.completeDate %></strong>
+                                                <br>
+                                                <a href="/wos/<%= work.id %>">Edit</a> - <a href="/workOrder/<%= work.id %>">Email</a>
+                                                <% } else { %>
+                                                    Completed: <strong> Not Yet Complete</strong>
+                                                    <br>
+                                                    <a href="/wos/<%= work.id %>">Edit</a> - <a href="/workOrder/<%= work.id %>">Email</a>
+                                                    <% } %>
 
-                    </div>
-                    
-                </div>
-                
-            </article>
-            <% } %>
-          
-           
+                                        </div>
 
-    </main>
+                                    </div>
 
-    <%- include('../includes/footer.ejs') %>
-    <script src="/js/status.js"></script>
+                                </article>
+                                <% } %>
+
+
+
+            </main>
+
+            <%- include('../includes/footer.ejs') %>
+                <script src="/js/status.js"></script>
