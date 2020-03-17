@@ -658,9 +658,13 @@ exports.getAddWorkOrder = async(req, res, next) => {
 };
 
 exports.postAddWorkOrder = (req, res, next) => {
-    const woTotal = (req.body.tradeAmt1 + req.body.tradeAmt2 + req.body.tradeAmt3 + req.body.tradeAmt4);
     console.log("HeyYa");
-    console.log(woTotal);
+    console.log(req.body.tradeAmt1);
+    console.log(req.body.tradeAmt2);
+    console.log(req.body.tradeAmt3);
+    console.log(req.body.tradeAmt4);
+    console.log(req.body.complete);
+
     WorkOrder.create({
             projectId: req.body.projectId,
             subcontractorId: req.body.subcontractorId,
@@ -677,12 +681,35 @@ exports.postAddWorkOrder = (req, res, next) => {
             tradeAmt3: req.body.tradeAmt3,
             trade4: req.body.trade4,
             tradeAmt4: req.body.tradeAmt4,
-            woTotal: woTotal
-        })
-        .then(result => {
+            woTotal: req.body.woTotal
 
-            console.log('Created Project');
-            res.redirect('/home');
+        })
+        .then(workOrder => {
+            const projId = workOrder.projectId;
+            Project.findByPk(projId)
+                .then(project => {
+                    WorkOrder.findAll({
+                            where: {
+                                projectId: projId
+                            },
+                            include: [{
+                                model: Sales
+                            }, {
+                                model: Supervisor
+                            }, {
+                                model: Subcontractor
+                            }],
+                        })
+                        .then(workOrders => {
+                            res.render('projects/workOrderTot', {
+                                pageTitle: 'Work Orders',
+                                path: '/workOrderTot',
+                                project: project,
+                                projId: projId,
+                                works: workOrders
+                            });
+                        })
+                })
         })
         .catch(err => {
             const error = new Error(err);

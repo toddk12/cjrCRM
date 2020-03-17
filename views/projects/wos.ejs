@@ -151,6 +151,7 @@
                                         <% } %>
                                             <br>
                                             <div class="row">
+                                                <input type="hidden" name="workId" id="workId" value="<%= works.id %>">
                                                 <div class="col-sm">
                                                     <strong>Current Subcontractor1: </strong>
                                                     <%= works.subcontractor.coName %>
@@ -165,10 +166,6 @@
                                                         <% } %>
                                                     </select>
                                                 </div>
-                                                <div class="col-sm text-right">
-                                                    <label for="tradeAmt1"><strong>Amount:</strong></label>
-                                                    <input type="currency" name="tradeAmt1" id="tradeAmt1" value="<%= money.format(works.tradeAmt1) %>">
-                                                </div>
                                             </div>
                                             </div>
                                             <br>
@@ -179,12 +176,11 @@
                                                 </div>
                                                 <div class="col-sm">
                                                     <label for="endDate"><strong>End Date:</strong></label>
-                                                    <input type="date" name="endDate" id="endDate" value="<%= works.rndDate %>">
+                                                    <input type="date" name="endDate" id="endDate" value="<%= works.endDate %>">
                                                 </div>
                                                 <div class="col-sm">
-                                                    <input type="checkbox" name="complete" id="complete" value="<%= works.complete %>">
-                                                    <label for="completeDate"><strong>Date Completed:</strong></label>
-                                                    <input type="date" name="completeDate" id="completeDate" value="<%= works.completeDate %>">
+                                                    <label for="compDate"><strong>Date Completed:</strong></label>
+                                                    <input type="date" name="compDate" id="compDate" value="<%= works.compDate %>">
                                                 </div>
 
                                             </div>
@@ -206,14 +202,14 @@
                                                         <option value="<%= works.trade1 %>">
                                                             <%= works.trade1 %></option>
                                                         <% for (let trade of trades) { %>
-                                                            <option value="<%= trade.id%>">
+                                                            <option value="<%= trade.trade%>">
                                                             <%= trade.trade %></option>
                                                         <% } %>
                                                     </select>
                                                 </div>
                                                 <div class="col-sm text-right">
                                                     <label for="tradeAmt1"><strong>Amount:</strong></label>
-                                                    <input type="currency" name="tradeAmt1" id="tradeAmt1" value="<%= money.format(works.tradeAmt1) %>">
+                                                    <input type="number" step="0.01" name="tradeAmt1" id="tradeAmt1" value="<%= works.tradeAmt1 %>">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -226,14 +222,14 @@
                                                     <option value="<%= works.trade2 %>">
                                                         <%= works.trade2 %></option>
                                                     <% for (let trade of trades) { %>
-                                                        <option value="<%= trade.id%>">
+                                                        <option value="<%= trade.trade%>">
                                                         <%= trade.trade %></option>
                                                     <% } %>
                                                 </select>
                                                 </div>
                                                 <div class="col-sm text-right">
                                                     <label for="tradeAmt2"><strong>Amount:</strong></label>
-                                                    <input type="currency" name="tradeAmt2" id="tradeAmt2" value="<%= money.format(works.tradeAmt2) %>">
+                                                    <input type="number" step="0.01" name="tradeAmt2" id="tradeAmt2" value="<%= works.tradeAmt2 %>">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -246,14 +242,14 @@
                                                     <option value="<%= works.trade3 %>">
                                                         <%= works.trade3 %></option>
                                                     <% for (let trade of trades) { %>
-                                                        <option value="<%= trade.id%>">
+                                                        <option value="<%= trade.trade%>">
                                                         <%= trade.trade %></option>
                                                     <% } %>
                                                 </select>
                                                 </div>
                                                 <div class="col-sm text-right">
                                                     <label for="tradeAmt3"><strong>Amount:</strong></label>
-                                                    <input type="currency" name="tradeAmt3" id="tradeAmt3" value="<%= money.format(works.tradeAmt3) %>">
+                                                    <input type="number" step="0.01" name="tradeAmt3" id="tradeAmt3" value="<%= works.tradeAmt3 %>">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -266,23 +262,23 @@
                                                     <option value="<%= works.trade4 %>">
                                                         <%= works.trade4 %></option>
                                                     <% for (let trade of trades) { %>
-                                                        <option value="<%= trade.id%>">
+                                                        <option value="<%= trade.trade%>">
                                                         <%= trade.trade %></option>
                                                     <% } %>
                                                 </select>
                                                 </div>
                                                 <div class="col-sm text-right">
-                                                    <label for="tradeAmt2"><strong>Amount:</strong></label>
-                                                    <input type="currency" name="tradeAmt2" id="tradeAmt2" value="<%= money.format(works.tradeAmt2) %>">
+                                                    <label for="tradeAmt4"><strong>Amount:</strong></label>
+                                                    <input type="number" step="0.01" name="tradeAmt4" id="tradeAmt4" value="<%= works.tradeAmt4 %>">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm">
-                                                    <strong></strong>>
+                                                    <strong></strong>
                                                 </div>
                                                 <div class="col-sm text-right">
-                                                    <label for="workTotal"><strong>Work Order Total:</strong></label>
-                                                    <input type="currency" name="workTotal" id="workTotal" value="<%= money.format(works.woTotal) %>">
+                                                    <label for="woTotal"><strong>Work Order Total:</strong></label>
+                                                    <input type="number" step="0.01" name="woTotal" id="woTotal" value="<%= works.woTotal %>">
                                                 </div>
                                             </div>
                                             <br>
@@ -293,7 +289,7 @@
                                 price shown be insufficient to complete ther work, a new price would have to be agreed
                                 upon and a new work order issued PRIOR TO STARTING any works. NO COSTS ABOVE AND BEYOND
                                 THOSE SHOWN ON THIS WORK ORDER MAY BE INCURRED NOR WIL BE PAID.</p>
-                        </strong>>
+                        </strong>
                                                 </div>
                                             </div>
                                             <div class="centered">

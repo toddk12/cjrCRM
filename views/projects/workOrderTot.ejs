@@ -31,8 +31,11 @@
                                     </div>
                                 </div>
                             </h4>
+                            <br>
+                            <a class="btn-sm text-center" style="width: 150px" href="/add-workOrder/<%= project.id %>">Add Work Order</a>
                             <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
                         </div>
+                        <br>
                         <div class="centered" style="font-size: .8em;">
                             <% for (let work of works) { %>
                                 <article class="trades">
@@ -58,12 +61,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm" style="text-align: right;">
-                                            <% if(work.completed) { %>
-                                                Completed: <strong><%= work.completed %></strong> Complete Date: <strong><%= work.completeDate %></strong>
+                                            <% if(work.compDate === "0000-00-00") { %>
+                                                Complete Date: <strong> Not Yet Complete</strong>
                                                 <br>
                                                 <a href="/wos/<%= work.id %>">Edit</a> - <a href="/workOrder/<%= work.id %>">Email</a>
                                                 <% } else { %>
-                                                    Completed: <strong> Not Yet Complete</strong>
+                                                    Complete Date: <strong><%= work.compDate %></strong>
                                                     <br>
                                                     <a href="/wos/<%= work.id %>">Edit</a> - <a href="/workOrder/<%= work.id %>">Email</a>
                                                     <% } %>
