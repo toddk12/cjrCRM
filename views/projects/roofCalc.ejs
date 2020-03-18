@@ -1,0 +1,356 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main class="small">
+                <div class="centered">
+                    <h1><strong>Roof Calculator Information</strong></h1>
+                    <h4>
+                        <div class="row">
+                            <div class="col-sm">
+                                <%= project.projectNo %>
+                            </div>
+                            <div class="col-sm">
+                                Owner:
+                                <%= project.owner1Fn %>
+                                    <%= project.owner1Ln %>
+                            </div>
+                            <div class="col-sm">
+                                Address:
+                                <%= project.address %>
+                            </div>
+                            <div class="col-sm">
+                                City:
+                                <%= project.city %>
+                            </div>
+                        </div>
+                    </h4>
+                </div>
+                <div class="centered">
+                    <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
+                </div>
+                <br>
+                <form class="form" action="/roofCalc" method="POST">
+                    <div class="centered">
+                        <article class="shingles">
+                            <div class="row">
+                                <div class="col-sm text-center">
+                                    <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-center">
+                                    <h5><strong>Please enter the Shingle Material Information:</strong></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <label for="sMaterial"><strong>Shingle Material: </strong></label>
+                                    <input type="text" name="sMaterial" id="sMaterial">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="sManufacturer"><strong>Shingle Manufacturer: </strong></label>
+                                    <input type="text" name="sManufacturer" id="sManufacturer">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <label for="sName"><strong>Shingle Name: </strong></label>
+                                    <input type="text" name="sName" id="sName">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="sColor"><strong>Shingle Color: </strong></label>
+                                    <input type="text" name="sColor" id="sColor">
+                                </div>
+                            </div>
+                        </article>
+                        <article class="dimensions">
+                            <div class="row">
+                                <div class="col-sm text-center">
+                                    <h5><strong>Please enter the following Dimensions:</strong></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <label for="ridge"><strong>Ridge: </strong></label>
+                                    <input style="width: 100px" type="text" name="ridge" id="ridge">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="hip"><strong>Hip: </strong></label>
+                                    <input style="width: 100px" type="text" name="hip" id="hip">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="valley"><strong>Valley: </strong></label>
+                                    <input style="width: 100px" type="text" name="valley" id="valley">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="rake"><strong>Rake: </strong></label>
+                                    <input style="width: 100px" type="text" name="rake" id="rake">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="eaveStarter"><strong>Eaves/Starter: </strong></label>
+                                    <input style="width: 100px" type="text" name="eaveStarter" id="eaveStarter">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <label for="dripEdge"><strong>Drip Edge: </strong></label>
+                                    <input style="width: 100px" type="text" name="dripEdge" id="dripEdge">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="flashing"><strong>Flashing: </strong></label>
+                                    <input style="width: 100px" type="text" name="flashing" id="flashing">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="stepFlashing"><strong>Step Flashing: </strong></label>
+                                    <input style="width: 100px" type="text" name="stepFlashing" id="stepFlashing">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="totalArea"><strong>Total Area: </strong></label>
+                                    <input style="width: 100px" type="text" name="totalArea" id="totalArea">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="squares"><strong>Squares: </strong></label>
+                                    <input style="width: 100px" type="text" name="squares" id="squares">
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="centered">
+                        <article class="amounts">
+                            <div class="row">
+                                <div class="col-sm text-center">
+                                    <h5><strong>Please enter the following Amounts:</strong></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <label for="rollValley"><strong>Roll Valley (rolls): </strong></label>
+                                    <input style="width: 100px" type="text" name="rollValley" id="rollValley">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="turtleVents"><strong>Turtle Vents: </strong></label>
+                                    <input style="width: 100px" type="text" name="turtleVents" id="turtleVents">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="adjPipeVents"><strong>Adj Pipe Vents: </strong></label>
+                                    <input style="width: 100px" type="text" name="adjPipeVents" id="adjPipeVents">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <label for="caulk"><strong>Caulk (Clear Silicon): </strong></label>
+                                    <input style="width: 100px" type="text" name="caulk" id="caulk">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="sprayPaint"><strong>Spray Paint: </strong></label>
+                                    <input style="width: 100px" type="text" name="sprayPaint" id="sprayPaint">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="sprayPrimer"><strong>Spray Primer: </strong></label>
+                                    <input style="width: 100px" type="text" name="sprayPrimer" id="sprayPrimer">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <label for="tinShingles"><strong>Tin Shingles: </strong></label>
+                                    <input style="width: 100px" type="text" name="tinShingles" id="tinShingles">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="modBase"><strong>Modified Base: </strong></label>
+                                    <input style="width: 100px" type="text" name="modBase" id="modBase">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="rollRoof"><strong>Roll Roofing: </strong></label>
+                                    <input style="width: 100px" type="text" name="rollRoof" id="rollRoof">
+                                </div>
+                            </div>
+                        </article>
+                        <article class="amounts">
+                            <div class="row">
+                                <div class="col-sm text-center">
+                                    <h5><strong>Please choose the following colors/sizes:</strong></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <label for="dripColor"><strong>Drip Edge Color: </strong></label>
+                                    <select style="width: 75px" class="select" name="dripColor" id="dripColor">
+                                    <option>N/A</option>
+                                    <option>White</option>
+                                    <option>Brown</option>
+                                    <option>Black</option>
+                                    <option>Bronze</option>
+                                    <option>Grey</option>
+                                    <option>Tan</option>
+                                    <option>Almond</option>
+                                    <option>Mill</option>
+                                </select>
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="dripSize"><strong>Drip Edge Size: </strong></label>
+                                    <select style="width: 75px" class="select" name="dripSize" id="dripSize">
+                                    <option>2 x 2</option>
+                                    <option>1.5 x 1.5</option>
+                                </select>
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="feltWgt"><strong>Felt Weight: </strong></label>
+                                    <select style="width: 75px" class="select" name="feltWgt" id="feltWgt">
+                                    <option>15 lbs</option>
+                                    <option>30 lbs"</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <label for="noIWCourses"><strong># of Ice/Water Courses: </strong></label>
+                                    <select style="width: 75px" class="select" name="noIWCourses" id="noIWCourses">
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="perPail"><strong>Cap Nailes Per Pail: </strong></label>
+                                    <select style="width: 80px" class="select" name="perPail" id="perPail">
+                                    <option>1,000</option>
+                                    <option>2,000</option>
+                                </select>
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="turtleColor"><strong>Turtle Vent Color: </strong></label>
+                                    <select style="width: 80px" class="select" name="turtleColor" id="turtleColor">
+                                    <option>N/A</option>
+                                    <option>Black</option>
+                                    <option>Brown</option>
+                                    <option>Weathered Bronze</option>
+                                </select>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="centered">
+                        <article class="others">
+                            <div class="row">
+                                <div class="col-sm text-center">
+                                    <h5><strong>Please enter any Other items:</strong></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <strong></strong>>
+                                </div>
+                                <div class="col-sm">
+                                    <label for="bVent1"><strong>B Vent 1: </strong></label>
+                                    <input style="width: 200px" type="text" name="bVent1" id="bVent1">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="bv1Size"><strong>B Vent 1 Size: </strong></label>
+                                    <select style="width: 50px" class="select" name="bv1Size" id="bv1Size">
+                                    <option>0</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>8</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <strong></strong>>
+                                </div>
+                                <div class="col-sm">
+                                    <label for="bVent2"><strong>B Vent 2: </strong></label>
+                                    <input style="width: 200px" type="text" name="bVent2" id="bVent2">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="bv2Size"><strong>B Vent 2 Size: </strong></label>
+                                    <select style="width: 50px" class="select" name="bv2Size" id="bv2Size">
+                                    <option>0</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>8</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="other1"><strong>Other 1: </strong></label>
+                                    <input style="width: 200px" type="text" name="other1" id="other1">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="unit1"><strong>Units: </strong></label>
+                                    <input style="width: 75px" type="text" name="unit1" id="unit1">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="desc1"><strong>Description: </strong></label>
+                                    <input style="width: 400px" type="text" name="desc1" id="desc1">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="other2"><strong>Other 2: </strong></label>
+                                    <input style="width: 200px" type="text" name="other2" id="other2">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="unit2"><strong>Units: </strong></label>
+                                    <input style="width: 75px" type="text" name="unit2" id="unit2">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="desc2"><strong>Description: </strong></label>
+                                    <input style="width: 400px" type="text" name="desc2" id="desc2">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <label for="other3"><strong>Other 3: </strong></label>
+                                    <input style="width: 200px" type="text" name="other3" id="other3">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="unit3"><strong>Units: </strong></label>
+                                    <input style="width: 75px" type="text" name="unit3" id="unit3">
+                                </div>
+                                <div class="col-sm">
+                                    <label for="desc3"><strong>Description: </strong></label>
+                                    <input style="width: 400px" type="text" name="desc3" id="desc3">
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="centered">
+                        <article class="others">
+                            <div class="row">
+                                <div class="col-sm text-center">
+                                    <h5><strong>Please enter the following order information:</strong></h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
+                                    <label for="supplier"><strong>Supplier: </strong></label>
+                                    <input type="text" name="supplier" id="supplier">
+                                </div>
+                                <div class="col-sm text-right">
+                                    <label for="orderDate"><strong>Date order placed: </strong></label>
+                                    <input type="date" name="orderDate" id="orderDate">
+                                </div>
+                                <div class="col-sm" style="vertical-align: top">
+                                    <label for="orderNotes"><strong>Order Notes: </strong></label>
+                                    <textarea cols="100" rows="4" type="text" name="orderNotes" id="orderNotes"></textarea>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="centered">
+                        <br>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button class="btn-sm text-center" style="width: 125px" type="submit">Calculate</button>
+                    </div>
+                </form>
+                <br>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

@@ -1,0 +1,37 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main class="small">
+                <div class="centered">
+                    <h1><strong>Roof Calculator Results</strong></h1>
+                    <h4>
+                        <div class="row">
+                            <div class="col-sm">
+                                Project#:
+                                <%= project.projectNo %>
+                            </div>
+                            <div class="col-sm">
+                                Owner:
+                                <%= project.owner1Fn %>
+                                    <%= project.owner1Ln %>
+                            </div>
+                            <div class="col-sm">
+                                Address:
+                                <%= project.address %>
+                            </div>
+                            <div class="col-sm">
+                                City:
+                                <%= project.city %>
+                            </div>
+                        </div>
+                    </h4>
+                </div>
+                <br>
+
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

@@ -88,22 +88,6 @@ router.post('/wtbEdit', isAuth, projectsController.postWtbEdit);
 
 router.get('/wtbTot/:projectId', isAuth, projectsController.getWtbTot);
 
-router.get('/searchLn', isAuth, projectsController.getSearchLn);
-
-router.post('/searchLn', isAuth, projectsController.postSearchLn);
-
-router.get('/searchBn', isAuth, projectsController.getSearchBn);
-
-router.post('/searchBn', isAuth, projectsController.postSearchBn);
-
-router.get('/searchAdd', isAuth, projectsController.getSearchAdd);
-
-router.post('/searchAdd', isAuth, projectsController.postSearchAdd);
-
-router.get('/searchCty', isAuth, projectsController.getSearchCty);
-
-router.post('/searchCty', isAuth, projectsController.postSearchCty);
-
 router.get('/workOrderTot/:projectId', isAuth, projectsController.getWorkOrderTot);
 
 router.get('/wos/:workId', isAuth, projectsController.getWos);
@@ -111,6 +95,12 @@ router.get('/wos/:workId', isAuth, projectsController.getWos);
 router.post('/wos', isAuth, projectsController.postWos);
 
 router.get('/workOrder/:workId', isAuth, projectsController.getWorkOrder);
+
+router.get('/roofCalc/:projectId', isAuth, projectsController.getRoofCalc);
+
+router.post('/roofCalc', isAuth, projectsController.postRoofCalc);
+
+router.get('/roofCalcResluts/:projectId', isAuth, projectsController.getRoofCalcR);
 
 
 module.exports = router;

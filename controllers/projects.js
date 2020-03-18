@@ -1734,262 +1734,6 @@ exports.postJcEdit = async(req, res, next) => {
     }
 };
 
-exports.getSearchLn = async(req, res, next) => {
-
-    res.render('projects/searchLn', {
-        pageTitle: 'Last Name Search',
-        path: '/searchLn',
-    });
-
-};
-
-exports.postSearchLn = async(req, res, next) => {
-    const o1Ln = req.body.o1Ln;
-    try {
-        const sales = await Sales.findAll()
-        const status = await Status.findAll()
-        const projects = await Project.findAll({
-            where: {
-                owner1Ln: {
-                    [Op.substring]: o1Ln
-                }
-            },
-            include: [{
-                model: Sales
-            }, {
-                model: Supervisor
-            }, {
-                model: Insurance
-            }, {
-                model: Status
-            }],
-            order: [
-                ['owner1Ln', 'ASC']
-            ]
-        })
-        res.render('projects/projects', {
-            projs: projects,
-            stat: status,
-            sal: sales,
-            pageTitle: 'Projects',
-            path: '/projects',
-        });
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    }
-
-};
-
-exports.getSearchBn = async(req, res, next) => {
-
-    res.render('projects/searchBn', {
-        pageTitle: 'Building Name Search',
-        path: '/searchBn',
-    });
-
-};
-
-exports.postSearchBn = async(req, res, next) => {
-    const bN = req.body.bN;
-    try {
-        const sales = await Sales.findAll()
-        const status = await Status.findAll()
-        const projects = await Project.findAll({
-            where: {
-                bName: {
-                    [Op.substring]: bN
-                }
-            },
-            include: [{
-                model: Sales
-            }, {
-                model: Supervisor
-            }, {
-                model: Insurance
-            }, {
-                model: Status
-            }],
-            order: [
-                ['owner1Ln', 'ASC']
-            ]
-        })
-        res.render('projects/projects', {
-            projs: projects,
-            stat: status,
-            sal: sales,
-            pageTitle: 'Projects',
-            path: '/projects',
-        });
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    }
-
-};
-
-exports.getSearchAdd = async(req, res, next) => {
-
-    res.render('projects/searchAdd', {
-        pageTitle: 'Address Search',
-        path: '/searchAdd',
-    });
-
-};
-
-exports.postSearchAdd = async(req, res, next) => {
-    const add = req.body.add;
-    const com = req.body.com;
-    try {
-        if (!com) {
-            const sales = await Sales.findAll()
-            const status = await Status.findAll()
-            const projects = await Project.findAll({
-                where: {
-                    address: {
-                        [Op.substring]: add
-                    }
-                },
-                include: [{
-                    model: Sales
-                }, {
-                    model: Supervisor
-                }, {
-                    model: Insurance
-                }, {
-                    model: Status
-                }],
-                order: [
-                    ['owner1Ln', 'ASC']
-                ]
-            })
-            res.render('projects/projects', {
-                projs: projects,
-                stat: status,
-                sal: sales,
-                pageTitle: 'Projects',
-                path: '/projects',
-            });
-        } else {
-            const sales = await Sales.findAll()
-            const status = await Status.findAll()
-            const projects = await Project.findAll({
-                where: {
-                    bAddress: {
-                        [Op.substring]: add
-                    }
-                },
-                include: [{
-                    model: Sales
-                }, {
-                    model: Supervisor
-                }, {
-                    model: Insurance
-                }, {
-                    model: Status
-                }],
-                order: [
-                    ['owner1Ln', 'ASC']
-                ]
-            })
-            res.render('projects/projects', {
-                projs: projects,
-                stat: status,
-                sal: sales,
-                pageTitle: 'Projects',
-                path: '/projects',
-            });
-        }
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    }
-
-};
-
-exports.getSearchCty = async(req, res, next) => {
-
-    res.render('projects/searchCty', {
-        pageTitle: 'City Search',
-        path: '/searchCty',
-    });
-
-};
-
-exports.postSearchCty = async(req, res, next) => {
-    const city = req.body.city;
-    const com = req.body.com;
-    try {
-        if (!com) {
-            const sales = await Sales.findAll()
-            const status = await Status.findAll()
-            const projects = await Project.findAll({
-                where: {
-                    city: {
-                        [Op.substring]: city
-                    }
-                },
-                include: [{
-                    model: Sales
-                }, {
-                    model: Supervisor
-                }, {
-                    model: Insurance
-                }, {
-                    model: Status
-                }],
-                order: [
-                    ['owner1Ln', 'ASC']
-                ]
-            })
-            res.render('projects/projects', {
-                projs: projects,
-                stat: status,
-                sal: sales,
-                pageTitle: 'Projects',
-                path: '/projects',
-            });
-        } else {
-            const sales = await Sales.findAll()
-            const status = await Status.findAll()
-            const projects = await Project.findAll({
-                where: {
-                    bCity: {
-                        [Op.substring]: city
-                    }
-                },
-                include: [{
-                    model: Sales
-                }, {
-                    model: Supervisor
-                }, {
-                    model: Insurance
-                }, {
-                    model: Status
-                }],
-                order: [
-                    ['owner1Ln', 'ASC']
-                ]
-            })
-            res.render('projects/projects', {
-                projs: projects,
-                stat: status,
-                sal: sales,
-                pageTitle: 'Projects',
-                path: '/projects',
-            });
-        }
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    }
-
-};
-
 exports.getWorkOrderTot = async(req, res, next) => {
     const projId = req.params.projectId
     console.log(projId);
@@ -2085,12 +1829,7 @@ exports.postWos = async(req, res, next) => {
     const updatedtrade4 = req.body.trade4;
     const updatedtradeAmt4 = req.body.tradeAmt4;
     const updatedwoTotal = req.body.woTotal;
-    console.log(workId);
-    console.log(updatedtradeAmt1);
-    console.log(updatedtradeAmt2);
-    console.log(updatedtradeAmt3);
-    console.log(updatedcompDate);
-    console.log(updatedcomplete);
+
     try {
         const workOrder = await WorkOrder.findByPk(workId)
 
@@ -2145,6 +1884,7 @@ exports.getWorkOrder = async(req, res, next) => {
     const workId = req.params.workId;
     console.log(workId);
     try {
+
         const workOrder = await WorkOrder.findByPk(workId, {
             include: [{
                 model: Sales
@@ -2156,7 +1896,12 @@ exports.getWorkOrder = async(req, res, next) => {
                 model: Subcontractor
             }],
         })
+        const project = await Project.findAll({
+            where: { id: workOrder.projectId }
+        });
 
+        const ofn = (workOrder.project.owner1Fn + " " + workOrder.project.owner1Ln);
+        const addr = (workOrder.project.address + ", " + workOrder.project.city + " " + workOrder.project.zip);
         const woName = 'workOrder-' + workId + '.pdf';
         const woPath = path.join('data', 'workOrders', woName);
 
@@ -2177,18 +1922,37 @@ exports.getWorkOrder = async(req, res, next) => {
             align: 'center'
         });
         pdfDoc.moveDown().font('Times-Bold').fontSize(16).text('Subcontractor: ' + workOrder.subcontractor.coName, { align: 'center' });
-        pdfDoc.moveDown().font('Times-Roman').fontSize(12).text('Start Date: ' + workOrder.startDate);
-        pdfDoc.moveUp().text('End Date: ' + workOrder.endDate, {
+        pdfDoc.moveDown().fontSize(14).text('Owner: ');
+        pdfDoc.moveUp().font('Times-Roman').text(ofn, {
+            indent: 75
+        });
+        pdfDoc.font('Times-Bold').text('Address: ');
+        pdfDoc.moveUp().font('Times-Roman').text(addr, {
+            indent: 75
+        });
+
+        pdfDoc.moveDown().font('Times-Bold').text('Start Date: ');
+        pdfDoc.moveUp().font('Times-Roman').text(workOrder.startDate, {
+            indent: 75
+        });
+        pdfDoc.font('Times-Bold').text('End Date: ');
+        pdfDoc.moveUp().font('Times-Roman').text(workOrder.endDate, {
+            indent: 75
+        });
+
+        pdfDoc.rect(65, 325, 450, 175).stroke();
+
+        pdfDoc.moveDown(2).font('Times-Bold').text('Description: ');
+        pdfDoc.font('Times-Roman').text(workOrder.description);
+
+        pdfDoc.moveDown(11).font('Times-Bold').text('Work Order Total: $');
+        pdfDoc.moveUp().font('Times-Roman').text(workOrder.woTotal, {
             indent: 150
         });
 
-        pdfDoc.moveDown(2).text('Description: ' + workOrder.description);
 
-        pdfDoc.moveDown(4).text('Work Order Total: $' + workOrder.woTotal);
-
-
-        pdfDoc.moveDown(2).text('_____________________________________________________________________');
-        pdfDoc.moveDown(2).text('The price shown on this work order is for the work detailed in the order. Should the price shown be insufficient to complete ther work, a new price would have to be agreed upon and a new work order issued PRIOR TO STARTING any work. NO COSTS ABOVE AND BEYOND THOSE SHOWN ON THIS WORK ORDER MAY BE INCURRED NOR WIL BE PAID.', { align: 'center' })
+        pdfDoc.moveDown().text('__________________________________________________________________');
+        pdfDoc.moveDown().font('Times-BoldItalic').text('The price shown on this work order is for the work detailed in the order. Should the price shown be insufficient to complete ther work, a new price would have to be agreed upon and a new work order issued PRIOR TO STARTING any work. NO COSTS ABOVE AND BEYOND THOSE SHOWN ON THIS WORK ORDER MAY BE INCURRED NOR WIL BE PAID.', { align: 'center' })
 
         pdfDoc.end();
 
@@ -2198,4 +1962,60 @@ exports.getWorkOrder = async(req, res, next) => {
         return next(error);
     }
 
+};
+
+exports.getRoofCalc = async(req, res, next) => {
+    console.log('RoofCalc');
+    const projId = req.params.projectId;
+    try {
+        const project = await Project.findByPk(projId)
+        res.render('projects/roofCalc', {
+            pageTitle: 'Roof Calculator',
+            path: '/roofCalc',
+            projId: projId,
+            project: project
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postRoofCalc = async(req, res, next) => {
+    console.log('RoofCalc');
+    const projId = req.body.projectId;
+    console.log(projId);
+    try {
+        const project = await Project.findByPk(projId)
+        res.render('projects/roofCalcResults', {
+            pageTitle: 'Roof Calculator Results',
+            path: '/roofCalcResults',
+            projId: projId,
+            project: project
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.getRoofCalcR = async(req, res, next) => {
+    console.log('RoofCalcR');
+    const projId = req.params.projectId;
+    console.log(projId);
+    try {
+        const project = await Project.findByPk(projId)
+        res.render('projects/roofCalcResults', {
+            pageTitle: 'Roof Calculator',
+            path: '/roofCalcResults',
+            projId: projId,
+            project: project
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
 };

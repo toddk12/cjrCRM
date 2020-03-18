@@ -63,6 +63,7 @@ app.set('views', 'views');
 const projectRoutes = require('./routes/project');
 const mainRoutes = require('./routes/main');
 const addRoutes = require('./routes/add');
+const searchRoutes = require('./routes/search');
 const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -106,6 +107,7 @@ app.use((req, res, next) => {
 app.use(projectRoutes);
 app.use(mainRoutes);
 app.use(addRoutes);
+app.use(searchRoutes);
 app.use(authRoutes);
 
 app.get('/500', errorController.get500);
