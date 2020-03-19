@@ -658,13 +658,8 @@ exports.getAddWorkOrder = async(req, res, next) => {
 };
 
 exports.postAddWorkOrder = (req, res, next) => {
-    console.log("HeyYa");
-    console.log(req.body.tradeAmt1);
-    console.log(req.body.tradeAmt2);
-    console.log(req.body.tradeAmt3);
-    console.log(req.body.tradeAmt4);
-    console.log(req.body.complete);
-
+    console.log(req.body.srep);
+    console.log(req.body.field);
     WorkOrder.create({
             projectId: req.body.projectId,
             subcontractorId: req.body.subcontractorId,
@@ -681,8 +676,9 @@ exports.postAddWorkOrder = (req, res, next) => {
             tradeAmt3: req.body.tradeAmt3,
             trade4: req.body.trade4,
             tradeAmt4: req.body.tradeAmt4,
-            woTotal: req.body.woTotal
-
+            woTotal: req.body.woTotal,
+            supervisorId: req.body.field,
+            saleId: req.body.srep
         })
         .then(workOrder => {
             const projId = workOrder.projectId;

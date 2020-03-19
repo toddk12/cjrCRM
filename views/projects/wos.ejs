@@ -9,7 +9,7 @@
                     <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
                         <br>
                         <div class="centered">
-                            <h1> Add Work Order</h1>
+                            <h1> Edit Work Order</h1>
 
                             <a class="btn-sm text-center" style="width: 150px" href="/project/<%= projId %>">Back to Details</a>
                             <br>
@@ -76,6 +76,14 @@
                                         <div class="col-sm">
                                             <strong>Email: </strong>
                                             <%= works.project.email %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <strong>Field Supervisor: </strong>
+                                            <%= works.supervisor.name %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <strong>Sales Rep: </strong>
+                                            <%= works.sale.name %>
                                         </div>
                                     </div>
                                     <% } else { %>
@@ -146,6 +154,14 @@
                                             <div class="col-sm">
                                                 <strong>Email: </strong>
                                                 <%= works.project.email %>
+                                            </div>
+                                            <div class="col-sm">
+                                                <strong>Field Supervisor: </strong>
+                                                <%= works.supervisor.name %>
+                                            </div>
+                                            <div class="col-sm">
+                                                <strong>Sales Rep: </strong>
+                                                <%= works.sale.name %>
                                             </div>
                                         </div>
                                         <% } %>

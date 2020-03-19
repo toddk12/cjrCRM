@@ -153,10 +153,12 @@
                                         <%= project.email %>
                                     </div>
                                     <div class="col-sm">
+                                        <input type="hidden" name="field" id="field" value="<%= project.supervisor.id %>">
                                         <strong>Field Supervisor: </strong>
                                         <%= project.supervisor.name %>
                                     </div>
                                     <div class="col-sm">
+                                        <input type="hidden" name="srep" id="srep" value="<%= project.sale.id %>">
                                         <strong>Sales Rep: </strong>
                                         <%= project.sale.name %>
                                     </div>

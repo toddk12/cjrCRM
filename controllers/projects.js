@@ -23,6 +23,7 @@ const Trades = require('../models/trades');
 const RType = require('../models/rType');
 const Wtb = require('../models/wtb');
 const WorkOrder = require('../models/workOrder');
+const RoofCalc = require('../models/roofCalc');
 
 exports.getAllProjects = async(req, res, next) => {
     try {
@@ -1902,6 +1903,8 @@ exports.getWorkOrder = async(req, res, next) => {
 
         const ofn = (workOrder.project.owner1Fn + " " + workOrder.project.owner1Ln);
         const addr = (workOrder.project.address + ", " + workOrder.project.city + " " + workOrder.project.zip);
+        const field = (workOrder.supervisor.name);
+        const srep = (workOrder.sale.name);
         const woName = 'workOrder-' + workId + '.pdf';
         const woPath = path.join('data', 'workOrders', woName);
 
@@ -1932,20 +1935,21 @@ exports.getWorkOrder = async(req, res, next) => {
         });
 
         pdfDoc.moveDown().font('Times-Bold').text('Start Date: ');
-        pdfDoc.moveUp().font('Times-Roman').text(workOrder.startDate, {
-            indent: 75
-        });
-        pdfDoc.font('Times-Bold').text('End Date: ');
-        pdfDoc.moveUp().font('Times-Roman').text(workOrder.endDate, {
-            indent: 75
-        });
+        pdfDoc.moveUp().font('Times-Roman').text(workOrder.startDate, { indent: 75 });
+        pdfDoc.moveUp().font('Times-Bold').text('End Date: ', { indent: 185 });
+        pdfDoc.moveUp().font('Times-Roman').text(workOrder.endDate, { indent: 250 });
 
-        pdfDoc.rect(65, 325, 450, 175).stroke();
+        pdfDoc.moveDown().font('Times-Bold').text('Supervisor: ');
+        pdfDoc.moveUp().font('Times-Roman').text(field, { indent: 75 });
+        pdfDoc.moveUp().font('Times-Bold').text('Sales Rep: ', { indent: 185 });
+        pdfDoc.moveUp().font('Times-Roman').text(srep, { indent: 250 });
+
+        pdfDoc.rect(65, 350, 450, 175).stroke();
 
         pdfDoc.moveDown(2).font('Times-Bold').text('Description: ');
         pdfDoc.font('Times-Roman').text(workOrder.description);
 
-        pdfDoc.moveDown(11).font('Times-Bold').text('Work Order Total: $');
+        pdfDoc.moveDown(9).font('Times-Bold').text('Work Order Total: $');
         pdfDoc.moveUp().font('Times-Roman').text(workOrder.woTotal, {
             indent: 150
         });
@@ -1982,23 +1986,66 @@ exports.getRoofCalc = async(req, res, next) => {
     }
 };
 
-exports.postRoofCalc = async(req, res, next) => {
-    console.log('RoofCalc');
-    const projId = req.body.projectId;
-    console.log(projId);
-    try {
-        const project = await Project.findByPk(projId)
-        res.render('projects/roofCalcResults', {
-            pageTitle: 'Roof Calculator Results',
-            path: '/roofCalcResults',
-            projId: projId,
-            project: project
+exports.postRoofCalc = (req, res, next) => {
+
+    RoofCalc.create({
+            projectId: req.body.projectId,
+            sMaterial: req.body.sMaterial,
+            sManufacturer: req.body.sManufacturer,
+            sName: req.body.sName,
+            sColor: req.body.sColor,
+            ridge: req.body.ridge,
+            hip: req.body.hip,
+            valley: req.body.valley,
+            rake: req.body.rake,
+            eaveStarter: req.body.eaveStater,
+            dripEdge: req.body.dripEdge,
+            flashing: req.body.flashing,
+            stepFlashing: req.body.stepFlashing,
+            totalArea: req.body.totalArea,
+            squares: req.body.squares,
+            rollValley: req.body.rollValley,
+            turtleVents: req.body.turtleVents,
+            adjPipeVents: req.body.adjPipeVents,
+            caulk: req.body.caulk,
+            sprayPaint: req.body.sprayPaint,
+            sprayPrimer: req.body.sprayPrimer,
+            tinShingles: req.body.tinShingles,
+            modBase: req.body.modBase,
+            rollRoof: req.body.rollRoof,
+            dripColor: req.body.dripColor,
+            dripSize: req.body.dripSize,
+            feltWgt: req.body.feltWgt,
+            noIWCourses: req.body.noIWCourses,
+            perPail: req.body.perPail,
+            turtleColor: req.body.turtleColor,
+            bVent1: req.body.bVent1,
+            bv1Size: req.body.bv1Size,
+            bVent2: req.body.bVent2,
+            bv2Size: req.body.bv2Size,
+            other1: req.body.other1,
+            unit1: req.body.unit1,
+            desc1: req.body.desc1,
+            other2: req.body.other2,
+            unit2: req.body.unit2,
+            desc2: req.body.desc2,
+            other3: req.body.other3,
+            unit3: req.body.unit3,
+            desc3: req.body.desc3,
+            supplier: req.body.supplier,
+            orderDate: req.body.orderDate,
+            orderNotes: req.body.orderNotes,
+        })
+        .then(result => {
+
+            console.log('Roof Calcs Added');
+            res.redirect('/home');
+        })
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
         });
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    }
 };
 
 exports.getRoofCalcR = async(req, res, next) => {
