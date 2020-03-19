@@ -126,7 +126,6 @@
                                                 <%= project.zip %>
                                     </div>
                                 </div>
-                                <br>
                                 <div class="row">
                                     <div class="col-sm">
                                         <strong>Home Phone: </strong>(
@@ -147,10 +146,19 @@
                                                 <%= project.hPhone.substring(6, 10) %>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row">
                                     <div class="col-sm">
                                         <strong>Email: </strong>
                                         <%= project.email %>
+                                    </div>
+                                    <div class="col-sm">
+                                        <strong>Field Supervisor: </strong>
+                                        <%= project.supervisor.name %>
+                                    </div>
+                                    <div class="col-sm">
+                                        <strong>Sales Rep: </strong>
+                                        <%= project.sale.name %>
                                     </div>
                                 </div>
                                 <% } %>
