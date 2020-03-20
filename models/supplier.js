@@ -13,6 +13,7 @@ const Supplier = sequelize.define('supplier', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    contact: Sequelize.STRING,
     address: Sequelize.STRING,
     address2: Sequelize.STRING,
     city: Sequelize.STRING,

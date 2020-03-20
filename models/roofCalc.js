@@ -33,10 +33,6 @@ const RoofCalc = sequelize.define('roofCalc', {
         type: Sequelize.FLOAT(10, 2),
         default: 0.00
     },
-    dripEdge: {
-        type: Sequelize.FLOAT(10, 2),
-        default: 0.00
-    },
     flashing: {
         type: Sequelize.FLOAT(10, 2),
         default: 0.00
@@ -66,12 +62,11 @@ const RoofCalc = sequelize.define('roofCalc', {
     dripSize: Sequelize.STRING,
     feltWgt: Sequelize.STRING,
     noIWCourses: Sequelize.STRING,
-    perPail: Sequelize.STRING,
     turtleColor: Sequelize.STRING,
-    bVent1: Sequelize.STRING,
-    bv1Size: Sequelize.STRING,
-    bVent2: Sequelize.STRING,
-    bv2Size: Sequelize.STRING,
+    versaCaps: Sequelize.STRING,
+    vcSize: Sequelize.STRING,
+    bVent: Sequelize.STRING,
+    bvSize: Sequelize.STRING,
     other1: Sequelize.STRING,
     unit1: Sequelize.STRING,
     desc1: Sequelize.STRING,
@@ -81,6 +76,9 @@ const RoofCalc = sequelize.define('roofCalc', {
     other3: Sequelize.STRING,
     unit3: Sequelize.STRING,
     desc3: Sequelize.STRING,
+    other4: Sequelize.STRING,
+    unit4: Sequelize.STRING,
+    desc4: Sequelize.STRING,
     supplier: Sequelize.STRING,
     orderDate: Sequelize.DATEONLY,
     orderNotes: Sequelize.STRING

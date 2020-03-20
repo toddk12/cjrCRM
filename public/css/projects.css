@@ -84,13 +84,22 @@ article {
 }
 
 .amounts {
-    width: 45%;
+    width: 80%;
 }
 
 .others {
-    width: 80%;
+    width: 40%;
 }
 
 .small {
     font-size: .75rem;
+}
+
+.info {
+    width: 60%;
+}
+
+.col-xsm {
+    padding: 0 10px 0 10px;
+
 }

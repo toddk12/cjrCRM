@@ -19,7 +19,7 @@ const Notes = sequelize.define('notes', {
         type: Sequelize.DATEONLY,
         allowNull: false
     },
-    note: { type: Sequelize.STRING }
+    note: { type: Sequelize.STRING(1234) }
 });
 
 module.exports = Notes;

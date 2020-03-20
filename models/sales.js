@@ -13,6 +13,7 @@ const Sales = sequelize.define('sales', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    email: Sequelize.STRING,
     active: {
         type: Sequelize.BOOLEAN,
         defaultValue: 1

@@ -13,6 +13,7 @@ const Subcontractor = sequelize.define('subcontractor', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    contact: Sequelize.STRING,
     address: Sequelize.STRING,
     address2: Sequelize.STRING,
     city: Sequelize.STRING,
@@ -20,7 +21,8 @@ const Subcontractor = sequelize.define('subcontractor', {
     zip: Sequelize.STRING,
     phone: Sequelize.STRING,
     email: Sequelize.STRING,
-    notes: Sequelize.STRING
+    notes: Sequelize.STRING,
+    active: Sequelize.BOOLEAN
 });
 
 module.exports = Subcontractor;

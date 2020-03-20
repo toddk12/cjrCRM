@@ -1,0 +1,73 @@
+<%- include('../includes/header.ejs') %>
+<link rel="stylesheet" href="/css/projects.css">
+
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="small">
+        <div class="centered">
+            <h1><strong>Roof Order Information</strong></h1>
+            <h4>
+                <div class="row">
+                    <div class="col-sm">
+                        <%= project.projectNo %>
+                    </div>
+                    <div class="col-sm">
+                        Owner:
+                        <%= project.owner1Fn %>
+                        <%= project.owner1Ln %>
+                    </div>
+                    <div class="col-sm">
+                        Address:
+                        <%= project.address %>
+                    </div>
+                    <div class="col-sm">
+                        City:
+                        <%= project.city %>
+                    </div>
+                </div>
+            </h4>
+        </div>
+        <div class="centered">
+            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
+        </div>
+        <br>
+            <div class="centered">
+                <article class="shingles">
+                    <div class="row">
+                        <div class="col-sm text-center">
+                            <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm text-center">
+                            <h5><strong>Please enter the Shingle Material Information:</strong></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm text-right">
+                            <label for="sMaterial"><strong>Shingle Material: </strong></label>
+                            <input type="text" name="sMaterial" id="sMaterial">
+                        </div>
+                        <div class="col-sm text-right">
+                            <label for="sManufacturer"><strong>Shingle Manufacturer: </strong></label>
+                            <input type="text" name="sManufacturer" id="sManufacturer">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm text-right">
+                            <label for="sName"><strong>Shingle Name: </strong></label>
+                            <input type="text" name="sName" id="sName">
+                        </div>
+                        <div class="col-sm text-right">
+                            <label for="sColor"><strong>Shingle Color: </strong></label>
+                            <input type="text" name="sColor" id="sColor">
+                        </div>
+                    </div>
+                </article>
+                
+        <br>
+    </main>
+
+    <%- include('../includes/footer.ejs') %>

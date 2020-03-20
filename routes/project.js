@@ -100,7 +100,7 @@ router.get('/roofCalc/:projectId', isAuth, projectsController.getRoofCalc);
 
 router.post('/roofCalc', isAuth, projectsController.postRoofCalc);
 
-router.get('/roofCalcResluts/:projectId', isAuth, projectsController.getRoofCalcR);
+router.get('/roofOrder/:projectId', isAuth, projectsController.getRoofOrder);
 
 
 module.exports = router;
