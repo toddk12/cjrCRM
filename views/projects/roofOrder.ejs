@@ -33,41 +33,222 @@
             <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
         </div>
         <br>
-            <div class="centered">
-                <article class="shingles">
-                    <div class="row">
-                        <div class="col-sm text-center">
-                            <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
-                        </div>
+        <div class="centered">
+            <article class="shingles">
+                <div class="row">
+                    <div class="col-sm text-center">
+                        <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
                     </div>
-                    <div class="row">
-                        <div class="col-sm text-center">
-                            <h5><strong>Please enter the Shingle Material Information:</strong></h5>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm text-center">
+                        <h5><strong>Please enter the Shingle Material Information:</strong></h5>
                     </div>
-                    <div class="row">
-                        <div class="col-sm text-right">
-                            <label for="sMaterial"><strong>Shingle Material: </strong></label>
-                            <input type="text" name="sMaterial" id="sMaterial">
-                        </div>
-                        <div class="col-sm text-right">
-                            <label for="sManufacturer"><strong>Shingle Manufacturer: </strong></label>
-                            <input type="text" name="sManufacturer" id="sManufacturer">
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm text-right">
+                        <label for="sMaterial"><strong>Shingle Material: </strong></label>
+                        <input type="text" name="sMaterial" id="sMaterial">
                     </div>
-                    <div class="row">
-                        <div class="col-sm text-right">
-                            <label for="sName"><strong>Shingle Name: </strong></label>
-                            <input type="text" name="sName" id="sName">
-                        </div>
-                        <div class="col-sm text-right">
-                            <label for="sColor"><strong>Shingle Color: </strong></label>
-                            <input type="text" name="sColor" id="sColor">
-                        </div>
+                    <div class="col-sm text-right">
+                        <label for="sManufacturer"><strong>Shingle Manufacturer: </strong></label>
+                        <input type="text" name="sManufacturer" id="sManufacturer">
                     </div>
-                </article>
-                
-        <br>
+                </div>
+                <div class="row">
+                    <div class="col-sm text-right">
+                        <label for="sName"><strong>Shingle Name: </strong></label>
+                        <input type="text" name="sName" id="sName">
+                    </div>
+                    <div class="col-sm text-right">
+                        <label for="sColor"><strong>Shingle Color: </strong></label>
+                        <input type="text" name="sColor" id="sColor">
+                    </div>
+                </div>
+            </article>
+            <div class="container" style="width: 720px">
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="col-xsm">Qty</th>
+                            <th scope="col" class="col-xsm">Unit</th>
+                            <th scope="col" class="col">Description</th>
+                            <th scope="col" class="col-xsm">Color/Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><%= roof.shingles %></th>
+                            <td>Sqr</td>
+                            <td class="text-left">Shingles</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><%= roof.hipRidge %></th>
+                            <td>Bdl</td>
+                            <td class="text-left">Hip/ Ridge: - to match shingles</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><%= roof.starter %></th>
+                            <td>Bdl</td>
+                            <td class="text-left">Starter: to match shingles</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Ea</td>
+                            <td class="text-left">2 X 4 Drip Edge (120)</td>
+                            <td>White</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Ea</td>
+                            <td class="text-left">Drip Edge</td>
+                            <td>2 x 2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Roll</td>
+                            <td class="text-left">Felt</td>
+                            <td>15 Lbs</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Roll</td>
+                            <td class="text-left">Ice & Water Shield - 2 squares per roll</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Ea</td>
+                            <td class="text-left">L Flashing</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Roll</td>
+                            <td class="text-left">Roll Valley Metal 20" - 50' roll</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Box</td>
+                            <td class="text-left">Step flashing 4" x 4" x 8" - Box of 100</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Box</td>
+                            <td class="text-left">Coil Nails - 1 1/4" - 7,200 per box - 1 box per 16 squares</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Pail</td>
+                            <td class="text-left">Plastic Nail Caps - 1 1/4" 2,000 per pail</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Sheet</td>
+                            <td class="text-left">7/16" OSB Decking</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Ea</td>
+                            <td class="text-left">Turtleback Roof Vent - GAF RV50 or equivilent</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Ea</td>
+                            <td class="text-left">Adjustible Pipe Jacks / Boots</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Tube</td>
+                            <td class="text-left">Caulk - Clear Silicon</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Can</td>
+                            <td class="text-left">Spray Paint to match shingles - 1 can per Roof Jack Vent</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Can</td>
+                            <td class="text-left">Spray PRimer</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Box</td>
+                            <td class="text-left">Tin Shingles - 8" x 8" - box of 100</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Box</td>
+                            <td class="text-left">Hip/ Ridge: - to match shingles</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td class="text-left">Modified Base</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td class="text-left">Roll Roofing similar to color samples</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td class="text-left">Versa Caps</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td class="text-left">B Vents</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td class="text-left"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td class="text-left"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td class="text-left"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td class="text-left"></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
     </main>
 
     <%- include('../includes/footer.ejs') %>

@@ -1989,6 +1989,27 @@ exports.getRoofCalc = async (req, res, next) => {
 };
 
 exports.postRoofCalc = (req, res, next) => {
+const shingles = ((req.body.squares/16)+1);
+const hipRidge = (((req.body.ridge + req.body.hip)/28)+1);
+const starter = (((req.body.eaveStarter + req.body.rake)/100)+1);
+const drip24 = ((req.body.eaveStarter/10)+1);
+const drip = ((req.body.rake/10)+1);
+if (req.body.feltWgt === "15 Lbs") {
+    const felt = ((req.body.squares/4)+1);
+} else {
+    const felt = ((req.body.squares/2)+1);
+}
+const iceWater = (((req.body.eaveStarter + req.body.noIWCourses)/66)+(req.body.valley/66)+1);
+const lFlash = ((req.body.flashing/10)+1);
+const sFlash = ((req.body.stepFlashing/45)+1);
+const cnail = ((req.body.squares/16)+1);
+const pnail = ((req.body.squares/25)+1);
+if (req.body.needDeck === "Yes") {
+    const deck = ((req.body.totalArea/32)+1);
+} else {
+    const deck = 0;
+}
+
 
     RoofCalc.create({
         projectId: req.body.projectId,
@@ -2038,8 +2059,13 @@ exports.postRoofCalc = (req, res, next) => {
         supplier: req.body.supplier,
         orderDate: req.body.orderDate,
         orderNotes: req.body.orderNotes,
+        shingles: shingles,
+        hipRidge: hipRidge,
+        starter: starter,
+
     })
-        .then(result => {
+        .then(roofCalc => {
+            Project.findByPk(roofCalc.projectId)
 
             console.log('Roof Calcs Added');
             res.redirect('/home');
@@ -2057,9 +2083,9 @@ exports.getRoofOrder = async (req, res, next) => {
     console.log(projId);
     try {
         const project = await Project.findByPk(projId)
-        res.render('projects/roofCalcResults', {
-            pageTitle: 'Roof Calculator',
-            path: '/roofCalcResults',
+        res.render('projects/roofOrder', {
+            pageTitle: 'Roof Order',
+            path: '/roofOrder',
             projId: projId,
             project: project
         });

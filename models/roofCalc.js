@@ -81,7 +81,19 @@ const RoofCalc = sequelize.define('roofCalc', {
     desc4: Sequelize.STRING,
     supplier: Sequelize.STRING,
     orderDate: Sequelize.DATEONLY,
-    orderNotes: Sequelize.STRING
+    orderNotes: Sequelize.STRING,
+    shingles: {
+        type: Sequelize.INTEGER,
+        default: 0.00
+    },
+    hipRidge: {
+        type: Sequelize.INTEGER,
+        default: 0.00
+    },
+    starter: {
+        type: Sequelize.INTEGER,
+        default: 0.00
+    },
 });
 
 module.exports = RoofCalc;
