@@ -8,6 +8,8 @@
     <main class="small">
         <div class="centered">
             <h1><strong>Roof Order Information</strong></h1>
+            <h4><strong>Supplier: <%= roof.supplier %></strong></h4>
+            <h5><strong>Order Date: <%= roof.orderDate %></strong></h5>
             <h4>
                 <div class="row">
                     <div class="col-sm">
@@ -47,22 +49,18 @@
                 </div>
                 <div class="row">
                     <div class="col-sm text-right">
-                        <label for="sMaterial"><strong>Shingle Material: </strong></label>
-                        <input type="text" name="sMaterial" id="sMaterial">
+                        <strong>Shingle Material: </strong><%= roof.sMaterial %>
                     </div>
                     <div class="col-sm text-right">
-                        <label for="sManufacturer"><strong>Shingle Manufacturer: </strong></label>
-                        <input type="text" name="sManufacturer" id="sManufacturer">
+                        <strong>Shingle Manufacturer: </strong><%= roof.sManufacturer %>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm text-right">
-                        <label for="sName"><strong>Shingle Name: </strong></label>
-                        <input type="text" name="sName" id="sName">
+                        Shingle Name: </strong><%= roof.sName %>
                     </div>
                     <div class="col-sm text-right">
-                        <label for="sColor"><strong>Shingle Color: </strong></label>
-                        <input type="text" name="sColor" id="sColor">
+                        Shingle Color: </strong><%= roof.sColor %>
                     </div>
                 </div>
             </article>
@@ -96,157 +94,161 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.drip24 %></th>
                             <td>Ea</td>
                             <td class="text-left">2 X 4 Drip Edge (120)</td>
-                            <td>White</td>
+                            <td><%= roof.dripColor %></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.dripEdge %></th>
                             <td>Ea</td>
                             <td class="text-left">Drip Edge</td>
-                            <td>2 x 2</td>
+                            <td><%= roof.dripSize %></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.felt %></th>
                             <td>Roll</td>
                             <td class="text-left">Felt</td>
-                            <td>15 Lbs</td>
+                            <td><%= roof.feltWgt %></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.iceWater %></th>
                             <td>Roll</td>
                             <td class="text-left">Ice & Water Shield - 2 squares per roll</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.lFlash %></th>
                             <td>Ea</td>
                             <td class="text-left">L Flashing</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.rollValley %></th>
                             <td>Roll</td>
                             <td class="text-left">Roll Valley Metal 20" - 50' roll</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.sFlash></th>
                             <td>Box</td>
                             <td class="text-left">Step flashing 4" x 4" x 8" - Box of 100</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.cNail %></th>
                             <td>Box</td>
                             <td class="text-left">Coil Nails - 1 1/4" - 7,200 per box - 1 box per 16 squares</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.pNail %>></th>
                             <td>Pail</td>
                             <td class="text-left">Plastic Nail Caps - 1 1/4" 2,000 per pail</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.deck %></th>
                             <td>Sheet</td>
                             <td class="text-left">7/16" OSB Decking</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.turtleVents %></th>
                             <td>Ea</td>
                             <td class="text-left">Turtleback Roof Vent - GAF RV50 or equivilent</td>
-                            <td></td>
+                            <td><%= roof.turtleColor %></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.adjPipeVents %></th>
                             <td>Ea</td>
                             <td class="text-left">Adjustible Pipe Jacks / Boots</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.caulk %></th>
                             <td>Tube</td>
                             <td class="text-left">Caulk - Clear Silicon</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.sprayPaint %></th>
                             <td>Can</td>
                             <td class="text-left">Spray Paint to match shingles - 1 can per Roof Jack Vent</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.sprayPrimer %></th>
                             <td>Can</td>
-                            <td class="text-left">Spray PRimer</td>
+                            <td class="text-left">Spray Primer</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.tinShingles %></th>
                             <td>Box</td>
                             <td class="text-left">Tin Shingles - 8" x 8" - box of 100</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Box</td>
-                            <td class="text-left">Hip/ Ridge: - to match shingles</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= modBase %></th>
                             <td></td>
                             <td class="text-left">Modified Base</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.rollRoof %></th>
                             <td></td>
                             <td class="text-left">Roll Roofing similar to color samples</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.versaCaps %></th>
                             <td></td>
                             <td class="text-left">Versa Caps</td>
-                            <td></td>
+                            <td><%= roof.vcSize %></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row"><%= roof.bVent %></th>
                             <td></td>
                             <td class="text-left">B Vents</td>
+                            <td><%= roof.bvSize %</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><%= roof.other1 %></th>
+                            <td><%= roof.unit1 %></td>
+                            <td class="text-left"><%= roof.desc1 %></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
-                            <td></td>
-                            <td class="text-left"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td></td>
-                            <td class="text-left"></td>
+                            <th scope="row"><%= roof.other2 %></th>
+                            <td><%= roof.unit2 %></td>
+                            <td class="text-left"><%= roof.desc2 %></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
-                            <td></td>
-                            <td class="text-left"></td>
+                            <th scope="row"><%= roof.other3 %></th>
+                            <td><%= roof.unit3 %></td>
+                            <td class="text-left"><%= roof.desc3 %></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row">1</th>
-                            <td></td>
-                            <td class="text-left"></td>
+                            <th scope="row"><%= roof.other4 %></th>
+                            <td><%= roof.unit4 %></td>
+                            <td class="text-left"><%= roof.desc4 %></td>
                             <td></td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="centered">
+                <article class="shingles">
+                    <div class="row">
+                        <div class="col-sm" style="vertical-align: top">
+                            <label style="vertical-align: top" for="orderNotes"><strong>Order Notes: </strong></label>
+                            <textarea cols="153" rows="3" type="text" name="orderNotes" id="orderNotes"></textarea>
+                        </div>
+                    </div>
+                </article>
             </div>
             <br>
     </main>

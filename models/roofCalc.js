@@ -3,97 +3,67 @@ const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
 
 const RoofCalc = sequelize.define('roofCalc', {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
-    },
-    sMaterial: Sequelize.STRING,
-    sManufacturer: Sequelize.STRING,
-    sName: Sequelize.STRING,
-    sColor: Sequelize.STRING,
-    ridge: {
-        type: Sequelize.FLOAT(10, 2),
-        default: 0.00
-    },
-    hip: {
-        type: Sequelize.FLOAT(10, 2),
-        default: 0.00
-    },
-    valley: {
-        type: Sequelize.FLOAT(10, 2),
-        default: 0.00
-    },
-    rake: {
-        type: Sequelize.FLOAT(10, 2),
-        default: 0.00
-    },
-    eaveStarter: {
-        type: Sequelize.FLOAT(10, 2),
-        default: 0.00
-    },
-    flashing: {
-        type: Sequelize.FLOAT(10, 2),
-        default: 0.00
-    },
-    stepFlashing: {
-        type: Sequelize.FLOAT(10, 2),
-        default: 0.00
-    },
-    totalArea: {
-        type: Sequelize.FLOAT(10, 2),
-        default: 0.00
-    },
-    squares: {
-        type: Sequelize.FLOAT(10, 2),
-        default: 0.00
-    },
-    rollValley: Sequelize.STRING,
-    turtleVents: Sequelize.STRING,
-    adjPipeVents: Sequelize.STRING,
-    caulk: Sequelize.STRING,
-    sprayPaint: Sequelize.STRING,
-    sprayPrimer: Sequelize.STRING,
-    tinShingles: Sequelize.STRING,
-    modBase: Sequelize.STRING,
-    rollRoof: Sequelize.STRING,
-    dripColor: Sequelize.STRING,
-    dripSize: Sequelize.STRING,
-    feltWgt: Sequelize.STRING,
-    noIWCourses: Sequelize.STRING,
-    turtleColor: Sequelize.STRING,
-    versaCaps: Sequelize.STRING,
-    vcSize: Sequelize.STRING,
-    bVent: Sequelize.STRING,
+    id: { type: Sequelize.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true },
+    adjPipeVents: { type: Sequelize.FLOAT(10, 2), default: 0.00 },
+    bVent: { type: Sequelize.INTEGER, default: 0 },
     bvSize: Sequelize.STRING,
-    other1: Sequelize.STRING,
-    unit1: Sequelize.STRING,
+    caulk: { type: Sequelize.INTEGER, default: 0 },
+    cNail: { type: Sequelize.INTEGER, default: 0 },
+    deck: { type: Sequelize.INTEGER, default: 0 },
     desc1: Sequelize.STRING,
-    other2: Sequelize.STRING,
-    unit2: Sequelize.STRING,
     desc2: Sequelize.STRING,
-    other3: Sequelize.STRING,
-    unit3: Sequelize.STRING,
     desc3: Sequelize.STRING,
-    other4: Sequelize.STRING,
-    unit4: Sequelize.STRING,
-    desc4: Sequelize.STRING,
-    supplier: Sequelize.STRING,
+    desc3: Sequelize.STRING,
+    drip24: { type: Sequelize.INTEGER, default: 0 },
+    dripColor: Sequelize.STRING,
+    dripEdge: { type: Sequelize.INTEGER, default: 0 },
+    dripSize: Sequelize.STRING,
+    eaveStarter: { type: Sequelize.FLOAT(10, 2), default: 0.00 },
+    felt: { type: Sequelize.INTEGER, default: 0 },
+    feltWgt: Sequelize.STRING,
+    flashing: { type: Sequelize.FLOAT(10, 2), default: 0.00 },
+    hip: { type: Sequelize.FLOAT(10, 2), default: 0.00 },
+    hipRidge: { type: Sequelize.INTEGER, default: 0 },
+    iceWater: { type: Sequelize.INTEGER, default: 0 },
+    lFlash: { type: Sequelize.INTEGER, default: 0 },
+    modBase: { type: Sequelize.INTEGER, default: 0 },
+    needDeck: Sequelize.STRING,
+    noIWCourses: { type: Sequelize.INTEGER, default: 0 },
     orderDate: Sequelize.DATEONLY,
     orderNotes: Sequelize.STRING,
-    shingles: {
-        type: Sequelize.INTEGER,
-        default: 0.00
-    },
-    hipRidge: {
-        type: Sequelize.INTEGER,
-        default: 0.00
-    },
-    starter: {
-        type: Sequelize.INTEGER,
-        default: 0.00
-    },
+    other1: { type: Sequelize.INTEGER, default: 0 },
+    other2: { type: Sequelize.INTEGER, default: 0 },
+    other3: { type: Sequelize.INTEGER, default: 0 },
+    other4: { type: Sequelize.INTEGER, default: 0 },
+    pNail: { type: Sequelize.INTEGER, default: 0 },
+    rake: { type: Sequelize.FLOAT(10, 2), default: 0.00 },
+    ridge: { type: Sequelize.FLOAT(10, 2), default: 0.00 },
+    rollRoof: { type: Sequelize.INTEGER, default: 0 },
+    rollValley: { type: Sequelize.INTEGER, default: 0 },
+    sColor: Sequelize.STRING,
+    sFlash: { type: Sequelize.INTEGER, default: 0 },
+    shingles: { type: Sequelize.INTEGER, default: 0 },
+    sManufacturer: Sequelize.STRING,
+    sMaterial: Sequelize.STRING,
+    sName: Sequelize.STRING,
+    sprayPaint: { type: Sequelize.INTEGER, default: 0 },
+    sprayPrimer: { type: Sequelize.INTEGER, default: 0 },
+    squares: { type: Sequelize.FLOAT(10, 2), default: 0.00 },
+    starter: { type: Sequelize.INTEGER, default: 0 },
+    stepFlashing: { type: Sequelize.FLOAT(10, 2), default: 0.00 },
+    supplier: Sequelize.STRING,
+    tinShingles: { type: Sequelize.INTEGER, default: 0 },
+    totalArea: { type: Sequelize.FLOAT(10, 2), default: 0.00 },
+    turtleColor: Sequelize.STRING,
+    turtleVents: { type: Sequelize.FLOAT(10, 2), default: 0.00 },
+    unit1: Sequelize.STRING,
+    unit2: Sequelize.STRING,
+    unit3: Sequelize.STRING,
+    unit3: Sequelize.STRING,
+    valley: { type: Sequelize.FLOAT(10, 2), default: 0.00 },
+    vcSize: Sequelize.STRING,
+    versaCaps: { type: Sequelize.INTEGER, default: 0 },
+
 });
 
 module.exports = RoofCalc;

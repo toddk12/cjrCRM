@@ -1989,85 +1989,106 @@ exports.getRoofCalc = async (req, res, next) => {
 };
 
 exports.postRoofCalc = (req, res, next) => {
-const shingles = ((req.body.squares/16)+1);
-const hipRidge = (((req.body.ridge + req.body.hip)/28)+1);
-const starter = (((req.body.eaveStarter + req.body.rake)/100)+1);
-const drip24 = ((req.body.eaveStarter/10)+1);
-const drip = ((req.body.rake/10)+1);
-if (req.body.feltWgt === "15 Lbs") {
-    const felt = ((req.body.squares/4)+1);
-} else {
-    const felt = ((req.body.squares/2)+1);
-}
-const iceWater = (((req.body.eaveStarter + req.body.noIWCourses)/66)+(req.body.valley/66)+1);
-const lFlash = ((req.body.flashing/10)+1);
-const sFlash = ((req.body.stepFlashing/45)+1);
-const cnail = ((req.body.squares/16)+1);
-const pnail = ((req.body.squares/25)+1);
-if (req.body.needDeck === "Yes") {
-    const deck = ((req.body.totalArea/32)+1);
-} else {
-    const deck = 0;
-}
-
+    const shingles = Math.round(((req.body.squares / 16) + 1));
+    const hipRidge = Math.round((((req.body.ridge + req.body.hip) / 28) + 1));
+    const starter = Math.round((((req.body.eaveStarter + req.body.rake) / 100) + 1));
+    const drip24 = Math.round(((req.body.eaveStarter / 10) + 1));
+    const drip = Math.round(((req.body.rake / 10) + 1));
+    const fw = req.body.feltWgt;
+    var felt = 0;
+    const nd = req.body.needDeck;
+    var deck = 0;
+    if (fw === "15 lbs") {
+        const felt = Math.round(((req.body.squares / 4) + 1));
+    } else {
+        const felt = Math.round(((req.body.squares / 2) + 1));
+    }
+    const iceWater = Math.round((((req.body.eaveStarter + req.body.noIWCourses) / 66) + (req.body.valley / 66) + 1));
+    const lFlash = Math.round(((req.body.flashing / 10) + 1));
+    const sFlash = Math.round(((req.body.stepFlashing / 45) + 1));
+    const cNail = Math.round(((req.body.squares / 16) + 1));
+    const pNail = Math.round(((req.body.squares / 25) + 1));
+    if (nd === "Yes") {
+        const deck = Math.round(((req.body.totalArea / 32) + 1));
+    } else {
+        const deck = 0;
+    }
+    console.log("shingles: " + shingles);
+    console.log("hipRidge: " + hipRidge);
+    console.log("starter: " + starter);
+    console.log("drip24: " + drip24);
+    console.log("drip: " + drip);
+    console.log("felt: " + felt);
+    console.log("iceWater: " + iceWater);
+    console.log("lFlash: " + lFlash);
+    console.log("sFlash: " + sFlash);
+    console.log("cNail : " + cNail);
+    console.log("pNail: " + pNail);
+    console.log("deck: " + deck);
 
     RoofCalc.create({
-        projectId: req.body.projectId,
-        sMaterial: req.body.sMaterial,
-        sManufacturer: req.body.sManufacturer,
-        sName: req.body.sName,
-        sColor: req.body.sColor,
-        ridge: req.body.ridge,
-        hip: req.body.hip,
-        valley: req.body.valley,
-        rake: req.body.rake,
-        eaveStarter: req.body.eaveStater,
-        flashing: req.body.flashing,
-        stepFlashing: req.body.stepFlashing,
-        totalArea: req.body.totalArea,
-        squares: req.body.squares,
-        rollValley: req.body.rollValley,
-        turtleVents: req.body.turtleVents,
         adjPipeVents: req.body.adjPipeVents,
+        bVent: req.body.bvent,
+        bvSize: req.body.bvSize,
         caulk: req.body.caulk,
+        cNail: cNail,
+        deck: deck,
+        desc1: req.body.desc1,
+        desc2: req.body.desc2,
+        desc3: req.body.desc3,
+        desc3: req.body.desc4,
+        drip24: drip24,
+        dripColor: req.body.dripColor,
+        dripEdge: drip,
+        dripSize: req.body.dripSize,
+        eaveStarter: req.body.eaveStarter,
+        felt: felt,
+        feltWgt: req.body.feltWgt,
+        flashing: req.body.flashing,
+        hip: req.body.hip,
+        hipRidge: hipRidge,
+        iceWater: iceWater,
+        lFlash: lFlash,
+        modBase: req.body.modBase,
+        needDeck: req.body.needDeck,
+        noIWCourses: req.body.noIWCourses,
+        orderNotes: req.body.orderNotes,
+        other1: req.body.other1,
+        other2: req.body.other2,
+        other3: req.body.other3,
+        other4: req.body.other4,
+        pNail: pNail,
+        rake: req.body.rake,
+        ridge: req.body.ridge,
+        rollRoof: req.body.rollRoof,
+        rollValley: req.body.rollValley,
+        sColor: req.body.sColor,
+        sFlash: sFlash,
+        shingles: shingles,
+        sManufacturer: req.body.sManufacturer,
+        sMaterial: req.body.sMaterial,
+        sName: req.body.sName,
         sprayPaint: req.body.sprayPaint,
         sprayPrimer: req.body.sprayPrimer,
-        tinShingles: req.body.tinShingles,
-        modBase: req.body.modBase,
-        rollRoof: req.body.rollRoof,
-        dripColor: req.body.dripColor,
-        dripSize: req.body.dripSize,
-        feltWgt: req.body.feltWgt,
-        noIWCourses: req.body.noIWCourses,
-        turtleColor: req.body.turtleColor,
-        versaCaps: req.body.versaCaps,
-        cvSize: req.body.cvSize,
-        bVent: req.body.bVent,
-        bvSize: req.body.bvSize,
-        other1: req.body.other1,
-        unit1: req.body.unit1,
-        desc1: req.body.desc1,
-        other2: req.body.other2,
-        unit2: req.body.unit2,
-        desc2: req.body.desc2,
-        other3: req.body.other3,
-        unit3: req.body.unit3,
-        desc3: req.body.desc3,
-        other4: req.body.other4,
-        unit4: req.body.unit4,
-        desc4: req.body.desc4,
-        supplier: req.body.supplier,
-        orderDate: req.body.orderDate,
-        orderNotes: req.body.orderNotes,
-        shingles: shingles,
-        hipRidge: hipRidge,
+        squares: req.body.squares,
         starter: starter,
-
+        stepFlashing: req.body.stepFlashing,
+        supplier: req.body.supplier,
+        tinShingles: req.body.tinShingles,
+        totalArea: req.body.totalArea,
+        turtleColor: req.body.tutleColor,
+        turtleVents: req.body.turtleVents,
+        unit1: req.body.unit1,
+        unit2: req.body.unit2,
+        unit3: req.body.unit3,
+        unit3: req.body.unit4,
+        valley: req.body.valley,
+        vcSize: req.body.vcSize,
+        versaCaps: req.body.versaCaps
     })
-        .then(roofCalc => {
-            Project.findByPk(roofCalc.projectId)
+        .then(result => {
 
-            console.log('Roof Calcs Added');
+            console.log('Roof Order Added');
             res.redirect('/home');
         })
         .catch(err => {
@@ -2075,6 +2096,7 @@ if (req.body.needDeck === "Yes") {
             error.httpStatusCode = 500;
             return next(error);
         });
+
 };
 
 exports.getRoofOrder = async (req, res, next) => {
