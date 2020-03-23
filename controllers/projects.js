@@ -1989,7 +1989,8 @@ exports.getRoofCalc = async (req, res, next) => {
 };
 
 exports.postRoofCalc = (req, res, next) => {
-    const shingles = Math.round(((req.body.squares / 16) + 1));
+    const sq = req.body.squares;
+    const shingles = Math.round(( sq + 1));
     const hipRidge = Math.round((((req.body.ridge + req.body.hip) / 28) + 1));
     const starter = Math.round((((req.body.eaveStarter + req.body.rake) / 100) + 1));
     const drip24 = Math.round(((req.body.eaveStarter / 10) + 1));
@@ -2101,15 +2102,23 @@ exports.postRoofCalc = (req, res, next) => {
 
 exports.getRoofOrder = async (req, res, next) => {
     console.log('Order');
-    const projId = req.params.projectId;
-    console.log(projId);
+    const roofId = req.params.roofId;
+    console.log(roofId);
     try {
-        const project = await Project.findByPk(projId)
+        const project = await Project.findAll({
+            where: {roofCalcId: roofId},
+            include: [{
+                model: RoofCalc
+            }]
+        })
+        const roofCalc = await RoofCalc.findByPk(roofId)
+        console.log(project);
         res.render('projects/roofOrder', {
             pageTitle: 'Roof Order',
             path: '/roofOrder',
-            projId: projId,
-            project: project
+            project: project,
+            roofId: roofId,
+            roof: roofCalc
         });
     } catch (err) {
         const error = new Error(err);
