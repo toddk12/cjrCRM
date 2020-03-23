@@ -125,17 +125,12 @@ const Project = sequelize.define('project', {
         type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
-    overhead: Sequelize.FLOAT(5, 4),
-    repPercent: Sequelize.FLOAT(5, 4),
+    overhead: Sequelize.FLOAT(10, 2),
     grossProfit: {
         type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },
     totalExclusions: {
-        type: Sequelize.FLOAT(10, 2),
-        defaultValue: 0
-    },
-    adjFScope: {
         type: Sequelize.FLOAT(10, 2),
         defaultValue: 0
     },

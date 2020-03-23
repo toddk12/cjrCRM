@@ -10,14 +10,6 @@ const Trades = sequelize.define('trades', {
         primaryKey: true
     },
 
-    enteredBy: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    entryDate: {
-        type: Sequelize.DATEONLY,
-        allowNull: false
-    },
     trade: { type: Sequelize.STRING }
 });
 

@@ -25,7 +25,7 @@ const Wtb = require('../models/wtb');
 const WorkOrder = require('../models/workOrder');
 const RoofCalc = require('../models/roofCalc');
 
-exports.getAllProjects = async (req, res, next) => {
+exports.getAllProjects = async(req, res, next) => {
     try {
         const sales = await Sales.findAll()
         const status = await Status.findAll()
@@ -58,7 +58,7 @@ exports.getAllProjects = async (req, res, next) => {
 
 };
 
-exports.getProjects = async (req, res, next) => {
+exports.getProjects = async(req, res, next) => {
     const statId = req.params.stat;
     try {
         const sales = await Sales.findAll()
@@ -93,7 +93,7 @@ exports.getProjects = async (req, res, next) => {
 
 };
 
-exports.getProject = async (req, res, next) => {
+exports.getProject = async(req, res, next) => {
     const projId = req.params.projectId;
     const username = req.session.username;
     const userid = req.session.userid;
@@ -146,7 +146,7 @@ exports.postDeleteProject = (req, res, next) => {
         });
 };
 
-exports.getOwnerInfo = async (req, res, next) => {
+exports.getOwnerInfo = async(req, res, next) => {
     const projId = req.params.projectId;
     try {
         const project = await Project.findByPk(projId, {
@@ -187,16 +187,16 @@ exports.postOwnerInfo = (req, res, next) => {
     const updatedoPhone = req.body.oPhone;
     const updatedEmail = req.body.email;
     Project.findByPk(projId, {
-        include: [{
-            model: Sales
-        }, {
-            model: Supervisor
-        }, {
-            model: Status
-        }, {
-            model: Insurance
-        }]
-    })
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Status
+            }, {
+                model: Insurance
+            }]
+        })
         .then(project => {
             project.owner1Fn = updatedOwner1Fn;
             project.owner1Ln = updatedOwner1Ln;
@@ -221,7 +221,7 @@ exports.postOwnerInfo = (req, res, next) => {
         });
 };
 
-exports.getOwnerInfoC = async (req, res, next) => {
+exports.getOwnerInfoC = async(req, res, next) => {
     const projId = req.params.projectId;
     try {
         const project = await Project.findByPk(projId, {
@@ -275,16 +275,16 @@ exports.postOwnerInfoC = (req, res, next) => {
     const updatedpmPhone2 = req.body.pmPhone2;
     const updatedpmEmail = req.body.pmEmail;
     Project.findByPk(projId, {
-        include: [{
-            model: Sales
-        }, {
-            model: Supervisor
-        }, {
-            model: Status
-        }, {
-            model: Insurance
-        }]
-    })
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Status
+            }, {
+                model: Insurance
+            }]
+        })
         .then(project => {
             project.bName = updatedbName;
             project.bAddress = updatedbAddress;
@@ -322,7 +322,7 @@ exports.postOwnerInfoC = (req, res, next) => {
         });
 };
 
-exports.getGeneralInfo = async (req, res, next) => {
+exports.getGeneralInfo = async(req, res, next) => {
     const projId = req.params.projectId;
     try {
         const sales = await Sales.findAll({
@@ -373,16 +373,16 @@ exports.postGeneralInfo = (req, res, next) => {
     const updatedHoldDate = req.body.holdDate;
     console.log("Yup going here!!!");
     Project.findByPk(projId, {
-        include: [{
-            model: Sales
-        }, {
-            model: Supervisor
-        }, {
-            model: Status
-        }, {
-            model: Insurance
-        }]
-    })
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Status
+            }, {
+                model: Insurance
+            }]
+        })
         .then(project => {
             project.projectNo = updatedProjectNo;
             project.saleId = updatedSaleId;
@@ -408,7 +408,7 @@ exports.postGeneralInfo = (req, res, next) => {
         });
 };
 
-exports.getInsuranceInfo = async (req, res, next) => {
+exports.getInsuranceInfo = async(req, res, next) => {
     const projId = req.params.projectId;
     try {
         const insurance = await Insurance.findAll({
@@ -455,16 +455,16 @@ exports.postInsuranceInfo = (req, res, next) => {
     const updatedAdjPhone = phone1 + phone2 + phone3;
 
     Project.findByPk(projId, {
-        include: [{
-            model: Sales
-        }, {
-            model: Supervisor
-        }, {
-            model: Status
-        }, {
-            model: Insurance
-        }]
-    })
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Status
+            }, {
+                model: Insurance
+            }]
+        })
         .then(project => {
             project.insuranceId = updatedInsuranceId;
             project.policyNo = updatedPolicyNo;
@@ -493,8 +493,8 @@ exports.postInsuranceInfo = (req, res, next) => {
 exports.getDocInfo = (req, res, next) => {
     const projId = req.params.projectId;
     Document.findAll({
-        where: { projectId: projId }
-    })
+            where: { projectId: projId }
+        })
         .then(document => {
             Project.findByPk(projId)
                 .then(project => {
@@ -521,16 +521,16 @@ exports.postChangeStatus2 = (req, res, next) => {
     console.log(updatedStatus);
     console.log(changedBy);
     Project.findByPk(projId, {
-        include: [{
-            model: Sales
-        }, {
-            model: Supervisor
-        }, {
-            model: Status
-        }, {
-            model: Insurance
-        }]
-    })
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Status
+            }, {
+                model: Insurance
+            }]
+        })
         .then(project => {
             if (updatedStatus === 1) {
                 project.statusId = updatedStatus;
@@ -603,7 +603,7 @@ exports.postChangeStatus2 = (req, res, next) => {
         });
 };
 
-exports.getFundsReceived = async (req, res, nexct) => {
+exports.getFundsReceived = async(req, res, nexct) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -642,12 +642,12 @@ exports.getFundsReceived = async (req, res, nexct) => {
 exports.postFundsReceived = (req, res, next) => {
 
     FundsRcvd.create({
-        enteredBy: req.body.enteredBy,
-        projectId: req.body.projectId,
-        entryDate: req.body.entryDate,
-        fundsAmt: req.body.fundsAmt,
-        fundsDescription: req.body.fundsDescription
-    })
+            enteredBy: req.body.enteredBy,
+            projectId: req.body.projectId,
+            entryDate: req.body.entryDate,
+            fundsAmt: req.body.fundsAmt,
+            fundsDescription: req.body.fundsDescription
+        })
         // .then(funds => {
         //     Project.findByPk(projId, {
         //             include: [{
@@ -664,7 +664,7 @@ exports.postFundsReceived = (req, res, next) => {
         });
 };
 
-exports.getJobCosts = async (req, res, next) => {
+exports.getJobCosts = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -707,13 +707,13 @@ exports.getJobCosts = async (req, res, next) => {
 exports.postJobCosts = (req, res, next) => {
 
     JobCosts.create({
-        enteredBy: req.body.enteredBy,
-        projectId: req.body.projectId,
-        entryDate: req.body.entryDate,
-        costAmt: req.body.costAmt,
-        costMemo: req.body.costMemo,
-        tradeId: req.body.tradeId
-    })
+            enteredBy: req.body.enteredBy,
+            projectId: req.body.projectId,
+            entryDate: req.body.entryDate,
+            costAmt: req.body.costAmt,
+            costMemo: req.body.costMemo,
+            tradeId: req.body.tradeId
+        })
         .then(project => {
             res.redirect('back');
         })
@@ -724,7 +724,7 @@ exports.postJobCosts = (req, res, next) => {
         });
 };
 
-exports.getAdditions = async (req, res, next) => {
+exports.getAdditions = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
 
@@ -767,13 +767,13 @@ exports.getAdditions = async (req, res, next) => {
 exports.postAdditions = (req, res, next) => {
 
     Additions.create({
-        enteredBy: req.body.enteredBy,
-        entryDate: req.body.entryDate,
-        addAmt: req.body.addAmt,
-        addMemo: req.body.addMemo,
-        tradeId: req.body.tradeId,
-        projectId: req.body.projectId
-    })
+            enteredBy: req.body.enteredBy,
+            entryDate: req.body.entryDate,
+            addAmt: req.body.addAmt,
+            addMemo: req.body.addMemo,
+            tradeId: req.body.tradeId,
+            projectId: req.body.projectId
+        })
         .then(project => {
             res.redirect('back');
         })
@@ -784,7 +784,7 @@ exports.postAdditions = (req, res, next) => {
         });
 };
 
-exports.getExclusions = async (req, res, next) => {
+exports.getExclusions = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -827,13 +827,13 @@ exports.getExclusions = async (req, res, next) => {
 exports.postExclusions = (req, res, next) => {
 
     Exclusions.create({
-        enteredBy: req.body.enteredBy,
-        entryDate: req.body.entryDate,
-        exclAmt: req.body.exclAmt,
-        exclMemo: req.body.exclMemo,
-        tradeId: req.body.tradeId,
-        projectId: req.body.projectId
-    })
+            enteredBy: req.body.enteredBy,
+            entryDate: req.body.entryDate,
+            exclAmt: req.body.exclAmt,
+            exclMemo: req.body.exclMemo,
+            tradeId: req.body.tradeId,
+            projectId: req.body.projectId
+        })
         .then(project => {
             res.redirect('back');
         })
@@ -844,7 +844,7 @@ exports.postExclusions = (req, res, next) => {
         });
 };
 
-exports.getOwnerOop = async (req, res, next) => {
+exports.getOwnerOop = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -885,13 +885,13 @@ exports.getOwnerOop = async (req, res, next) => {
 exports.postOwnerOop = (req, res, next) => {
 
     OwnerOop.create({
-        enteredBy: req.body.enteredBy,
-        entryDate: req.body.entryDate,
-        oopAmt: req.body.oopAmt,
-        oopMemo: req.body.oopMemo,
-        tradeId: req.body.tradeId,
-        projectId: req.body.projectId
-    })
+            enteredBy: req.body.enteredBy,
+            entryDate: req.body.entryDate,
+            oopAmt: req.body.oopAmt,
+            oopMemo: req.body.oopMemo,
+            tradeId: req.body.tradeId,
+            projectId: req.body.projectId
+        })
         .then(project => {
             res.redirect('back');
         })
@@ -902,7 +902,7 @@ exports.postOwnerOop = (req, res, next) => {
         });
 };
 
-exports.getWtb = async (req, res, next) => {
+exports.getWtb = async(req, res, next) => {
     const projId = req.params.projectId;
 
     try {
@@ -939,13 +939,13 @@ exports.postWtb = (req, res, next) => {
 
 
     Wtb.create({
-        projectId: projId,
-        line: line,
-        rcv: rcv,
-        tradeId: tradeId,
-        op: op,
-        net: net,
-    })
+            projectId: projId,
+            line: line,
+            rcv: rcv,
+            tradeId: tradeId,
+            op: op,
+            net: net,
+        })
         .then(result => {
             res.redirect('back');
         })
@@ -956,7 +956,7 @@ exports.postWtb = (req, res, next) => {
         });
 };
 
-exports.getWtbTot = async (req, res, next) => {
+exports.getWtbTot = async(req, res, next) => {
     const projId = req.params.projectId;
     console.log("TaTa");
     try {
@@ -1221,7 +1221,7 @@ exports.getWtbTot = async (req, res, next) => {
     }
 };
 
-exports.getWtbEdit = async (req, res, next) => {
+exports.getWtbEdit = async(req, res, next) => {
     const wtbId = req.params.wtbId;
 
     try {
@@ -1247,7 +1247,7 @@ exports.getWtbEdit = async (req, res, next) => {
     }
 };
 
-exports.postWtbEdit = async (req, res, next) => {
+exports.postWtbEdit = async(req, res, next) => {
     const wtbId = req.body.wtbId
     const projId = req.body.projectId;
     const updatedLine = req.body.line;
@@ -1295,7 +1295,7 @@ exports.postWtbEdit = async (req, res, next) => {
     }
 };
 
-exports.getAddEdit = async (req, res, next) => {
+exports.getAddEdit = async(req, res, next) => {
     const addId = req.params.addId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -1325,7 +1325,7 @@ exports.getAddEdit = async (req, res, next) => {
     }
 };
 
-exports.postAddEdit = async (req, res, next) => {
+exports.postAddEdit = async(req, res, next) => {
     const addId = req.body.addId
     const projId = req.body.projectId;
     const updatedEnteredBy = req.body.enteredBy;
@@ -1387,7 +1387,7 @@ exports.postAddEdit = async (req, res, next) => {
     }
 };
 
-exports.getExclEdit = async (req, res, next) => {
+exports.getExclEdit = async(req, res, next) => {
     const exclId = req.params.exclId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -1417,7 +1417,7 @@ exports.getExclEdit = async (req, res, next) => {
     }
 };
 
-exports.postExclEdit = async (req, res, next) => {
+exports.postExclEdit = async(req, res, next) => {
     const exclId = req.body.exclId
     const projId = req.body.projectId;
     const updatedEnteredBy = req.body.enteredBy;
@@ -1479,7 +1479,7 @@ exports.postExclEdit = async (req, res, next) => {
     }
 };
 
-exports.getOopEdit = async (req, res, next) => {
+exports.getOopEdit = async(req, res, next) => {
     const oopId = req.params.oopId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -1509,7 +1509,7 @@ exports.getOopEdit = async (req, res, next) => {
     }
 };
 
-exports.postOopEdit = async (req, res, next) => {
+exports.postOopEdit = async(req, res, next) => {
     const oopId = req.body.oopId
     const projId = req.body.projectId;
     const updatedEnteredBy = req.body.enteredBy;
@@ -1568,7 +1568,7 @@ exports.postOopEdit = async (req, res, next) => {
     };
 };
 
-exports.getFrEdit = async (req, res, next) => {
+exports.getFrEdit = async(req, res, next) => {
     const frId = req.params.frId;
     const userName = req.user.ename;
 
@@ -1592,7 +1592,7 @@ exports.getFrEdit = async (req, res, next) => {
     }
 };
 
-exports.postFrEdit = async (req, res, next) => {
+exports.postFrEdit = async(req, res, next) => {
     const frId = req.body.frId
     const projId = req.body.projectId;
     const updatedEnteredBy = req.body.enteredBy;
@@ -1650,7 +1650,7 @@ exports.postFrEdit = async (req, res, next) => {
     };
 };
 
-exports.getJcEdit = async (req, res, next) => {
+exports.getJcEdit = async(req, res, next) => {
     const jcId = req.params.jcId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -1680,7 +1680,7 @@ exports.getJcEdit = async (req, res, next) => {
     }
 };
 
-exports.postJcEdit = async (req, res, next) => {
+exports.postJcEdit = async(req, res, next) => {
     const jcId = req.body.jcId
     const projId = req.body.projectId;
     const updatedEnteredBy = req.body.enteredBy;
@@ -1737,7 +1737,7 @@ exports.postJcEdit = async (req, res, next) => {
     }
 };
 
-exports.getWorkOrderTot = async (req, res, next) => {
+exports.getWorkOrderTot = async(req, res, next) => {
     const projId = req.params.projectId
     console.log(projId);
     try {
@@ -1770,7 +1770,7 @@ exports.getWorkOrderTot = async (req, res, next) => {
 
 };
 
-exports.getWos = async (req, res, next) => {
+exports.getWos = async(req, res, next) => {
     const workId = req.params.workId;
     console.log(workId);
     try {
@@ -1811,7 +1811,7 @@ exports.getWos = async (req, res, next) => {
 
 };
 
-exports.postWos = async (req, res, next) => {
+exports.postWos = async(req, res, next) => {
     const workId = req.body.workId;
     const updatedsubcontractorId = req.body.subcontractorId;
     const updatedstartDate = req.body.startDate;
@@ -1883,7 +1883,7 @@ exports.postWos = async (req, res, next) => {
 
 };
 
-exports.getWorkOrder = async (req, res, next) => {
+exports.getWorkOrder = async(req, res, next) => {
     const workId = req.params.workId;
     console.log(workId);
     try {
@@ -1970,7 +1970,7 @@ exports.getWorkOrder = async (req, res, next) => {
 
 };
 
-exports.getRoofCalc = async (req, res, next) => {
+exports.getRoofCalc = async(req, res, next) => {
     console.log('RoofCalc');
     const projId = req.params.projectId;
     try {
@@ -1990,27 +1990,36 @@ exports.getRoofCalc = async (req, res, next) => {
 
 exports.postRoofCalc = (req, res, next) => {
     const sq = req.body.squares;
-    const shingles = Math.round(( sq + 1));
-    const hipRidge = Math.round((((req.body.ridge + req.body.hip) / 28) + 1));
-    const starter = Math.round((((req.body.eaveStarter + req.body.rake) / 100) + 1));
-    const drip24 = Math.round(((req.body.eaveStarter / 10) + 1));
-    const drip = Math.round(((req.body.rake / 10) + 1));
+    const rid = req.body.ridge;
+    const hp = req.body.hp
+    const es = req.body.eaveStarter;
+    const rk = req.body.rake;
+    const noi = req.body.noIWCourses;
+    const vy = req.body.valley;
+    const fl = req.body.flashing;
+    const sf = req.body.stepFlashing;
+    const ta = req.body.totalArea;
+    const shingles = Math.round((sq + 1));
+    const hipRidge = Math.round((((rid + hp) / 28) + 1));
+    const starter = Math.round((((es + rk) / 100) + 1));
+    const drip24 = Math.round(((es / 10) + 1));
+    const drip = Math.round(((rk / 10) + 1));
     const fw = req.body.feltWgt;
     var felt = 0;
     const nd = req.body.needDeck;
     var deck = 0;
     if (fw === "15 lbs") {
-        const felt = Math.round(((req.body.squares / 4) + 1));
+        const felt = Math.round(((sq / 4) + 1));
     } else {
-        const felt = Math.round(((req.body.squares / 2) + 1));
+        const felt = Math.round(((sq / 2) + 1));
     }
-    const iceWater = Math.round((((req.body.eaveStarter + req.body.noIWCourses) / 66) + (req.body.valley / 66) + 1));
-    const lFlash = Math.round(((req.body.flashing / 10) + 1));
-    const sFlash = Math.round(((req.body.stepFlashing / 45) + 1));
-    const cNail = Math.round(((req.body.squares / 16) + 1));
-    const pNail = Math.round(((req.body.squares / 25) + 1));
+    const iceWater = Math.round((((es + noi) / 66) + (vy / 66) + 1));
+    const lFlash = Math.round(((fl / 10) + 1));
+    const sFlash = Math.round(((sf / 45) + 1));
+    const cNail = Math.round(((sq / 16) + 1));
+    const pNail = Math.round(((sq / 25) + 1));
     if (nd === "Yes") {
-        const deck = Math.round(((req.body.totalArea / 32) + 1));
+        const deck = Math.round(((ta / 32) + 1));
     } else {
         const deck = 0;
     }
@@ -2028,65 +2037,65 @@ exports.postRoofCalc = (req, res, next) => {
     console.log("deck: " + deck);
 
     RoofCalc.create({
-        adjPipeVents: req.body.adjPipeVents,
-        bVent: req.body.bvent,
-        bvSize: req.body.bvSize,
-        caulk: req.body.caulk,
-        cNail: cNail,
-        deck: deck,
-        desc1: req.body.desc1,
-        desc2: req.body.desc2,
-        desc3: req.body.desc3,
-        desc3: req.body.desc4,
-        drip24: drip24,
-        dripColor: req.body.dripColor,
-        dripEdge: drip,
-        dripSize: req.body.dripSize,
-        eaveStarter: req.body.eaveStarter,
-        felt: felt,
-        feltWgt: req.body.feltWgt,
-        flashing: req.body.flashing,
-        hip: req.body.hip,
-        hipRidge: hipRidge,
-        iceWater: iceWater,
-        lFlash: lFlash,
-        modBase: req.body.modBase,
-        needDeck: req.body.needDeck,
-        noIWCourses: req.body.noIWCourses,
-        orderNotes: req.body.orderNotes,
-        other1: req.body.other1,
-        other2: req.body.other2,
-        other3: req.body.other3,
-        other4: req.body.other4,
-        pNail: pNail,
-        rake: req.body.rake,
-        ridge: req.body.ridge,
-        rollRoof: req.body.rollRoof,
-        rollValley: req.body.rollValley,
-        sColor: req.body.sColor,
-        sFlash: sFlash,
-        shingles: shingles,
-        sManufacturer: req.body.sManufacturer,
-        sMaterial: req.body.sMaterial,
-        sName: req.body.sName,
-        sprayPaint: req.body.sprayPaint,
-        sprayPrimer: req.body.sprayPrimer,
-        squares: req.body.squares,
-        starter: starter,
-        stepFlashing: req.body.stepFlashing,
-        supplier: req.body.supplier,
-        tinShingles: req.body.tinShingles,
-        totalArea: req.body.totalArea,
-        turtleColor: req.body.tutleColor,
-        turtleVents: req.body.turtleVents,
-        unit1: req.body.unit1,
-        unit2: req.body.unit2,
-        unit3: req.body.unit3,
-        unit3: req.body.unit4,
-        valley: req.body.valley,
-        vcSize: req.body.vcSize,
-        versaCaps: req.body.versaCaps
-    })
+            adjPipeVents: req.body.adjPipeVents,
+            bVent: req.body.bvent,
+            bvSize: req.body.bvSize,
+            caulk: req.body.caulk,
+            cNail: cNail,
+            deck: deck,
+            desc1: req.body.desc1,
+            desc2: req.body.desc2,
+            desc3: req.body.desc3,
+            desc3: req.body.desc4,
+            drip24: drip24,
+            dripColor: req.body.dripColor,
+            dripEdge: drip,
+            dripSize: req.body.dripSize,
+            eaveStarter: req.body.eaveStarter,
+            felt: felt,
+            feltWgt: req.body.feltWgt,
+            flashing: req.body.flashing,
+            hip: req.body.hip,
+            hipRidge: hipRidge,
+            iceWater: iceWater,
+            lFlash: lFlash,
+            modBase: req.body.modBase,
+            needDeck: req.body.needDeck,
+            noIWCourses: req.body.noIWCourses,
+            orderNotes: req.body.orderNotes,
+            other1: req.body.other1,
+            other2: req.body.other2,
+            other3: req.body.other3,
+            other4: req.body.other4,
+            pNail: pNail,
+            rake: req.body.rake,
+            ridge: req.body.ridge,
+            rollRoof: req.body.rollRoof,
+            rollValley: req.body.rollValley,
+            sColor: req.body.sColor,
+            sFlash: sFlash,
+            shingles: shingles,
+            sManufacturer: req.body.sManufacturer,
+            sMaterial: req.body.sMaterial,
+            sName: req.body.sName,
+            sprayPaint: req.body.sprayPaint,
+            sprayPrimer: req.body.sprayPrimer,
+            squares: req.body.squares,
+            starter: starter,
+            stepFlashing: req.body.stepFlashing,
+            supplier: req.body.supplier,
+            tinShingles: req.body.tinShingles,
+            totalArea: req.body.totalArea,
+            turtleColor: req.body.tutleColor,
+            turtleVents: req.body.turtleVents,
+            unit1: req.body.unit1,
+            unit2: req.body.unit2,
+            unit3: req.body.unit3,
+            unit3: req.body.unit4,
+            valley: req.body.valley,
+            vcSize: req.body.vcSize,
+            versaCaps: req.body.versaCaps
+        })
         .then(result => {
 
             console.log('Roof Order Added');
@@ -2100,13 +2109,13 @@ exports.postRoofCalc = (req, res, next) => {
 
 };
 
-exports.getRoofOrder = async (req, res, next) => {
+exports.getRoofOrder = async(req, res, next) => {
     console.log('Order');
     const roofId = req.params.roofId;
     console.log(roofId);
     try {
         const project = await Project.findAll({
-            where: {roofCalcId: roofId},
+            where: { roofCalcId: roofId },
             include: [{
                 model: RoofCalc
             }]

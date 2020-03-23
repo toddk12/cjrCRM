@@ -145,8 +145,6 @@ OwnerOop.belongsTo(Trades);
 Project.hasMany(OwnerOop);
 Notes.belongsTo(Project);
 Project.hasMany(Notes);
-Project.belongsTo(Trades)
-Trades.hasMany(Project);
 Document.belongsTo(RType);
 RType.hasMany(Document);
 Wtb.belongsTo(Project);
@@ -161,8 +159,8 @@ WorkOrder.belongsTo(Supervisor);
 Supervisor.hasMany(WorkOrder);
 WorkOrder.belongsTo(Subcontractor);
 Subcontractor.hasMany(WorkOrder);
-Project.belongsTo(RoofCalc);
-RoofCalc.hasMany(Project);
+RoofCalc.belongsTo(Project);
+Project.hasOne(RoofCalc);
 
 sequelize
     .sync()
