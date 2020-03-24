@@ -32,56 +32,56 @@
                                 </div>
                             </h4>
 
-                        <article class="notes">
-                            <form class="form" action="/jobCosts" method="POST">
-                                <div class="row">
+                            <article class="notes">
+                                <form class="form" action="/jobCosts" method="POST">
+                                    <div class="row">
 
-                                    <div class="col-sm">
-                                        <label for="projectId"><strong>Project Id: </strong></label>
-                                        <input type="text" name="projectId" id="projectId" value="<%= projId %>">
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="entryDate"><strong>Entered On: </strong></label>
-                                        <input type="datetime" name="entryDate" id="entryDate" value="<%= new Date() %>">
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="enteredBy"><strong>Entered By: </strong></label>
-                                        <input type="text" name="enteredBy" id="enteredBy" value="<%= userName %>">
-                                        <input type="hidden" name="enteredID" value="<%= userId %>">
-                                    </div>
-                                    <div class="col-sm" style="width: 200px">
-                                        <label for="tradeId"><strong>Trade: </strong></label>
-                                        <select style="width: 200px" class="select" name="tradeId" id="tradeId">
+                                        <div class="col-sm">
+                                            <label for="projectId"><strong>Project Id: </strong></label>
+                                            <input type="text" name="projectId" id="projectId" value="<%= projId %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="entryDate"><strong>Entered On: </strong></label>
+                                            <input type="datetime" name="entryDate" id="entryDate" value="<%= new Date() %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="enteredBy"><strong>Entered By: </strong></label>
+                                            <input type="text" name="enteredBy" id="enteredBy" value="<%= userName %>">
+                                            <input type="hidden" name="enteredID" value="<%= userId %>">
+                                        </div>
+                                        <div class="col-sm" style="width: 200px">
+                                            <label for="tradeId"><strong>Trade: </strong></label>
+                                            <select style="width: 200px" class="select" name="tradeId" id="tradeId">
                                     <% for (let trades of trade) { %>
                                     <option value="<%= trades.id %>">
                                     <%= trades.trade %></option>
                                     <% } %>
                                 </select>
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="costMemo"><strong>Description: </strong></label>
+                                            <textarea cols="50" rows="1" type="text" name="costMemo" id="costMemo"></textarea>
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="costAmt"><strong>Amount: </strong></label>
+                                            <input type="currency" name="costAmt" id="costAmt">
+                                        </div>
                                     </div>
-                                    <div class="col-sm">
-                                        <label for="costMemo"><strong>Description: </strong></label>
-                                        <textarea cols="50" rows="1" type="text" name="costMemo" id="costMemo"></textarea>
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="costAmt"><strong>Amount: </strong></label>
-                                        <input type="currency" name="costAmt" id="costAmt">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
                                     <br>
-                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                    <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Funds</button>
-                                    <br>
-                                    <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to FinancialInfo</a>
-                                </div>
-                            </form><br>
-                        </article>
-                        <br>
-                        <br>
-                        <br>
-                        <article class="notes">
-                            <strong><div class="row">
+                                    <div class="row">
+                                        <br>
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Funds</button>
+                                        <br>
+                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to FinancialInfo</a>
+                                    </div>
+                                </form><br>
+                            </article>
+                            <br>
+                            <br>
+                            <br>
+                            <article class="notes">
+                                <strong><div class="row">
                                 <div class="col-sm">
                                     Entered By
                                 </div>
@@ -99,41 +99,42 @@
                                 </div>
                                 <div class="col-sm">
                                     <strong></strong>
-                            </div>
-                            </div>
-                            </strong>
-                            <% for (let cost of jC) { %>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <%= cost.enteredBy %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= cost.entryDate %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= cost.trade.trade %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= money.format(cost.costAmt) %>
-                                            <% project.totalJobCosts %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= cost.costMemo %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a class="btn-esm text-center" style="width: 150px" href="/jcEdit/<%= cost.id %>">Edit</a>
-                                    </div>
-
+                        </div>
+                        </div>
+                        </strong>
+                        <% for (let cost of jC) { %>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <%= cost.enteredBy %>
                                 </div>
-                                <% } %>
-                                    <br>
-                                    <article>
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                <strong>Total Job Costs: </strong><%= money.format(project.totalJobCosts) %>
-                                            </div>
+                                <div class="col-sm">
+                                    <%= cost.entryDate %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= cost.trade.trade %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= money.format(cost.costAmt) %>
+                                        <% project.totalJobCosts %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= cost.costMemo %>
+                                </div>
+                                <div class="col-sm">
+                                    <a class="btn-esm text-center" style="width: 150px" href="/jcEdit/<%= cost.id %>">Edit</a>
+                                </div>
+
+                            </div>
+                            <% } %>
+                                <br>
+                                <article>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <strong>Total Job Costs: </strong>
+                                            <%= money.format(project.totalJobCosts) %>
                                         </div>
-                                    </article>
+                                    </div>
+                                </article>
                                 </div>
 
                     </main>

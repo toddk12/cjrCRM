@@ -668,6 +668,7 @@ exports.getJobCosts = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
+    console.log(projId);
     try {
         const trades = await Trades.findAll()
         const jobCosts = await JobCosts.findAll({
@@ -680,8 +681,6 @@ exports.getJobCosts = async(req, res, next) => {
         const project = await Project.findByPk(projId, {
             include: [{
                 model: JobCosts
-            }, {
-                model: Trades
             }]
         })
         project.totalJobCosts = tots;
@@ -1974,13 +1973,31 @@ exports.getRoofCalc = async(req, res, next) => {
     console.log('RoofCalc');
     const projId = req.params.projectId;
     try {
-        const project = await Project.findByPk(projId)
-        res.render('projects/roofCalc', {
-            pageTitle: 'Roof Calculator',
-            path: '/roofCalc',
-            projId: projId,
-            project: project
-        });
+        const roofCalc = await RoofCalc.findAll({
+            where: {
+                projectId: projId
+            },
+            include: [{
+                model: Project
+            }]
+        })
+        if (roofCalc) {
+
+            const project = await Project.findByPk(projId)
+            res.render('projects/roofCalc', {
+                pageTitle: 'Roof Calculator',
+                path: '/roofCalc',
+                projId: projId,
+                project: project
+            });
+        } else {
+            res.render('projects/roofOrder', {
+                pageTitle: 'Roof Order',
+                path: '/roofOrder',
+                roofId: roofId,
+                roof: roofCalc
+            });
+        }
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
@@ -1989,40 +2006,42 @@ exports.getRoofCalc = async(req, res, next) => {
 };
 
 exports.postRoofCalc = (req, res, next) => {
-    const sq = req.body.squares;
-    const rid = req.body.ridge;
-    const hp = req.body.hp
-    const es = req.body.eaveStarter;
-    const rk = req.body.rake;
-    const noi = req.body.noIWCourses;
-    const vy = req.body.valley;
-    const fl = req.body.flashing;
-    const sf = req.body.stepFlashing;
-    const ta = req.body.totalArea;
-    const shingles = Math.round((sq + 1));
-    const hipRidge = Math.round((((rid + hp) / 28) + 1));
-    const starter = Math.round((((es + rk) / 100) + 1));
-    const drip24 = Math.round(((es / 10) + 1));
-    const drip = Math.round(((rk / 10) + 1));
-    const fw = req.body.feltWgt;
+    let sq = parseInt(req.body.squares, 10);
+    let rid = parseInt(req.body.ridge, 10);
+    let hp = parseInt(req.body.hip, 10);
+    console.log('hip ', hp);
+    console.log('Ridge ', rid);
+    let es = parseInt(req.body.eaveStarter, 10);
+    let rk = parseInt(req.body.rake, 10);
+    let noi = parseInt(req.body.noIWCourses, 10);
+    let vy = parseInt(req.body.valley, 10);
+    let fl = parseInt(req.body.flashing, 10);
+    let sf = parseInt(req.body.stepFlashing, 10);
+    let ta = parseInt(req.body.totalArea, 10);
+    let shingles = Math.round((sq + 1));
+    let hipRidge = Math.round(((rid + hp) / 28));
+    let starter = Math.round(((es + rk) / 100));
+    let drip24 = Math.round(((es / 10) + 1));
+    let drip = Math.round(((rk / 10) + 1));
+    let fw = req.body.feltWgt;
     var felt = 0;
-    const nd = req.body.needDeck;
+    let nd = req.body.needDeck;
     var deck = 0;
     if (fw === "15 lbs") {
-        const felt = Math.round(((sq / 4) + 1));
+        felt = Math.round(((sq / 4) + 1));
     } else {
-        const felt = Math.round(((sq / 2) + 1));
-    }
-    const iceWater = Math.round((((es + noi) / 66) + (vy / 66) + 1));
-    const lFlash = Math.round(((fl / 10) + 1));
-    const sFlash = Math.round(((sf / 45) + 1));
-    const cNail = Math.round(((sq / 16) + 1));
-    const pNail = Math.round(((sq / 25) + 1));
+        felt = Math.round(((sq / 2) + 1));
+    };
+    let iceWater = Math.round((((es * noi) / 66) + (vy / 66) + 1));
+    let lFlash = Math.round(((fl / 10) + 1));
+    let sFlash = Math.round(((sf / 45) + 1));
+    let cNail = Math.round(((sq / 16) + 1));
+    let pNail = Math.round(((sq / 25) + 1));
     if (nd === "Yes") {
-        const deck = Math.round(((ta / 32) + 1));
+        deck = Math.round(((ta / 32) + 1));
     } else {
-        const deck = 0;
-    }
+        deck = 0;
+    };
     console.log("shingles: " + shingles);
     console.log("hipRidge: " + hipRidge);
     console.log("starter: " + starter);
@@ -2094,7 +2113,8 @@ exports.postRoofCalc = (req, res, next) => {
             unit3: req.body.unit4,
             valley: req.body.valley,
             vcSize: req.body.vcSize,
-            versaCaps: req.body.versaCaps
+            versaCaps: req.body.versaCaps,
+            projectId: req.body.projectId
         })
         .then(result => {
 
@@ -2114,18 +2134,14 @@ exports.getRoofOrder = async(req, res, next) => {
     const roofId = req.params.roofId;
     console.log(roofId);
     try {
-        const project = await Project.findAll({
-            where: { roofCalcId: roofId },
+        const roofCalc = await RoofCalc.findByPk(roofId, {
             include: [{
-                model: RoofCalc
+                model: Project
             }]
         })
-        const roofCalc = await RoofCalc.findByPk(roofId)
-        console.log(project);
         res.render('projects/roofOrder', {
             pageTitle: 'Roof Order',
             path: '/roofOrder',
-            project: project,
             roofId: roofId,
             roof: roofCalc
         });
