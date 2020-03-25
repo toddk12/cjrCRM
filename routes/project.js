@@ -100,6 +100,10 @@ router.get('/roofCalc/:projectId', isAuth, projectsController.getRoofCalc);
 
 router.post('/roofCalc', isAuth, projectsController.postRoofCalc);
 
+router.get('/roofCalcEdit/:roofId', isAuth, projectsController.getRoofCalcEdit);
+
+router.post('/roofCalcEdit', isAuth, projectsController.postRoofCalcEdit);
+
 router.get('/roofOrder/:roofId', isAuth, projectsController.getRoofOrder);
 
 

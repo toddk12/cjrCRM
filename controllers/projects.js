@@ -1973,24 +1973,29 @@ exports.getRoofCalc = async(req, res, next) => {
     console.log('RoofCalc');
     const projId = req.params.projectId;
     try {
-        const roofCalc = await RoofCalc.findAll({
-            where: {
-                projectId: projId
-            },
+        const roofCheck = await RoofCalc.count({
+            where: { projectId: projId }
+        })
+        const roofCalc = await RoofCalc.findOne({
+            where: { projectId: projId },
             include: [{
                 model: Project
             }]
         })
-        if (roofCalc) {
-
+        const pid = roofCheck;
+        console.log(pid);
+        const roofId = roofCalc.id;
+        if (pid == 0) {
             const project = await Project.findByPk(projId)
             res.render('projects/roofCalc', {
                 pageTitle: 'Roof Calculator',
                 path: '/roofCalc',
                 projId: projId,
+                roof: roofCalc,
                 project: project
             });
         } else {
+            console.log('has one');
             res.render('projects/roofOrder', {
                 pageTitle: 'Roof Order',
                 path: '/roofOrder',
@@ -1998,6 +2003,7 @@ exports.getRoofCalc = async(req, res, next) => {
                 roof: roofCalc
             });
         }
+
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
@@ -2018,27 +2024,27 @@ exports.postRoofCalc = (req, res, next) => {
     let fl = parseInt(req.body.flashing, 10);
     let sf = parseInt(req.body.stepFlashing, 10);
     let ta = parseInt(req.body.totalArea, 10);
-    let shingles = Math.round((sq + 1));
-    let hipRidge = Math.round(((rid + hp) / 28));
-    let starter = Math.round(((es + rk) / 100));
-    let drip24 = Math.round(((es / 10) + 1));
-    let drip = Math.round(((rk / 10) + 1));
+    let shingles = Math.ceil((sq + 1));
+    let hipRidge = Math.ceil(((rid + hp) / 28) + 1);
+    let starter = Math.ceil(((es + rk) / 100) + 1);
+    let drip24 = Math.ceil(((es / 10) + 1));
+    let drip = Math.ceil(((rk / 10) + 1));
     let fw = req.body.feltWgt;
     var felt = 0;
     let nd = req.body.needDeck;
     var deck = 0;
     if (fw === "15 lbs") {
-        felt = Math.round(((sq / 4) + 1));
+        felt = Math.ceil(((sq / 4) + 1));
     } else {
-        felt = Math.round(((sq / 2) + 1));
+        felt = Math.ceil(((sq / 2) + 1));
     };
-    let iceWater = Math.round((((es * noi) / 66) + (vy / 66) + 1));
-    let lFlash = Math.round(((fl / 10) + 1));
-    let sFlash = Math.round(((sf / 45) + 1));
-    let cNail = Math.round(((sq / 16) + 1));
-    let pNail = Math.round(((sq / 25) + 1));
+    let iceWater = Math.ceil((((es * noi) / 66) + (vy / 66) + 1));
+    let lFlash = Math.ceil(((fl / 10) + 1));
+    let sFlash = Math.ceil(((sf / 45) + 1));
+    let cNail = Math.ceil(((sq / 16) + 1));
+    let pNail = Math.ceil(((sq / 25) + 1));
     if (nd === "Yes") {
-        deck = Math.round(((ta / 32) + 1));
+        deck = Math.ceil(((ta / 32) + 1));
     } else {
         deck = 0;
     };
@@ -2065,7 +2071,7 @@ exports.postRoofCalc = (req, res, next) => {
             desc1: req.body.desc1,
             desc2: req.body.desc2,
             desc3: req.body.desc3,
-            desc3: req.body.desc4,
+            desc4: req.body.desc4,
             drip24: drip24,
             dripColor: req.body.dripColor,
             dripEdge: drip,
@@ -2110,16 +2116,14 @@ exports.postRoofCalc = (req, res, next) => {
             unit1: req.body.unit1,
             unit2: req.body.unit2,
             unit3: req.body.unit3,
-            unit3: req.body.unit4,
+            unit4: req.body.unit4,
             valley: req.body.valley,
             vcSize: req.body.vcSize,
             versaCaps: req.body.versaCaps,
             projectId: req.body.projectId
         })
         .then(result => {
-
-            console.log('Roof Order Added');
-            res.redirect('/home');
+            res.redirect('back');
         })
         .catch(err => {
             const error = new Error(err);
@@ -2144,6 +2148,197 @@ exports.getRoofOrder = async(req, res, next) => {
             path: '/roofOrder',
             roofId: roofId,
             roof: roofCalc
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.getRoofCalcEdit = async(req, res, next) => {
+    console.log('Edit RoofCalc');
+    const roofId = req.params.roofId;
+    try {
+        const roofCalc = await RoofCalc.findByPk(roofId, {
+            include: [{
+                model: Project
+            }]
+        })
+        const projId = roofCalc.projectId;
+        console.log(projId);
+        const project = await Project.findByPk(projId)
+        res.render('projects/roofCalcEdit', {
+            pageTitle: 'Edit Roof Calculator',
+            path: '/roofCalcEdit',
+            projId: projId,
+            roof: roofCalc,
+            project: project
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postRoofCalcEdit = async(req, res, next) => {
+    const roofId = req.body.roofId;
+    let sq = parseInt(req.body.squares, 10);
+    let rid = parseInt(req.body.ridge, 10);
+    let hp = parseInt(req.body.hip, 10);
+    let es = parseInt(req.body.eaveStarter, 10);
+    let rk = parseInt(req.body.rake, 10);
+    let noi = parseInt(req.body.noIWCourses, 10);
+    let vy = parseInt(req.body.valley, 10);
+    let fl = parseInt(req.body.flashing, 10);
+    let sf = parseInt(req.body.stepFlashing, 10);
+    let ta = parseInt(req.body.totalArea, 10);
+    let shingles = Math.ceil((sq + 1));
+    let hipRidge = Math.ceil(((rid + hp) / 28) + 1);
+    let starter = Math.ceil(((es + rk) / 100) + 1);
+    let drip24 = Math.ceil(((es / 10) + 1));
+    let drip = Math.ceil(((rk / 10) + 1));
+    let fw = req.body.feltWgt;
+    var felt = 0;
+    let nd = req.body.needDeck;
+    var deck = 0;
+    if (fw === "15 lbs") {
+        felt = Math.ceil(((sq / 4) + 1));
+    } else {
+        felt = Math.ceil(((sq / 2) + 1));
+    };
+    let iceWater = Math.ceil((((es * noi) / 66) + (vy / 66) + 1));
+    let lFlash = Math.ceil(((fl / 10) + 1));
+    let sFlash = Math.ceil(((sf / 45) + 1));
+    let cNail = Math.ceil(((sq / 16) + 1));
+    let pNail = Math.ceil(((sq / 25) + 1));
+    if (nd === "Yes") {
+        deck = Math.ceil(((ta / 32) + 1));
+    } else {
+        deck = 0;
+    };
+    const updatedAdjPipeVents = req.body.adjPipeVents;
+    const updatedBVent = req.body.bvent;
+    const updatedBvSize = req.body.bvSize;
+    const updatedCaulk = req.body.caulk;
+    const updatedDesc1 = req.body.desc1;
+    const updatedDesc2 = req.body.desc2;
+    const updatedDesc3 = req.body.desc3;
+    const updatedDesc4 = req.body.desc4;
+    const updatedDripColor = req.body.dripColor;
+    const updatedDripSize = req.body.dripSize;
+    const updatedEaveStarter = req.body.eaveStarter;
+    const updatedFeltWgt = req.body.feltWgt;
+    const updatedFlashing = req.body.flashing;
+    const updatedHip = req.body.hip;
+    const updatedModBase = req.body.modBase;
+    const updatedNeedDeck = req.body.needDeck;
+    const updatedNoIWCourses = req.body.noIWCourses;
+    const updatedOrderNotes = req.body.orderNotes;
+    const updatedOther1 = req.body.other1;
+    const updatedOther2 = req.body.other2;
+    const updatedOther3 = req.body.other3;
+    const updatedOther4 = req.body.other4;
+    const updatedRake = req.body.rake;
+    const updatedRidge = req.body.ridge;
+    const updatedRollRoof = req.body.rollRoof;
+    const updatedRollValley = req.body.rollValley;
+    const updatedSColor = req.body.sColor;
+    const updatedSManufacturer = req.body.sManufacturer;
+    const updatedSMaterial = req.body.sMaterial;
+    const updatedSName = req.body.sName;
+    const updatedSprayPaint = req.body.sprayPaint;
+    const updatedSprayPrimer = req.body.sprayPrimer;
+    const updatedSquare = req.body.square;
+    const updatedStepFlashing = req.body.stepFlashing;
+    const updatedSupplier = req.body.supplier;
+    const updatedTinShingles = req.body.tinShingles;
+    const updatedTotalArea = req.body.totalArea;
+    const updatedTurtleColor = req.body.turtleColor;
+    const updatedTurtleVents = req.body.turtleVents;
+    const updatedUnit1 = req.body.unit1;
+    const updatedUnit2 = req.body.unit2;
+    const updatedUnit3 = req.body.unit3;
+    const updatedUnit4 = req.body.unit4;
+    const updatedValley = req.body.valley;
+    const updatedVcSize = req.body.vcSize;
+    const updatedVersaCaps = req.body.versaCaps;
+    console.log(roofId);
+
+    try {
+        const roofCalc = await RoofCalc.findByPk(roofId)
+
+        roofCalc.adjPipeVents = updatedAdjPipeVents;
+        roofCalc.bVent = updatedBVent;
+        roofCalc.bvSize = updatedBvSize;
+        roofCalc.caulk = updatedCaulk;
+        roofCalc.cNail = cNail;
+        roofCalc.deck = deck;
+        roofCalc.desc1 = updatedDesc1;
+        roofCalc.desc2 = updatedDesc2;
+        roofCalc.desc3 = updatedDesc3;
+        roofCalc.desc4 = updatedDesc4;
+        roofCalc.drip24 = drip24;
+        roofCalc.dripColor = updatedDripColor;
+        roofCalc.dripEdge = drip;
+        roofCalc.dripSize = updatedDripSize;
+        roofCalc.eaveStarter = updatedEaveStarter;
+        roofCalc.felt = felt;
+        roofCalc.feltWgt = updatedFeltWgt;
+        roofCalc.flashing = updatedFlashing;
+        roofCalc.hip = updatedHip;
+        roofCalc.hipRidge = hipRidge;
+        roofCalc.iceWater = iceWater;
+        roofCalc.lFlash = lFlash;
+        roofCalc.modBase = updatedModBase;
+        roofCalc.needDeck = updatedNeedDeck;
+        roofCalc.noIWCourses = updatedNoIWCourses;
+        roofCalc.orderNotes = updatedOrderNotes;
+        roofCalc.other1 = updatedOther1;
+        roofCalc.other2 = updatedOther2;
+        roofCalc.other3 = updatedOther3;
+        roofCalc.other4 = updatedOther4;
+        roofCalc.pNail = pNail;
+        roofCalc.rake = updatedRake;
+        roofCalc.ridge = updatedRidge;
+        roofCalc.rollRoof = updatedRollRoof;
+        roofCalc.rollValley = updatedRollValley;
+        roofCalc.sColor = updatedSColor;
+        roofCalc.sFlash = sFlash;
+        roofCalc.shingles = shingles;
+        roofCalc.sManufacturer = updatedSManufacturer;
+        roofCalc.sMaterial = updatedSMaterial;
+        roofCalc.sName = updatedSName;
+        roofCalc.sprayPaint = updatedSprayPaint;
+        roofCalc.sprayPrimer = updatedSprayPrimer;
+        roofCalc.squares = updatedSquare;
+        roofCalc.starter = starter;
+        roofCalc.stepFlashing = updatedStepFlashing;
+        roofCalc.supplier = updatedSupplier;
+        roofCalc.tinShingles = updatedTinShingles;
+        roofCalc.totalArea = updatedTotalArea;
+        roofCalc.turtleColor = updatedTurtleColor;
+        roofCalc.turtleVents = updatedTurtleVents;
+        roofCalc.unit1 = updatedUnit1;
+        roofCalc.unit2 = updatedUnit2;
+        roofCalc.unit3 = updatedUnit3;
+        roofCalc.unit4 = updatedUnit4;
+        roofCalc.valley = updatedValley;
+        roofCalc.vcSize = updatedVcSize;
+        roofCalc.versaCaps = updatedVersaCaps
+        await roofCalc.save();
+
+        const roofCal = await RoofCalc.findByPk(roofId, {
+            include: [{
+                model: Project
+            }]
+        })
+        res.render('projects/roofOrder', {
+            pageTitle: 'Roof Order',
+            path: '/roofOrder',
+            roofId: roofId,
+            roof: roofCal
         });
     } catch (err) {
         const error = new Error(err);
