@@ -88,23 +88,4 @@ router.post('/wtbEdit', isAuth, projectsController.postWtbEdit);
 
 router.get('/wtbTot/:projectId', isAuth, projectsController.getWtbTot);
 
-router.get('/workOrderTot/:projectId', isAuth, projectsController.getWorkOrderTot);
-
-router.get('/wos/:workId', isAuth, projectsController.getWos);
-
-router.post('/wos', isAuth, projectsController.postWos);
-
-router.get('/workOrder/:workId', isAuth, projectsController.getWorkOrder);
-
-router.get('/roofCalc/:projectId', isAuth, projectsController.getRoofCalc);
-
-router.post('/roofCalc', isAuth, projectsController.postRoofCalc);
-
-router.get('/roofCalcEdit/:roofId', isAuth, projectsController.getRoofCalcEdit);
-
-router.post('/roofCalcEdit', isAuth, projectsController.postRoofCalcEdit);
-
-router.get('/roofOrder/:roofId', isAuth, projectsController.getRoofOrder);
-
-
 module.exports = router;

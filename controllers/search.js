@@ -10,19 +10,8 @@ const Project = require('../models/project');
 const Status = require('../models/status');
 const Insurance = require('../models/insurance');
 const Supervisor = require('../models/supervisor');
-const Subcontractor = require('../models/subcontractor');
 const Sales = require('../models/sales');
-const Document = require('../models/document');
-const Notes = require('../models/notes');
-const Additions = require('../models/additions');
-const FundsRcvd = require('../models/fundsRcvd');
-const Exclusions = require('../models/exclusions');
-const OwnerOop = require('../models/ownerOop');
-const JobCosts = require('../models/jobCosts');
-const Trades = require('../models/trades');
-const RType = require('../models/rType');
-const Wtb = require('../models/wtb');
-const WorkOrder = require('../models/workOrder');
+
 
 exports.getSearchLn = async(req, res, next) => {
 

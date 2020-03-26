@@ -633,8 +633,6 @@ exports.getAddWorkOrder = async(req, res, next) => {
                 model: Sales
             }, {
                 model: Supervisor
-            }, {
-                model: Trades
             }]
         })
         console.log("and here");
@@ -659,7 +657,9 @@ exports.getAddWorkOrder = async(req, res, next) => {
 
 exports.postAddWorkOrder = (req, res, next) => {
     console.log(req.body.srep);
+    const srep = req.body.srep;
     console.log(req.body.field);
+    const field = req.body.field;
     WorkOrder.create({
             projectId: req.body.projectId,
             subcontractorId: req.body.subcontractorId,
@@ -677,8 +677,8 @@ exports.postAddWorkOrder = (req, res, next) => {
             trade4: req.body.trade4,
             tradeAmt4: req.body.tradeAmt4,
             woTotal: req.body.woTotal,
-            supervisorId: req.body.field,
-            saleId: req.body.srep
+            supervisorId: field,
+            saleId: srep
         })
         .then(workOrder => {
             const projId = workOrder.projectId;
@@ -697,7 +697,7 @@ exports.postAddWorkOrder = (req, res, next) => {
                             }],
                         })
                         .then(workOrders => {
-                            res.render('projects/workOrderTot', {
+                            res.render('work/workOrderTot', {
                                 pageTitle: 'Work Orders',
                                 path: '/workOrderTot',
                                 project: project,
