@@ -1,0 +1,68 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+            <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                <%- include('../includes/navigation.ejs') %>
+                    <main>
+                        <div class="centered">
+                            <h1><strong>List of Sales Representatives</strong></h1>
+                            <br>
+                            <h3>Active Sales Representatives</h3>
+                        </div>
+                        <div class="container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><strong>Name</strong></th>
+                                        <th scope="col"><strong>Email</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (let asal of asals) { %>
+                                        <tr>
+                                            <th scope="row">
+                                                <%= asal.name %>
+                                            </th>
+                                            <th scope="row">
+                                                <%= asal.email %>
+                                            </th>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <div class="centered">
+                            <h3>Inactive Sales Representatives</h3>
+                        </div>
+                        <div class="container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><strong>Name</strong></th>
+                                        <th scope="col"><strong>Email</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (let sal of sals) { %>
+                                        <tr>
+                                            <th scope="row">
+                                                <%= sal.name %>
+                                            </th>
+                                            <th scope="row">
+                                                <%= sal.email %>
+                                            </th>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </main>
+
+                    <%- include('../includes/footer.ejs') %>
+                        <script src="/js/status.js"></script>

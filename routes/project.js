@@ -88,4 +88,17 @@ router.post('/wtbEdit', isAuth, projectsController.postWtbEdit);
 
 router.get('/wtbTot/:projectId', isAuth, projectsController.getWtbTot);
 
+router.get('/supplierList', isAuth, projectsController.getSupList);
+
+router.get('/subcontractorList', isAuth, projectsController.getSubList);
+
+router.get('/estimatorList', isAuth, projectsController.getEstList);
+
+router.get('/insuranceList', isAuth, projectsController.getInsList);
+
+router.get('/salesList', isAuth, projectsController.getSalList);
+
+router.get('/supervisorList', isAuth, projectsController.getSuperList);
+
+
 module.exports = router;

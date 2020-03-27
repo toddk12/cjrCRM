@@ -11,6 +11,7 @@ const Status = require('../models/status');
 const Insurance = require('../models/insurance');
 const Supervisor = require('../models/supervisor');
 const Subcontractor = require('../models/subcontractor');
+const Supplier = require('../models/supplier');
 const Sales = require('../models/sales');
 const Document = require('../models/document');
 const Notes = require('../models/notes');
@@ -20,6 +21,7 @@ const Exclusions = require('../models/exclusions');
 const OwnerOop = require('../models/ownerOop');
 const JobCosts = require('../models/jobCosts');
 const Trades = require('../models/trades');
+const Estimator = require('../models/estimator');
 const RType = require('../models/rType');
 const Wtb = require('../models/wtb');
 const WorkOrder = require('../models/workOrder');
@@ -1728,6 +1730,170 @@ exports.postJcEdit = async(req, res, next) => {
             userId: userId,
             jC: jobCosts,
             totals: tots
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.getSupList = async(req, res, next) => {
+    const userName = req.user.ename;
+
+    try {
+        const supplier = await Supplier.findAll({
+            order: [
+                ['coName', 'ASC']
+            ]
+        })
+
+        res.render('projects/supplierList', {
+            pageTitle: "List of Suppliers",
+            path: '/supplierList',
+            sups: supplier
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.getSubList = async(req, res, next) => {
+    const userName = req.user.ename;
+
+    try {
+        const asubcontractor = await Subcontractor.findAll({
+            where: { active: 1 },
+            order: [
+                ['coName', 'ASC']
+            ]
+        })
+        const subcontractor = await Subcontractor.findAll({
+            where: { active: 0 },
+            order: [
+                ['coName', 'ASC']
+            ]
+        })
+
+        res.render('projects/subcontractorList', {
+            pageTitle: "List of Subcontractors",
+            path: '/subcontractorList',
+            subs: subcontractor,
+            asubs: asubcontractor
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.getEstList = async(req, res, next) => {
+    const userName = req.user.ename;
+
+    try {
+        const aestimator = await Estimator.findAll({
+            where: { active: 1 },
+            order: [
+                ['name', 'ASC']
+            ]
+        })
+        const estimator = await Estimator.findAll({
+            where: { active: 0 },
+            order: [
+                ['name', 'ASC']
+            ]
+        })
+
+        res.render('projects/estimatorList', {
+            pageTitle: "List of Estimators",
+            path: '/estimatorList',
+            ests: estimator,
+            aests: aestimator
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.getInsList = async(req, res, next) => {
+    const userName = req.user.ename;
+
+    try {
+        const insurance = await Insurance.findAll({
+            order: [
+                ['coName', 'ASC']
+            ]
+        })
+
+        res.render('projects/insuranceList', {
+            pageTitle: "List of Insurance Companies",
+            path: '/insuranceList',
+            inss: insurance
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.getSalList = async(req, res, next) => {
+    const userName = req.user.ename;
+
+    try {
+        const asales = await Sales.findAll({
+            where: { active: 1 },
+            order: [
+                ['name', 'ASC']
+            ]
+        })
+        const sales = await Sales.findAll({
+            where: { active: 0 },
+            order: [
+                ['name', 'ASC']
+            ]
+        })
+
+        res.render('projects/salesList', {
+            pageTitle: "List of Sales Representatives",
+            path: '/salesList',
+            sals: sales,
+            asals: asales
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.getSuperList = async(req, res, next) => {
+    const userName = req.user.ename;
+
+    try {
+        const asupervisor = await Supervisor.findAll({
+            where: { active: 1 },
+            order: [
+                ['name', 'ASC']
+            ]
+        })
+        const supervisor = await Supervisor.findAll({
+            where: { active: 0 },
+            order: [
+                ['name', 'ASC']
+            ]
+        })
+
+        res.render('projects/supervisorList', {
+            pageTitle: "List of Supervisors",
+            path: '/supervisorList',
+            spers: supervisor,
+            aspers: asupervisor
         });
     } catch (err) {
         const error = new Error(err);

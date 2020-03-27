@@ -1,0 +1,67 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+            <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                <%- include('../includes/navigation.ejs') %>
+                    <main>
+                        <div class="centered">
+                            <h1><strong>List of Suppliers</strong></h1>
+                        </div>
+                        <div class="container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><strong>Company Name</strong></th>
+                                        <th scope="col"><strong>Contact</strong></th>
+                                        <th scope="col"><strong>Address</strong></th>
+                                        <th scope="col"><strong>City</strong></th>
+                                        <th scope="col"><strong>State</strong></th>
+                                        <th scope="col"><strong>Zip</strong></th>
+                                        <th scope="col"><strong>Phone</strong></th>
+                                        <th scope="col"><strong>Email</strong></th>
+                                        <th scope="col"><strong>Notes</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (let sup of sups) { %>
+                                        <tr>
+                                            <th scope="row">
+                                                <%= sup.coName %>
+                                            </th>
+                                            <td>
+                                                <%= sup.contact %>
+                                            </td>
+                                            <td>
+                                                <%= sup.address %>
+                                            </td>
+                                            <td>
+                                                <%= sup.city %>
+                                            </td>
+                                            <td>
+                                                <%= sup.state %>
+                                            </td>
+                                            <td>
+                                                <%= sup.zip %>
+                                            </td>
+                                            <td>
+                                                <%= sup.phone %>
+                                            </td>
+                                            <td>
+                                                <%= sup.email %>
+                                            </td>
+                                            <td>
+                                                <%= sup.notes %>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </main>
+
+                    <%- include('../includes/footer.ejs') %>
+                        <script src="/js/status.js"></script>

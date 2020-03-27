@@ -33,7 +33,6 @@ exports.getRoofCalc = async(req, res, next) => {
         const roofCheck = await RoofCalc.count({
             where: { projectId: projId }
         })
-        console.log
         const roofCalc = await RoofCalc.findOne({
             where: { projectId: projId },
             include: [{
@@ -42,8 +41,8 @@ exports.getRoofCalc = async(req, res, next) => {
         })
         const pid = roofCheck;
         console.log(pid);
-        const roofId = roofCalc.id;
-        if (pid == 0) {
+        if (pid === 0) {
+            console.log('HEY');
             const project = await Project.findByPk(projId)
             res.render('roof/roofCalc', {
                 pageTitle: 'Roof Calculator',
@@ -53,6 +52,7 @@ exports.getRoofCalc = async(req, res, next) => {
                 project: project
             });
         } else {
+            const roofId = roofCalc.id;
             console.log('has one');
             res.render('roof/roofOrder', {
                 pageTitle: 'Roof Order',
@@ -169,7 +169,7 @@ exports.postRoofCalc = (req, res, next) => {
             supplier: req.body.supplier,
             tinShingles: req.body.tinShingles,
             totalArea: req.body.totalArea,
-            turtleColor: req.body.tutleColor,
+            turtleColor: req.body.turtleColor,
             turtleVents: req.body.turtleVents,
             unit1: req.body.unit1,
             unit2: req.body.unit2,
@@ -482,10 +482,10 @@ exports.getROrder = async(req, res, next) => {
 
         pdfDoc.rect(70, 158, 470, 40).stroke();
 
-        pdfDoc.moveDown().font('Times-Bold').text('Qty', { indent: 25 });
-        pdfDoc.moveUp().text('Unit', { indent: 60 });
-        pdfDoc.moveUp().text('Description', { indent: 100 });
-        pdfDoc.moveUp().text('Color/Size', { indent: 380 });
+        pdfDoc.moveDown().font('Times-Bold').text('Qty', { indent: 25, underline: true });
+        pdfDoc.moveUp().text('Unit', { indent: 60, underline: true });
+        pdfDoc.moveUp().text('Description', { indent: 100, underline: true });
+        pdfDoc.moveUp().text('Color/Size', { indent: 380, underline: true });
 
         pdfDoc.moveDown(.25).font('Times-Roman').text(roofCalc.shingles, { indent: 25 });
         pdfDoc.moveUp().text('Sqr', { indent: 60 });
@@ -543,75 +543,83 @@ exports.getROrder = async(req, res, next) => {
         pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
         pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
+        pdfDoc.moveDown(.25).text(roofCalc.adjPipeVents, { indent: 25 });
         pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        pdfDoc.moveUp().text('Adjustible Pipe Jacks / Boots', { indent: 100 });
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        pdfDoc.moveDown(.25).text(roofCalc.caulk, { indent: 25 });
+        pdfDoc.moveUp().text('Tube', { indent: 60 });
+        pdfDoc.moveUp().text('Caulk - Clear Silicon - 1 per 6 roof penetrations', { indent: 100 });
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        pdfDoc.moveDown(.25).text(roofCalc.sprayPaint, { indent: 25 });
+        pdfDoc.moveUp().text('Can', { indent: 60 });
+        pdfDoc.moveUp().text('Spray paint to match shingles - 1 can per roof jack vent', { indent: 100 });
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        pdfDoc.moveDown(.25).text(roofCalc.sprayPrimer, { indent: 25 });
+        pdfDoc.moveUp().text('Can', { indent: 60 });
+        pdfDoc.moveUp().text('Spray Primer', { indent: 100 });
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        pdfDoc.moveDown(.25).text(roofCalc.tinShingles, { indent: 25 });
+        pdfDoc.moveUp().text('Box', { indent: 60 });
+        pdfDoc.moveUp().text('Tin Shingles - 8" x 8" - box of 100', { indent: 100 });
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        pdfDoc.moveDown(.25).text(roofCalc.modBase, { indent: 25 });
+        pdfDoc.moveUp().text('Modified Base', { indent: 100 });
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        pdfDoc.moveDown(.25).text(roofCalc.rollRoof, { indent: 25 });
+        pdfDoc.moveUp().text('Roll Roofing similar to color samples', { indent: 100 });
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        pdfDoc.moveDown(.25).text(roofCalc.versaCaps, { indent: 25 });
+        pdfDoc.moveUp().text('Versa Caps', { indent: 100 });
+        pdfDoc.moveUp().text(roofCalc.vcSize, { indent: 380 });
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        pdfDoc.moveDown(.25).text(roofCalc.bVent, { indent: 25 });
+        pdfDoc.moveUp().text('B Vents', { indent: 100 });
+        pdfDoc.moveUp().text(roofCalc.bvSize, { indent: 380 });
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        if (roofCalc.other1 == 0) {
+            pdfDoc.moveDown(.25).text("-", { indent: 25 });
+            pdfDoc.moveUp().text("-", { indent: 60 });
+            pdfDoc.moveUp().text("-", { indent: 100 });
+        } else {
+            pdfDoc.moveDown(.25).text(roofCalc.other1, { indent: 25 });
+            pdfDoc.moveUp().text(roofCalc.unit1, { indent: 60 });
+            pdfDoc.moveUp().text(roofCalc.desc1, { indent: 100 });
+        }
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        if (roofCalc.other2 == 0) {
+            pdfDoc.moveDown(.25).text("-", { indent: 25 });
+            pdfDoc.moveUp().text("-", { indent: 60 });
+            pdfDoc.moveUp().text("-", { indent: 100 });
+        } else {
+            pdfDoc.moveDown(.25).text(roofCalc.other2, { indent: 25 });
+            pdfDoc.moveUp().text(roofCalc.unit2, { indent: 60 });
+            pdfDoc.moveUp().text(roofCalc.desc2, { indent: 100 });
+        }
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        if (roofCalc.other3 == 0) {
+            pdfDoc.moveDown(.25).text("-", { indent: 25 });
+            pdfDoc.moveUp().text("-", { indent: 60 });
+            pdfDoc.moveUp().text("-", { indent: 100 });
+        } else {
+            pdfDoc.moveDown(.25).text(roofCalc.other3, { indent: 25 });
+            pdfDoc.moveUp().text(roofCalc.unit3, { indent: 60 });
+            pdfDoc.moveUp().text(roofCalc.desc3, { indent: 100 });
+        }
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        if (roofCalc.other4 == 0) {
+            pdfDoc.moveDown(.25).text("-", { indent: 25 });
+            pdfDoc.moveUp().text("-", { indent: 60 });
+            pdfDoc.moveUp().text("-", { indent: 100 });
+        } else {
+            pdfDoc.moveDown(.25).text(roofCalc.other4, { indent: 25 });
+            pdfDoc.moveUp().text(roofCalc.unit4, { indent: 60 });
+            pdfDoc.moveUp().text(roofCalc.desc4, { indent: 100 });
+        }
 
-        pdfDoc.moveDown(.25).text(roofCalc.turtleVents, { indent: 25 });
-        pdfDoc.moveUp().text('Ea', { indent: 60 });
-        pdfDoc.moveUp().text('Turtle Back Roof Vent - GAF RV50 or equivalent', { indent: 100 });
-        pdfDoc.moveUp().text(roofCalc.turtleColor, { indent: 380 });
+        pdfDoc.moveDown(.25).font('Times-Bold').text('Order Notes: ');
+        pdfDoc.moveUp().font('Times-Roman').text(roofCalc.orderNotes, { indent: 75 })
+
 
         // pdfDoc.rect(65, 350, 450, 175).stroke();
 
