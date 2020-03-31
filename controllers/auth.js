@@ -7,14 +7,13 @@ const { validationResult } = require('express-validator/check');
 const Op = Sequelize.Op;
 
 const nodemailer = require('nodemailer');
-const nodeMailgun = require('nodemailer-mailgun-transport');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
 
 const User = require('../models/user');
 
-const transporter = nodemailer.createTransport(nodeMailgun({
+const transporter = nodemailer.createTransport(sendgridTransport({
     auth: {
-        api_key: 'fe7034ef3936cbdddf6c0d40313d81e0-16ffd509-759b62bc',
-        domain: 'sandbox7c8a866442ce474eba7a248baccd6807.mailgun.org'
+        api_key: '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'
     }
 }));
 

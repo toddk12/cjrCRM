@@ -4,6 +4,15 @@ const { Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
+const nodemailer = require('nodemailer');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
+
+const transporter = nodemailer.createTransport(sendgridTransport({
+    auth: {
+        api_key: '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'
+    }
+}));
+
 const PDFDocument = require('pdfkit');
 
 const Project = require('../models/project');
@@ -27,7 +36,7 @@ const Wtb = require('../models/wtb');
 const WorkOrder = require('../models/workOrder');
 const RoofCalc = require('../models/roofCalc');
 
-exports.getAllProjects = async(req, res, next) => {
+exports.getAllProjects = async (req, res, next) => {
     try {
         const sales = await Sales.findAll()
         const status = await Status.findAll()
@@ -60,7 +69,7 @@ exports.getAllProjects = async(req, res, next) => {
 
 };
 
-exports.getProjects = async(req, res, next) => {
+exports.getProjects = async (req, res, next) => {
     const statId = req.params.stat;
     try {
         const sales = await Sales.findAll()
@@ -95,7 +104,7 @@ exports.getProjects = async(req, res, next) => {
 
 };
 
-exports.getProject = async(req, res, next) => {
+exports.getProject = async (req, res, next) => {
     const projId = req.params.projectId;
     const username = req.session.username;
     const userid = req.session.userid;
@@ -148,7 +157,7 @@ exports.postDeleteProject = (req, res, next) => {
         });
 };
 
-exports.getOwnerInfo = async(req, res, next) => {
+exports.getOwnerInfo = async (req, res, next) => {
     const projId = req.params.projectId;
     try {
         const project = await Project.findByPk(projId, {
@@ -189,16 +198,16 @@ exports.postOwnerInfo = (req, res, next) => {
     const updatedoPhone = req.body.oPhone;
     const updatedEmail = req.body.email;
     Project.findByPk(projId, {
-            include: [{
-                model: Sales
-            }, {
-                model: Supervisor
-            }, {
-                model: Status
-            }, {
-                model: Insurance
-            }]
-        })
+        include: [{
+            model: Sales
+        }, {
+            model: Supervisor
+        }, {
+            model: Status
+        }, {
+            model: Insurance
+        }]
+    })
         .then(project => {
             project.owner1Fn = updatedOwner1Fn;
             project.owner1Ln = updatedOwner1Ln;
@@ -223,7 +232,7 @@ exports.postOwnerInfo = (req, res, next) => {
         });
 };
 
-exports.getOwnerInfoC = async(req, res, next) => {
+exports.getOwnerInfoC = async (req, res, next) => {
     const projId = req.params.projectId;
     try {
         const project = await Project.findByPk(projId, {
@@ -277,16 +286,16 @@ exports.postOwnerInfoC = (req, res, next) => {
     const updatedpmPhone2 = req.body.pmPhone2;
     const updatedpmEmail = req.body.pmEmail;
     Project.findByPk(projId, {
-            include: [{
-                model: Sales
-            }, {
-                model: Supervisor
-            }, {
-                model: Status
-            }, {
-                model: Insurance
-            }]
-        })
+        include: [{
+            model: Sales
+        }, {
+            model: Supervisor
+        }, {
+            model: Status
+        }, {
+            model: Insurance
+        }]
+    })
         .then(project => {
             project.bName = updatedbName;
             project.bAddress = updatedbAddress;
@@ -324,7 +333,7 @@ exports.postOwnerInfoC = (req, res, next) => {
         });
 };
 
-exports.getGeneralInfo = async(req, res, next) => {
+exports.getGeneralInfo = async (req, res, next) => {
     const projId = req.params.projectId;
     try {
         const sales = await Sales.findAll({
@@ -375,16 +384,16 @@ exports.postGeneralInfo = (req, res, next) => {
     const updatedHoldDate = req.body.holdDate;
     console.log("Yup going here!!!");
     Project.findByPk(projId, {
-            include: [{
-                model: Sales
-            }, {
-                model: Supervisor
-            }, {
-                model: Status
-            }, {
-                model: Insurance
-            }]
-        })
+        include: [{
+            model: Sales
+        }, {
+            model: Supervisor
+        }, {
+            model: Status
+        }, {
+            model: Insurance
+        }]
+    })
         .then(project => {
             project.projectNo = updatedProjectNo;
             project.saleId = updatedSaleId;
@@ -410,7 +419,7 @@ exports.postGeneralInfo = (req, res, next) => {
         });
 };
 
-exports.getInsuranceInfo = async(req, res, next) => {
+exports.getInsuranceInfo = async (req, res, next) => {
     const projId = req.params.projectId;
     try {
         const insurance = await Insurance.findAll({
@@ -457,16 +466,16 @@ exports.postInsuranceInfo = (req, res, next) => {
     const updatedAdjPhone = phone1 + phone2 + phone3;
 
     Project.findByPk(projId, {
-            include: [{
-                model: Sales
-            }, {
-                model: Supervisor
-            }, {
-                model: Status
-            }, {
-                model: Insurance
-            }]
-        })
+        include: [{
+            model: Sales
+        }, {
+            model: Supervisor
+        }, {
+            model: Status
+        }, {
+            model: Insurance
+        }]
+    })
         .then(project => {
             project.insuranceId = updatedInsuranceId;
             project.policyNo = updatedPolicyNo;
@@ -495,8 +504,8 @@ exports.postInsuranceInfo = (req, res, next) => {
 exports.getDocInfo = (req, res, next) => {
     const projId = req.params.projectId;
     Document.findAll({
-            where: { projectId: projId }
-        })
+        where: { projectId: projId }
+    })
         .then(document => {
             Project.findByPk(projId)
                 .then(project => {
@@ -520,20 +529,24 @@ exports.postChangeStatus2 = (req, res, next) => {
     let projId = req.params.projId;
     let updatedStatus = req.body.newStat;
     let changedBy = req.user.id;
-    console.log(updatedStatus);
+    let userName = req.user.ename;
+    let userEmail = req.user.email;
+    console.log(userEmail);
     console.log(changedBy);
     Project.findByPk(projId, {
-            include: [{
-                model: Sales
-            }, {
-                model: Supervisor
-            }, {
-                model: Status
-            }, {
-                model: Insurance
-            }]
-        })
+        include: [{
+            model: Sales
+        }, {
+            model: Supervisor
+        }, {
+            model: Status
+        }, {
+            model: Insurance
+        }]
+    })
         .then(project => {
+            const projAddress = project.address;
+            console.log(projAddress);
             if (updatedStatus === 1) {
                 project.statusId = updatedStatus;
                 project.entBy = changedBy;
@@ -593,11 +606,18 @@ exports.postChangeStatus2 = (req, res, next) => {
             return project.save()
         })
         .then(project => {
-
+            console.log(projAddress);
+            const output = projAddress
             res.render('projects/project', {
                 project: project,
                 pageTitle: project.projectNo,
                 path: '/project',
+            });
+            return transporter.sendMail({
+                to: userEmail,
+                from: 'info@cjrestoration.com',
+                subject: 'test',
+                html: projAddress
             });
         })
         .catch(err => {
@@ -605,7 +625,7 @@ exports.postChangeStatus2 = (req, res, next) => {
         });
 };
 
-exports.getFundsReceived = async(req, res, nexct) => {
+exports.getFundsReceived = async (req, res, nexct) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -644,12 +664,12 @@ exports.getFundsReceived = async(req, res, nexct) => {
 exports.postFundsReceived = (req, res, next) => {
 
     FundsRcvd.create({
-            enteredBy: req.body.enteredBy,
-            projectId: req.body.projectId,
-            entryDate: req.body.entryDate,
-            fundsAmt: req.body.fundsAmt,
-            fundsDescription: req.body.fundsDescription
-        })
+        enteredBy: req.body.enteredBy,
+        projectId: req.body.projectId,
+        entryDate: req.body.entryDate,
+        fundsAmt: req.body.fundsAmt,
+        fundsDescription: req.body.fundsDescription
+    })
         // .then(funds => {
         //     Project.findByPk(projId, {
         //             include: [{
@@ -666,7 +686,7 @@ exports.postFundsReceived = (req, res, next) => {
         });
 };
 
-exports.getJobCosts = async(req, res, next) => {
+exports.getJobCosts = async (req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -708,13 +728,13 @@ exports.getJobCosts = async(req, res, next) => {
 exports.postJobCosts = (req, res, next) => {
 
     JobCosts.create({
-            enteredBy: req.body.enteredBy,
-            projectId: req.body.projectId,
-            entryDate: req.body.entryDate,
-            costAmt: req.body.costAmt,
-            costMemo: req.body.costMemo,
-            tradeId: req.body.tradeId
-        })
+        enteredBy: req.body.enteredBy,
+        projectId: req.body.projectId,
+        entryDate: req.body.entryDate,
+        costAmt: req.body.costAmt,
+        costMemo: req.body.costMemo,
+        tradeId: req.body.tradeId
+    })
         .then(project => {
             res.redirect('back');
         })
@@ -725,7 +745,7 @@ exports.postJobCosts = (req, res, next) => {
         });
 };
 
-exports.getAdditions = async(req, res, next) => {
+exports.getAdditions = async (req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
 
@@ -768,13 +788,13 @@ exports.getAdditions = async(req, res, next) => {
 exports.postAdditions = (req, res, next) => {
 
     Additions.create({
-            enteredBy: req.body.enteredBy,
-            entryDate: req.body.entryDate,
-            addAmt: req.body.addAmt,
-            addMemo: req.body.addMemo,
-            tradeId: req.body.tradeId,
-            projectId: req.body.projectId
-        })
+        enteredBy: req.body.enteredBy,
+        entryDate: req.body.entryDate,
+        addAmt: req.body.addAmt,
+        addMemo: req.body.addMemo,
+        tradeId: req.body.tradeId,
+        projectId: req.body.projectId
+    })
         .then(project => {
             res.redirect('back');
         })
@@ -785,7 +805,7 @@ exports.postAdditions = (req, res, next) => {
         });
 };
 
-exports.getExclusions = async(req, res, next) => {
+exports.getExclusions = async (req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -828,13 +848,13 @@ exports.getExclusions = async(req, res, next) => {
 exports.postExclusions = (req, res, next) => {
 
     Exclusions.create({
-            enteredBy: req.body.enteredBy,
-            entryDate: req.body.entryDate,
-            exclAmt: req.body.exclAmt,
-            exclMemo: req.body.exclMemo,
-            tradeId: req.body.tradeId,
-            projectId: req.body.projectId
-        })
+        enteredBy: req.body.enteredBy,
+        entryDate: req.body.entryDate,
+        exclAmt: req.body.exclAmt,
+        exclMemo: req.body.exclMemo,
+        tradeId: req.body.tradeId,
+        projectId: req.body.projectId
+    })
         .then(project => {
             res.redirect('back');
         })
@@ -845,7 +865,7 @@ exports.postExclusions = (req, res, next) => {
         });
 };
 
-exports.getOwnerOop = async(req, res, next) => {
+exports.getOwnerOop = async (req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -886,13 +906,13 @@ exports.getOwnerOop = async(req, res, next) => {
 exports.postOwnerOop = (req, res, next) => {
 
     OwnerOop.create({
-            enteredBy: req.body.enteredBy,
-            entryDate: req.body.entryDate,
-            oopAmt: req.body.oopAmt,
-            oopMemo: req.body.oopMemo,
-            tradeId: req.body.tradeId,
-            projectId: req.body.projectId
-        })
+        enteredBy: req.body.enteredBy,
+        entryDate: req.body.entryDate,
+        oopAmt: req.body.oopAmt,
+        oopMemo: req.body.oopMemo,
+        tradeId: req.body.tradeId,
+        projectId: req.body.projectId
+    })
         .then(project => {
             res.redirect('back');
         })
@@ -903,7 +923,7 @@ exports.postOwnerOop = (req, res, next) => {
         });
 };
 
-exports.getWtb = async(req, res, next) => {
+exports.getWtb = async (req, res, next) => {
     const projId = req.params.projectId;
 
     try {
@@ -940,13 +960,13 @@ exports.postWtb = (req, res, next) => {
 
 
     Wtb.create({
-            projectId: projId,
-            line: line,
-            rcv: rcv,
-            tradeId: tradeId,
-            op: op,
-            net: net,
-        })
+        projectId: projId,
+        line: line,
+        rcv: rcv,
+        tradeId: tradeId,
+        op: op,
+        net: net,
+    })
         .then(result => {
             res.redirect('back');
         })
@@ -957,7 +977,7 @@ exports.postWtb = (req, res, next) => {
         });
 };
 
-exports.getWtbTot = async(req, res, next) => {
+exports.getWtbTot = async (req, res, next) => {
     const projId = req.params.projectId;
     console.log("TaTa");
     try {
@@ -1222,7 +1242,7 @@ exports.getWtbTot = async(req, res, next) => {
     }
 };
 
-exports.getWtbEdit = async(req, res, next) => {
+exports.getWtbEdit = async (req, res, next) => {
     const wtbId = req.params.wtbId;
 
     try {
@@ -1248,7 +1268,7 @@ exports.getWtbEdit = async(req, res, next) => {
     }
 };
 
-exports.postWtbEdit = async(req, res, next) => {
+exports.postWtbEdit = async (req, res, next) => {
     const wtbId = req.body.wtbId
     const projId = req.body.projectId;
     const updatedLine = req.body.line;
@@ -1296,7 +1316,7 @@ exports.postWtbEdit = async(req, res, next) => {
     }
 };
 
-exports.getAddEdit = async(req, res, next) => {
+exports.getAddEdit = async (req, res, next) => {
     const addId = req.params.addId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -1326,7 +1346,7 @@ exports.getAddEdit = async(req, res, next) => {
     }
 };
 
-exports.postAddEdit = async(req, res, next) => {
+exports.postAddEdit = async (req, res, next) => {
     const addId = req.body.addId
     const projId = req.body.projectId;
     const updatedEnteredBy = req.body.enteredBy;
@@ -1388,7 +1408,7 @@ exports.postAddEdit = async(req, res, next) => {
     }
 };
 
-exports.getExclEdit = async(req, res, next) => {
+exports.getExclEdit = async (req, res, next) => {
     const exclId = req.params.exclId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -1418,7 +1438,7 @@ exports.getExclEdit = async(req, res, next) => {
     }
 };
 
-exports.postExclEdit = async(req, res, next) => {
+exports.postExclEdit = async (req, res, next) => {
     const exclId = req.body.exclId
     const projId = req.body.projectId;
     const updatedEnteredBy = req.body.enteredBy;
@@ -1480,7 +1500,7 @@ exports.postExclEdit = async(req, res, next) => {
     }
 };
 
-exports.getOopEdit = async(req, res, next) => {
+exports.getOopEdit = async (req, res, next) => {
     const oopId = req.params.oopId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -1510,7 +1530,7 @@ exports.getOopEdit = async(req, res, next) => {
     }
 };
 
-exports.postOopEdit = async(req, res, next) => {
+exports.postOopEdit = async (req, res, next) => {
     const oopId = req.body.oopId
     const projId = req.body.projectId;
     const updatedEnteredBy = req.body.enteredBy;
@@ -1569,7 +1589,7 @@ exports.postOopEdit = async(req, res, next) => {
     };
 };
 
-exports.getFrEdit = async(req, res, next) => {
+exports.getFrEdit = async (req, res, next) => {
     const frId = req.params.frId;
     const userName = req.user.ename;
 
@@ -1593,7 +1613,7 @@ exports.getFrEdit = async(req, res, next) => {
     }
 };
 
-exports.postFrEdit = async(req, res, next) => {
+exports.postFrEdit = async (req, res, next) => {
     const frId = req.body.frId
     const projId = req.body.projectId;
     const updatedEnteredBy = req.body.enteredBy;
@@ -1651,7 +1671,7 @@ exports.postFrEdit = async(req, res, next) => {
     };
 };
 
-exports.getJcEdit = async(req, res, next) => {
+exports.getJcEdit = async (req, res, next) => {
     const jcId = req.params.jcId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -1681,7 +1701,7 @@ exports.getJcEdit = async(req, res, next) => {
     }
 };
 
-exports.postJcEdit = async(req, res, next) => {
+exports.postJcEdit = async (req, res, next) => {
     const jcId = req.body.jcId
     const projId = req.body.projectId;
     const updatedEnteredBy = req.body.enteredBy;
@@ -1738,7 +1758,7 @@ exports.postJcEdit = async(req, res, next) => {
     }
 };
 
-exports.getSupList = async(req, res, next) => {
+exports.getSupList = async (req, res, next) => {
     const userName = req.user.ename;
 
     try {
@@ -1760,7 +1780,7 @@ exports.getSupList = async(req, res, next) => {
     }
 };
 
-exports.getSubList = async(req, res, next) => {
+exports.getSubList = async (req, res, next) => {
     const userName = req.user.ename;
 
     try {
@@ -1790,7 +1810,7 @@ exports.getSubList = async(req, res, next) => {
     }
 };
 
-exports.getEstList = async(req, res, next) => {
+exports.getEstList = async (req, res, next) => {
     const userName = req.user.ename;
 
     try {
@@ -1820,7 +1840,7 @@ exports.getEstList = async(req, res, next) => {
     }
 };
 
-exports.getInsList = async(req, res, next) => {
+exports.getInsList = async (req, res, next) => {
     const userName = req.user.ename;
 
     try {
@@ -1842,7 +1862,7 @@ exports.getInsList = async(req, res, next) => {
     }
 };
 
-exports.getSalList = async(req, res, next) => {
+exports.getSalList = async (req, res, next) => {
     const userName = req.user.ename;
 
     try {
@@ -1872,7 +1892,7 @@ exports.getSalList = async(req, res, next) => {
     }
 };
 
-exports.getSuperList = async(req, res, next) => {
+exports.getSuperList = async (req, res, next) => {
     const userName = req.user.ename;
 
     try {
