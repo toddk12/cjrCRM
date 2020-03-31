@@ -8,11 +8,16 @@
             <main>
                 <div class="centered">
                     <br>
-                    <h1>Add Estimator</h1>
+                    <h1>Edit Estimator</h1>
                     <br>
                 </div>
                 <article class="ownerinfo">
-                    <form class="form" action="/add-estimator" method="POST">
+                    <form class="form" action="/estlEdit" method="POST">
+                        <div class="row">
+                            <div class="col-sm">
+                                <input type="hidden" name="estId" id="estId" value="<%= estimator.id %>">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm">
                                 <label for="name"><strong>Estimator Name:</strong></label>
@@ -22,21 +27,22 @@
                         <br>
                         <div class="row">
                             <div class="col-sm">
-                                <label for="active"><strong>Active?</strong></label>
-                                <input class="form-check-input" style="width: 100px" type="checkbox" name="active" id="active" value="<%= estimator.active %>">
+                                <label for="email"><strong>Email</strong></label>
+                                <input style="width: 500px" type="text" name="email" id="email" value="<%= estimator.email %>">
                             </div>
                         </div>
+                        <br>
                         <div class="row">
                             <div class="col-sm">
-                                <label for="email"><strong>email?</strong></label>
-                                <input class="form-check-input" style="width: 100px" type="text" name="email" id="email" value="<%= estimator.active %>">
+                                <label for="active"><strong>Active?</strong></label>
+                                <input style="width: 100px" type="text" name="active" id="active" value="<%= estimator.active%>">
                             </div>
                         </div>
                         <br>
                         <div class="centered">
                             <br>
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                            <button class="updatebtn" type="submit">Add Estimator</button>
+                            <button class="updatebtn" type="submit">Save</button>
                         </div>
                     </form>
                 </article>

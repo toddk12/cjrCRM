@@ -92,8 +92,6 @@ router.get('/supplierList', isAuth, projectsController.getSupList);
 
 router.get('/subcontractorList', isAuth, projectsController.getSubList);
 
-router.get('/estimatorList', isAuth, projectsController.getEstList);
-
 router.get('/insuranceList', isAuth, projectsController.getInsList);
 
 router.get('/salesList', isAuth, projectsController.getSalList);

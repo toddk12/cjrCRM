@@ -4,6 +4,14 @@ const { Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
+const nodemailer = require('nodemailer');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
+
+const transporter = nodemailer.createTransport(sendgridTransport({
+    auth: {
+        api_key: ''
+    }
+}));
 
 
 const PDFDocument = require('pdfkit');
@@ -614,6 +622,7 @@ exports.postChangeStatus2 = (req, res, next) => {
             });
         })
         .catch(err => {
+            console.log(err)
             console.log('Status Change Failed!.');
         });
 };
@@ -1795,36 +1804,6 @@ exports.getSubList = async(req, res, next) => {
             path: '/subcontractorList',
             subs: subcontractor,
             asubs: asubcontractor
-        });
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    }
-};
-
-exports.getEstList = async(req, res, next) => {
-    const userName = req.user.ename;
-
-    try {
-        const aestimator = await Estimator.findAll({
-            where: { active: 1 },
-            order: [
-                ['name', 'ASC']
-            ]
-        })
-        const estimator = await Estimator.findAll({
-            where: { active: 0 },
-            order: [
-                ['name', 'ASC']
-            ]
-        })
-
-        res.render('projects/estimatorList', {
-            pageTitle: "List of Estimators",
-            path: '/estimatorList',
-            ests: estimator,
-            aests: aestimator
         });
     } catch (err) {
         const error = new Error(err);

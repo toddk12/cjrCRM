@@ -1,0 +1,82 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+            <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                <%- include('../includes/navigation.ejs') %>
+                    <main>
+                        <div class="centered">
+                            <h1><strong>List of Estimators</strong></h1>
+                            <br>
+                            <article>
+                                <h3>Active Estimators</h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"><strong>Name</strong></th>
+                                            <th scope="col"><strong>Email</strong></th>
+                                            <th scope="col"><strong></strong></th>
+                                            <th scope="col"><strong></strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (let aest of aests) { %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= aest.name %>
+                                                </th>
+                                                <td>
+                                                    <%= aest.email %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn-esm text-center" style="width: 150px" href="/estlEdit/<%= aest.id %>">Edit</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn-esm text-center" style="width: 150px" href="/estlInactive/<%= aest.id %>">Inactivate</a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </article>
+                            <article>
+                                <h3>Inactive Estimators</h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"><strong>Name</strong></th>
+                                            <th scope="col"><strong>Email</strong></th>
+                                            <th scope="col"><strong></strong></th>
+                                            <th scope="col"><strong></strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (let est of ests) { %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= est.name %>
+                                                </th>
+                                                <td>
+                                                    <%= est.email %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn-esm text-center" style="width: 150px" href="/estlEdit/<%= est.id %>">Edit</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn-esm text-center" style="width: 150px" href="/estlActive/<%= est.id %>">Activate</a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </article>
+                        </div>
+
+
+                    </main>
+
+                    <%- include('../includes/footer.ejs') %>
+                        <script src="/js/status.js"></script>

@@ -13,6 +13,7 @@ const Estimator = sequelize.define('estimator', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    email: Sequelize.STRING,
     active: {
         type: Sequelize.BOOLEAN,
         defaultValue: 1

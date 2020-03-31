@@ -67,6 +67,7 @@ const addRoutes = require('./routes/add');
 const workRoutes = require('./routes/work');
 const roofRoutes = require('./routes/roof');
 const searchRoutes = require('./routes/search');
+const listsRoutes = require('./routes/lists');
 const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -113,6 +114,7 @@ app.use(addRoutes);
 app.use(workRoutes);
 app.use(roofRoutes);
 app.use(searchRoutes);
+app.use(listsRoutes);
 app.use(authRoutes);
 
 app.get('/500', errorController.get500);
