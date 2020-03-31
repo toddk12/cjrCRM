@@ -15,7 +15,7 @@ const WorkOrder = require('../models/workOrder');
 
 exports.getWorkOrderTot = async(req, res, next) => {
     const projId = req.params.projectId
-    console.log(projId);
+
     try {
         const project = await Project.findByPk(projId)
         const workOrder = await WorkOrder.findAll({
@@ -30,7 +30,7 @@ exports.getWorkOrderTot = async(req, res, next) => {
                 model: Subcontractor
             }],
         })
-        console.log("and here");
+
         res.render('work/workOrderTot', {
             pageTitle: 'Work Orders',
             path: '/workOrderTot',
@@ -48,7 +48,7 @@ exports.getWorkOrderTot = async(req, res, next) => {
 
 exports.getWos = async(req, res, next) => {
     const workId = req.params.workId;
-    console.log(workId);
+
     try {
 
         const sales = await Sales.findAll()
@@ -68,7 +68,7 @@ exports.getWos = async(req, res, next) => {
         })
         const projId = workOrder.projectId;
         const project = await Project.findByPk(projId)
-        console.log("and here");
+
         res.render('work/wos', {
             pageTitle: 'Work Order',
             path: '/wos',
@@ -145,7 +145,7 @@ exports.postWos = async(req, res, next) => {
                 model: Subcontractor
             }],
         })
-        console.log("and here");
+
         res.render('work/workOrderTot', {
             pageTitle: 'Work Orders',
             path: '/workOrderTot',
@@ -163,7 +163,7 @@ exports.postWos = async(req, res, next) => {
 
 exports.getWorkOrder = async(req, res, next) => {
     const workId = req.params.workId;
-    console.log(workId);
+
     try {
 
         const workOrder = await WorkOrder.findByPk(workId, {

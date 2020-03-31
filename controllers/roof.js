@@ -26,9 +26,9 @@ const WorkOrder = require('../models/workOrder');
 const RoofCalc = require('../models/roofCalc');
 
 exports.getRoofCalc = async(req, res, next) => {
-    console.log('RoofCalc');
+
     const projId = req.params.projectId;
-    console.log(projId);
+
     try {
         const roofCheck = await RoofCalc.count({
             where: { projectId: projId }
@@ -40,9 +40,9 @@ exports.getRoofCalc = async(req, res, next) => {
             }]
         })
         const pid = roofCheck;
-        console.log(pid);
+
         if (pid === 0) {
-            console.log('HEY');
+
             const project = await Project.findByPk(projId)
             res.render('roof/roofCalc', {
                 pageTitle: 'Roof Calculator',
@@ -53,7 +53,7 @@ exports.getRoofCalc = async(req, res, next) => {
             });
         } else {
             const roofId = roofCalc.id;
-            console.log('has one');
+
             res.render('roof/roofOrder', {
                 pageTitle: 'Roof Order',
                 path: '/roofOrder',
@@ -73,8 +73,7 @@ exports.postRoofCalc = (req, res, next) => {
     let sq = parseInt(req.body.squares, 10);
     let rid = parseInt(req.body.ridge, 10);
     let hp = parseInt(req.body.hip, 10);
-    console.log('hip ', hp);
-    console.log('Ridge ', rid);
+
     let es = parseInt(req.body.eaveStarter, 10);
     let rk = parseInt(req.body.rake, 10);
     let noi = parseInt(req.body.noIWCourses, 10);
@@ -106,18 +105,7 @@ exports.postRoofCalc = (req, res, next) => {
     } else {
         deck = 0;
     };
-    console.log("shingles: " + shingles);
-    console.log("hipRidge: " + hipRidge);
-    console.log("starter: " + starter);
-    console.log("drip24: " + drip24);
-    console.log("drip: " + drip);
-    console.log("felt: " + felt);
-    console.log("iceWater: " + iceWater);
-    console.log("lFlash: " + lFlash);
-    console.log("sFlash: " + sFlash);
-    console.log("cNail : " + cNail);
-    console.log("pNail: " + pNail);
-    console.log("deck: " + deck);
+
 
     RoofCalc.create({
             adjPipeVents: req.body.adjPipeVents,
@@ -192,9 +180,9 @@ exports.postRoofCalc = (req, res, next) => {
 };
 
 exports.getRoofOrder = async(req, res, next) => {
-    console.log('Order');
+
     const roofId = req.params.roofId;
-    console.log(roofId);
+
     try {
         const roofCalc = await RoofCalc.findByPk(roofId, {
             include: [{
@@ -215,7 +203,7 @@ exports.getRoofOrder = async(req, res, next) => {
 };
 
 exports.getRoofCalcEdit = async(req, res, next) => {
-    console.log('Edit RoofCalc');
+
     const roofId = req.params.roofId;
     try {
         const roofCalc = await RoofCalc.findByPk(roofId, {
@@ -224,7 +212,7 @@ exports.getRoofCalcEdit = async(req, res, next) => {
             }]
         })
         const projId = roofCalc.projectId;
-        console.log(projId);
+
         const project = await Project.findByPk(projId)
         res.render('roof/roofCalcEdit', {
             pageTitle: 'Edit Roof Calculator',
@@ -322,7 +310,7 @@ exports.postRoofCalcEdit = async(req, res, next) => {
     const updatedValley = req.body.valley;
     const updatedVcSize = req.body.vcSize;
     const updatedVersaCaps = req.body.versaCaps;
-    console.log(roofId);
+
 
     try {
         const roofCalc = await RoofCalc.findByPk(roofId)
@@ -407,7 +395,7 @@ exports.postRoofCalcEdit = async(req, res, next) => {
 
 exports.getROrder = async(req, res, next) => {
     const roofId = req.params.roofId;
-    console.log(roofId);
+
     try {
 
         const roofCalc = await RoofCalc.findByPk(roofId, {
@@ -418,7 +406,6 @@ exports.getROrder = async(req, res, next) => {
         const project = await Project.findAll({
             where: { id: roofCalc.projectId }
         });
-        console.log("check");
 
         const owner = (roofCalc.project.owner1Fn + " " + roofCalc.project.owner1Ln);
         const hPhone = ("(" + roofCalc.project.hPhone.substring(0, 3) + ") " + roofCalc.project.hPhone.substring(3, 6) + "-" + roofCalc.project.hPhone.substring(6, 10));
@@ -431,8 +418,6 @@ exports.getROrder = async(req, res, next) => {
 
         const rcName = 'roofOrders-' + roofId + '.pdf';
         const rcPath = path.join('data', 'roofOrders', rcName);
-
-        console.log("check2");
 
         const pdfDoc = new PDFDocument({
             margins: {

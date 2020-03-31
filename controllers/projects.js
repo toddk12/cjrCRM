@@ -148,7 +148,7 @@ exports.postDeleteProject = (req, res, next) => {
             return project.destroy();
         })
         .then(result => {
-            console.log('Deleted Project');
+
             res.redirect('/home');
         })
         .catch(err => {
@@ -383,7 +383,7 @@ exports.postGeneralInfo = (req, res, next) => {
     const updatedCancelDate = req.body.cancelDate;
     const updatedDenyDate = req.body.denyDate;
     const updatedHoldDate = req.body.holdDate;
-    console.log("Yup going here!!!");
+
     Project.findByPk(projId, {
             include: [{
                 model: Sales
@@ -532,8 +532,7 @@ exports.postChangeStatus2 = (req, res, next) => {
     let changedBy = req.user.id;
     let userName = req.user.ename;
     let userEmail = req.user.email;
-    console.log(userEmail);
-    console.log(changedBy);
+
     Project.findByPk(projId, {
             include: [{
                 model: Sales
@@ -547,7 +546,6 @@ exports.postChangeStatus2 = (req, res, next) => {
         })
         .then(project => {
             const projAddress = project.address;
-            console.log(projAddress);
             if (updatedStatus === 1) {
                 project.statusId = updatedStatus;
                 project.entBy = changedBy;
@@ -607,7 +605,6 @@ exports.postChangeStatus2 = (req, res, next) => {
             return project.save()
         })
         .then(project => {
-            console.log(projAddress);
             const output = projAddress
             res.render('projects/project', {
                 project: project,
@@ -623,7 +620,6 @@ exports.postChangeStatus2 = (req, res, next) => {
         })
         .catch(err => {
             console.log(err)
-            console.log('Status Change Failed!.');
         });
 };
 
@@ -637,7 +633,6 @@ exports.getFundsReceived = async(req, res, nexct) => {
             where: { projectId: projId }
         })
         const tots = await FundsRcvd.sum('fundsAmt', { where: { projectId: projId } })
-        console.log(tots);
         const project = await Project.findByPk(projId, {
             include: [{
                 model: FundsRcvd
@@ -656,7 +651,6 @@ exports.getFundsReceived = async(req, res, nexct) => {
             totals: tots
         });
     } catch (err) {
-        console.log(fundsRcvd);
         const error = new Error(err);
         error.httpStatusCode = 500;
         return next(error);
@@ -692,7 +686,7 @@ exports.getJobCosts = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
-    console.log(projId);
+
     try {
         const trades = await Trades.findAll()
         const jobCosts = await JobCosts.findAll({
@@ -981,7 +975,7 @@ exports.postWtb = (req, res, next) => {
 
 exports.getWtbTot = async(req, res, next) => {
     const projId = req.params.projectId;
-    console.log("TaTa");
+
     try {
         const wtb = await Wtb.findAll({ where: { projectId: projId }, include: [{ model: Trades }] })
         const net1 = await Wtb.sum('net', { where: { projectId: projId, tradeId: 1 } })
@@ -1145,8 +1139,7 @@ exports.getWtbTot = async(req, res, next) => {
         const jc25 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 25 } })
         const jcTot = await JobCosts.sum('costAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId)
-        console.log(net1);
-        console.log(jc1);
+
         res.render('projects/wtbTot', {
             pageTitle: "Budget By Trade",
             path: '/wtbTot',
@@ -1278,13 +1271,7 @@ exports.postWtbEdit = async(req, res, next) => {
     const updatedOp = req.body.op;
     const updatedNet = (updatedRcv - updatedOp);
     const updatedTradeId = req.body.tradeId;
-    console.log(wtbId);
-    console.log(projId);
-    console.log(updatedTradeId);
-    console.log(updatedLine);
-    console.log(updatedRcv);
-    console.log(updatedOp);
-    console.log(updatedNet);
+
     try {
         const wtb = await Wtb.findByPk(wtbId)
 
@@ -1357,14 +1344,7 @@ exports.postAddEdit = async(req, res, next) => {
     const updatedAddMemo = req.body.addMemo;;
     const updatedTradeId = req.body.tradeId;
     const userName = req.user.ename;
-    console.log(addId);
-    console.log(req.body.projectId);
-    console.log(projId);
-    console.log(updatedEnteredBy);
-    console.log(updatedEntryDate);
-    console.log(updatedAddAmt);
-    console.log(updatedAddMemo);
-    console.log(updatedTradeId);
+
     try {
         const add = await Additions.findByPk(addId)
 
@@ -1449,14 +1429,7 @@ exports.postExclEdit = async(req, res, next) => {
     const updatedExclMemo = req.body.exclMemo;;
     const updatedTradeId = req.body.tradeId;
     const userName = req.user.ename;
-    console.log(exclId);
-    console.log(req.body.projectId);
-    console.log(projId);
-    console.log(updatedEnteredBy);
-    console.log(updatedEntryDate);
-    console.log(updatedExclAmt);
-    console.log(updatedExclMemo);
-    console.log(updatedTradeId);
+
     try {
         const excl = await Exclusions.findByPk(exclId)
 
@@ -1541,14 +1514,7 @@ exports.postOopEdit = async(req, res, next) => {
     const updatedOopMemo = req.body.oopMemo;;
     const updatedTradeId = req.body.tradeId;
     const userName = req.user.ename;
-    console.log(oopId);
-    console.log(req.body.projectId);
-    console.log(projId);
-    console.log(updatedEnteredBy);
-    console.log(updatedEntryDate);
-    console.log(updatedOopAmt);
-    console.log(updatedOopMemo);
-    console.log(updatedTradeId);
+
     try {
         const oop = await OwnerOop.findByPk(oopId)
 
@@ -1624,13 +1590,7 @@ exports.postFrEdit = async(req, res, next) => {
     const updatedFundsDescription = req.body.fundsDescription;
     const userName = req.user.ename;
     const userId = req.user.id;
-    console.log(frId);
-    console.log(req.body.projectId);
-    console.log(projId);
-    console.log(updatedEnteredBy);
-    console.log(updatedEntryDate);
-    console.log(updatedFundsAmt);
-    console.log(updatedFundsDescription);
+
     try {
         const fr = await FundsRcvd.findByPk(frId)
 
@@ -1666,7 +1626,6 @@ exports.postFrEdit = async(req, res, next) => {
 
 
     } catch (err) {
-        console.log(fundsRcvd);
         const error = new Error(err);
         error.httpStatusCode = 500;
         return next(error);
@@ -1713,8 +1672,7 @@ exports.postJcEdit = async(req, res, next) => {
     const updatedTradeId = req.body.tradeId;
     const userName = req.user.ename;
     const userId = req.user.id;
-    console.log(jcId);
-    console.log(updatedCostAmt);
+
     try {
         const jc = await JobCosts.findByPk(jcId)
 

@@ -23,7 +23,7 @@ const Trades = require('../models/trades');
 const RType = require('../models/rType');
 const WorkOrder = require('../models/workOrder');
 
-exports.getAddInsurance = async (req, res, next) => {
+exports.getAddInsurance = async(req, res, next) => {
     try {
         const insurance = await Insurance.findAll({
             order: [
@@ -45,22 +45,20 @@ exports.getAddInsurance = async (req, res, next) => {
 exports.postAddInsurance = (req, res, next) => {
 
     Insurance.create({
-        coName: req.body.coName,
-        address: req.body.address,
-        address2: req.body.address2,
-        city: req.body.city,
-        state: req.body.state,
-        zip: req.body.zip,
-        phone1: req.body.phone1,
-        phone2: req.body.phone2,
-        phone3: req.body.phone3,
-        email1: req.body.email1,
-        email2: req.body.email2,
-        entBy: req.user.id
-    })
+            coName: req.body.coName,
+            address: req.body.address,
+            address2: req.body.address2,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            phone1: req.body.phone1,
+            phone2: req.body.phone2,
+            phone3: req.body.phone3,
+            email1: req.body.email1,
+            email2: req.body.email2,
+            entBy: req.user.id
+        })
         .then(result => {
-
-            console.log('Insurance Co Added');
             res.redirect('/home');
         })
         .catch(err => {
@@ -72,22 +70,22 @@ exports.postAddInsurance = (req, res, next) => {
 
 exports.getAddProject = (req, res, next) => {
     Sales.findAll({
-        order: [
-            ['name', 'ASC']
-        ]
-    })
+            order: [
+                ['name', 'ASC']
+            ]
+        })
         .then(sales => {
             Insurance.findAll({
-                order: [
-                    ['coName', 'ASC']
-                ]
-            })
+                    order: [
+                        ['coName', 'ASC']
+                    ]
+                })
                 .then(insurance => {
                     Supervisor.findAll({
-                        order: [
-                            ['name', 'ASC']
-                        ]
-                    })
+                            order: [
+                                ['name', 'ASC']
+                            ]
+                        })
                         .then(supervisor => {
                             Status.findAll()
                                 .then(status => {
@@ -120,34 +118,34 @@ exports.getAddProject = (req, res, next) => {
 exports.postAddProject = (req, res, next) => {
 
     Project.create({
-        projectNo: req.body.projectNo,
-        statusId: req.body.statusId,
-        owner1Fn: req.body.owner1Fn,
-        owner1Ln: req.body.owner1Ln,
-        owner2Fn: req.body.owner2Fn,
-        owner2Ln: req.body.owner2Ln,
-        address: req.body.address,
-        city: req.body.city,
-        state: req.body.state,
-        zip: req.body.zip,
-        hPhone: req.body.hPhone,
-        cPhone: req.body.cPhone,
-        oPhone: req.body.oPhone,
-        email: req.body.email,
-        saleId: req.body.saleId,
-        supervisorId: req.body.supervisorId,
-        insuranceId: req.body.insuranceId,
-        policyNo: req.body.policyNo,
-        claimNo: req.body.claimNo,
-        dateLoss: req.body.dateLoss,
-        typeLoss: req.body.typeLoss,
-        deductible: req.body.deductible,
-        oScopeDate: req.body.oScopeDate,
-        oScopeRCV: req.body.oScopeRCV,
-        adjName: req.body.adjName,
-        adjPhone: req.body.adjPhone,
-        entBy: req.user.id
-    })
+            projectNo: req.body.projectNo,
+            statusId: req.body.statusId,
+            owner1Fn: req.body.owner1Fn,
+            owner1Ln: req.body.owner1Ln,
+            owner2Fn: req.body.owner2Fn,
+            owner2Ln: req.body.owner2Ln,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            hPhone: req.body.hPhone,
+            cPhone: req.body.cPhone,
+            oPhone: req.body.oPhone,
+            email: req.body.email,
+            saleId: req.body.saleId,
+            supervisorId: req.body.supervisorId,
+            insuranceId: req.body.insuranceId,
+            policyNo: req.body.policyNo,
+            claimNo: req.body.claimNo,
+            dateLoss: req.body.dateLoss,
+            typeLoss: req.body.typeLoss,
+            deductible: req.body.deductible,
+            oScopeDate: req.body.oScopeDate,
+            oScopeRCV: req.body.oScopeRCV,
+            adjName: req.body.adjName,
+            adjPhone: req.body.adjPhone,
+            entBy: req.user.id
+        })
         .then(result => {
             const statId = req.body.statusId;
             Sales.findAll()
@@ -155,20 +153,20 @@ exports.postAddProject = (req, res, next) => {
                     Status.findOne({ where: { id: statId } })
                         .then(status => {
                             Project.findAll({
-                                where: { statusId: statId },
-                                include: [{
-                                    model: Sales
-                                }, {
-                                    model: Supervisor
-                                }, {
-                                    model: Insurance
-                                }, {
-                                    model: Status
-                                }],
-                                order: [
-                                    ['owner1Ln', 'ASC']
-                                ]
-                            })
+                                    where: { statusId: statId },
+                                    include: [{
+                                        model: Sales
+                                    }, {
+                                        model: Supervisor
+                                    }, {
+                                        model: Insurance
+                                    }, {
+                                        model: Status
+                                    }],
+                                    order: [
+                                        ['owner1Ln', 'ASC']
+                                    ]
+                                })
                                 .then(projects => {
                                     res.render('projects/projects', {
                                         projs: projects,
@@ -190,22 +188,22 @@ exports.postAddProject = (req, res, next) => {
 
 exports.getAddCProject = (req, res, next) => {
     Sales.findAll({
-        order: [
-            ['name', 'ASC']
-        ]
-    })
+            order: [
+                ['name', 'ASC']
+            ]
+        })
         .then(sales => {
             Insurance.findAll({
-                order: [
-                    ['coName', 'ASC']
-                ]
-            })
+                    order: [
+                        ['coName', 'ASC']
+                    ]
+                })
                 .then(insurance => {
                     Supervisor.findAll({
-                        order: [
-                            ['name', 'ASC']
-                        ]
-                    })
+                            order: [
+                                ['name', 'ASC']
+                            ]
+                        })
                         .then(supervisor => {
                             Status.findAll()
                                 .then(status => {
@@ -235,48 +233,48 @@ exports.getAddCProject = (req, res, next) => {
 exports.postAddCProject = (req, res, next) => {
 
     Project.create({
-        projectNo: req.body.projectNo,
-        statusId: req.body.statusId,
-        commercial: '1',
-        bName: req.body.bName,
-        bAddress: req.body.bAddress,
-        bCity: req.body.bCity,
-        bState: req.body.bState,
-        bZip: req.body.bZip,
-        ownerCoName: req.body.ownerCoName,
-        owner1Fn: req.body.owner1Fn,
-        owner1Ln: req.body.owner1Ln,
-        address: req.body.address,
-        city: req.body.city,
-        state: req.body.state,
-        zip: req.body.zip,
-        hPhone: req.body.hPhone,
-        cPhone: req.body.cPhone,
-        oPhone: req.body.oPhone,
-        email: req.body.email,
-        pmCoName: req.body.pmCoName,
-        pmContact: req.body.pmContact,
-        pmAddress: req.body.pmAddress,
-        pmCity: req.body.pmCity,
-        pmState: req.body.pmState,
-        pmZip: req.body.pmZip,
-        pmPhone1: req.body.pmPhone1,
-        pmPhone2: req.body.pmPhone2,
-        pmEmail: req.body.pmEmail,
-        saleId: req.body.saleId,
-        supervisorId: req.body.supervisorId,
-        insuranceId: req.body.insuranceId,
-        policyNo: req.body.policyNo,
-        claimNo: req.body.claimNo,
-        dateLoss: req.body.dateLoss,
-        typeLoss: req.body.typeLoss,
-        deductible: req.body.deductible,
-        oScopeDate: req.body.oScopeDate,
-        oScopeRCV: req.body.oScopeRCV,
-        adjName: req.body.adjName,
-        adjPhone: req.body.adjPhone,
-        entBy: req.user.id
-    })
+            projectNo: req.body.projectNo,
+            statusId: req.body.statusId,
+            commercial: '1',
+            bName: req.body.bName,
+            bAddress: req.body.bAddress,
+            bCity: req.body.bCity,
+            bState: req.body.bState,
+            bZip: req.body.bZip,
+            ownerCoName: req.body.ownerCoName,
+            owner1Fn: req.body.owner1Fn,
+            owner1Ln: req.body.owner1Ln,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            hPhone: req.body.hPhone,
+            cPhone: req.body.cPhone,
+            oPhone: req.body.oPhone,
+            email: req.body.email,
+            pmCoName: req.body.pmCoName,
+            pmContact: req.body.pmContact,
+            pmAddress: req.body.pmAddress,
+            pmCity: req.body.pmCity,
+            pmState: req.body.pmState,
+            pmZip: req.body.pmZip,
+            pmPhone1: req.body.pmPhone1,
+            pmPhone2: req.body.pmPhone2,
+            pmEmail: req.body.pmEmail,
+            saleId: req.body.saleId,
+            supervisorId: req.body.supervisorId,
+            insuranceId: req.body.insuranceId,
+            policyNo: req.body.policyNo,
+            claimNo: req.body.claimNo,
+            dateLoss: req.body.dateLoss,
+            typeLoss: req.body.typeLoss,
+            deductible: req.body.deductible,
+            oScopeDate: req.body.oScopeDate,
+            oScopeRCV: req.body.oScopeRCV,
+            adjName: req.body.adjName,
+            adjPhone: req.body.adjPhone,
+            entBy: req.user.id
+        })
         .then(result => {
             const statId = req.body.statusId;
             Sales.findAll()
@@ -284,20 +282,20 @@ exports.postAddCProject = (req, res, next) => {
                     Status.findOne({ where: { id: statId } })
                         .then(status => {
                             Project.findAll({
-                                where: { statusId: statId },
-                                include: [{
-                                    model: Sales
-                                }, {
-                                    model: Supervisor
-                                }, {
-                                    model: Insurance
-                                }, {
-                                    model: Status
-                                }],
-                                order: [
-                                    ['owner1Ln', 'ASC']
-                                ]
-                            })
+                                    where: { statusId: statId },
+                                    include: [{
+                                        model: Sales
+                                    }, {
+                                        model: Supervisor
+                                    }, {
+                                        model: Insurance
+                                    }, {
+                                        model: Status
+                                    }],
+                                    order: [
+                                        ['owner1Ln', 'ASC']
+                                    ]
+                                })
                                 .then(projects => {
                                     res.render('projects/projects', {
                                         projs: projects,
@@ -317,7 +315,7 @@ exports.postAddCProject = (req, res, next) => {
         });
 };
 
-exports.getAddNote = async (req, res, next) => {
+exports.getAddNote = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
@@ -352,12 +350,12 @@ exports.getAddNote = async (req, res, next) => {
 exports.postAddNote = (req, res, next) => {
 
     Notes.create({
-        enteredID: req.body.enteredID,
-        enteredBy: req.body.enteredBy,
-        projectId: req.body.projectId,
-        entryDate: req.body.entryDate,
-        note: req.body.note,
-    })
+            enteredID: req.body.enteredID,
+            enteredBy: req.body.enteredBy,
+            projectId: req.body.projectId,
+            entryDate: req.body.entryDate,
+            note: req.body.note,
+        })
         .then(project => {
             res.redirect('back');
         })
@@ -368,7 +366,7 @@ exports.postAddNote = (req, res, next) => {
         });
 };
 
-exports.getAddEstimator = async (req, res, next) => {
+exports.getAddEstimator = async(req, res, next) => {
     try {
         const estimator = await Estimator.findAll({})
         res.render('add/add-estimator', {
@@ -386,12 +384,11 @@ exports.getAddEstimator = async (req, res, next) => {
 exports.postAddEstimator = (req, res, next) => {
 
     Estimator.create({
-        name: req.body.name,
-        active: req.body.active,
-    })
+            name: req.body.name,
+            active: req.body.active,
+        })
         .then(result => {
 
-            console.log('Estimator Added');
             res.redirect('/home');
         })
         .catch(err => {
@@ -401,7 +398,7 @@ exports.postAddEstimator = (req, res, next) => {
         });
 };
 
-exports.getAddSales = async (req, res, next) => {
+exports.getAddSales = async(req, res, next) => {
     try {
         const sales = await Sales.findAll({})
         res.render('add/add-sales', {
@@ -419,12 +416,11 @@ exports.getAddSales = async (req, res, next) => {
 exports.postAddSales = (req, res, next) => {
 
     Sales.create({
-        name: req.body.name,
-        active: req.body.active,
-    })
+            name: req.body.name,
+            active: req.body.active,
+        })
         .then(result => {
 
-            console.log('Sales Representative Added');
             res.redirect('/home');
         })
         .catch(err => {
@@ -434,7 +430,7 @@ exports.postAddSales = (req, res, next) => {
         });
 };
 
-exports.getAddSupervisor = async (req, res, next) => {
+exports.getAddSupervisor = async(req, res, next) => {
     try {
         const supervisor = await Supervisor.findAll({})
         res.render('add/add-supervisor', {
@@ -452,12 +448,11 @@ exports.getAddSupervisor = async (req, res, next) => {
 exports.postAddSupervisor = (req, res, next) => {
 
     Supervisor.create({
-        name: req.body.name,
-        active: req.body.active,
-    })
+            name: req.body.name,
+            active: req.body.active,
+        })
         .then(result => {
 
-            console.log('Supervisor Added');
             res.redirect('/home');
         })
         .catch(err => {
@@ -467,7 +462,7 @@ exports.postAddSupervisor = (req, res, next) => {
         });
 };
 
-exports.getAddSubcontractor = async (req, res, next) => {
+exports.getAddSubcontractor = async(req, res, next) => {
     try {
         const subcontractor = await Subcontractor.findAll({
             order: [
@@ -489,19 +484,18 @@ exports.getAddSubcontractor = async (req, res, next) => {
 exports.postAddSubcontractor = (req, res, next) => {
 
     Subcontractor.create({
-        coName: req.body.coName,
-        address: req.body.address,
-        address2: req.body.address2,
-        city: req.body.city,
-        state: req.body.state,
-        zip: req.body.zip,
-        phone: req.body.phone,
-        email: req.body.email,
-        notes: req.body.notes
-    })
+            coName: req.body.coName,
+            address: req.body.address,
+            address2: req.body.address2,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            phone: req.body.phone,
+            email: req.body.email,
+            notes: req.body.notes
+        })
         .then(result => {
 
-            console.log('Subcontractor');
             res.redirect('/home');
         })
         .catch(err => {
@@ -511,7 +505,7 @@ exports.postAddSubcontractor = (req, res, next) => {
         });
 };
 
-exports.getAddSupplier = async (req, res, next) => {
+exports.getAddSupplier = async(req, res, next) => {
     try {
         const supplier = await Supplier.findAll({
             order: [
@@ -533,19 +527,18 @@ exports.getAddSupplier = async (req, res, next) => {
 exports.postAddSupplier = (req, res, next) => {
 
     Supplier.create({
-        coName: req.body.coName,
-        address: req.body.address,
-        address2: req.body.address2,
-        city: req.body.city,
-        state: req.body.state,
-        zip: req.body.zip,
-        phone: req.body.phone,
-        email: req.body.email,
-        notes: req.body.notes
-    })
+            coName: req.body.coName,
+            address: req.body.address,
+            address2: req.body.address2,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            phone: req.body.phone,
+            email: req.body.email,
+            notes: req.body.notes
+        })
         .then(result => {
 
-            console.log('Supplier');
             res.redirect('/home');
         })
         .catch(err => {
@@ -557,13 +550,12 @@ exports.postAddSupplier = (req, res, next) => {
 
 exports.getAddDoc = (req, res, next) => {
     const projId = req.params.projectId;
-    console.log("Yo");
 
     RType.findAll()
         .then(rType => {
             Document.findAll({
-                where: { projectId: projId }
-            })
+                    where: { projectId: projId }
+                })
                 .then(document => {
                     Project.findByPk(projId)
                         .then(project => {
@@ -591,10 +583,6 @@ exports.postAddDoc = (req, res, next) => {
     const docFile = req.file.originalname;
     const docPath = req.file.filename;
     const file = req.file;
-    console.log(projId);
-    console.log(docName);
-    console.log(docFile);
-    console.log(docPath);
 
     Document.create({
         projectId: projId,
@@ -603,44 +591,41 @@ exports.postAddDoc = (req, res, next) => {
         docPath: docPath
     })
 
-        .then(results => {
-            RType.findAll()
-                .then(rType => {
-                    Document.findAll({
+    .then(results => {
+        RType.findAll()
+            .then(rType => {
+                Document.findAll({
                         where: { projectId: projId }
                     })
-                        .then(document => {
-                            Project.findByPk(projId)
-                                .then(project => {
-                                    res.render('add/add-doc', {
-                                        pageTitle: "Add Document",
-                                        path: '/add-doc',
-                                        project: project,
-                                        doc: document,
-                                        projId: projId,
-                                        types: rType
-                                    });
-                                })
-                        })
-                })
-        })
+                    .then(document => {
+                        Project.findByPk(projId)
+                            .then(project => {
+                                res.render('add/add-doc', {
+                                    pageTitle: "Add Document",
+                                    path: '/add-doc',
+                                    project: project,
+                                    doc: document,
+                                    projId: projId,
+                                    types: rType
+                                });
+                            })
+                    })
+            })
+    })
 
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
+    .catch(err => {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    });
 };
 
-exports.getDownloadDoc = async (req, res, next) => {
+exports.getDownloadDoc = async(req, res, next) => {
     const docId = req.params.docId;
-    console.log(docId);
     try {
         const document = await Document.findByPk(docId)
         const filePath = path.join('public', 'documents', document.docPath);
         const docFile = document.docFile;
-        console.log(filePath);
-        console.log("Yo Yo Yo!");
         fs.readFile(filePath, (err, data) => {
             if (err) {
                 return next(err);
@@ -656,9 +641,8 @@ exports.getDownloadDoc = async (req, res, next) => {
 
 };
 
-exports.getDeleteDoc = async (req, res, next) => {
+exports.getDeleteDoc = async(req, res, next) => {
     const docId = req.params.docId;
-    console.log(docId);
     try {
         const document = await Document.findByPk(docId)
         const projId = document.projectId;
@@ -670,8 +654,8 @@ exports.getDeleteDoc = async (req, res, next) => {
         RType.findAll()
             .then(rType => {
                 Document.findAll({
-                    where: { projectId: projId }
-                })
+                        where: { projectId: projId }
+                    })
                     .then(document => {
                         Project.findByPk(projId)
                             .then(project => {
@@ -694,9 +678,8 @@ exports.getDeleteDoc = async (req, res, next) => {
 
 };
 
-exports.getAddWorkOrder = async (req, res, next) => {
+exports.getAddWorkOrder = async(req, res, next) => {
     const projId = req.params.projectId
-    console.log("Here!");
     try {
         const subcontractor = await Subcontractor.findAll()
         const sales = await Sales.findAll()
@@ -710,7 +693,6 @@ exports.getAddWorkOrder = async (req, res, next) => {
                 model: Supervisor
             }]
         })
-        console.log("and here");
         res.render('add/add-workOrder', {
             pageTitle: 'Work Order',
             path: '/add-workOrder',
@@ -731,46 +713,44 @@ exports.getAddWorkOrder = async (req, res, next) => {
 };
 
 exports.postAddWorkOrder = (req, res, next) => {
-    console.log(req.body.srep);
     const srep = req.body.srep;
-    console.log(req.body.field);
     const field = req.body.field;
     WorkOrder.create({
-        projectId: req.body.projectId,
-        subcontractorId: req.body.subcontractorId,
-        startDate: req.body.startDate,
-        endDate: req.body.endDate,
-        compDate: req.body.compDate,
-        complete: req.body.complete,
-        description: req.body.description,
-        trade1: req.body.trade1,
-        tradeAmt1: req.body.tradeAmt1,
-        trade2: req.body.trade2,
-        tradeAmt2: req.body.tradeAmt2,
-        trade3: req.body.trade3,
-        tradeAmt3: req.body.tradeAmt3,
-        trade4: req.body.trade4,
-        tradeAmt4: req.body.tradeAmt4,
-        woTotal: req.body.woTotal,
-        supervisorId: field,
-        saleId: srep
-    })
+            projectId: req.body.projectId,
+            subcontractorId: req.body.subcontractorId,
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
+            compDate: req.body.compDate,
+            complete: req.body.complete,
+            description: req.body.description,
+            trade1: req.body.trade1,
+            tradeAmt1: req.body.tradeAmt1,
+            trade2: req.body.trade2,
+            tradeAmt2: req.body.tradeAmt2,
+            trade3: req.body.trade3,
+            tradeAmt3: req.body.tradeAmt3,
+            trade4: req.body.trade4,
+            tradeAmt4: req.body.tradeAmt4,
+            woTotal: req.body.woTotal,
+            supervisorId: field,
+            saleId: srep
+        })
         .then(workOrder => {
             const projId = workOrder.projectId;
             Project.findByPk(projId)
                 .then(project => {
                     WorkOrder.findAll({
-                        where: {
-                            projectId: projId
-                        },
-                        include: [{
-                            model: Sales
-                        }, {
-                            model: Supervisor
-                        }, {
-                            model: Subcontractor
-                        }],
-                    })
+                            where: {
+                                projectId: projId
+                            },
+                            include: [{
+                                model: Sales
+                            }, {
+                                model: Supervisor
+                            }, {
+                                model: Subcontractor
+                            }],
+                        })
                         .then(workOrders => {
                             res.render('work/workOrderTot', {
                                 pageTitle: 'Work Orders',

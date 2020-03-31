@@ -69,7 +69,6 @@ exports.postLogin = async(req, res, next) => {
                 res.redirect('/login');
             });
     } catch (err) {
-        console.log(fundsRcvd);
         const error = new Error(err);
         error.httpStatusCode = 500;
         return next(error);
@@ -206,7 +205,6 @@ exports.getNewPassword = (req, res, next) => {
             }
         })
         .then(user => {
-            console.log(user);
             let message = req.flash('error');
             if (message.length > 0) {
                 message = message[0];

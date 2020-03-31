@@ -64,10 +64,6 @@ exports.postEstlEdit = async(req, res, next) => {
     const updatedName = req.body.name;
     const updatedEmail = req.body.email;
     const updatedActive = req.body.active;
-    console.log(estId);
-    console.log(updatedName);
-    console.log(updatedEmail);
-    console.log(updatedActive);
 
     try {
         const estimator = await Estimator.findeOne({ where: { id: estId } })
@@ -75,8 +71,6 @@ exports.postEstlEdit = async(req, res, next) => {
         estimator.email = updatedEmail;
         estimator.active = updatedActive;
         await estimator.save();
-
-        console.log('Estimator saved');
 
         const aestimator = await Estimator.findAll({
             where: { active: 1 },
