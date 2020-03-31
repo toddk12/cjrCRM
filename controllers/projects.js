@@ -9,7 +9,7 @@ const sendgridTransport = require('nodemailer-sendgrid-transport');
 
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth: {
-        api_key: ''
+        api_key: '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'
     }
 }));
 
@@ -1728,7 +1728,7 @@ exports.getSupList = async(req, res, next) => {
             ]
         })
 
-        res.render('projects/supplierList', {
+        res.render('lists/supplierList', {
             pageTitle: "List of Suppliers",
             path: '/supplierList',
             sups: supplier
@@ -1757,7 +1757,7 @@ exports.getSubList = async(req, res, next) => {
             ]
         })
 
-        res.render('projects/subcontractorList', {
+        res.render('lists/subcontractorList', {
             pageTitle: "List of Subcontractors",
             path: '/subcontractorList',
             subs: subcontractor,
@@ -1780,7 +1780,7 @@ exports.getInsList = async(req, res, next) => {
             ]
         })
 
-        res.render('projects/insuranceList', {
+        res.render('lists/insuranceList', {
             pageTitle: "List of Insurance Companies",
             path: '/insuranceList',
             inss: insurance
@@ -1809,7 +1809,7 @@ exports.getSalList = async(req, res, next) => {
             ]
         })
 
-        res.render('projects/salesList', {
+        res.render('lists/salesList', {
             pageTitle: "List of Sales Representatives",
             path: '/salesList',
             sals: sales,
@@ -1839,7 +1839,7 @@ exports.getSuperList = async(req, res, next) => {
             ]
         })
 
-        res.render('projects/supervisorList', {
+        res.render('lists/supervisorList', {
             pageTitle: "List of Supervisors",
             path: '/supervisorList',
             spers: supervisor,
