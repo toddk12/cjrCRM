@@ -1,0 +1,99 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/info.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <div class="centered">
+                    <br>
+                    <h1>Edit Insurance Company</h1>
+                    <br>
+                </div>
+                <article class="ownerinfo">
+                    <form class="form" action="/insEdit" method="POST">
+                        <div class="row">
+                            <div class="col-sm">
+                                <input type="hidden" name="insId" id="insId" value="<%= insurance.id %>">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="coName"><strong>Company Name:</strong></label>
+                                <input style="width: 500px" type="text" name="coName" id="coName" value="<%= insurance.coName %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="address"><strong>Address:</strong></label>
+                                <input style="width: 500px" type="text" name="address" id="address" value="<%= insurance.address %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="address2"><strong>Address 2:</strong></label>
+                                <input style="width: 500px" type="text" name="address2" id="address2" value="<%= insurance.address2 %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="city"><strong>City: </strong></label>
+                                <input type="text" text="city" id="city" value="<%= insurance.city %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="state"><strong>State: </strong></label>
+                                <input type="text" text="state" id="state" value="<%= insurance.state %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="zip"><strong>Zip: </strong></label>
+                                <input type="text" text="zip" id="zip" value="<%= insurance.zip %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="phone1"><strong>Phone1: </strong></label>
+                                <input type="text" name="phone1" id="phone1" value="<%= insurance.phone1 %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="phone2"><strong>Phone2: </strong></label>
+                                <input type="text" name="phone2" id="phone2" value="<%= insurance.phone2 %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="phone3"><strong>Phone3: </strong></label>
+                                <input type="text" name="phone3" id="phone3" value="<%= insurance.phone3 %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="website"><strong>Website: </strong></label>
+                                <input style="width: 400px" type="text" name="website" id="website" value="<%= insurance.website %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm">
+                                <label for="email1"><strong>Email1: </strong></label>
+                                <input style="width: 400px" type="text" name="email1" id="email1" value="<%= insurance.email1 %>">
+                            </div>
+                            <div class="col-sm">
+                                <label for="email2"><strong>Email2: </strong></label>
+                                <input style="width: 400px" type="text" name="email2" id="email2" value="<%= insurance.email2 %>">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="centered">
+                            <br>
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="updatebtn" type="submit">Save</button>
+                        </div>
+                    </form>
+                </article>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>

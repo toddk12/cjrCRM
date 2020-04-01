@@ -8,34 +8,34 @@
             <main>
                 <div class="centered">
                     <br>
-                    <h1>Edit Estimator</h1>
+                    <h1>Edit Sales Representative</h1>
                     <br>
                 </div>
                 <article class="ownerinfo">
-                    <form class="form" action="/estlEdit" method="POST">
+                    <form class="form" action="/salEdit" method="POST">
                         <div class="row">
                             <div class="col-sm">
-                                <input type="hidden" name="estId" id="estId" value="<%= estimator.id %>">
+                                <input type="hidden" name="salId" id="salId" value="<%= sales.id %>">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm">
-                                <label for="name"><strong>Estimator Name:</strong></label>
-                                <input style="width: 500px" type="text" name="name" id="name" value="<%= estimator.name %>">
+                                <label for="name"><strong>Representative Name:</strong></label>
+                                <input style="width: 500px" type="text" name="name" id="name" value="<%= sales.name %>">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-sm">
                                 <label for="email"><strong>Email</strong></label>
-                                <input style="width: 500px" type="text" name="email" id="email" value="<%= estimator.email %>">
+                                <input style="width: 500px" type="text" name="email" id="email" value="<%= sales.email %>">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-sm">
                                 <label for="active"><strong>Active?</strong></label>
-                                <input style="width: 100px" type="text" name="active" id="active" value="<%= estimator.active%> "> Enter True for Active and False for Inactive
+                                <input style="width: 100px" type="text" name="active" id="active" value="<%= sales.active%> "> Enter True for Active and False for Inactive
                             </div>
                         </div>
                         <br>

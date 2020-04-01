@@ -11,112 +11,72 @@
                         <div class="centered">
                             <h1><strong>List of Subcontractors</strong></h1>
                             <br>
-                            <h3>Active Subcontractors</h3>
-                        </div>
-                        <div class="container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"><strong>Company Name</strong></th>
-                                        <th scope="col"><strong>Contact</strong></th>
-                                        <th scope="col"><strong>Address</strong></th>
-                                        <th scope="col"><strong>City</strong></th>
-                                        <th scope="col"><strong>State</strong></th>
-                                        <th scope="col"><strong>Zip</strong></th>
-                                        <th scope="col"><strong>Phone</strong></th>
-                                        <th scope="col"><strong>Email</strong></th>
-                                        <th scope="col"><strong>Notes</strong></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% for (let asub of asubs) { %>
+                            <article style="width: auto">
+                                <h3>Active Subcontractors</h3>
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <th scope="row">
-                                                <%= asub.coName %>
-                                            </th>
-                                            <td>
-                                                <%= asub.contact %>
-                                            </td>
-                                            <td>
-                                                <%= asub.address %>
-                                            </td>
-                                            <td>
-                                                <%= asub.city %>
-                                            </td>
-                                            <td>
-                                                <%= asub.state %>
-                                            </td>
-                                            <td>
-                                                <%= asub.zip %>
-                                            </td>
-                                            <td>
-                                                <%= asub.phone %>
-                                            </td>
-                                            <td>
-                                                <%= asub.email %>
-                                            </td>
-                                            <td>
-                                                <%= asub.notes %>
-                                            </td>
+                                            <th scope="col"><strong>Company Name</strong></th>
+                                            <th scope="col"><strong>Contact</strong></th>
+                                            <th scope="col"><strong>Email</strong></th>
+                                            <th scope="col"><strong></strong></th>
                                         </tr>
-                                        <% } %>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <% for (let asub of asubs) { %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= asub.coName %>
+                                                </th>
+                                                <td>
+                                                    <%= asub.contact %>
+                                                </td>
+                                                <td>
+                                                    <%= asub.email %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn-esm text-center" style="width: 150px" href="/subEdit/<%= asub.id %>">Edit</a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </article>
+                            <br>
+                            <article style="width: auto">
+                                <h3>Active Subcontractor>
+                                    <h3>Inactive Subcontractors</h3>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"><strong>Company Name</strong></th>
+                                                <th scope="col"><strong>Contact</strong></th>
+                                                <th scope="col"><strong>Email</strong></th>
+                                                <th scope="col"><strong></strong></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for (let sub of subs) { %>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <%= sub.coName %>
+                                                    </th>
+                                                    <td>
+                                                        <%= sub.contact %>
+                                                    </td>
+                                                    <td>
+                                                        <%= sub.email %>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn-esm text-center" style="width: 150px" href="/subEdit/<%= sub.id %>">Edit</a>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                            </article>
                         </div>
-                        <br>
-                        <div class="centered">
-                            <h3>Inactive Subcontractors</h3>
-                        </div>
-                        <div class="container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"><strong>Company Name</strong></th>
-                                        <th scope="col"><strong>Contact</strong></th>
-                                        <th scope="col"><strong>Address</strong></th>
-                                        <th scope="col"><strong>City</strong></th>
-                                        <th scope="col"><strong>State</strong></th>
-                                        <th scope="col"><strong>Zip</strong></th>
-                                        <th scope="col"><strong>Phone</strong></th>
-                                        <th scope="col"><strong>Email</strong></th>
-                                        <th scope="col"><strong>Notes</strong></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% for (let sub of subs) { %>
-                                        <tr>
-                                            <th scope="row">
-                                                <%= sub.coName %>
-                                            </th>
-                                            <td>
-                                                <%= sub.contact %>
-                                            </td>
-                                            <td>
-                                                <%= sub.address %>
-                                            </td>
-                                            <td>
-                                                <%= sub.city %>
-                                            </td>
-                                            <td>
-                                                <%= sub.state %>
-                                            </td>
-                                            <td>
-                                                <%= sub.zip %>
-                                            </td>
-                                            <td>
-                                                <%= sub.phone %>
-                                            </td>
-                                            <td>
-                                                <%= sub.email %>
-                                            </td>
-                                            <td>
-                                                <%= sub.notes %>
-                                            </td>
-                                        </tr>
-                                        <% } %>
-                                </tbody>
-                            </table>
-                        </div>
+
 
                     </main>
 

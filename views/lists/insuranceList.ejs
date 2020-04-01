@@ -10,56 +10,35 @@
                     <main>
                         <div class="centered">
                             <h1><strong>List of Insurance Companies</strong></h1>
-                        </div>
-                        <div class="container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"><strong>Company Name</strong></th>
-                                        <th scope="col"><strong>Address</strong></th>
-                                        <th scope="col"><strong>City</strong></th>
-                                        <th scope="col"><strong>State</strong></th>
-                                        <th scope="col"><strong>Zip</strong></th>
-                                        <th scope="col"><strong>Phone</strong></th>
-                                        <th scope="col"><strong>Email</strong></th>
-                                        <th scope="col"><strong>Notes</strong></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% for (let ins of inss) { %>
+                            <br>
+                            <article style="width: auto">
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <th scope="row">
-                                                <%= ins.coName %>
-                                            </th>
-                                            <td>
-                                                <%= ins.contact %>
-                                            </td>
-                                            <td>
-                                                <%= ins.address %>
-                                            </td>
-                                            <td>
-                                                <%= ins.city %>
-                                            </td>
-                                            <td>
-                                                <%= ins.state %>
-                                            </td>
-                                            <td>
-                                                <%= ins.zip %>
-                                            </td>
-                                            <td>
-                                                <%= ins.phone %>
-                                            </td>
-                                            <td>
-                                                <%= ins.email %>
-                                            </td>
-                                            <td>
-                                                <%= ins.notes %>
-                                            </td>
+                                            <th scope="col"><strong>Company Name</strong></th>
+                                            <th scope="col"><strong>Email</strong></th>
+                                            <th scope="col"><strong></strong></th>
                                         </tr>
-                                        <% } %>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <% for (let ins of insurance) { %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= ins.coName %>
+                                                </th>
+                                                <td>
+                                                    <%= ins.email1 %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn-esm text-center" style="width: 150px" href="/insEdit/<%= ins.id %>">Edit</a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </article>
                         </div>
+
                     </main>
 
                     <%- include('../includes/footer.ejs') %>

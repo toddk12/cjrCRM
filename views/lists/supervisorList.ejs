@@ -11,49 +11,62 @@
                         <div class="centered">
                             <h1><strong>List of Supervisors</strong></h1>
                             <br>
-                            <h3>Active Supervisors</h3>
+                            <article>
+                                <h3>Active Supervisors</h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"><strong>Name</strong></th>
+                                            <th scope="col"><strong>Email</strong></th>
+                                            <th scope="col"><strong></strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (let asup of asups) { %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= asup.name %>
+                                                </th>
+                                                <td>
+                                                    <%= asup.email %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn-esm text-center" style="width: 150px" href="/supEdit/<%= asup.id %>">Edit</a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </article>
+                            <article>
+                                <h3>Inactive Supervisors</h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"><strong>Name</strong></th>
+                                            <th scope="col"><strong>Email</strong></th>
+                                            <th scope="col"><strong></strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (let sup of sups) { %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= sup.name %>
+                                                </th>
+                                                <td>
+                                                    <%= sup.email %>
+                                                </td>
+                                                <td>
+                                                    <a class="btn-esm text-center" style="width: 150px" href="/supEdit/<%= sup.id %>">Edit</a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </article>
                         </div>
-                        <div class="container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"><strong>Name</strong></th>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% for (let asper of aspers) { %>
-                                        <tr>
-                                            <th scope="row">
-                                                <%= asper.name %>
-                                            </th>
-                                        </tr>
-                                        <% } %>
-                                </tbody>
-                            </table>
-                        </div>
-                        <br>
-                        <div class="centered">
-                            <h3>Inactive Spervisors</h3>
-                        </div>
-                        <div class="container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"><strong>Name</strong></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% for (let sper of spers) { %>
-                                        <tr>
-                                            <th scope="row">
-                                                <%= sper.name %>
-                                            </th>
-                                        </tr>
-                                        <% } %>
-                                </tbody>
-                            </table>
-                        </div>
 
                     </main>
 
