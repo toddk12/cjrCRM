@@ -88,4 +88,8 @@ router.post('/wtbEdit', isAuth, projectsController.postWtbEdit);
 
 router.get('/wtbTot/:projectId', isAuth, projectsController.getWtbTot);
 
+router.get('/comEdit/:projectId', isAuth, projectsController.getComEdit);
+
+router.post('/comEdit', isAuth, projectsController.postComEdit);
+
 module.exports = router;

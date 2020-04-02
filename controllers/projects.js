@@ -5,9 +5,9 @@ const fs = require('fs');
 const path = require('path');
 
 const nodemailer = require('nodemailer');
-const sendgridTransport = require('nodemailer-sendgrid-transport');
+const sendginblueTransport = require('nodemailer-sendgrid-transport');
 
-const transporter = nodemailer.createTransport(sendgridTransport({
+const transporter = nodemailer.createTransport(sendginblueTransport({
     auth: {
         api_key: ''
     }
@@ -607,16 +607,16 @@ exports.postChangeStatus2 = (req, res, next) => {
         .then(project => {
             const projAddress = project.address
             console.log(projAddress);
+            transporter.sendMail({
+                to: userEmail,
+                from: 'info@cjrestoration.com',
+                subject: 'test',
+                html: 'test'
+            });
             res.render('projects/project', {
                 project: project,
                 pageTitle: project.projectNo,
                 path: '/project',
-            });
-            return transporter.sendMail({
-                to: userEmail,
-                from: 'info@cjrestoration.com',
-                subject: 'test',
-                html: projAddress
             });
         })
         .catch(err => {
@@ -1717,4 +1717,36 @@ exports.postJcEdit = async(req, res, next) => {
         error.httpStatusCode = 500;
         return next(error);
     }
+};
+
+exports.getComEdit = async(req, res, next) => {
+    const projId = req.params.projectId;
+    const userName = req.user.ename;
+    console.log(projId);
+    try {
+        const project = await Project.findByPk(projId)
+        res.render('projects/comEdit', {
+            pageTitle: "Commissions Page",
+            path: '/comEdit',
+            project: project
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
+exports.postComEdit = async(req, res, next) => {
+    const projId = req.params.projectId;
+    try {
+        const project = await Project.findByPk(projId)
+
+        res.redirect('/home');
+
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    };
 };
