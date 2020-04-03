@@ -18,6 +18,8 @@ router.get('/project/:projectId', isAuth, projectsController.getProject);
 
 router.post('/project/:projId', isAuth, projectsController.postChangeStatus2);
 
+router.get('/projectSM/:projectId', isAuth, projectsController.getProjectSM);
+
 router.get('/ownerInfo/:projectId', isAuth, projectsController.getOwnerInfo);
 
 router.post('/ownerInfo/', isAuth, projectsController.postOwnerInfo);

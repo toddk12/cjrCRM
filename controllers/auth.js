@@ -82,11 +82,19 @@ exports.getSignup = (req, res, next) => {
     } else {
         message = null;
     }
-    res.render('auth/signup', {
-        path: '/signup',
-        pageTitle: '/signup',
-        errorMessage: message
-    });
+    if (req.session.user.role == 1) {
+        res.render('auth/signup', {
+            path: '/signup',
+            pageTitle: '/signup',
+            errorMessage: message
+        });
+    } else {
+        res.render('notAuth', {
+            path: '/notAuth',
+            pageTitle: 'Not Authorized to use this page',
+            errorMessage: message
+        });
+    }
 };
 
 exports.postSignup = (req, res, next) => {

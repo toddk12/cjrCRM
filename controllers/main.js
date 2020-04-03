@@ -21,3 +21,10 @@ exports.getClosed = (req, res, next) => {
         path: '/closed',
     });
 };
+
+exports.getNotAuth = (req, res, next) => {
+    res.render('notAuth', {
+        pageTitle: 'Not Authorized for this Page',
+        path: '/notAuth',
+    });
+};

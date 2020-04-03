@@ -15,4 +15,6 @@ router.get('/home', isAuth, mainController.getHome);
 
 router.get('/closed', mainController.getClosed);
 
+router.get('/notAuth', mainController.getNotAuth);
+
 module.exports = router;

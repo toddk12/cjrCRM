@@ -75,7 +75,6 @@ app.use(multer({ storage: fileStorage }).single('docFile'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 app.use(session({
     secret: 'sshh it is a secret',
     resave: false,

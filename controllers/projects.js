@@ -145,6 +145,46 @@ exports.getProject = async(req, res, next) => {
     }
 };
 
+exports.getProjectSM = async(req, res, next) => {
+    const projId = req.params.projectId;
+    const username = req.session.username;
+    const userid = req.session.userid;
+
+    console.log('Hey');
+    try {
+        const notes = await Notes.findAll({
+            where: { projectId: projId },
+            order: [
+                ['entryDate', 'DESC']
+            ]
+        })
+        console.log('Notes');
+        const project = await Project.findByPk(projId, {
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Status
+            }, {
+                model: Insurance
+            }]
+        })
+        console.log('project');
+        res.render('projects/projectSM', {
+            project: project,
+            note: notes,
+            pageTitle: project.projectNo,
+            path: '/projectSM',
+        });
+    } catch (err) {
+        const error = new Error(err);
+        console.log(error);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+};
+
 exports.postDeleteProject = (req, res, next) => {
     const projId = req.body.projectId;
     Project.findByPk(projId)
