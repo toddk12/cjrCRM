@@ -109,6 +109,8 @@ exports.getProject = async(req, res, next) => {
     const projId = req.params.projectId;
     const username = req.session.username;
     const userid = req.session.userid;
+
+    console.log('Hey');
     try {
         const notes = await Notes.findAll({
             where: { projectId: projId },
@@ -116,6 +118,7 @@ exports.getProject = async(req, res, next) => {
                 ['entryDate', 'DESC']
             ]
         })
+        console.log('Notes');
         const project = await Project.findByPk(projId, {
             include: [{
                 model: Sales
@@ -127,6 +130,7 @@ exports.getProject = async(req, res, next) => {
                 model: Insurance
             }]
         })
+        console.log('project');
         res.render('projects/project', {
             project: project,
             note: notes,
