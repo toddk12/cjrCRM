@@ -139,6 +139,41 @@ const Project = sequelize.define('project', {
         defaultValue: 0
     },
 
+    salesP: {
+        type: Sequelize.FLOAT(5, 2),
+        defaultValue: .1
+    },
+
+    salesCP: {
+        type: Sequelize.FLOAT(5, 2),
+        defaultValue: 0.25
+    },
+
+    orP: {
+        type: Sequelize.FLOAT(5, 2),
+        defaultValue: .02
+    },
+
+    estP: {
+        type: Sequelize.FLOAT(5, 2),
+        defaultValue: .03
+    },
+
+    salesCom: {
+        type: Sequelize.FLOAT(10, 2),
+        defaultValue: 0
+    },
+
+    orCom: {
+        type: Sequelize.FLOAT(10, 2),
+        defaultValue: 0
+    },
+
+    estCom: {
+        type: Sequelize.FLOAT(10, 2),
+        defaultValue: 0
+    },
+
 });
 
 module.exports = Project;

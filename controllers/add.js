@@ -508,10 +508,11 @@ exports.postAddSubcontractor = (req, res, next) => {
 exports.getAddSupplier = async(req, res, next) => {
     try {
         const supplier = await Supplier.findAll({
-            order: [
-                ['coName', 'ASC']
-            ]
-        })
+                order: [
+                    ['coName', 'ASC']
+                ]
+            })
+            // if (!req.session.user.role == 5) {
         res.render('add/add-supplier', {
             pageTitle: "Add Supplier",
             path: '/add-supplier',

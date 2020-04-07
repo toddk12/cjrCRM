@@ -9,7 +9,6 @@ const MySQLStore = require('express-mysql-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
-const phone = require('phone');
 
 const errorController = require('./controllers/error');
 const sequelize = require('./util/database');
@@ -172,7 +171,7 @@ Project.hasMany(RepPay);
 sequelize
     .sync()
     .then(result => {
-        app.listen(3002);;
+        app.listen(process.env.PORT || 3002);;
     })
     .catch(err => {
         console.log(err);

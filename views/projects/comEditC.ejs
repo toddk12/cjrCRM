@@ -1,246 +1,334 @@
 <%- include('../includes/header.ejs') %>
-<link rel="stylesheet" href="/css/projects.css">
+    <link rel="stylesheet" href="/css/projects.css">
 
-</head>
+    </head>
 
-<body>
-    <%- include('../includes/navigation.ejs') %>
-    <main>
-        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
-        <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
-        <div class="centered">
-            <h1>Commissions Page</h1>
-            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
-            <br>
-            <article>
-                <h4>Projected Commissions</h4>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Total Project</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$16,000.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Overhead</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$1,600.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Projected Job Costs</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$9,600.00</h6>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Cap Out Profit</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$4,800.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Sales Commission</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$1,200.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Over-ride</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$288.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Estimator</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$432.00</h6>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Total Commissions</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$1,920.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>50% Sales Commissions</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$960.00</h6>
-                    </div>
-                </div>
-            </article>
-            <article>
-                <h4>Actual Commissions</h4>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Total Project</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$10,000.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Overhead</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$1,000.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Projected Job Costs</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$5,000.00</h6>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Cap Out Profit</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$4,000.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Sales Commission</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$1,000.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Over-ride</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$180.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Estimator</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$270.00</h6>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Total Commissions</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$1,450.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>50% Sales Commissions</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$960.00</h6>
-                    </div>
-                </div>
-            </article>
-        </div>
-        <br>
-        <div class="centered">
-            <article>
-                <h4>Paid Commissions</h4>
-                <a class="btn-sm text-center" style="width: 150px" href="/repPay/<%= project.id %>">Add Payment to Sales Rep</a>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Payment #1</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$100.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Payment #2</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$200.00</h6>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Payment #3</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$660.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Payment #4</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$0.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Payment #5</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$0.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Payment #6</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$0.00</h6>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>Total Paid</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$960.00</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h6>50% Projected Commissions</h6>
-                    </div>
-                    <div class="col-sm text-right">
-                        <h6>$960.00</h6>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </main>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
 
-    <%- include('../includes/footer.ejs') %>
-    <script src="/js/status.js"></script>
+                        <div class="centered">
+                            <h1>Commissions Page</h1>
+                            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
+                            <br>
+                            <form action="/comEdit/:<%= project.id %>" method="POST">
+                                <article>
+                                    <h4>Projected Commissions</h4>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Total Project</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <strong><%= money.format(project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) %></strong>
+                                                    <% } else { %>
+                                                        <strong><%= money.format(project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) %></strong>
+                                                        <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Projected Job Costs</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right" name="overhead">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.65) %>
+                                                        <% } else { %>
+                                                            <%= money.format((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.65) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Overhead</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right" name="overhead">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.1) %>
+                                                        <% } else { %>
+                                                            <%= money.format((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.1) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Commissionable</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right" name="commissionable">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) %>
+                                                        <% } else { %>
+                                                            <%= money.format((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Sales Commission</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6>
+                                                <input style="width: 50px" type="number" name="salesP" id="salesP" value="<%= project.salesP %>">
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.salesP) %>
+                                                        <% } else { %>
+                                                            <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.salesP) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Over-ride</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6>
+                                                <input style="width: 50px" type="number" name="orP" id="orP" value="<%= project.orP %>">
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <% if (project.fScopeRCV == null) { %>
+                                                        <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.orP) %>
+                                                            <% } else { %>
+                                                                <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.orP) %>
+                                                                    <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Estimator</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6>
+                                                <input style="width: 50px" type="number" name="estP" id="estP" value="<%= project.estP %>">
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.estP) %>
+                                                        <% } else { %>
+                                                            <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.estP) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Total Commissions</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * (project.salesP+project.orP+project.estP)) %>
+                                                        <% } else { %>
+                                                            <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * (project.salesP+project.orP+project.estP)) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>50% Sales Commissions</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format((((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.9) * project.salesP)/2) %>
+                                                        <% } else { %>
+                                                            <%= money.format((((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.9) * project.salesP)/2) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article>
+                                    <h4>Actual Commissions</h4>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Funds Received</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <strong><%= money.format(project.totalFundsRcvd) %></strong>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Overhead</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right" name="overhead">
+                                            <h6>
+                                                <%= money.format(project.totalFundsRcvd * 0.1) %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Commissionable</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right" name="commissionable">
+                                            <h6>
+                                                <%= money.format(project.totalFundsRcvd * 0.9) %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Sales Commission</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6>
+                                                <input style="width: 50px" type="number" name="salesP" id="salesP" value="<%= project.salesP %>">
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <%= money.format((project.totalFundsRcvd * 0.9) * project.salesP) %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Over-ride</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6>
+                                                <input style="width: 50px" type="number" name="orP" id="orP" value="<%= project.orP %>">
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <%= money.format((project.totalFundsRcvd * 0.9) * project.orP) %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Estimator</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6>
+                                                <input style="width: 50px" type="number" name="estP" id="estP" value="<%= project.estP %>">
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <%= money.format((project.totalFundsRcvd * 0.9) * project.estP) %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Total Commissions</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <%= money.format((project.totalFundsRcvd * 0.9) * (project.salesP+project.orP+project.estP)) %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>50% Sales Commissions</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <%= money.format(((project.totalFundsRcvd * 0.9) * project.salesP)/2) %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </article>
+                        </div>
+                        <br>
+                        <div class="centered">
+                            <article>
+                                <h4>Paid Commissions</h4>
+                                <a class="btn-sm text-center" style="width: 150px" href="/repPay/<%= project.id %>">Add Payment to Sales Rep</a>
+                                <% for (let pay of pays) { %>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>
+                                                <%= pay.description %>
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <%= money.format(pay.payAmt) %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h6>Total Paid</h6>
+                                            </div>
+                                            <div class="col-sm text-right">
+                                                <h6>
+                                                    <%= money.format(project.totalRepPay) %>
+                                                </h6>
+                                            </div>
+                                        </div>
+                            </article>
+                            </form>
+                        </div>
+            </main>
+
+            <%- include('../includes/footer.ejs') %>
+                <script src="/js/status.js"></script>

@@ -371,11 +371,11 @@
                         <article class="financialinfo">
                             <h5><strong>Financial Information</strong></h5>
                             <div class="row">
-                                <div class="col-sm text-center">
+                                <div class="col-sm text-right">
                                     <h6><strong>Total Project</strong></h6>
                                 </div>
-                                <div class="col-sm text-center">
-                                    <h6><strong>Projected Profit</strong></h6>
+                                <div class="col-sm text-right">
+                                    <strong></strong>
                                 </div>
                             </div>
                             <div class="row">
@@ -383,8 +383,7 @@
                                     Original Scope RCV: <strong><%= money.format(project.oScopeRCV) %></strong>
                                 </div>
                                 <div class="col-sm text-right">
-                                    Funds Received:   </a>
-                                    <strong><%= money.format(project.totalFundsRcvd) %></strong>
+                                    <strong></strong>
                                 </div>
                             </div>
                             <div class="row">
@@ -392,8 +391,7 @@
                                     Final Scope RCV: <strong><%= money.format(project.fScopeRCV) %></strong>
                                 </div>
                                 <div class="col-sm text-right">
-                                    Job Costs:   </a>
-                                    <strong><%= money.format(project.totalJobCosts) %></strong>
+                                    <strong></strong>
                                 </div>
                             </div>
                             <div class="row">
@@ -403,21 +401,18 @@
                                         <% } else { %>
                                             Gross Supplement: <strong><%= money.format((project.fScopeRCV - project.oScopeRCV)) %></strong>
                                             <% } %>
-
                                 </div>
                                 <div class="col-sm text-right">
-                                    Total Commissions:   </a>
-                                    <strong><%= money.format(project.totalRepPay) %></strong>
+                                    <strong></strong>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm text-right">
                                     Additions: </a>
                                     <strong><%= money.format(project.rcvChange) %></strong>
-
                                 </div>
                                 <div class="col-sm text-right">
-                                    Gross Profit $: <strong><%= money.format((project.totalFundsRcvd - project.totalJobCosts - project.totalRepPay)) %></strong>
+                                    <strong></strong>
                                 </div>
                             </div>
                             <div class="row">
@@ -426,7 +421,7 @@
                                     <strong><%= money.format(project.totalExclusions) %></strong>
                                 </div>
                                 <div class="col-sm text-right">
-                                    Gross Profit %: <strong><%= percent.format(((project.totalFundsRcvd - project.totalJobCosts - project.totalRepPay)/project.totalFundsRcvd)) %></strong>
+                                    <strong></strong>
                                 </div>
                             </div>
                             <div class="row">
@@ -435,11 +430,19 @@
                                     <strong><%= money.format(project.totalOwnerOop) %></strong>
                                 </div>
                                 <div class="col-sm text-right">
+                                    <strong></strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm text-right">
                                     <% if (project.fScopeRCV == null) { %>
                                         Owner Owes: <strong><%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) - project.totalFundsRcvd)) %></strong>
                                         <% } else { %>
                                             Owner Owes: <strong><%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) - project.totalFundsRcvd)) %></strong>
                                             <% } %>
+                                </div>
+                                <div class="col-sm text-right">
+                                    <strong></strong>
                                 </div>
                             </div>
                             <div class="row">
@@ -451,7 +454,7 @@
                                             <% } %>
                                 </div>
                                 <div class="col-sm text-right">
-
+                                    <strong></strong>
                                 </div>
                             </div>
                         </article>
