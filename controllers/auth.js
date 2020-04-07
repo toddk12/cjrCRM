@@ -94,7 +94,7 @@ exports.getSignup = (req, res, next) => {
             pageTitle: 'Not Authorized to use this page',
             errorMessage: message
         });
-    }
+}
 };
 
 exports.postSignup = (req, res, next) => {

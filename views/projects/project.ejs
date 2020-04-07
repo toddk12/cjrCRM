@@ -406,10 +406,17 @@
                                             <% } %>
 
                                 </div>
+                                <% if (!project.commercial) { %>
                                 <div class="col-sm text-right">
                                     <a href="/comEdit/<%= project.id %>" class="btn-sm2">Total Commissions:   </a>
                                     <strong><%= money.format(project.totalRepPay) %></strong>
                                 </div>
+                            <% } else { %>
+                                <div class="col-sm text-right">
+                                    <a href="/comEditC/<%= project.id %>" class="btn-sm2">Total Commissions:   </a>
+                                    <strong><%= money.format(project.totalRepPay) %></strong>
+                                </div>                           
+                            <% } %>
                             </div>
                             <div class="row">
                                 <div class="col-sm text-right">

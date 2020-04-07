@@ -9,33 +9,33 @@
                 <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
                     <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
                         <div class="centered">
-                            <h1>Edit Funds Received</h1>
+                            <h1>Edit Payments to Sales Representative</h1>
                             <article class="notes">
-                                <form class="form-inline" action="/frEdit" method="POST">
+                                <form class="form-inline" action="/rpEdit" method="POST">
                                     <div class="row">
                                         <div class="col-sm">
-                                            <label for="frId"><strong>Id: </strong></label>
-                                            <input type="text" name="frId" id="frId" value="<%= funds.id %>">
+                                            <label for="rpId"><strong>Id: </strong></label>
+                                            <input type="text" name="rpId" id="rpId" value="<%= pays.id %>">
                                         </div>
                                         <div class="col-sm">
                                             <label for="projectId"><strong>Project Id: </strong></label>
-                                            <input type="text" name="projectId" id="projectId" value="<%= funds.projectId %>">
+                                            <input type="text" name="projectId" id="projectId" value="<%= pays.projectId %>">
                                         </div>
                                         <div class="col-sm">
                                             <label for="entryDate"><strong>Entered On: </strong></label>
-                                            <input type="text" name="entryDate" id="entryDate" value="<%= funds.entryDate %>">
+                                            <input type="text" name="entryDate" id="entryDate" value="<%= pays.entryDate %>">
                                         </div>
                                         <div class="col-sm">
                                             <label for="enteredBy"><strong>Entered By: </strong></label>
-                                            <input type="text" name="enteredBy" id="enteredBy" value="<%= funds.enteredBy %>">
+                                            <input type="text" name="enteredBy" id="enteredBy" value="<%= pays.enteredBy %>">
                                         </div>
                                         <div class="col-sm">
-                                            <label for="fundsAmt"><strong>Amount: </strong></label>
-                                            <input type="currency" name="fundsAmt" id="fundsAmt" value="<%= funds.fundsAmt %>">
+                                            <label for="payAmt"><strong>Amount: </strong></label>
+                                            <input type="currency" name="payAmt" id="payAmt" value="<%= pays.payAmt %>">
                                         </div>
                                         <div class="col-sm">
-                                            <label for="fundsDescription"><strong>Description: </strong></label>
-                                            <input style="width: 350px" type="text" name="fundsDescription" id="fundsDescription" value="<%= funds.fundsDescription %>">
+                                            <label for="description"><strong>Description: </strong></label>
+                                            <input style="width: 350px" type="text" name="description" id="description" value="<%= pays.description %>">
                                         </div>
                                     </div>
                                     <br>
@@ -44,7 +44,7 @@
                                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                         <button class="btn-sm text-center" style="width: 125px" type="submit">Save</button>
                                         <br>
-                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= funds.projectId %>">Back to Details</a>
+                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= pays.projectId %>">Back to Details</a>
                                     </div>
                                 </form>
                                 <br>

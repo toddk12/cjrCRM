@@ -35,6 +35,7 @@ const Supplier = require('./models/supplier');
 const WorkOrder = require('./models/workOrder');
 const Wtb = require('./models/wtb');
 const RoofCalc = require('./models/roofCalc');
+const RepPay = require('./models/repPay');
 
 const app = express();
 
@@ -166,6 +167,7 @@ WorkOrder.belongsTo(Subcontractor);
 Subcontractor.hasMany(WorkOrder);
 RoofCalc.belongsTo(Project);
 Project.hasOne(RoofCalc);
+Project.hasMany(RepPay);
 
 sequelize
     .sync()

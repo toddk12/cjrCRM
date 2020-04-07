@@ -1,450 +1,477 @@
 <%- include('../includes/header.ejs') %>
-    <link rel="stylesheet" href="/css/projects.css">
+<link rel="stylesheet" href="/css/projects.css">
 
-    </head>
+</head>
 
-    <body>
-        <%- include('../includes/navigation.ejs') %>
-            <main>
-                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
-                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+        <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
 
-                        <div class="centered">
-                            <h1>Commissions Page</h1>
-                            <% if(project.commercial) { %>
-                                <article>
-                                    <h4>Projected Commissions</h4>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Total Project</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$16,000.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Overhead</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$1,600.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Projected Job Costs</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$9,600.00</h6>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Cap Out Profit</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$4,800.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Sales Commission</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$1,200.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Over-ride</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$288.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Estimator</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$432.00</h6>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Total Commissions</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$1,920.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>50% Sales Commissions</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$960.00</h6>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article>
-                                    <h4>Actual Commissions</h4>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Total Project</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$10,000.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Overhead</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$1,000.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Projected Job Costs</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$5,000.00</h6>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Cap Out Profit</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$4,000.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Sales Commission</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$1,000.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Over-ride</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$180.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Estimator</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$270.00</h6>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Total Commissions</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$1,450.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>50% Sales Commissions</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$960.00</h6>
-                                        </div>
-                                    </div>
-                                </article>
-                        </div>
-                        <br>
-                        <div class="centered">
-                            <article>
-                                <h4>Paid Commissions</h4>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Payment #1</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$100.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Payment #2</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$200.00</h6>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Payment #3</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$660.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Payment #4</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$0.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Payment #5</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$0.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Payment #6</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$0.00</h6>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Total Paid</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$960.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>50% Projected Commissions</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$960.00</h6>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        <% } else { %>
-                            <article>
-                                <h4>Projected Commissions</h4>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Total Project</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$16,000.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Overhead</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$1,600.00</h6>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Commissionable</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$14,400.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Sales Commission</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$1,440.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Over-ride</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$288.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Estimator</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$432.00</h6>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Total Commissions</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$2,160.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>50% Sales Commissions</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$720.00</h6>
-                                    </div>
-                                </div>
-                            </article>
-                            <article>
-                                <h4>Actual Commissions</h4>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Funds Received</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$10,000.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Overhead</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$1,000.00</h6>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Commissionable</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$9,000.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Sales Commission</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$900.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Over-ride</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$180.00</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Estimator</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$270.00</h6>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <h6>Total Commissions</h6>
-                                    </div>
-                                    <div class="col-sm text-right">
-                                        <h6>$1,350.00</h6>
-                                    </div>
-                                </div>
-                                </div>
-                            </article>
-                            </div>
-                            <br>
-                            <div class="centered">
-                                <article>
-                                    <h4>Paid Commissions</h4>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Payment #1</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$100.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Payment #2</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$200.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Payment #3</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$420.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Payment #4</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$0.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Payment #5</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$0.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Payment #6</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$0.00</h6>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Total Paid</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$720.00</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>50% Projected Commissions</h6>
-                                        </div>
-                                        <div class="col-sm text-right">
-                                            <h6>$720.00</h6>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <% } %>
-            </main>
+        <div class="centered">
+            <h1>Commissions Page</h1>
+            <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
+            <br>
+            <% if(project.commercial) { %>
+            <article>
+                <h4>Projected Commissions</h4>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Total Project</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$16,000.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Overhead</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$1,600.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Projected Job Costs</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$9,600.00</h6>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Cap Out Profit</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$4,800.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Sales Commission</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$1,200.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Over-ride</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$288.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Estimator</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$432.00</h6>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Total Commissions</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$1,920.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>50% Sales Commissions</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$960.00</h6>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <h4>Actual Commissions</h4>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Total Project</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$10,000.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Overhead</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$1,000.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Projected Job Costs</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$5,000.00</h6>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Cap Out Profit</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$4,000.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Sales Commission</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$1,000.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Over-ride</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$180.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Estimator</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$270.00</h6>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Total Commissions</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$1,450.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>50% Sales Commissions</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$960.00</h6>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <br>
+        <div class="centered">
+            <article>
+                <h4>Paid Commissions</h4>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #1</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$100.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #2</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$200.00</h6>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #3</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$660.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #4</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$0.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #5</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$0.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #6</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$0.00</h6>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Total Paid</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$960.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>50% Projected Commissions</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$960.00</h6>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <% } else { %>
+        <article>
+            <h4>Projected Commissions</h4>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Total Project</h6>
+                </div>
+                <div class="col-sm">
+                    <h6></h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6><%= money.format(project.totalProject) %></h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Overhead</h6>
+                </div>
+                <div class="col-sm">
+                    <h6></h6>
+                </div>
+                <div class="col-sm text-right" name="overhead">
+                    <h6><%= money.format((project.totalProject * .1)) %></h6>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Commissionable</h6>
+                </div>
+                <div class="col-sm">
+                    <h6></h6>
+                </div>
+                <div class="col-sm text-right" name="commissionable">
+                    <h6><%= money.format((project.totalProject * .9)) %></h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Sales Commission</h6>
+                </div>
+                <div class="col-sm">
+                    <h6><%= percent.format(coms.salesP) %></h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6><%= money.format(((project.totalProject * .9)*coms.salesP)) %></h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Over-ride</h6>
+                </div>
+                <div class="col-sm">
+                    <h6><%= percent.format(coms.orP) %></h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6><%= money.format(((project.totalProject * .9)*coms.orP)) %></h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Estimator</h6>
+                </div>
+                <div class="col-sm">
+                    <h6><%= percent.format(coms.estP) %></h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6><%= money.format(((project.totalProject * .9)*coms.estP)) %></h6>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Total Commissions</h6>
+                </div>
+                <div class="col-sm">
+                    <h6></h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6>$2,160.00</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>50% Sales Commissions</h6>
+                </div>
+                <div class="col-sm">
+                    <h6></h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6>$720.00</h6>
+                </div>
+            </div>
+        </article>
+        <article>
+            <h4>Actual Commissions</h4>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Funds Received</h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6>$10,000.00</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Overhead</h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6>$1,000.00</h6>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Commissionable</h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6>$9,000.00</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Sales Commission</h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6>$900.00</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Over-ride</h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6>$180.00</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Estimator</h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6>$270.00</h6>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm">
+                    <h6>Total Commissions</h6>
+                </div>
+                <div class="col-sm text-right">
+                    <h6>$1,350.00</h6>
+                </div>
+            </div>
+            </div>
+        </article>
+        </div>
+        <br>
+        <div class="centered">
+            <article>
+                <h4>Paid Commissions</h4>
+                <a class="btn-sm text-center" style="width: 150px" href="/repPay/<%= project.id %>">Add Payment to Sales Rep</a>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #1</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$100.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #2</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$200.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #3</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$420.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #4</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$0.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #5</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$0.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Payment #6</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$0.00</h6>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>Total Paid</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$720.00</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <h6>50% Projected Commissions</h6>
+                    </div>
+                    <div class="col-sm text-right">
+                        <h6>$720.00</h6>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <% } %>
+    </main>
 
-            <%- include('../includes/footer.ejs') %>
-                <script src="/js/status.js"></script>
+    <%- include('../includes/footer.ejs') %>
+    <script src="/js/status.js"></script>

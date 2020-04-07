@@ -46,7 +46,7 @@ router.post('/fundsReceived', isAuth, projectsController.postFundsReceived);
 
 router.get('/frEdit/:frId', isAuth, projectsController.getFrEdit);
 
-router.post('/FrEdit', isAuth, projectsController.postFrEdit);
+router.post('/frEdit', isAuth, projectsController.postFrEdit);
 
 router.get('/jobCosts/:projectId', isAuth, projectsController.getJobCosts);
 
@@ -93,5 +93,17 @@ router.get('/wtbTot/:projectId', isAuth, projectsController.getWtbTot);
 router.get('/comEdit/:projectId', isAuth, projectsController.getComEdit);
 
 router.post('/comEdit', isAuth, projectsController.postComEdit);
+
+router.get('/comEditC/:projectId', isAuth, projectsController.getComEditC);
+
+router.post('/comEditC', isAuth, projectsController.postComEditC);
+
+router.get('/repPay/:projectId', isAuth, projectsController.getRepPay);
+
+router.post('/repPay', isAuth, projectsController.postRepPay);
+
+router.get('/rpEdit/:rpId', isAuth, projectsController.getRpEdit);
+
+router.post('/rpEdit', isAuth, projectsController.postRpEdit);
 
 module.exports = router;
