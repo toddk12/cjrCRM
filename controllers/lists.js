@@ -62,7 +62,7 @@ exports.getEstlEdit = async(req, res, next) => {
 
 exports.postEstlEdit = async(req, res, next) => {
     const estId = req.body.estId;
-    console.log(estId);
+
     const updatedName = req.body.name;
     const updatedEmail = req.body.email;
     const updatedActive = req.body.active;
@@ -148,7 +148,7 @@ exports.getSalEdit = async(req, res, next) => {
 
 exports.postSalEdit = async(req, res, next) => {
     const salId = req.body.salId;
-    console.log(salId);
+
     const updatedName = req.body.name;
     const updatedEmail = req.body.email;
     const updatedActive = req.body.active;
@@ -234,7 +234,7 @@ exports.getSupEdit = async(req, res, next) => {
 
 exports.postSupEdit = async(req, res, next) => {
     const supId = req.body.supId;
-    console.log(supId);
+
     const updatedName = req.body.name;
     const updatedEmail = req.body.email;
     const updatedActive = req.body.active;
@@ -304,7 +304,7 @@ exports.getSubList = async(req, res, next) => {
 
 exports.getSubEdit = async(req, res, next) => {
     const subId = req.params.subId;
-    console.log(subId);
+
     try {
         const subcontractor = await Subcontractor.findByPk(subId)
         res.render('lists/subEdit', {
@@ -321,7 +321,7 @@ exports.getSubEdit = async(req, res, next) => {
 
 exports.postSubEdit = async(req, res, next) => {
     const subId = req.body.subId;
-    console.log(subId);
+
     const updatedCoName = req.body.coName;
     const updatedContact = req.body.contact;
     const updatedAddress = req.body.address;
@@ -398,7 +398,7 @@ exports.getSuppList = async(req, res, next) => {
 
 exports.getSuppEdit = async(req, res, next) => {
     const suppId = req.params.suppId;
-    console.log(suppId);
+
     try {
         const supplier = await Supplier.findByPk(suppId)
         res.render('lists/suppEdit', {
@@ -415,7 +415,7 @@ exports.getSuppEdit = async(req, res, next) => {
 
 exports.postSuppEdit = async(req, res, next) => {
     const suppId = req.body.suppId;
-    console.log(suppId);
+
     const updatedCoName = req.body.coName;
     const updatedContact = req.body.contact;
     const updatedAddress = req.body.address;
@@ -482,7 +482,7 @@ exports.getInsList = async(req, res, next) => {
 
 exports.getInsEdit = async(req, res, next) => {
     const insId = req.params.insId;
-    console.log(insId);
+
     try {
         const insurance = await Insurance.findByPk(insId)
         res.render('lists/insEdit', {
@@ -499,7 +499,7 @@ exports.getInsEdit = async(req, res, next) => {
 
 exports.postInsEdit = async(req, res, next) => {
     const insId = req.body.insId;
-    console.log(insId);
+
     const updatedCoName = req.body.coName;
     const updatedAddress = req.body.address;
     const updatedAddress2 = req.body.address2;

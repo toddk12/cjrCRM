@@ -6,16 +6,10 @@ const { validationResult } = require('express-validator/check');
 
 const Op = Sequelize.Op;
 
-const nodemailer = require('nodemailer');
-const sendgridTransport = require('nodemailer-sendgrid-transport');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey('');
 
 const User = require('../models/user');
-
-const transporter = nodemailer.createTransport(sendgridTransport({
-    auth: {
-        api_key: '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'
-    }
-}));
 
 
 exports.getLogin = (req, res, next) => {
@@ -127,12 +121,14 @@ exports.postSignup = (req, res, next) => {
             })
             .then(result => {
                 res.redirect('/home');
-                return transporter.sendMail({
+                return sgMail.send({
                     to: email,
                     from: 'info@cjrestoration.com',
-                    subject: 'Register User Created',
-                    html: '<h1>You have been successfully registered for the CJ Restoration Operations Portal</h1>'
+                    subject: 'Successfull Registration',
+                    text: 'You have successfully registered on the CJ Restoration Operations Portal',
+                    html: '<h1>You have successfully registered on the CJ Restoration Operations Portal</h1>',
                 });
+
             })
             .catch(err => {
                 const error = new Error(err);
@@ -184,14 +180,13 @@ exports.postReset = (req, res, next) => {
             })
             .then(result => {
                 res.redirect('/login');
-                transporter.sendMail({
+                return sgMail.send({
                     to: req.body.email,
                     from: 'info@cjrestoration.com',
                     subject: 'Password Reset',
-                    html: `
-                <p>You requested a password reset</p>
-                <p>Click on this <a href="http://localhost:3002/reset/${token}">Link</a> to set a new password.</p>
-                `
+                    text: 'You have successfully registered on the CJ Restoration Operations Portal',
+                    html: `<p>You requested a password reset</p>
+                    <p>Click on this <a href="http://localhost:3002/reset/${token}">Link</a> to set a new password.</p>`
                 });
             })
             .catch(err => {

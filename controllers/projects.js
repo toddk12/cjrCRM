@@ -4,14 +4,7 @@ const { Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-const nodemailer = require('nodemailer');
-const sendginblueTransport = require('nodemailer-sendgrid-transport');
 
-const transporter = nodemailer.createTransport(sendginblueTransport({
-    auth: {
-        api_key: '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'
-    }
-}));
 
 
 const PDFDocument = require('pdfkit');
@@ -72,6 +65,8 @@ exports.getAllProjects = async(req, res, next) => {
 
 exports.getProjects = async(req, res, next) => {
     const statId = req.params.stat;
+    const listO = '';
+
     try {
         const sales = await Sales.findAll()
         const status = await Status.findOne({ where: { id: statId } })
@@ -156,7 +151,6 @@ exports.getProjectSM = async(req, res, next) => {
     const username = req.session.username;
     const userid = req.session.userid;
 
-    console.log('Hey');
     try {
         const notes = await Notes.findAll({
             where: { projectId: projId },
@@ -164,7 +158,7 @@ exports.getProjectSM = async(req, res, next) => {
                 ['entryDate', 'DESC']
             ]
         })
-        console.log('Notes');
+
         const project = await Project.findByPk(projId, {
             include: [{
                 model: Sales
@@ -176,7 +170,7 @@ exports.getProjectSM = async(req, res, next) => {
                 model: Insurance
             }]
         })
-        console.log('project');
+
         res.render('projects/projectSM', {
             project: project,
             note: notes,
@@ -1759,7 +1753,7 @@ exports.postJcEdit = async(req, res, next) => {
 exports.getComEdit = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
-    console.log(projId);
+
     try {
         const repPay = await RepPay.findAll({ where: { projectId: projId } })
         const project = await Project.findByPk(projId)
@@ -1793,7 +1787,7 @@ exports.postComEdit = async(req, res, next) => {
 exports.getComEditC = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
-    console.log(projId);
+
     try {
         const repPay = await RepPay.findAll({ where: { projectId: projId } })
         const project = await Project.findByPk(projId)
@@ -1828,14 +1822,14 @@ exports.getRepPay = async(req, res, nexct) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
-    console.log(projId);
+
     try {
         const repPay = await RepPay.findAll({
             where: { projectId: projId }
         })
         const tots = await RepPay.sum('payAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId)
-        console.log(repPay);
+
         project.totalRepPay = tots;
         await project.save();
         res.render('projects/repPay', {

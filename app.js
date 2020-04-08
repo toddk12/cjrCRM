@@ -9,6 +9,7 @@ const MySQLStore = require('express-mysql-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
+const sgMail = require('@sendgrid/mail');
 
 const errorController = require('./controllers/error');
 const sequelize = require('./util/database');

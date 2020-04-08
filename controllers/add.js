@@ -24,17 +24,25 @@ const RType = require('../models/rType');
 const WorkOrder = require('../models/workOrder');
 
 exports.getAddInsurance = async(req, res, next) => {
+    const username = req.session.username;
+    const userid = req.session.userid;
+    const userrole = req.session.user.role;
+
     try {
         const insurance = await Insurance.findAll({
             order: [
                 ['coName', 'ASC']
             ]
         })
-        res.render('add/add-insurance', {
-            pageTitle: "Add Insurance Company",
-            path: '/add-insurance',
-            insurance: insurance,
-        });
+        if (userrole == 5) {
+            res.redirect('notAuth');
+        } else {
+            res.render('add/add-insurance', {
+                pageTitle: "Add Insurance Company",
+                path: '/add-insurance',
+                insurance: insurance,
+            });
+        }
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
@@ -68,51 +76,48 @@ exports.postAddInsurance = (req, res, next) => {
         });
 };
 
-exports.getAddProject = (req, res, next) => {
-    Sales.findAll({
+exports.getAddProject = async(req, res, next) => {
+    const username = req.session.username;
+    const userid = req.session.userid;
+    const userrole = req.session.user.role;
+    try {
+        const sales = await Sales.findAll({
             order: [
                 ['name', 'ASC']
             ]
         })
-        .then(sales => {
-            Insurance.findAll({
-                    order: [
-                        ['coName', 'ASC']
-                    ]
-                })
-                .then(insurance => {
-                    Supervisor.findAll({
-                            order: [
-                                ['name', 'ASC']
-                            ]
-                        })
-                        .then(supervisor => {
-                            Status.findAll()
-                                .then(status => {
-                                    Additions.findAll()
-                                        .then(additions => {
-                                            Project.findAll()
-                                                .then(project => {
-                                                    res.render('add/add-project', {
-                                                        pageTitle: 'Add Residential Project',
-                                                        path: '/add-project',
-                                                        ins: insurance,
-                                                        project: project,
-                                                        supers: supervisor,
-                                                        sal: sales,
-                                                        status: status,
-                                                    });
-                                                })
-                                        })
-                                })
-                        })
-                })
+        const insurance = await Insurance.findAll({
+            order: [
+                ['coName', 'ASC']
+            ]
         })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
+        const supervisor = await Supervisor.findAll({
+            order: [
+                ['name', 'ASC']
+            ]
+        })
+        const status = await Status.findAll()
+        const additions = await Additions.findAll()
+        const project = await Project.findAll()
+
+        if (userrole == 5) {
+            res.redirect('notAuth');
+        } else {
+            res.render('add/add-project', {
+                pageTitle: 'Add Residential Project',
+                path: '/add-project',
+                ins: insurance,
+                project: project,
+                supers: supervisor,
+                sal: sales,
+                status: status,
+            });
+        }
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    };
 };
 
 exports.postAddProject = (req, res, next) => {
@@ -186,48 +191,48 @@ exports.postAddProject = (req, res, next) => {
         });
 };
 
-exports.getAddCProject = (req, res, next) => {
-    Sales.findAll({
+exports.getAddCProject = async(req, res, next) => {
+    const username = req.session.username;
+    const userid = req.session.userid;
+    const userrole = req.session.user.role;
+
+    try {
+        const sales = await Sales.findAll({
             order: [
                 ['name', 'ASC']
             ]
         })
-        .then(sales => {
-            Insurance.findAll({
-                    order: [
-                        ['coName', 'ASC']
-                    ]
-                })
-                .then(insurance => {
-                    Supervisor.findAll({
-                            order: [
-                                ['name', 'ASC']
-                            ]
-                        })
-                        .then(supervisor => {
-                            Status.findAll()
-                                .then(status => {
-                                    Project.findAll()
-                                        .then(project => {
-                                            res.render('add/add-c-project', {
-                                                pageTitle: 'Add Commercial Project',
-                                                path: '/add-c-project',
-                                                ins: insurance,
-                                                project: project,
-                                                supers: supervisor,
-                                                sal: sales,
-                                                status: status,
-                                            });
-                                        })
-                                })
-                        })
-                })
+        const insurance = await Insurance.findAll({
+            order: [
+                ['coName', 'ASC']
+            ]
         })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
+        const supervisor = await Supervisor.findAll({
+            order: [
+                ['name', 'ASC']
+            ]
+        })
+        const status = await Status.findAll()
+        const project = await Project.findAll()
+
+        if (userrole == 5) {
+            res.redirect('notAuth');
+        } else {
+            res.render('add/add-c-project', {
+                pageTitle: 'Add Commercial Project',
+                path: '/add-c-project',
+                ins: insurance,
+                project: project,
+                supers: supervisor,
+                sal: sales,
+                status: status,
+            });
+        }
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    };
 };
 
 exports.postAddCProject = (req, res, next) => {
@@ -367,13 +372,22 @@ exports.postAddNote = (req, res, next) => {
 };
 
 exports.getAddEstimator = async(req, res, next) => {
+    const username = req.session.username;
+    const userid = req.session.userid;
+    const userrole = req.session.user.role;
+
     try {
-        const estimator = await Estimator.findAll({})
-        res.render('add/add-estimator', {
-            pageTitle: "Add Estimator",
-            path: '/add-estimator',
-            estimator: estimator,
-        });
+        const estimator = await Estimator.findAll()
+
+        if (userrole == 5) {
+            res.redirect('notAuth');
+        } else {
+            res.render('add/add-estimator', {
+                pageTitle: "Add Estimator",
+                path: '/add-estimator',
+                estimator: estimator,
+            });
+        }
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
@@ -399,13 +413,22 @@ exports.postAddEstimator = (req, res, next) => {
 };
 
 exports.getAddSales = async(req, res, next) => {
+    const username = req.session.username;
+    const userid = req.session.userid;
+    const userrole = req.session.user.role;
+
     try {
         const sales = await Sales.findAll({})
-        res.render('add/add-sales', {
-            pageTitle: "Add Sales Representative",
-            path: '/add-sales',
-            sales: sales,
-        });
+        if (userrole == 5) {
+            res.redirect('notAuth');
+        } else {
+
+            res.render('add/add-sales', {
+                pageTitle: "Add Sales Representative",
+                path: '/add-sales',
+                sales: sales,
+            });
+        }
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
@@ -431,13 +454,21 @@ exports.postAddSales = (req, res, next) => {
 };
 
 exports.getAddSupervisor = async(req, res, next) => {
+    const username = req.session.username;
+    const userid = req.session.userid;
+    const userrole = req.session.user.role;
+
     try {
         const supervisor = await Supervisor.findAll({})
-        res.render('add/add-supervisor', {
-            pageTitle: "Add Supervisor",
-            path: '/add-supervisor',
-            supervisor: supervisor,
-        });
+        if (userrole == 5) {
+            res.redirect('notAuth');
+        } else {
+            res.render('add/add-supervisor', {
+                pageTitle: "Add Supervisor",
+                path: '/add-supervisor',
+                supervisor: supervisor,
+            });
+        }
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
@@ -463,17 +494,25 @@ exports.postAddSupervisor = (req, res, next) => {
 };
 
 exports.getAddSubcontractor = async(req, res, next) => {
+    const username = req.session.username;
+    const userid = req.session.userid;
+    const userrole = req.session.user.role;
+
     try {
         const subcontractor = await Subcontractor.findAll({
             order: [
                 ['coName', 'ASC']
             ]
         })
-        res.render('add/add-subcontractor', {
-            pageTitle: "Add Subcontractor",
-            path: '/add-subcontractor',
-            subcontractor: subcontractor,
-        });
+        if (userrole == 5) {
+            res.redirect('notAuth');
+        } else {
+            res.render('add/add-subcontractor', {
+                pageTitle: "Add Subcontractor",
+                path: '/add-subcontractor',
+                subcontractor: subcontractor,
+            });
+        }
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
@@ -506,18 +545,25 @@ exports.postAddSubcontractor = (req, res, next) => {
 };
 
 exports.getAddSupplier = async(req, res, next) => {
+    const username = req.session.username;
+    const userid = req.session.userid;
+    const userrole = req.session.user.role;
+
     try {
         const supplier = await Supplier.findAll({
-                order: [
-                    ['coName', 'ASC']
-                ]
-            })
-            // if (!req.session.user.role == 5) {
-        res.render('add/add-supplier', {
-            pageTitle: "Add Supplier",
-            path: '/add-supplier',
-            supplier: supplier,
-        });
+            order: [
+                ['coName', 'ASC']
+            ]
+        })
+        if (userrole == 5) {
+            res.redirect('notAuth');
+        } else {
+            res.render('add/add-supplier', {
+                pageTitle: "Add Supplier",
+                path: '/add-supplier',
+                supplier: supplier,
+            });
+        }
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
@@ -549,33 +595,28 @@ exports.postAddSupplier = (req, res, next) => {
         });
 };
 
-exports.getAddDoc = (req, res, next) => {
+exports.getAddDoc = async(req, res, next) => {
     const projId = req.params.projectId;
+    try {
+        const rType = await RType.findAll()
+        const document = await Document.findAll({ where: { projectId: projId } })
+        const project = await Project.findByPk(projId)
 
-    RType.findAll()
-        .then(rType => {
-            Document.findAll({
-                    where: { projectId: projId }
-                })
-                .then(document => {
-                    Project.findByPk(projId)
-                        .then(project => {
-                            res.render('add/add-doc', {
-                                pageTitle: "Add Document",
-                                path: '/add-doc',
-                                project: project,
-                                doc: document,
-                                projId: projId,
-                                types: rType
-                            });
-                        })
-                })
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
+        res.render('add/add-doc', {
+            pageTitle: "Add Document",
+            path: '/add-doc',
+            project: project,
+            doc: document,
+            projId: projId,
+            types: rType
         });
+
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
 };
 
 exports.postAddDoc = (req, res, next) => {
@@ -681,19 +722,15 @@ exports.getDeleteDoc = async(req, res, next) => {
 
 exports.getAddWorkOrder = async(req, res, next) => {
     const projId = req.params.projectId
+
     try {
         const subcontractor = await Subcontractor.findAll()
         const sales = await Sales.findAll()
         const supervisor = await Supervisor.findAll()
         const trades = await Trades.findAll()
         const workOrder = await WorkOrder.findAll()
-        const project = await Project.findByPk(projId, {
-            include: [{
-                model: Sales
-            }, {
-                model: Supervisor
-            }]
-        })
+        const project = await Project.findByPk(projId, { include: [{ model: Sales }, { model: Supervisor }] })
+
         res.render('add/add-workOrder', {
             pageTitle: 'Work Order',
             path: '/add-workOrder',
@@ -768,4 +805,8 @@ exports.postAddWorkOrder = (req, res, next) => {
             error.httpStatusCode = 500;
             return next(error);
         });
+};
+
+exports.getAddNo = (req, res, next) => {
+    res.redirect('notAuth');
 };

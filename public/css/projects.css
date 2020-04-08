@@ -53,6 +53,10 @@ article {
     width: 1000px;
 }
 
+.financialinfoSM {
+    width: 700px;
+}
+
 .fullA {
     width: 90%;
 }
@@ -101,7 +105,6 @@ article {
 
 .col-xsm {
     padding: 0 10px 0 10px;
-
 }
 
 .printable {

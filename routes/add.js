@@ -55,6 +55,6 @@ router.get('/add-workOrder/:projectId', isAuth, addController.getAddWorkOrder);
 
 router.post('/add-workOrder', isAuth, addController.postAddWorkOrder);
 
-
+router.get('/add-no', isAuth, addController.getAddNo);
 
 module.exports = router;
