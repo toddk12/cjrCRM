@@ -7,9 +7,10 @@
         <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
             <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
                 <%- include('../includes/navigation.ejs') %>
-                    <main>
+                    <main><br><br><br>
                         <!-- Status Section -->
                         <article class="changeStatus">
+                            <a href="/statusChg/<%= project.id %>/4/Awaiting Inspection" class="btn-sm">Change Status</a>
                             <input type="hidden" name="projectId" value="<%= project.id %>">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <h6> Project Status: </h6>
@@ -407,16 +408,16 @@
 
                                 </div>
                                 <% if (!project.commercial) { %>
-                                <div class="col-sm text-right">
-                                    <a href="/comEdit/<%= project.id %>" class="btn-sm2">Total Commissions:   </a>
-                                    <strong><%= money.format(project.totalRepPay) %></strong>
-                                </div>
-                            <% } else { %>
-                                <div class="col-sm text-right">
-                                    <a href="/comEditC/<%= project.id %>" class="btn-sm2">Total Commissions:   </a>
-                                    <strong><%= money.format(project.totalRepPay) %></strong>
-                                </div>                           
-                            <% } %>
+                                    <div class="col-sm text-right">
+                                        <a href="/comEdit/<%= project.id %>" class="btn-sm2">Total Commissions:   </a>
+                                        <strong><%= money.format(project.totalRepPay) %></strong>
+                                    </div>
+                                    <% } else { %>
+                                        <div class="col-sm text-right">
+                                            <a href="/comEditC/<%= project.id %>" class="btn-sm2">Total Commissions:   </a>
+                                            <strong><%= money.format(project.totalRepPay) %></strong>
+                                        </div>
+                                        <% } %>
                             </div>
                             <div class="row">
                                 <div class="col-sm text-right">

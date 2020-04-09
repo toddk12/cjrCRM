@@ -7,7 +7,7 @@
         <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
             <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
                 <%- include('../includes/navigation.ejs') %>
-                    <main>
+                    <main><br><br><br>
                         <div class="centered">
                             <h1><strong>Owner Out of Pocket</strong></h1>
                             <h4>
@@ -32,55 +32,55 @@
                                 </div>
                             </h4>
 
-                        <article class="notes">
-                            <form class="form" action="/ownerOop" method="POST">
-                                <div class="row">
+                            <article class="notes">
+                                <form class="form" action="/ownerOop" method="POST">
+                                    <div class="row">
 
-                                    <div class="col-sm">
-                                        <label for="projectId"><strong>Project Id: </strong></label>
-                                        <input type="text" name="projectId" id="projectId" value="<%= projId %>">
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="entryDate"><strong>Entered On: </strong></label>
-                                        <input type="datetime" name="entryDate" id="entryDate" value="<%= new Date() %>">
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="enteredBy"><strong>Entered By: </strong></label>
-                                        <input type="text" name="enteredBy" id="enteredBy" value="<%= userName %>">
-                                    </div>
-                                    <div class="col-sm" style="width: 200px">
-                                        <label for="tradeId"><strong>Trade: </strong></label>
-                                        <select style="width: 200px" class="select" name="tradeId" id="tradeId">
+                                        <div class="col-sm">
+                                            <label for="projectId"><strong>Project Id: </strong></label>
+                                            <input type="text" name="projectId" id="projectId" value="<%= projId %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="entryDate"><strong>Entered On: </strong></label>
+                                            <input type="datetime" name="entryDate" id="entryDate" value="<%= new Date() %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="enteredBy"><strong>Entered By: </strong></label>
+                                            <input type="text" name="enteredBy" id="enteredBy" value="<%= userName %>">
+                                        </div>
+                                        <div class="col-sm" style="width: 200px">
+                                            <label for="tradeId"><strong>Trade: </strong></label>
+                                            <select style="width: 200px" class="select" name="tradeId" id="tradeId">
                                     <% for (let trades of trade) { %>
                                     <option value="<%= trades.id %>">
                                     <%= trades.trade %></option>
                                     <% } %>
                                 </select>
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="oopMemo"><strong>Description: </strong></label>
+                                            <textarea cols="50" rows="1" type="text" name="oopMemo" id="oopMemo"></textarea>
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="oopAmt"><strong>Amount: </strong></label>
+                                            <input type="currency" name="oopAmt" id="oopAmt">
+                                        </div>
                                     </div>
-                                    <div class="col-sm">
-                                        <label for="oopMemo"><strong>Description: </strong></label>
-                                        <textarea cols="50" rows="1" type="text" name="oopMemo" id="oopMemo"></textarea>
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="oopAmt"><strong>Amount: </strong></label>
-                                        <input type="currency" name="oopAmt" id="oopAmt">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
                                     <br>
-                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                    <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Funds</button>
-                                    <br>
-                                    <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to FinancialInfo</a>
-                                </div>
-                            </form><br>
-                        </article>
-                        <br>
-                        <br>
-                        <br>
-                        <article class="notes">
-                            <strong><div class="row">
+                                    <div class="row">
+                                        <br>
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Funds</button>
+                                        <br>
+                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to FinancialInfo</a>
+                                    </div>
+                                </form><br>
+                            </article>
+                            <br>
+                            <br>
+                            <br>
+                            <article class="notes">
+                                <strong><div class="row">
                                 <div class="col-sm">
                                     Entered By
                                 </div>
@@ -98,42 +98,42 @@
                                 </div>
                                 <div class="col-sm">
                                     <strong></strong>
-                            </div>
-                            </div>
-                            </strong>
-                            <% for (let oop of oops) { %>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <%= oop.enteredBy %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= oop.entryDate %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= oop.trade.trade %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= money.format(oop.oopAmt) %>
-                                            <% project.totalOwnerOop %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= oop.oopMemo %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a class="btn-esm text-center" style="width: 150px" href="/oopEdit/<%= oop.id %>">Edit</a>
-                                    </div>
-
+                        </div>
+                        </div>
+                        </strong>
+                        <% for (let oop of oops) { %>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <%= oop.enteredBy %>
                                 </div>
-                                <% } %>
-                                    <br>
-                                    <article>
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                <strong>Total Owner Out of Pocket: </strong>
-                                                <%= money.format(project.totalOwnerOop) %>
-                                            </div>
+                                <div class="col-sm">
+                                    <%= oop.entryDate %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= oop.trade.trade %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= money.format(oop.oopAmt) %>
+                                        <% project.totalOwnerOop %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= oop.oopMemo %>
+                                </div>
+                                <div class="col-sm">
+                                    <a class="btn-esm text-center" style="width: 150px" href="/oopEdit/<%= oop.id %>">Edit</a>
+                                </div>
+
+                            </div>
+                            <% } %>
+                                <br>
+                                <article>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <strong>Total Owner Out of Pocket: </strong>
+                                            <%= money.format(project.totalOwnerOop) %>
                                         </div>
-                                    </article>
+                                    </div>
+                                </article>
                                 </div>
                     </main>
 

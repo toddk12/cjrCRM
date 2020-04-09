@@ -106,4 +106,7 @@ router.get('/rpEdit/:rpId', isAuth, projectsController.getRpEdit);
 
 router.post('/rpEdit', isAuth, projectsController.postRpEdit);
 
+router.get('/statusChg/:projectId/:statusId/:statusName', isAuth, projectsController.getStatChg);
+
+router.post('/statusChg', isAuth, projectsController.postStatChg);
 module.exports = router;

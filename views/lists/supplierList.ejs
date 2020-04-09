@@ -9,38 +9,39 @@
                 <%- include('../includes/navigation.ejs') %>
                     <main>
                         <div class="centered">
-                            <h1><strong>List of Suppliers</strong></h1>
-                            <br>
-                            <article style="width: auto">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"><strong>Company Name</strong></th>
-                                            <th scope="col"><strong>Contact</strong></th>
-                                            <th scope="col"><strong>Email</strong></th>
-                                            <th scope="col"><strong></strong></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% for (let supp of supps) { %>
+                            <br<br><br><br><br>
+                                <h1><strong>List of Suppliers</strong></h1>
+                                <br>
+                                <article style="width: auto">
+                                    <table class="table">
+                                        <thead>
                                             <tr>
-                                                <th scope="row">
-                                                    <%= supp.coName %>
-                                                </th>
-                                                <td>
-                                                    <%= supp.contact %>
-                                                </td>
-                                                <td>
-                                                    <%= supp.email %>
-                                                </td>
-                                                <td>
-                                                    <a class="btn-esm text-center" style="width: 150px" href="/suppEdit/<%= supp.id %>">Edit</a>
-                                                </td>
+                                                <th scope="col"><strong>Company Name</strong></th>
+                                                <th scope="col"><strong>Contact</strong></th>
+                                                <th scope="col"><strong>Email</strong></th>
+                                                <th scope="col"><strong></strong></th>
                                             </tr>
-                                            <% } %>
-                                    </tbody>
-                                </table>
-                            </article>
+                                        </thead>
+                                        <tbody>
+                                            <% for (let supp of supps) { %>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <%= supp.coName %>
+                                                    </th>
+                                                    <td>
+                                                        <%= supp.contact %>
+                                                    </td>
+                                                    <td>
+                                                        <%= supp.email %>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn-esm text-center" style="width: 150px" href="/suppEdit/<%= supp.id %>">Edit</a>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                </article>
                         </div>
 
                     </main>

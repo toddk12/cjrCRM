@@ -7,7 +7,7 @@
         <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
             <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
                 <%- include('../includes/navigation.ejs') %>
-                    <main>
+                    <main><br><br><br>
                         <div class="centered">
                             <h1><strong>Payments to Sales Representative</strong></h1>
                             <h4>
@@ -32,49 +32,49 @@
                                 </div>
                             </h4>
 
-                        <article class="notes">
-                            <form class="form-inline" action="/repPay" method="POST">
-                                <div class="row">
+                            <article class="notes">
+                                <form class="form-inline" action="/repPay" method="POST">
+                                    <div class="row">
 
-                                    <div class="col-sm">
-                                        <label for="projectId"><strong>Project Id: </strong></label>
-                                        <input type="text" name="projectId" id="projectId" value="<%= projId %>">
+                                        <div class="col-sm">
+                                            <label for="projectId"><strong>Project Id: </strong></label>
+                                            <input type="text" name="projectId" id="projectId" value="<%= projId %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="entryDate"><strong>Entered On: </strong></label>
+                                            <input type="text" name="entryDate" id="entryDate" value="<%= new Date() %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="enteredBy"><strong>Entered By: </strong></label>
+                                            <input type="text" name="enteredBy" id="enteredBy" value="<%= userName %>">
+                                            <input type="hidden" name="enteredID" value="<%= userId %>">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="payAmt"><strong>Amount: </strong></label>
+                                            <input type="number" step=".01" name="payAmt" id="payAmt">
+                                        </div>
+                                        <div class="col-sm">
+                                            <label for="description"><strong>Description: </strong></label>
+                                            <input style="width: 400px" type="text" name="description" id="description">
+                                        </div>
                                     </div>
-                                    <div class="col-sm">
-                                        <label for="entryDate"><strong>Entered On: </strong></label>
-                                        <input type="text" name="entryDate" id="entryDate" value="<%= new Date() %>">
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="enteredBy"><strong>Entered By: </strong></label>
-                                        <input type="text" name="enteredBy" id="enteredBy" value="<%= userName %>">
-                                        <input type="hidden" name="enteredID" value="<%= userId %>">
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="payAmt"><strong>Amount: </strong></label>
-                                        <input type="number" step=".01" name="payAmt" id="payAmt">
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="description"><strong>Description: </strong></label>
-                                        <input style="width: 400px" type="text" name="description" id="description">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
                                     <br>
-                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                    <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Payment</button>
-                                    <br>
-                                    <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
-                                </div>
-                            </form><br>
-                        </article>
-                        <br>
-                        <br><br>
-                        <br><br>
-                        <br>
-                        <br>
-                        <article class="notes">
-                            <strong><div class="row">
+                                    <div class="row">
+                                        <br>
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Payment</button>
+                                        <br>
+                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
+                                    </div>
+                                </form><br>
+                            </article>
+                            <br>
+                            <br><br>
+                            <br><br>
+                            <br>
+                            <br>
+                            <article class="notes">
+                                <strong><div class="row">
                                 <div class="col-sm">
                                     Project Id
                                 </div>
@@ -92,40 +92,40 @@
                                 </div>
                                 <div class="col-sm">
                                     <strong></strong>
-                            </div>
-                            </div>
-                            </strong>
-                            <% for (let pay of pays) { %>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <%= pay.projectId %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= pay.enteredBy %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= pay.entryDate %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= money.format(pay.payAmt) %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <%= pay.description %>
-                                    </div>
-                                    <div class="col-sm">
-                                        <a class="btn-esm text-center" style="width: 150px" href="/rpEdit/<%= pay.id %>">Edit</a>
-                                    </div>
-                                    <br>
+                        </div>
+                        </div>
+                        </strong>
+                        <% for (let pay of pays) { %>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <%= pay.projectId %>
                                 </div>
-                                <% } %>
-                                    <article>
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                <strong>Total Funds Received: </strong>
-                                                <%= money.format(totals) %>
-                                            </div>
+                                <div class="col-sm">
+                                    <%= pay.enteredBy %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= pay.entryDate %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= money.format(pay.payAmt) %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= pay.description %>
+                                </div>
+                                <div class="col-sm">
+                                    <a class="btn-esm text-center" style="width: 150px" href="/rpEdit/<%= pay.id %>">Edit</a>
+                                </div>
+                                <br>
+                            </div>
+                            <% } %>
+                                <article>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <strong>Total Funds Received: </strong>
+                                            <%= money.format(totals) %>
                                         </div>
-                                    </article>
+                                    </div>
+                                </article>
                                 </div>
                     </main>
 

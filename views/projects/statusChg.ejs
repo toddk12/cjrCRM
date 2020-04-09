@@ -1,0 +1,55 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+    </head>
+
+    <body>
+        <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+            <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                <%- include('../includes/navigation.ejs') %>
+                    <main><br><br><br>
+                        <div class="centered">
+                            <h1><strong>Status Change</strong></h1>
+                        </div>
+                        <br>
+                        <div class="centered">
+                            <article>
+                                <h4>You are attempting to change the Status of the following project:</h4>
+                                <br>
+                                <h5>
+                                    <br>
+                                    <%= project.owner1Fn %>
+                                        <%= project.owner1Ln %>
+                                            <br>
+                                            <%= project.address %>
+                                                <br>
+                                                <%= project.city %>,
+                                                    <%= project.state %>
+                                                        <%= project.zip %>
+                                </h5>
+                                <br>
+                                <h5>From
+                                    <strong><%= project.status.status %></strong> to
+                                    <strong><%= statName %></strong>
+                                </h5>
+                                <br>
+                                <form action="/statusChg" method="POST">
+                                    <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
+                                    <input type="hidden" name="statusId" id="statusId" value="<%= statId %>">
+                                    <label for="estComp">Is the Estimating Complete (Yes or No)?"</label>
+                                    <input style="width:50px" type="text" name="estComp" id="estComp" value="No">
+                                    <br>
+                                    <label for="workComp">Is all of the Work Complete (Yes or No)?"</label>
+                                    <input style="width:50px" type="text" name="workComp" id="workComp" value="No">
+                                    <br>
+                                    <label for="ruSure">Are you SURE you want to do this (Yes or No)?"</label>
+                                    <input style="width:50px" type="text" name="ruSure" id="ruSure" value="No">
+                                    <br>
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button class="updatebtn" type="submit">Continue</button>
+                                </form>
+                            </article>
+                        </div>
+                    </main>
+
+                    <%- include('../includes/footer.ejs') %>
+                        <script src="/js/status.js"></script>
