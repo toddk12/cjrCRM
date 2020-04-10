@@ -10,60 +10,59 @@
                     <main><br><br><br>
                         <!-- Status Section -->
                         <article class="changeStatus">
-                            <a href="/statusChg/<%= project.id %>/4/Awaiting Inspection" class="btn-sm">Change Status</a>
                             <input type="hidden" name="projectId" value="<%= project.id %>">
                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <h6> Project Status: </h6>
                             <% if (project.statusId === 1) { %>
-                                <button class="btn-sm" type="button" disabled>Entry</a>
-                            <% } else { %>
-                                <button class="btnsm1" type="button" onclick="chgStat1(this)">Entry</button>
-                                <% } %>
-                                    <% if (project.statusId === 2) { %>
-                                        <button class="btn-sm" type="button" disabled>Estimating</a>
-                            <% } else { %>
-                                <button class="btnsm1" type="button" onclick="chgStat2(this)">Estimating</button>
-                                        <% } %>
-                                            <% if (project.statusId === 3) { %>
-                                                <button class="btn-sm" type="button" disabled>Production</a>
-                            <% } else { %>
-                                <button class="btnsm1" type="button" onclick="chgStat3(this)">Production</button>
+                                <button class="btn-sm" type="button" disabled>Entry</button>
+                                <% } else { %>
+                                    <a href="/statusChg/<%= project.id %>/1/Entry" class="btnsm1">Entry</a>
+                                    <% } %>
+                                        <% if (project.statusId === 2) { %>
+                                            <button class="btn-sm" type="button" disabled>Estimating</button>
+                                            <% } else { %>
+                                                <a href="/statusChg/<%= project.id %>/2/Estimating" class="btnsm1">Estimating</a>
                                                 <% } %>
-                                                    <% if (project.statusId === 4) { %>
-                                                        <button class="btn-sm" type="button" disabled>Awaiting Inspection</a>
-                            <% } else { %>
-                                <button class="btnsm1" type="button" onclick="chgStat4(this)">Awaiting Inspection</button>
-                                                        <% } %>
-                                                            <% if (project.statusId === 5) { %>
-                                                                <button class="btn-sm" type="button" disabled>Close-Out</a>
-                            <% } else { %>
-                                <button class="btnsm1" type="button" onclick="chgStat5(this)">Close-Out</a>
-                            <% } %>
-                            <% if (project.statusId === 6) { %>
-                                <button class="btn-sm" type="button" disabled>Completed</a>
-                            <% } else { %>
-                                <button class="btnsm1" type="button" onclick="chgStat6(this)">Completed</button>
-                                                                <% } %>
-                                                                    <% if (project.statusId === 7) { %>
-                                                                        <button class="btn-sm" type="button" disabled>Collections</a>
-                            <% } else { %>
-                                <button class="btnsm1" type="button" onclick="chgStat7(this)">Collections</button>
+                                                    <% if (project.statusId === 3) { %>
+                                                        <button class="btn-sm" type="button" disabled>Production</button>
+                                                        <% } else { %>
+                                                            <a href="/statusChg/<%= project.id %>/3/Production" class="btnsm1">Production</a>
+                                                            <% } %>
+                                                                <% if (project.statusId === 4) { %>
+                                                                    <button class="btn-sm" type="button" disabled>Awaiting Inspection</button>
+                                                                    <% } else { %>
+                                                                        <a href="/statusChg/<%= project.id %>/4/Awaiting Inspection" class="btnsm1">Awaiting Inspection</a>
                                                                         <% } %>
-                                                                            <% if (project.statusId === 8) { %>
-                                                                                <button class="btn-sm" type="button" disabled>Canceled</a>
-                            <% } else { %>
-                                <button class="btnsm1" type="button" onclick="chgStat8(this)">Canceled</button>
-                                                                                <% } %>
-                                                                                    <% if (project.statusId === 9) { %>
-                                                                                        <button class="btn-sm" type="button" disabled>Denied</a>
-                            <% } else { %>
-                                <button class="btnsm1" type="button" onclick="chgStat9(this)">Denied</button>
-                                                                                        <% } %>
-                                                                                            <% if (project.statusId === 10) { %>
-                                                                                                <button class="btn-sm" type="button" disabled>On Hold</a>
-                            <% } else { %>
-                                <button class="btnsm1" type="button" onclick="chgStat10(this)">On Hold</button>
+                                                                            <% if (project.statusId === 5) { %>
+                                                                                <button class="btn-sm" type="button" disabled>Close-Out</button>
+                                                                                <% } else { %>
+                                                                                    <a href="/statusChg/<%= project.id %>/5/Close-Out" class="btnsm1">Close Out</a>
+                                                                                    <% } %>
+                                                                                        <% if (project.statusId === 6) { %>
+                                                                                            <button class="btn-sm" type="button" disabled>Completed</button>
+                                                                                            <% } else { %>
+                                                                                                <a href="/statusChg/<%= project.id %>/6/Completed" class="btnsm1">Completed</a>
                                                                                                 <% } %>
+                                                                                                    <% if (project.statusId === 7) { %>
+                                                                                                        <button class="btn-sm" type="button" disabled>Collections</button>
+                                                                                                        <% } else { %>
+                                                                                                            <a href="/statusChg/<%= project.id %>/7/Collections" class="btnsm1">Collections</a>
+                                                                                                            <% } %>
+                                                                                                                <% if (project.statusId === 8) { %>
+                                                                                                                    <button class="btn-sm" type="button" disabled>Canceled</button>
+                                                                                                                    <% } else { %>
+                                                                                                                        <a href="/statusChg/<%= project.id %>/8/Canceled" class="btnsm1">Canceled</a>
+                                                                                                                        <% } %>
+                                                                                                                            <% if (project.statusId === 9) { %>
+                                                                                                                                <button class="btn-sm" type="button" disabled>Denied</button>
+                                                                                                                                <% } else { %>
+                                                                                                                                    <a href="/statusChg/<%= project.id %>/9/Denied" class="btnsm1">Denied</a>
+                                                                                                                                    <% } %>
+                                                                                                                                        <% if (project.statusId === 10) { %>
+                                                                                                                                            <button class="btn-sm" type="button" disabled>On Hold</button>
+                                                                                                                                            <% } else { %>
+                                                                                                                                                <a href="/statusChg/<%= project.id %>/10/On Hold" class="btnsm1">On Hold</a>
+                                                                                                                                                <% } %>
                         </article>
                         <br>
                         <!-- Owner Information Section -->

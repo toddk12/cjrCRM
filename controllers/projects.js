@@ -4,7 +4,8 @@ const { Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey('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');
 
 
 const PDFDocument = require('pdfkit');
@@ -65,8 +66,6 @@ exports.getAllProjects = async(req, res, next) => {
 
 exports.getProjects = async(req, res, next) => {
     const statId = req.params.stat;
-    const listO = '';
-
     try {
         const sales = await Sales.findAll()
         const status = await Status.findOne({ where: { id: statId } })
@@ -97,7 +96,6 @@ exports.getProjects = async(req, res, next) => {
         error.httpStatusCode = 500;
         return next(error);
     }
-
 };
 
 exports.getProject = async(req, res, next) => {
@@ -1943,16 +1941,56 @@ exports.getStatChg = async(req, res, next) => {
     const projId = req.params.projectId;
     const statId = req.params.statusId;
     const statName = req.params.statusName;
-    console.log(projId);
+    let msg = '';
+    if (statId == 1) {
+        msg = "Entry is for projects that do not have paperwork, or funds recieved sufficient to start Estimating. Putting a project 'BACK' into Entry should be a very VERY rare occurance";
+    } else {
+        if (statId == 2) {
+            msg = "Please make sure that paperwork is attached and funds have been received sufficient to allow estimating to start work. Also confirm that the project number is not ST signifying that Accounting has entered this project ino their software module.";
+        } else {
+            if (statId == 3) {
+                msg = "To move into Production, Estimating must be substantially complete."
+            } else {
+                if (statId == 4) {
+                    msg = "To move into Awaiting Inspection, all other scope work MUST be completed.";
+                } else {
+                    if (statId == 5) {
+                        msg = "To move into Close-Out, estimating must be completed, all scope work MUST be completed and all final inspections have been passed.";
+                    } else {
+                        if (statId == 6) {
+                            msg = "To move into Completed, estimating must be completed, all scope work MUST be completed, all final inspections have been passed and all Funds Due have been received.";
+                        } else {
+                            if (statId == 7) {
+                                msg = "Only move a project into Collections once a collection method or company has been decided upon.";
+                            } else {
+                                if (statId == 8) {
+                                    msg = "A project is Canceled if the Owner cancels the contract, or if CJ cancels it. If the insurance company does not buy the roof, or enough trades that the deciscion is made not to go forward, then place the project into Denied not canceled.";
+                                } else {
+                                    if (statId == 9) {
+                                        msg = "A project is Denied if the insurance company does not buy the roof, or enough trades that the deciscion is made not to go forward. If the Owner cancels the contract, or if CJ cancels it, then place the project into Canceled ";
+                                    } else {
+                                        if (statId == 10) {
+                                            msg = "A project is placed in hold ONLY when it is anticipated that the project will go forward, but not immediately.";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     try {
         const project = await Project.findOne({ where: { id: projId }, include: [{ model: Status }] })
-        console.log(project);
+
         res.render('projects/statusChg', {
             pageTitle: "Status Change",
             path: '/statusChg',
             projId: projId,
             project: project,
             statId: statId,
+            msg: msg,
             statName: statName
         });
 
@@ -1966,94 +2004,49 @@ exports.getStatChg = async(req, res, next) => {
 exports.postStatChg = async(req, res, next) => {
     const projId = req.body.projectId;
     const statId = req.body.statusId;
-    const estComp = req.body.estComp;
-    const workComp = req.body.workComp;
-    const ruSure = req.body.ruSure;
-    const username = req.session.username;
-    const userid = req.session.userid;
-    const userrole = req.session.user.role;
-    console.log(projId);
-    console.log(statId);
-    console.log(estComp);
-    console.log(workComp);
-    console.log(ruSure);
+    const uemail = req.user.email;
+    console.log(uemail);
     try {
 
-        if (ruSure == "Yes") {
-            const projChg = await Project.findOne({ where: { id: projId } })
-            projChg.statusId = statId;
-            await project.save();
-            const notes = await Notes.findAll({
-                where: { projectId: projId },
-                order: [
-                    ['entryDate', 'DESC']
-                ]
-            })
-            const project = await Project.findOne({
-                where: { id: projId },
-                include: [{
-                    model: Sales
-                }, {
-                    model: Supervisor
-                }, {
-                    model: Status
-                }, {
-                    model: Insurance
-                }]
-            })
-            if (userrole == 5) {
-                res.render('projects/projectSM', {
-                    project: project,
-                    note: notes,
-                    pageTitle: project.projectNo,
-                    path: '/projectSM',
-                });
-            } else {
-                res.render('projects/project', {
-                    project: project,
-                    note: notes,
-                    pageTitle: project.projectNo,
-                    path: '/project',
-                });
-            }
+        const projChg = await Project.findOne({ where: { id: projId } })
+        projChg.statusId = statId;
+        await projChg.save();
 
-        } else {
-
-            const notes = await Notes.findAll({
-                where: { projectId: projId },
-                order: [
-                    ['entryDate', 'DESC']
-                ]
-            })
-            const project = await Project.findOne({
-                where: { id: projId },
-                include: [{
-                    model: Sales
-                }, {
-                    model: Supervisor
-                }, {
-                    model: Status
-                }, {
-                    model: Insurance
-                }]
-            })
-            if (userrole == 5) {
-                res.render('projects/projectSM', {
-                    project: project,
-                    note: notes,
-                    pageTitle: project.projectNo,
-                    path: '/projectSM',
-                });
-            } else {
-                res.render('projects/project', {
-                    project: project,
-                    note: notes,
-                    pageTitle: project.projectNo,
-                    path: '/project',
-                });
-            }
-        }
-
+        const notes = await Notes.findAll({
+            where: { projectId: projId },
+            order: [
+                ['entryDate', 'DESC']
+            ]
+        })
+        const project = await Project.findOne({
+            where: { id: projId },
+            include: [{
+                model: Sales
+            }, {
+                model: Supervisor
+            }, {
+                model: Status
+            }, {
+                model: Insurance
+            }]
+        })
+        const stName = project.status.status;
+        const sp = project.sale.email;
+        const Subj = "The project located at " + project.address + " has been moved to: " + stName;
+        await sgMail.send({
+            to: sp,
+            cc: ['todd@cjrestoration.com', 'heather@cjrestoration.com', 'joey@cjrestoration.com', 'kevin@cjrestoration.com'],
+            from: uemail,
+            subject: Subj,
+            text: Subj,
+            html: Subj,
+        });
+        res.render('projects/project', {
+            project: project,
+            note: notes,
+            pageTitle: project.projectNo,
+            path: '/project',
+        });
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;

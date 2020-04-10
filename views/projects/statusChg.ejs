@@ -32,20 +32,17 @@
                                     <strong><%= statName %></strong>
                                 </h5>
                                 <br>
+                                <h5>
+                                    <%= msg %>
+                                </h5>
+                                <br>
                                 <form action="/statusChg" method="POST">
                                     <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
                                     <input type="hidden" name="statusId" id="statusId" value="<%= statId %>">
-                                    <label for="estComp">Is the Estimating Complete (Yes or No)?"</label>
-                                    <input style="width:50px" type="text" name="estComp" id="estComp" value="No">
-                                    <br>
-                                    <label for="workComp">Is all of the Work Complete (Yes or No)?"</label>
-                                    <input style="width:50px" type="text" name="workComp" id="workComp" value="No">
-                                    <br>
-                                    <label for="ruSure">Are you SURE you want to do this (Yes or No)?"</label>
-                                    <input style="width:50px" type="text" name="ruSure" id="ruSure" value="No">
-                                    <br>
+
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                    <button class="updatebtn" type="submit">Continue</button>
+                                    <button class="updatebtn2" type="submit">Change Status</button>
+                                    <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
                                 </form>
                             </article>
                         </div>

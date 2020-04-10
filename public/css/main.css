@@ -224,6 +224,7 @@
     .btnsm1 {
         background-color: lightgreen;
         color: grey;
+        padding: 5px;
         margin-top: 4px;
         margin-right: 10px;
         margin-left: 10px;
@@ -291,4 +292,9 @@
         margin: 10px;
         width: 75%;
         border: 2px solid darkgreen;
+    }
+    
+    .updatebtn2 {
+        background-color: red;
+        color: white;
     }

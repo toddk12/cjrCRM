@@ -7,7 +7,7 @@ const { validationResult } = require('express-validator/check');
 const Op = Sequelize.Op;
 
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey('');
+sgMail.setApiKey('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');
 
 const User = require('../models/user');
 
