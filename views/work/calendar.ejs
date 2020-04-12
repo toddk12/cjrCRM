@@ -1,0 +1,19 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main><br><br><br>
+                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                        <div class="centered">
+                            <h1>Work Calendar</h1>
+
+                            <h2><%= dowDate %></h2>
+                                
+            </main>
+
+            <%- include('../includes/footer.ejs') %>
+                <script src="/js/status.js"></script>

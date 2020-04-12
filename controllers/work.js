@@ -247,3 +247,22 @@ exports.getWorkOrder = async(req, res, next) => {
     }
 
 };
+
+exports.getCal = async(req, res, next) => {
+    const dowDate = new Date();
+    const dow = dowDate.getDay();
+console.log(dow);
+    try {
+        
+        res.render('work/calendar', {
+            pageTitle: 'Work Calendar',
+            path: '/calendar',
+            dowDate: dowDate
+        });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+
+};
