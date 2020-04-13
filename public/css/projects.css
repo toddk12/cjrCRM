@@ -110,3 +110,8 @@ article {
 .printable {
     width: 720px;
 }
+
+.calendar {
+    width: 12%;
+    height: auto;
+}

@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const { Op } = require('sequelize');
+const moment = require('moment');
 
 const fs = require('fs');
 const path = require('path');
@@ -251,13 +252,49 @@ exports.getWorkOrder = async(req, res, next) => {
 exports.getCal = async(req, res, next) => {
     const dowDate = new Date();
     const dow = dowDate.getDay();
-console.log(dow);
+    let sDate = moment(dowDate).subtract(dow, "days");
+    let sun = moment(sDate).format("MM/DD/YY");
+    let mDate = moment(sDate).add(1, "days");
+    let mon = moment(mDate).format("MM/DD/YY");
+    let tDate = moment(mDate).add(1, "days");
+    let tue = moment(tDate).format("MM/DD/YY");
+    let wDate = moment(tDate).add(1, "days");
+    let wed = moment(wDate).format("MM/DD/YY");
+    let thDate = moment(wDate).add(1, "days");
+    let thu = moment(thDate).format("MM/DD/YY");
+    let fDate = moment(thDate).add(1, "days");
+    let fri = moment(fDate).format("MM/DD/YY");
+    let saDate = moment(fDate).add(1, "days");
+    let sat = moment(saDate).format("MM/DD/YY");
+    console.log(sun);
     try {
-        
+
+        const sCal = await WorkOrder.findAll({ where: { startDate: sDate }, include: [{ model: Project }, { model: Subcontractor }] })
+        const mCal = await WorkOrder.findAll({ where: { startDate: mDate }, include: [{ model: Project }, { model: Subcontractor }] })
+        const tCal = await WorkOrder.findAll({ where: { startDate: tDate }, include: [{ model: Project }, { model: Subcontractor }] })
+        const wCal = await WorkOrder.findAll({ where: { startDate: wDate }, include: [{ model: Project }, { model: Subcontractor }] })
+        const thCal = await WorkOrder.findAll({ where: { startDate: thDate }, include: [{ model: Project }, { model: Subcontractor }] })
+        const fCal = await WorkOrder.findAll({ where: { startDate: fDate }, include: [{ model: Project }, { model: Subcontractor }] })
+        const saCal = await WorkOrder.findAll({ where: { startDate: saDate }, include: [{ model: Project }, { model: Subcontractor }] })
+        console.log(tCal);
         res.render('work/calendar', {
             pageTitle: 'Work Calendar',
             path: '/calendar',
-            dowDate: dowDate
+            dowDate: dowDate,
+            sun: sun,
+            mon: mon,
+            tue: tue,
+            wed: wed,
+            thu: thu,
+            fri: fri,
+            sat: sat,
+            sund: sCal,
+            mond: mCal,
+            tues: tCal,
+            wedn: wCal,
+            thur: thCal,
+            frid: fCal,
+            satu: saCal
         });
     } catch (err) {
         const error = new Error(err);

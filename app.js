@@ -10,6 +10,7 @@ const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
 const sgMail = require('@sendgrid/mail');
+const moment = require('moment');
 
 const errorController = require('./controllers/error');
 const sequelize = require('./util/database');
@@ -58,7 +59,7 @@ const fileStorage = multer.diskStorage({
         cb(null, Date.now().toString() + '-' + file.originalname);
     }
 })
-
+moment().format("M/D/YY");
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
