@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey('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');
+sgMail.setApiKey(process.env.PRODKEY);
 
 
 const PDFDocument = require('pdfkit');

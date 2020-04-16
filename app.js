@@ -12,6 +12,8 @@ const multer = require('multer');
 const sgMail = require('@sendgrid/mail');
 const moment = require('moment');
 
+console.log(process.env.NODE_ENV);
+
 const errorController = require('./controllers/error');
 const sequelize = require('./util/database');
 
@@ -41,12 +43,13 @@ const RepPay = require('./models/repPay');
 const app = express();
 
 const options = {
-    host: 'localhost',
+    host: 'usasecuritynet.ipagemysql.com',
+    user: 'usasecuritynet',
     port: 3306,
-    user: 'root',
-    password: '',
+    password: 'AmxhudE3',
     database: 'cjdatabase'
 };
+// const options = proccess.env.MYADATABASE;
 
 const sessionStore = new MySQLStore(options);
 const csrfProtection = csrf();

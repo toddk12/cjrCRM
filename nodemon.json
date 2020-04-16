@@ -1,0 +1,10 @@
+{
+    "env": {
+        "DB_USER": "usasecuritynet",
+        "DB_PORT": "process.env.PORT",
+        "DB_DATABASE": "cjdatabase",
+        "DB_PASS": "AmxhudE3",
+        "DB_HOST": "usasecuritynet.ipagemysql.com",
+        "PRODKEY": "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"
+    }
+}

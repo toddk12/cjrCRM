@@ -2,12 +2,12 @@ const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 const Sequelize = require('sequelize');
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 
 const Op = Sequelize.Op;
 
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey('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');
+sgMail.setApiKey(process.env.PRODKEY);
 
 const User = require('../models/user');
 
