@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+ const Sequelize = require('sequelize');
 const { Op } = require('sequelize');
 const moment = require('moment');
 
@@ -302,4 +302,4 @@ exports.getCal = async(req, res, next) => {
         return next(error);
     }
 
-};
+}; 

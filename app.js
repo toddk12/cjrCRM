@@ -43,13 +43,12 @@ const RepPay = require('./models/repPay');
 const app = express();
 
 const options = {
-    host: 'usasecuritynet.ipagemysql.com',
-    user: 'usasecuritynet',
-    port: 3306,
-    password: 'AmxhudE3',
-    database: 'cjdatabase'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    port: process.env.DB_PORT,
+    password: process.env.DB_PASS,
+    database: process.env.DB_DATABASE
 };
-// const options = proccess.env.MYADATABASE;
 
 const sessionStore = new MySQLStore(options);
 const csrfProtection = csrf();
@@ -65,6 +64,8 @@ const fileStorage = multer.diskStorage({
 moment().format("M/D/YY");
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+
+
 
 const projectRoutes = require('./routes/project');
 const mainRoutes = require('./routes/main');

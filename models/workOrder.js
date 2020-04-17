@@ -11,6 +11,7 @@ const WorkOrder = sequelize.define('workOrder', {
     },
     startDate: Sequelize.DATEONLY,
     endDate: Sequelize.DATEONLY,
+    numDays: Sequelize.INTEGER,
     compDate: Sequelize.DATEONLY,
     complete: Sequelize.BOOLEAN,
     description: Sequelize.TEXT,
