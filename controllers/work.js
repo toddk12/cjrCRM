@@ -290,26 +290,19 @@
          const fCal = await WorkOrder.findAll({ where: { startDate: fDate }, include: [{ model: Project }, { model: Subcontractor }] })
          const saCal = await WorkOrder.findAll({ where: { startDate: saDate }, include: [{ model: Project }, { model: Subcontractor }] })
          for (sc of sCal) {
-             sunDA.push = (sc.project.address)
-             sunDS.push = (sc.subcontractor.coName)
+             sunDA.push = (sc.project.address + " " + sc.subcontractor.coName)
              if (sc.numDays > 1) {
-                 monDA.push(sc.project.address)
-                 monDS.push(sc.subcontractor.coName)
+                 monDA.push(sc.project.address + " " + sc.subcontractor.coName)
                  if (sc.numDays > 2) {
-                     tueDA.push(sc.project.address)
-                     tueDS.push(sc.subcontractor.coName)
+                     tueDA.push(sc.project.address + " " + sc.subcontractor.coName)
                      if (sc.numDays > 3) {
-                         wedDA.push(sc.project.address)
-                         wedDS.push(sc.subcontractor.coName)
+                         wedDA.push(sc.project.address + " " + sc.subcontractor.coName)
                          if (sc.numDays > 4) {
-                             thuDA.push(sc.project.address)
-                             thuDS.push(sc.subcontractor.coName)
+                             thuDA.push(sc.project.address + " " + sc.subcontractor.coName)
                              if (sc.numDays > 5) {
-                                 friDA.push(sc.project.address)
-                                 friDS.push(sc.subcontractor.coName)
+                                 friDA.push(sc.project.address + " " + sc.subcontractor.coName)
                                  if (sc.numDays > 6) {
-                                     satDA.push(sc.project.address)
-                                     satDS.push(sc.subcontractor.coName)
+                                     satDA.push(sc.project.address + " " + sc.subcontractor.coName)
                                  }
                              }
                          }
@@ -318,23 +311,17 @@
              }
          }
          for (mc of mCal) {
-             monDA.push(mc.project.address)
-             monDS.push(mc.subcontractor.coName)
+             monDA.push(mc.project.address + " " + mc.subcontractor.coName)
              if (mc.numDays > 1) {
-                 tueDA.push(mc.project.address)
-                 tueDS.push(mc.subcontractor.coName)
+                 tueDA.push(mc.project.address + " " + mc.subcontractor.coName)
                  if (mc.numDays > 2) {
-                     wedDA.push(mc.project.address)
-                     wedDS.push(mc.subcontractor.coName)
+                     wedDA.push(mc.project.address + " " + mc.subcontractor.coName)
                      if (mc.numDays > 3) {
-                         thuDA.push(mc.project.address)
-                         thuDS.push(mc.subcontractor.coName)
+                         thuDA.push(mc.project.address + " " + mc.subcontractor.coName)
                          if (mc.numDays > 4) {
-                             friDA.push(mc.project.address)
-                             friDS.push(mc.subcontractor.coName)
+                             friDA.push(mc.project.address + " " + mc.subcontractor.coName)
                              if (mc.numDays > 5) {
-                                 satDA.push(mc.project.address)
-                                 satDS.push(mc.subcontractor.coName)
+                                 satDA.push(mc.project.address + " " + mc.subcontractor.coName)
                              }
                          }
                      }
@@ -342,66 +329,51 @@
              }
          }
          for (tc of tCal) {
-             tueDA.push(tc.project.address)
-             tueDS.push(tc.subcontractor.coName)
+             tueDA.push(tc.project.address + " " + tc.subcontractor.coName)
              if (tc.numDays > 1) {
-                 wedDA.push(tc.project.address)
-                 wedDS.push(tc.subcontractor.coName)
+                 wedDA.push(tc.project.address + " " + tc.subcontractor.coName)
                  if (tc.numDays > 2) {
-                     thuDA.push(tc.project.address)
-                     thuDS.push(tc.subcontractor.coName)
+                     thuDA.push(tc.project.address + " " + tc.subcontractor.coName)
                      if (tc.numDays > 3) {
-                         friDA.push(tc.project.address)
-                         friDS.push(tc.subcontractor.coName)
+                         friDA.push(tc.project.address + " " + tc.subcontractor.coName)
                          if (tc.numDays > 4) {
-                             satDA.push(tc.project.address)
-                             satDS.push(tc.subcontractor.coName)
+                             satDA.push(tc.project.address + " " + tc.subcontractor.coName)
                          }
                      }
                  }
              }
          }
          for (wc of wCal) {
-             wedDA.push(wc.project.address)
-             wedDS.push(wc.subcontractor.coName)
+             wedDA.push(wc.project.address + " " + wc.subcontractor.coName)
              if (wc.numDays > 1) {
-                 thuDA.push(wc.project.address)
-                 thuDS.push(wc.subcontractor.coName)
+                 thuDA.push(wc.project.address + " " + wc.subcontractor.coName)
                  if (wc.numDays > 2) {
-                     friDA.push(wc.project.address)
-                     friDS.push(wc.subcontractor.coName)
+                     friDA.push(wc.project.address + " " + wc.subcontractor.coName)
                      if (wc.numDays > 3) {
-                         satDA.push(wc.project.address)
-                         satDS.push(wc.subcontractor.coName)
+                         satDA.push(wc.project.address + " " + wc.subcontractor.coName)
                      }
                  }
              }
          }
          for (thc of thCal) {
-             thuDA.push(thc.project.address)
-             thuDS.push(thc.subcontractor.coName)
+             thuDA.push(thc.project.address + " " + thc.subcontractor.coName)
              if (thc.numDays > 1) {
-                 friDA.push(thc.project.address)
-                 friDS.push(thc.subcontractor.coName)
+                 friDA.push(thc.project.address + " " + thc.subcontractor.coName)
                  if (thc.numDays > 2) {
-                     satDA.push(thc.project.address)
-                     satDS.push(thc.subcontractor.coName)
+                     satDA.push(thc.project.address + " " + thc.subcontractor.coName)
                  }
              }
          }
          for (fc of fCal) {
-             friDA.push(fc.project.address)
-             friDS.push(fc.subcontractor.coName)
+             friDA.push(fc.project.address + " " + fc.subcontractor.coName)
              if (fc.numDays > 1) {
-                 satDA.push(fc.project.address)
-                 satDS.push(fc.subcontractor.coName)
+                 satDA.push(fc.project.address + " " + fc.subcontractor.coName)
              }
          }
          for (sac of saCal) {
-             satDA.push(sac.project.address)
-             satDS.push(sac.subcontractor.coName)
+             satDA.push(sac.project.address + " " + sac.subcontractor.coName)
          }
-         console.log(friDS);
+         console.log(monDA);
          res.render('work/calendar', {
              pageTitle: 'Work Calendar',
              path: '/calendar',
