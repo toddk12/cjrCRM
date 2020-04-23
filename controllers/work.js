@@ -111,6 +111,7 @@
      const updatedtrade4 = req.body.trade4;
      const updatedtradeAmt4 = req.body.tradeAmt4;
      const updatedwoTotal = req.body.woTotal;
+     const updatedNumDays = undatedStartDate.diff(updatedEndDate, 'days');
 
      try {
          const workOrder = await WorkOrder.findByPk(workId)
@@ -118,6 +119,7 @@
          workOrder.subcontractorId = updatedsubcontractorId;
          workOrder.startDate = updatedstartDate;
          workOrder.endDate = updatedendDate;
+         workOrder.numDays = updatedNumDays;
          workOrder.compDate = updatedcompDate;
          workOrder.complete = updatedcomplete;
          workOrder.description = updateddescription;
@@ -182,8 +184,8 @@
              where: { id: workOrder.projectId }
          });
 
-         const ofn = (workOrder.project.owner1Fn + " " + workOrder.project.owner1Ln);
-         const addr = (workOrder.project.address + ", " + workOrder.project.city + " " + workOrder.project.zip);
+         const ofn = (workOrder.project.owner1Fn + " - " + workOrder.project.owner1Ln);
+         const addr = (workOrder.project.address + ", " + workOrder.project.city + " - " + workOrder.project.zip);
          const field = (workOrder.supervisor.name);
          const srep = (workOrder.sale.name);
          const woName = 'workOrder-' + workId + '.pdf';
@@ -241,158 +243,6 @@
 
          pdfDoc.end();
 
-     } catch (err) {
-         const error = new Error(err);
-         error.httpStatusCode = 500;
-         return next(error);
-     }
-
- };
-
- exports.getCal = async(req, res, next) => {
-     const dowDate = new Date();
-     const dow = dowDate.getDay();
-     let sDate = moment(dowDate).subtract(dow, "days");
-     let sun = moment(sDate).format("MM/DD/YY");
-     let mDate = moment(sDate).add(1, "days");
-     let mon = moment(mDate).format("MM/DD/YY");
-     let tDate = moment(mDate).add(1, "days");
-     let tue = moment(tDate).format("MM/DD/YY");
-     let wDate = moment(tDate).add(1, "days");
-     let wed = moment(wDate).format("MM/DD/YY");
-     let thDate = moment(wDate).add(1, "days");
-     let thu = moment(thDate).format("MM/DD/YY");
-     let fDate = moment(thDate).add(1, "days");
-     let fri = moment(fDate).format("MM/DD/YY");
-     let saDate = moment(fDate).add(1, "days");
-     let sat = moment(saDate).format("MM/DD/YY");
-     console.log(sun);
-     try {
-         let sunDA = [];
-         let monDA = [];
-         let tueDA = [];
-         let wedDA = [];
-         let thuDA = [];
-         let friDA = [];
-         let satDA = [];
-         let sunDS = [];
-         let monDS = [];
-         let tueDS = [];
-         let wedDS = [];
-         let thuDS = [];
-         let friDS = [];
-         let satDS = [];
-         const sCal = await WorkOrder.findAll({ where: { startDate: sDate }, include: [{ model: Project }, { model: Subcontractor }] })
-         const mCal = await WorkOrder.findAll({ where: { startDate: mDate }, include: [{ model: Project }, { model: Subcontractor }] })
-         const tCal = await WorkOrder.findAll({ where: { startDate: tDate }, include: [{ model: Project }, { model: Subcontractor }] })
-         const wCal = await WorkOrder.findAll({ where: { startDate: wDate }, include: [{ model: Project }, { model: Subcontractor }] })
-         const thCal = await WorkOrder.findAll({ where: { startDate: thDate }, include: [{ model: Project }, { model: Subcontractor }] })
-         const fCal = await WorkOrder.findAll({ where: { startDate: fDate }, include: [{ model: Project }, { model: Subcontractor }] })
-         const saCal = await WorkOrder.findAll({ where: { startDate: saDate }, include: [{ model: Project }, { model: Subcontractor }] })
-         for (sc of sCal) {
-             sunDA.push = (sc.project.address + " " + sc.subcontractor.coName)
-             if (sc.numDays > 1) {
-                 monDA.push(sc.project.address + " " + sc.subcontractor.coName)
-                 if (sc.numDays > 2) {
-                     tueDA.push(sc.project.address + " " + sc.subcontractor.coName)
-                     if (sc.numDays > 3) {
-                         wedDA.push(sc.project.address + " " + sc.subcontractor.coName)
-                         if (sc.numDays > 4) {
-                             thuDA.push(sc.project.address + " " + sc.subcontractor.coName)
-                             if (sc.numDays > 5) {
-                                 friDA.push(sc.project.address + " " + sc.subcontractor.coName)
-                                 if (sc.numDays > 6) {
-                                     satDA.push(sc.project.address + " " + sc.subcontractor.coName)
-                                 }
-                             }
-                         }
-                     }
-                 }
-             }
-         }
-         for (mc of mCal) {
-             monDA.push(mc.project.address + " " + mc.subcontractor.coName)
-             if (mc.numDays > 1) {
-                 tueDA.push(mc.project.address + " " + mc.subcontractor.coName)
-                 if (mc.numDays > 2) {
-                     wedDA.push(mc.project.address + " " + mc.subcontractor.coName)
-                     if (mc.numDays > 3) {
-                         thuDA.push(mc.project.address + " " + mc.subcontractor.coName)
-                         if (mc.numDays > 4) {
-                             friDA.push(mc.project.address + " " + mc.subcontractor.coName)
-                             if (mc.numDays > 5) {
-                                 satDA.push(mc.project.address + " " + mc.subcontractor.coName)
-                             }
-                         }
-                     }
-                 }
-             }
-         }
-         for (tc of tCal) {
-             tueDA.push(tc.project.address + " " + tc.subcontractor.coName)
-             if (tc.numDays > 1) {
-                 wedDA.push(tc.project.address + " " + tc.subcontractor.coName)
-                 if (tc.numDays > 2) {
-                     thuDA.push(tc.project.address + " " + tc.subcontractor.coName)
-                     if (tc.numDays > 3) {
-                         friDA.push(tc.project.address + " " + tc.subcontractor.coName)
-                         if (tc.numDays > 4) {
-                             satDA.push(tc.project.address + " " + tc.subcontractor.coName)
-                         }
-                     }
-                 }
-             }
-         }
-         for (wc of wCal) {
-             wedDA.push(wc.project.address + " " + wc.subcontractor.coName)
-             if (wc.numDays > 1) {
-                 thuDA.push(wc.project.address + " " + wc.subcontractor.coName)
-                 if (wc.numDays > 2) {
-                     friDA.push(wc.project.address + " " + wc.subcontractor.coName)
-                     if (wc.numDays > 3) {
-                         satDA.push(wc.project.address + " " + wc.subcontractor.coName)
-                     }
-                 }
-             }
-         }
-         for (thc of thCal) {
-             thuDA.push(thc.project.address + " " + thc.subcontractor.coName)
-             if (thc.numDays > 1) {
-                 friDA.push(thc.project.address + " " + thc.subcontractor.coName)
-                 if (thc.numDays > 2) {
-                     satDA.push(thc.project.address + " " + thc.subcontractor.coName)
-                 }
-             }
-         }
-         for (fc of fCal) {
-             friDA.push(fc.project.address + " " + fc.subcontractor.coName)
-             if (fc.numDays > 1) {
-                 satDA.push(fc.project.address + " " + fc.subcontractor.coName)
-             }
-         }
-         for (sac of saCal) {
-             satDA.push(sac.project.address + " " + sac.subcontractor.coName)
-         }
-         console.log(monDA);
-         res.render('work/calendar', {
-             pageTitle: 'Work Calendar',
-             path: '/calendar',
-             dowDate: dowDate,
-             sun: sun,
-             mon: mon,
-             tue: tue,
-             wed: wed,
-             thu: thu,
-             fri: fri,
-             sat: sat,
-             sund: sunDA,
-             mond: monDA,
-             tues: tueDA,
-             wedn: wedDA,
-             thur: thuDA,
-             frid: friDA,
-             satu: satDA
-         });
      } catch (err) {
          const error = new Error(err);
          error.httpStatusCode = 500;

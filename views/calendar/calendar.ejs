@@ -1,0 +1,192 @@
+<%- include('../includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/projects.css">
+
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main class="small"><br><br><br>
+                <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
+                    <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
+                        <div class="centered">
+                            <h1>Work Calendar</h1>
+
+                            <h3>
+                                Week of:
+                                <%= sun %>
+                            </h3>
+                            <article class="calendar">
+                                <strong>Sunday</strong>
+                                <br>
+                                <%= sun %>
+                                    <hr>
+                                    <% for (let sun of sund) { %>
+                                        <strong><%= sun %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+                            <article class="calendar">
+                                <strong>Monday</strong>
+                                <br>
+                                <%= mon %>
+                                    <hr>
+                                    <% for (let mon of mond) { %>
+                                        <strong><%= mon %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+
+                            <article class="calendar">
+                                <strong>Tuesday</strong>
+                                <br>
+                                <%= tue %>
+                                    <hr>
+                                    <% for (let tue of tues) { %>
+                                        <strong><%= tue %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+
+
+                            <article class="calendar">
+                                <strong>Wednesday</strong>
+                                <br>
+                                <%= wed %>
+                                    <hr>
+                                    <% for (let wed of wedn) { %>
+                                        <strong><%= wed %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+
+                            <article class="calendar">
+                                <strong>Thursday</strong>
+                                <br>
+                                <%= thu %>
+                                    <hr>
+                                    <% for (let thu of thur) { %>
+                                        <strong><%= thu %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+                            <article class="calendar">
+                                <strong>Friday</strong>
+                                <br>
+                                <%= fri %>
+                                    <hr>
+                                    <% for (let fri of frid) { %>
+                                        <strong><%= fri %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+                            <article class="calendar">
+                                <strong>Saturday</strong>
+                                <br>
+                                <%= sat %>
+                                    <hr>
+                                    <% for (let sat of satu) { %>
+                                        <strong><%= sat %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+                            <br>
+                            <br>
+                            <h3>
+                                Week of:
+                                <%= sun2 %>
+                            </h3>
+                            <article class="calendar">
+                                <strong>Sunday</strong>
+                                <br>
+                                <%= sun2 %>
+                                    <hr>
+                                    <% for (let sun2 of sund2) { %>
+                                        <strong><%= sun2 %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+                            <article class="calendar">
+                                <strong>Monday</strong>
+                                <br>
+                                <%= mon2 %>
+                                    <hr>
+                                    <% for (let mon2 of mond2) { %>
+                                        <strong><%= mon2 %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+
+                            <article class="calendar">
+                                <strong>Tuesday</strong>
+                                <br>
+                                <%= tue2 %>
+                                    <hr>
+                                    <% for (let tue2 of tues2) { %>
+                                        <strong><%= tue2 %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+
+
+                            <article class="calendar">
+                                <strong>Wednesday</strong>
+                                <br>
+                                <%= wed2 %>
+                                    <hr>
+                                    <% for (let wed2 of wedn2) { %>
+                                        <strong><%= wed2 %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+
+                            <article class="calendar">
+                                <strong>Thursday</strong>
+                                <br>
+                                <%= thu2 %>
+                                    <hr>
+                                    <% for (let thu2 of thur2) { %>
+                                        <strong><%= thu2 %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+                            <article class="calendar">
+                                <strong>Friday</strong>
+                                <br>
+                                <%= fri2 %>
+                                    <hr>
+                                    <% for (let fri2 of frid2) { %>
+                                        <strong><%= fri2 %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+                            <article class="calendar">
+                                <strong>Saturday</strong>
+                                <br>
+                                <%= sat2 %>
+                                    <hr>
+                                    <% for (let sat2 of satu2) { %>
+                                        <strong><%= sat2 %></strong>
+                                        <br>
+                                        <br>
+                                        <% } %>
+                            </article>
+
+
+
+            </main>
+
+            <%- include('../includes/footer.ejs') %>
+                <script src="/js/status.js"></script>

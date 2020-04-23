@@ -74,6 +74,7 @@ const workRoutes = require('./routes/work');
 const roofRoutes = require('./routes/roof');
 const searchRoutes = require('./routes/search');
 const listsRoutes = require('./routes/lists');
+const calendarRoutes = require('./routes/calendar');
 const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -119,6 +120,7 @@ app.use(addRoutes);
 app.use(workRoutes);
 app.use(roofRoutes);
 app.use(searchRoutes);
+app.use(calendarRoutes)
 app.use(listsRoutes);
 app.use(authRoutes);
 

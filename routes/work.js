@@ -16,6 +16,4 @@ router.post('/wos', isAuth, workController.postWos);
 
 router.get('/workOrder/:workId', isAuth, workController.getWorkOrder);
 
-router.get('/calendar', isAuth, workController.getCal);
-
 module.exports = router;
