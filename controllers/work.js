@@ -96,9 +96,8 @@
      const updatedstartDate = req.body.startDate;
      const updatedendDate = req.body.endDate;
      const updatedcompDate = req.body.compDate;
-     if (!updatedcompDate) {
-         updatedcomplete = 0;
-     } else {
+     let updatedComplete = 0;
+     if (updatedcompDate) {
          updatedcomplete = 1;
      }
      const updateddescription = req.body.description;

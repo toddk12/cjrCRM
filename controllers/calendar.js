@@ -44,48 +44,48 @@ exports.getCal = async(req, res, next) => {
         let thuDA2 = [];
         let friDA2 = [];
         let satDA2 = [];
-        const sCal = await WorkOrder.findAll({ where: { startDate: sun }, include: [{ model: Project }, { model: Subcontractor }] })
-        const mCal = await WorkOrder.findAll({ where: { startDate: mon }, include: [{ model: Project }, { model: Subcontractor }] })
-        const tCal = await WorkOrder.findAll({ where: { startDate: tue }, include: [{ model: Project }, { model: Subcontractor }] })
-        const wCal = await WorkOrder.findAll({ where: { startDate: wed }, include: [{ model: Project }, { model: Subcontractor }] })
-        const thCal = await WorkOrder.findAll({ where: { startDate: thu }, include: [{ model: Project }, { model: Subcontractor }] })
-        const fCal = await WorkOrder.findAll({ where: { startDate: fri }, include: [{ model: Project }, { model: Subcontractor }] })
-        const saCal = await WorkOrder.findAll({ where: { startDate: sat }, include: [{ model: Project }, { model: Subcontractor }] })
-        const sCal2 = await WorkOrder.findAll({ where: { startDate: sun2 }, include: [{ model: Project }, { model: Subcontractor }] })
-        const mCal2 = await WorkOrder.findAll({ where: { startDate: mon2 }, include: [{ model: Project }, { model: Subcontractor }] })
-        const tCal2 = await WorkOrder.findAll({ where: { startDate: tue2 }, include: [{ model: Project }, { model: Subcontractor }] })
-        const wCal2 = await WorkOrder.findAll({ where: { startDate: wed2 }, include: [{ model: Project }, { model: Subcontractor }] })
-        const thCal2 = await WorkOrder.findAll({ where: { startDate: thu2 }, include: [{ model: Project }, { model: Subcontractor }] })
-        const fCal2 = await WorkOrder.findAll({ where: { startDate: fri2 }, include: [{ model: Project }, { model: Subcontractor }] })
-        const saCal2 = await WorkOrder.findAll({ where: { startDate: sat2 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const sCal = await WorkOrder.findAll({ where: { startDate: sun, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const mCal = await WorkOrder.findAll({ where: { startDate: mon, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const tCal = await WorkOrder.findAll({ where: { startDate: tue, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const wCal = await WorkOrder.findAll({ where: { startDate: wed, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const thCal = await WorkOrder.findAll({ where: { startDate: thu, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const fCal = await WorkOrder.findAll({ where: { startDate: fri, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const saCal = await WorkOrder.findAll({ where: { startDate: sat, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const sCal2 = await WorkOrder.findAll({ where: { startDate: sun2, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const mCal2 = await WorkOrder.findAll({ where: { startDate: mon2, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const tCal2 = await WorkOrder.findAll({ where: { startDate: tue2, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const wCal2 = await WorkOrder.findAll({ where: { startDate: wed2, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const thCal2 = await WorkOrder.findAll({ where: { startDate: thu2, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const fCal2 = await WorkOrder.findAll({ where: { startDate: fri2, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const saCal2 = await WorkOrder.findAll({ where: { startDate: sat2, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
         for (sc of sCal) {
-            sunDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+            sunDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
             if (sc.numDays > 1) {
-                monDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                monDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                 if (sc.numDays > 2) {
-                    tueDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                    tueDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                     if (sc.numDays > 3) {
-                        wedDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                        wedDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                         if (sc.numDays > 4) {
-                            thuDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                            thuDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                             if (sc.numDays > 5) {
-                                friDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                                friDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                                 if (sc.numDays > 6) {
-                                    satDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                                    satDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                                     if (sc.numDays > 7) {
-                                        sunDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                                        sunDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                                         if (sc.numDays > 8) {
-                                            monDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                                            monDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                                             if (sc.numDays > 9) {
-                                                tueDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                                                tueDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                                                 if (sc.numDays > 10) {
-                                                    wedDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                                                    wedDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                                                     if (sc.numDays > 11) {
-                                                        thuDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                                                        thuDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                                                         if (sc.numDays > 12) {
-                                                            friDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                                                            friDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                                                             if (sc.numDays > 13) {
-                                                                satDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName)
+                                                                satDA2.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
                                                             }
                                                         }
                                                     }
@@ -101,31 +101,31 @@ exports.getCal = async(req, res, next) => {
             }
         }
         for (mc of mCal) {
-            monDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+            monDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
             if (mc.numDays > 1) {
-                tueDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                tueDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                 if (mc.numDays > 2) {
-                    wedDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                    wedDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                     if (mc.numDays > 3) {
-                        thuDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                        thuDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                         if (mc.numDays > 4) {
-                            friDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                            friDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                             if (mc.numDays > 5) {
-                                satDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                                satDA.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                                 if (mc.numDays > 6) {
-                                    sunDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                                    sunDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                                     if (mc.numDays > 7) {
-                                        monDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                                        monDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                                         if (mc.numDays > 8) {
-                                            tueDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                                            tueDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                                             if (mc.numDays > 9) {
-                                                wedDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                                                wedDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                                                 if (mc.numDays > 10) {
-                                                    thuDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                                                    thuDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                                                     if (mc.numDays > 11) {
-                                                        friDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                                                        friDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                                                         if (mc.numDays > 12) {
-                                                            satDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName)
+                                                            satDA2.push(mc.project.owner1Ln + " - " + mc.project.address + " - " + mc.subcontractor.coName + " - " + mc.trade1)
                                                         }
                                                     }
                                                 }
@@ -140,29 +140,29 @@ exports.getCal = async(req, res, next) => {
             }
         }
         for (tc of tCal) {
-            tueDA.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+            tueDA.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
             if (tc.numDays > 1) {
-                wedDA.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+                wedDA.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
                 if (tc.numDays > 2) {
-                    thuDA.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+                    thuDA.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
                     if (tc.numDays > 3) {
-                        friDA.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+                        friDA.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
                         if (tc.numDays > 4) {
-                            satDA.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+                            satDA.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
                             if (tc.numDays > 5) {
-                                sunDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+                                sunDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
                                 if (tc.numDays > 6) {
-                                    monDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+                                    monDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
                                     if (tc.numDays > 7) {
-                                        tueDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+                                        tueDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
                                         if (tc.numDays > 8) {
-                                            wedDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+                                            wedDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
                                             if (tc.numDays > 9) {
-                                                thuDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+                                                thuDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
                                                 if (tc.numDays > 10) {
-                                                    friDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+                                                    friDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
                                                     if (tc.numDays > 11) {
-                                                        satDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName)
+                                                        satDA2.push(tc.project.owner1Ln + " - " + tc.project.address + " - " + tc.subcontractor.coName + " - " + tc.rade1)
                                                     }
                                                 }
                                             }
@@ -176,27 +176,27 @@ exports.getCal = async(req, res, next) => {
             }
         }
         for (wc of wCal) {
-            wedDA.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName)
+            wedDA.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName + " - " + wc.trade1)
             if (wc.numDays > 1) {
-                thuDA.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName)
+                thuDA.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName + " - " + wc.trade1)
                 if (wc.numDays > 2) {
-                    friDA.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName)
+                    friDA.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName + " - " + wc.trade1)
                     if (wc.numDays > 3) {
-                        satDA.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName)
+                        satDA.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName + " - " + wc.trade1)
                         if (wc.numDays > 4) {
-                            sunDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName)
+                            sunDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName + " - " + wc.trade1)
                             if (wc.numDays > 5) {
-                                monDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName)
+                                monDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName + " - " + wc.trade1)
                                 if (wc.numDays > 6) {
-                                    tueDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName)
+                                    tueDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName + " - " + wc.trade1)
                                     if (wc.numDays > 7) {
-                                        wedDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName)
+                                        wedDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName + " - " + wc.trade1)
                                         if (wc.numDays > 8) {
-                                            thuDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName)
+                                            thuDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName + " - " + wc.trade1)
                                             if (wc.numDays > 9) {
-                                                friDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName)
+                                                friDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName + " - " + wc.trade1)
                                                 if (wc.numDays > 10) {
-                                                    satDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName)
+                                                    satDA2.push(wc.project.owner1Ln + " - " + wc.project.address + " - " + wc.subcontractor.coName + " - " + wc.trade1)
                                                 }
                                             }
                                         }
@@ -209,25 +209,25 @@ exports.getCal = async(req, res, next) => {
             }
         }
         for (thc of thCal) {
-            thuDA.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName)
+            thuDA.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName + " - " + thc.trade1)
             if (thc.numDays > 1) {
-                friDA.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName)
+                friDA.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName + " - " + thc.trade1)
                 if (thc.numDays > 2) {
-                    satDA.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName)
+                    satDA.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName + " - " + thc.trade1)
                     if (thc.numDays > 3) {
-                        sunDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName)
+                        sunDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName + " - " + thc.trade1)
                         if (thc.numDays > 4) {
-                            monDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName)
+                            monDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName + " - " + thc.trade1)
                             if (thc.numDays > 5) {
-                                tueDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName)
+                                tueDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName + " - " + thc.trade1)
                                 if (thc.numDays > 6) {
-                                    wedDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName)
+                                    wedDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName + " - " + thc.trade1)
                                     if (thc.numDays > 7) {
-                                        thuDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName)
+                                        thuDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName + " - " + thc.trade1)
                                         if (thc.numDays > 8) {
-                                            friDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName)
+                                            friDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName + " - " + thc.trade1)
                                             if (thc.numDays > 9) {
-                                                satDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName)
+                                                satDA2.push(thc.project.owner1Ln + " - " + thc.project.address + " - " + thc.subcontractor.coName + " - " + thc.trade1)
                                             }
                                         }
                                     }
@@ -239,23 +239,23 @@ exports.getCal = async(req, res, next) => {
             }
         }
         for (fc of fCal) {
-            friDA.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName)
+            friDA.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName + " - " + fc.trade1)
             if (fc.numDays > 1) {
-                satDA.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName)
+                satDA.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName + " - " + fc.trade1)
                 if (fc.numDays > 2) {
-                    sunDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName)
+                    sunDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName + " - " + fc.trade1)
                     if (fc.numDays > 3) {
-                        monDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName)
+                        monDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName + " - " + fc.trade1)
                         if (fc.numDays > 4) {
-                            tueDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName)
+                            tueDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName + " - " + fc.trade1)
                             if (fc.numDays > 5) {
-                                wedDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName)
+                                wedDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName + " - " + fc.trade1)
                                 if (fc.numDays > 6) {
-                                    thuDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName)
+                                    thuDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName + " - " + fc.trade1)
                                     if (fc.numDays > 7) {
-                                        friDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName)
+                                        friDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName + " - " + fc.trade1)
                                         if (fc.numDays > 8) {
-                                            satDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName)
+                                            satDA2.push(fc.project.owner1Ln + " - " + fc.project.address + " - " + fc.subcontractor.coName + " - " + fc.trade1)
                                         }
                                     }
                                 }
@@ -266,21 +266,21 @@ exports.getCal = async(req, res, next) => {
             }
         }
         for (sac of saCal) {
-            satDA.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + sac.subcontractor.coName)
+            satDA.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + sac.subcontractor.coName + " - " + sac.trade1)
             if (fc.numDays > 1) {
-                sunDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName)
+                sunDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName + " - " + sac.trade1)
                 if (fc.numDays > 2) {
-                    monDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName)
+                    monDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName + " - " + sac.trade1)
                     if (fc.numDays > 3) {
-                        tueDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName)
+                        tueDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName + " - " + sac.trade1)
                         if (fc.numDays > 4) {
-                            wedDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName)
+                            wedDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName + " - " + sac.trade1)
                             if (fc.numDays > 5) {
-                                thuDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName)
+                                thuDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName + " - " + sac.trade1)
                                 if (fc.numDays > 6) {
-                                    friDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName)
+                                    friDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName + " - " + sac.trade1)
                                     if (fc.numDays > 7) {
-                                        satDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName)
+                                        satDA2.push(sac.project.owner1Ln + " - " + sac.project.address + " - " + fc.subcontractor.coName + " - " + sac.trade1)
                                     }
                                 }
                             }
@@ -290,19 +290,19 @@ exports.getCal = async(req, res, next) => {
             }
         }
         for (sc2 of sCal2) {
-            sunDA2.push(sc2.project.owner1Ln + " - " + sc2.project.address + " - " + sc2.subcontractor.coName)
+            sunDA2.push(sc2.project.owner1Ln + " - " + sc2.project.address + " - " + sc2.subcontractor.coName + " - " + sc2.trade1)
             if (sc2.numDays > 1) {
-                monDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName)
+                monDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName + " - " + sc2.trade1)
                 if (sc2.numDays > 2) {
-                    tueDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName)
+                    tueDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName + " - " + sc2.trade1)
                     if (sc2.numDays > 3) {
-                        wedDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName)
+                        wedDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName + " - " + sc2.trade1)
                         if (sc2.numDays > 4) {
-                            thuDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName)
+                            thuDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName + " - " + sc2.trade1)
                             if (sc2.numDays > 5) {
-                                friDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName)
+                                friDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName + " - " + sc2.trade1)
                                 if (sc2.numDays > 6) {
-                                    satDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName)
+                                    satDA2.push(sc2.project.owner1Ln + " - " + sc2.poject.address + " - " + sc2.subcontractor.coName + " - " + sc2.trade1)
                                 }
                             }
                         }
@@ -311,17 +311,17 @@ exports.getCal = async(req, res, next) => {
             }
         }
         for (mc2 of mCal2) {
-            monDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName)
+            monDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName + " - " + mc2.trade1)
             if (mc2.numDays > 1) {
-                tueDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName)
+                tueDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName + " - " + mc2.trade1)
                 if (mc2.numDays > 2) {
-                    wedDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName)
+                    wedDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName + " - " + mc2.trade1)
                     if (mc2.numDays > 3) {
-                        thuDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName)
+                        thuDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName + " - " + mc2.trade1)
                         if (mc2.numDays > 4) {
-                            friDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName)
+                            friDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName + " - " + mc2.trade1)
                             if (mc2.numDays > 5) {
-                                satDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName)
+                                satDA2.push(mc2.project.owner1Ln + " - " + mc2.project.address + " - " + mc2.subcontractor.coName + " - " + mc2.trade1)
                             }
                         }
                     }
@@ -329,49 +329,49 @@ exports.getCal = async(req, res, next) => {
             }
         }
         for (tc2 of tCal2) {
-            tueDA2.push(tc2.project.owner1Ln + " - " + tc2.project.address + " - " + tc2.subcontractor.coName)
+            tueDA2.push(tc2.project.owner1Ln + " - " + tc2.project.address + " - " + tc2.subcontractor.coName + " - " + tc2.trade1)
             if (tc2.numDays > 1) {
-                wedDA2.push(tc2.project.owner1Ln + " - " + tc2.project.address + " - " + tc2.subcontractor.coName)
+                wedDA2.push(tc2.project.owner1Ln + " - " + tc2.project.address + " - " + tc2.subcontractor.coName + " - " + tc2.trade1)
                 if (tc2.numDays > 2) {
-                    thuDA2.push(tc2.project.owner1Ln + " - " + tc2.project.address + " - " + tc2.subcontractor.coName)
+                    thuDA2.push(tc2.project.owner1Ln + " - " + tc2.project.address + " - " + tc2.subcontractor.coName + " - " + tc2.trade1)
                     if (tc2.numDays > 3) {
-                        friDA2.push(tc2.project.owner1Ln + " - " + tc2.project.address + " - " + tc2.subcontractor.coName)
+                        friDA2.push(tc2.project.owner1Ln + " - " + tc2.project.address + " - " + tc2.subcontractor.coName + " - " + tc2.trade1)
                         if (tc2.numDays > 4) {
-                            satDA2.push(tc2.project.owner1Ln + " - " + tc2.project.address + " - " + tc2.subcontractor.coName)
+                            satDA2.push(tc2.project.owner1Ln + " - " + tc2.project.address + " - " + tc2.subcontractor.coName + " - " + tc2.trade1)
                         }
                     }
                 }
             }
         }
         for (wc2 of wCal2) {
-            wedDA2.push(wc2.project.owner1Ln + " - " + wc2.project.address + " - " + wc2.subcontractor.coName)
+            wedDA2.push(wc2.project.owner1Ln + " - " + wc2.project.address + " - " + wc2.subcontractor.coName + " - " + wc2.trade1)
             if (wc2.numDays > 1) {
-                thuDA2.push(wc2.project.owner1Ln + " - " + wc2.project.address + " - " + wc2.subcontractor.coName)
+                thuDA2.push(wc2.project.owner1Ln + " - " + wc2.project.address + " - " + wc2.subcontractor.coName + " - " + wc2.trade1)
                 if (wc2.numDays > 2) {
-                    friDA2.push(wc2.project.owner1Ln + " - " + wc2.project.address + " - " + wc2.subcontractor.coName)
+                    friDA2.push(wc2.project.owner1Ln + " - " + wc2.project.address + " - " + wc2.subcontractor.coName + " - " + wc2.trade1)
                     if (wc2.numDays > 3) {
-                        satDA2.push(wc2.project.owner1Ln + " - " + wc2.project.address + " - " + wc2.subcontractor.coName)
+                        satDA2.push(wc2.project.owner1Ln + " - " + wc2.project.address + " - " + wc2.subcontractor.coName + " - " + wc2.trade1)
                     }
                 }
             }
         }
         for (thc2 of thCal2) {
-            thuDA2.push(thc2.project.owner1Ln + " - " + thc2.project.address + " - " + thc2.subcontractor.coName)
+            thuDA2.push(thc2.project.owner1Ln + " - " + thc2.project.address + " - " + thc2.subcontractor.coName + " - " + thc2trade1)
             if (thc2.numDays > 1) {
-                friDA2.push(thc2.project.owner1Ln + " - " + thc2.project.address + " - " + thc2.subcontractor.coName)
+                friDA2.push(thc2.project.owner1Ln + " - " + thc2.project.address + " - " + thc2.subcontractor.coName + " - " + thc2trade1)
                 if (thc2.numDays > 2) {
-                    satDA2.push(thc2.project.owner1Ln + " - " + thc2.project.address + " - " + thc2.subcontractor.coName)
+                    satDA2.push(thc2.project.owner1Ln + " - " + thc2.project.address + " - " + thc2.subcontractor.coName + " - " + thc2trade1)
                 }
             }
         }
         for (fc2 of fCal2) {
-            friDA2.push(fc2.project.owner1Ln + " - " + fc2.project.address + " - " + fc2.subcontractor.coName)
+            friDA2.push(fc2.project.owner1Ln + " - " + fc2.project.address + " - " + fc2.subcontractor.coName + " - " + fc2.rade1)
             if (fc2.numDays > 1) {
-                satDA.push(fc2.project.owner1Ln + " - " + fc2.project.address + " - " + fc2.subcontractor.coName)
+                satDA.push(fc2.project.owner1Ln + " - " + fc2.project.address + " - " + fc2.subcontractor.coName + " - " + fc2.rade1)
             }
         }
         for (sac2 of saCal2) {
-            satDA2.push(sacc2.project.owner1Ln + " - " + sac2.project.address + " - " + sac2.subcontractor.coName)
+            satDA2.push(sacc2.project.owner1Ln + " - " + sac2.project.address + " - " + sac2.subcontractor.coName + " - " + sac2.trade1)
         }
 
         res.render('calendar/calendar', {
