@@ -7,29 +7,26 @@
             <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
                 <%- include('../includes/navigation.ejs') %>
                     <main><br><br><br>
-                        <div class="centered">
-                            <h1><strong>Documents</strong></h1>
-                            <h4>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        Project#:
-                                        <%= project.projectNo %>
+                        <div class="container">
+                            <div class="centered">
+                                <h1><strong>Documents</strong></h1>
+                                <h4>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            Project#:
+                                            <%= project.projectNo %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <%= project.owner1Fn %>
+                                                <%= project.owner1Ln %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <%= project.address %>,
+                                                <%= project.city %>
+                                        </div>
                                     </div>
-                                    <div class="col-sm">
-                                        Owner:
-                                        <%= project.owner1Fn %>
-                                            <%= project.owner1Ln %>
-                                    </div>
-                                    <div class="col-sm">
-                                        Address:
-                                        <%= project.address %>
-                                    </div>
-                                    <div class="col-sm">
-                                        City:
-                                        <%= project.city %>
-                                    </div>
-                                </div>
-                            </h4>
+                                </h4>
+                            </div>
                         </div>
                         <div class="centered">
                             <article class="document">

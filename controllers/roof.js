@@ -26,24 +26,21 @@ const WorkOrder = require('../models/workOrder');
 const RoofCalc = require('../models/roofCalc');
 
 exports.getRoofCalc = async(req, res, next) => {
-
     const projId = req.params.projectId;
 
     try {
         const roofCheck = await RoofCalc.count({
             where: { projectId: projId }
         })
-        const roofCalc = await RoofCalc.findOne({
-            where: { projectId: projId },
-            include: [{
-                model: Project
-            }]
-        })
-        const pid = roofCheck;
-
-        if (pid === 0) {
-
+        if (roofCheck === 0) {
+            const roofCalc = await RoofCalc.findOne({
+                where: { projectId: projId },
+                include: [{
+                    model: Project
+                }]
+            })
             const project = await Project.findByPk(projId)
+            console.log('HERE');
             res.render('roof/roofCalc', {
                 pageTitle: 'Roof Calculator',
                 path: '/roofCalc',
@@ -52,8 +49,13 @@ exports.getRoofCalc = async(req, res, next) => {
                 project: project
             });
         } else {
+            const roofCalc = await RoofCalc.findOne({
+                where: { projectId: projId },
+                include: [{
+                    model: Project
+                }]
+            })
             const roofId = roofCalc.id;
-
             res.render('roof/roofOrder', {
                 pageTitle: 'Roof Order',
                 path: '/roofOrder',

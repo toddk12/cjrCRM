@@ -6,29 +6,25 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
             <main><br><br><br>
-                <div class="centered">
-                    <h1><strong>Owner Information</strong></h1>
-                    <h4>
-                        <div class="row">
-                            <div class="col-sm">
-                                Project#:
-                                <%= project.projectNo %>
+                <div class="container">
+                    <div class="centered">
+                        <h1><strong>Owner Information</strong></h1>
+                        <h4>
+                            <div class="row">
+                                <div class="col-sm">
+                                    Project#:
+                                    <%= project.projectNo %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= project.bName %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= project.bAddress %>,
+                                        <%= project.bCity %>
+                                </div>
                             </div>
-                            <div class="col-sm">
-                                Owner:
-                                <%= project.owner1Fn %>
-                                    <%= project.owner1Ln %>
-                            </div>
-                            <div class="col-sm">
-                                Address:
-                                <%= project.bAddress %>
-                            </div>
-                            <div class="col-sm">
-                                City:
-                                <%= project.bCity %>
-                            </div>
-                        </div>
-                    </h4>
+                        </h4>
+                    </div>
                 </div>
                 <br>
                 <article style="width: 75%" class="ownerinfo">
@@ -48,11 +44,14 @@
                         <div class="row">
                             <div class="col-sm">
                                 <label for="bName"><strong>Building Name</strong></label>
-                                <input style="width:300px" type="text" name="bName" id="bName" value="<%= project.bName %>">
+                                <input style="width:600px" type="text" name="bName" id="bName" value="<%= project.bName %>">
                             </div>
+                        </div>
+                        <br>
+                        <div class="row">
                             <div class="col-sm">
                                 <label for="bAddress"><strong>Address</strong></label>
-                                <input style="width:300px" type="text" name="bAddress" id="bAddress" value="<%= project.bAddress %>">
+                                <input style="width:600px" type="text" name="bAddress" id="bAddress" value="<%= project.bAddress %>">
                             </div>
                         </div>
                         <br>
@@ -75,8 +74,11 @@
                         <div class="row">
                             <div class="col-sm">
                                 <label for="ownerCoName"><strong>Owner Company</strong></label>
-                                <input style="width:300px" ype="text" name="ownerCoName" id="ownerCoName" value="<%= project.ownerCoName %>">
+                                <input style="width:600px" ype="text" name="ownerCoName" id="ownerCoName" value="<%= project.ownerCoName %>">
                             </div>
+                        </div>
+                        <br>
+                        <div class="row">
                             <div class="col-sm">
                                 <label for="owner1Fn"><strong>Owner First Name</strong></label>
                                 <input style="width:300px" ype="text" name="owner1Fn" id="owner1Fn" value="<%= project.owner1Fn %>">
@@ -90,8 +92,11 @@
                         <div class="row">
                             <div class="col-sm">
                                 <label for="address"><strong>Address</strong></label>
-                                <input style="width:300px" type="text" name="address" id="address" value="<%= project.address %>">
+                                <input style="width:600px" type="text" name="address" id="address" value="<%= project.address %>">
                             </div>
+                        </div>
+                        <br>
+                        <div class="row">
                             <div class="col-sm">
                                 <label for="city"><strong>City</strong></label>
                                 <input type="text" name="city" id="city" value="<%= project.city %>">
@@ -128,7 +133,7 @@
                         <div class="row">
                             <div class="col-sm">
                                 <label for="oContact"><strong>Owner Contact</strong></label>
-                                <input type="text" name="oContact" id="oContact" value="<%= project.oContact %>">
+                                <input style="width:400px" type="text" name="oContact" id="oContact" value="<%= project.oContact %>">
                             </div>
                         </div>
                         <br>
@@ -136,11 +141,14 @@
                         <div class="row">
                             <div class="col-sm">
                                 <label for="pmCoName"><strong>Property Management Company</strong></label>
-                                <input style="width:300px" type="text" name="pmCoName" id="pmCoName" value="<%= project.pmCoName %>">
+                                <input style="width:600px" type="text" name="pmCoName" id="pmCoName" value="<%= project.pmCoName %>">
                             </div>
+                        </div>
+                        <br>
+                        <div class="row">
                             <div class="col-sm">
                                 <label for="pmAddress"><strong>Address</strong></label>
-                                <input style="width:300px" type="text" name="pmAddress" id="pmAddress" value="<%= project.pmAddress %>">
+                                <input style="width:600px" type="text" name="pmAddress" id="pmAddress" value="<%= project.pmAddress %>">
                             </div>
                         </div>
                         <br>
@@ -177,7 +185,7 @@
                         <div dlass="row">
                             <div class="col-sm">
                                 <label for="pmContact"><strong>Property Management Contact</strong></label>
-                                <input type="text" name="pmContact" id="pmContact" value="<%= project.pmContact %>">
+                                <input style="width:400px" type="text" name="pmContact" id="pmContact" value="<%= project.pmContact %>">
                             </div>
                         </div>
                         <br>

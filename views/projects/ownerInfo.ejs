@@ -6,32 +6,29 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
             <main><br><br><br>
-                <div class="centered">
-                    <h1><strong>Owner Information</strong></h1>
-                    <h4>
-                        <div class="row">
-                            <div class="col-sm">
-                                Project#:
-                                <%= project.projectNo %>
+                <div class="container">
+                    <div class="centered">
+                        <h1><strong>Owner Information</strong></h1>
+                        <h4>
+                            <div class="row">
+                                <div class="col-sm">
+                                    Project#:
+                                    <%= project.projectNo %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= project.owner1Fn %>
+                                        <%= project.owner1Ln %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= project.address %>,
+                                        <%= project.city %>
+                                </div>
                             </div>
-                            <div class="col-sm">
-                                Owner:
-                                <%= project.owner1Fn %>
-                                    <%= project.owner1Ln %>
-                            </div>
-                            <div class="col-sm">
-                                Address:
-                                <%= project.address %>
-                            </div>
-                            <div class="col-sm">
-                                City:
-                                <%= project.city %>
-                            </div>
-                        </div>
-                    </h4>
+                        </h4>
+                    </div>
                 </div>
                 <br>
-                <article class="ownerinfo">
+                <div class="container">
                     <form class="form" action="/ownerInfo" method="POST">
                         <input type="hidden" name="commercial" id="commercial" value="<%= project.commercial %>">
                         <div class="row">
@@ -88,15 +85,15 @@
                         <div class="row">
                             <div class="col-sm">
                                 <label for="hPhone"><strong>Home Phone</strong></label>
-                                <input id="hPhone" type="text" name="hPhone" value="<% project.hPhone %>">
+                                <input style="width: 150px" id="hPhone" type="text" name="hPhone" value="<% project.hPhone %>">
                             </div>
                             <div class="col-sm">
                                 <label for="cPhone"><strong>Cell Phone</strong></label>
-                                <input type="text" name="cPhone" id="cPhone" value="<%= project.cPhone %>">
+                                <input style="width: 150px" type="text" name="cPhone" id="cPhone" value="<%= project.cPhone %>">
                             </div>
                             <div class="col-sm">
                                 <label for="oPhone"><strong>Other Phone</strong></label>
-                                <input type="text" name="oPhone" id="oPhone" value="<%= project.oPhone %>">
+                                <input style="width: 150px" type="text" name="oPhone" id="oPhone" value="<%= project.oPhone %>">
                             </div>
                         </div>
                         <br>
@@ -114,7 +111,7 @@
                             <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
                         </div>
                     </form>
-                </article>
+                </div>
             </main>
 
             <%- include('../includes/footer.ejs') %>

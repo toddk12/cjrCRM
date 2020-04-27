@@ -6,28 +6,26 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
             <main class="small"><br><br><br>
-                <div class="centered">
-                    <h1><strong>Roof Calculator Information</strong></h1>
-                    <h4>
-                        <div class="row">
-                            <div class="col-sm">
-                                <%= project.projectNo %>
+                <div class="container">
+                    <div class="centered">
+                        <h1><strong>Roof Calculator Information</strong></h1>
+                        <h4>
+                            <div class="row">
+                                <div class="col-sm">
+                                    Project:
+                                    <%= project.projectNo %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= project.owner1Fn %>
+                                        <%= project.owner1Ln %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= project.address %>,
+                                        <%= project.city %>
+                                </div>
                             </div>
-                            <div class="col-sm">
-                                Owner:
-                                <%= project.owner1Fn %>
-                                    <%= project.owner1Ln %>
-                            </div>
-                            <div class="col-sm">
-                                Address:
-                                <%= project.address %>
-                            </div>
-                            <div class="col-sm">
-                                City:
-                                <%= project.city %>
-                            </div>
-                        </div>
-                    </h4>
+                        </h4>
+                    </div>
                 </div>
                 <div class="centered">
                     <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
@@ -331,7 +329,7 @@
                             <div class="row">
                                 <div class="col-sm" style="vertical-align: top">
                                     <label style="vertical-align: top" for="orderNotes"><strong>Order Notes: </strong></label>
-                                    <input size="100" type="text" name="orderNotes" id="orderNotes" value="<%= roof.orderNotes %>">
+                                    <input size="100" type="text" name="orderNotes" id="orderNotes">
                                 </div>
                             </div>
                         </article>

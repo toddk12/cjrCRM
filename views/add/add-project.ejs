@@ -9,168 +9,181 @@
                 <div class="centered">
                     <h1> Add Residential Project</h1>
                 </div>
-                <article class="addproject">
-                    <h6>
-                        <form class="form" action="/add-project" method="POST">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <label for="projectNo"><strong>Project #: </strong></label>
-                                    <input type="text" name="projectNo" id="projectNo" value="<%= project.projectNo %>">
-                                </div>
-                                <div class="col-sm">
-                                    <label for="statusId">Change to: </label>
-                                    <select class="select" name="statusId" id="statusId">
+                <div class="container">
+                    <article class="addproject">
+                        <h6>
+                            <form class="form" action="/add-project" method="POST">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="projectNo"><strong>Project #: </strong></label>
+                                        <input type="text" name="projectNo" id="projectNo" value="<%= project.projectNo %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="statusId">Change to: </label>
+                                        <select class="select" name="statusId" id="statusId">
                                     <% for (let stat of status) { %>
                                     <option value="<%= stat.id %>">
                                     <%= stat.status %></option>
                                     <% } %>
                                 </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <label for="owner1Fn"><strong>Owner 1: First Name</strong></label>
-                                    <input type="text" name="owner1Fn" id="owner1Fn" value="<%= project.owner1Fn %>">
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="owner1Fn"><strong>Owner 1: First Name</strong></label>
+                                        <input type="text" name="owner1Fn" id="owner1Fn" value="<%= project.owner1Fn %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="owner1Ln"><strong>Last Name</strong></label>
+                                        <input type="text" name="owner1Ln" id="owner1Ln" value="<%= project.owner1Ln %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="owner2Fn"><strong>Owner 2: First Name</strong></label>
+                                        <input type="text" name="owner2Fn" id="owner2Fn" value="<%= project.owner2Fn %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="owner2Ln"><strong>Last Name</strong></label>
+                                        <input type="text" name="owner2Ln" id="owner2Ln" value="<%= project.owner2Ln %>">
+                                    </div>
                                 </div>
-                                <div class="col-sm">
-                                    <label for="owner1Ln"><strong>Last Name</strong></label>
-                                    <input type="text" name="owner1Ln" id="owner1Ln" value="<%= project.owner1Ln %>">
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="address"><strong>Address</strong></label>
+                                        <input style="width: 600px" type="text" name="address" id="address" value="<%= project.address %>">
+                                    </div>
                                 </div>
-                                <div class="col-sm">
-                                    <label for="owner2Fn"><strong>Owner 2: First Name</strong></label>
-                                    <input type="text" name="owner2Fn" id="owner2Fn" value="<%= project.owner2Fn %>">
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="city"><strong>City</strong></label>
+                                        <input style="width: 250px" type="text" name="city" id="city" value="<%= project.city %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="state"><strong>State</strong></label>
+                                        <input style="width: 50px" type="text" name="state" id="state" value="CO">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="zip"><strong>Zip Code</strong></label>
+                                        <input type="text" name="zip" id="zip" value="<%= project.zip %>">
+                                    </div>
                                 </div>
-                                <div class="col-sm">
-                                    <label for="owner2Ln"><strong>Last Name</strong></label>
-                                    <input type="text" name="owner2Ln" id="owner2Ln" value="<%= project.owner2Ln %>">
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="hPhone"><strong>Home Phone</strong></label>
+                                        <input type="text" name="hPhone" id="hPhone" value="<%= project.hPhone %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="cPhone"><strong>Cell Phone</strong></label>
+                                        <input type="text" name="cPhone" id="cPhone" value="<%= project.cPhone %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="oPhone"><strong>Other Phone</strong></label>
+                                        <input type="text" name="oPhone" id="oPhone" value="<%= project.oPhone %>">
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <label for="address"><strong>Address</strong></label>
-                                    <input style="width: 300px" type="text" name="address" id="address" value="<%= project.address %>">
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm mb-3 mr-sm-2">
+                                        <label for="email"><strong>Email Address</strong></label>
+                                        <input style="width: 600px" type="email" name="email" id="email" value="<%= project.email %>">
+                                    </div>
                                 </div>
-                                <div class="col-sm">
-                                    <label for="city"><strong>City</strong></label>
-                                    <input style="width: 250px" type="text" name="city" id="city" value="<%= project.city %>">
-                                </div>
-                                <div class="col-sm">
-                                    <label for="state"><strong>State</strong></label>
-                                    <input style="width: 50px" type="text" name="state" id="state" value="CO">
-                                </div>
-                                <div class="col-sm">
-                                    <label for="zip"><strong>Zip Code</strong></label>
-                                    <input type="text" name="zip" id="zip" value="<%= project.zip %>">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <label for="hPhone"><strong>Home Phone</strong></label>
-                                    <input type="text" name="hPhone" id="hPhone" value="<%= project.hPhone %>">
-                                </div>
-                                <div class="col-sm">
-                                    <label for="cPhone"><strong>Cell Phone</strong></label>
-                                    <input type="text" name="cPhone" id="cPhone" value="<%= project.cPhone %>">
-                                </div>
-                                <div class="col-sm">
-                                    <label for="oPhone"><strong>Other Phone</strong></label>
-                                    <input type="text" name="oPhone" id="oPhone" value="<%= project.oPhone %>">
-                                </div>
-                                <div class="col-sm mb-3 mr-sm-2">
-                                    <label for="email"><strong>Email Address</strong></label>
-                                    <input style="width: 250px" type="email" name="email" id="email" value="<%= project.email %>">
-                                </div>
-                            </div>
-                            <br>
-                            <hr style="border: 1px solid darkgreen">
-                            <br>
-                            <div class="row">
-                                <div class="col-sm" style="width: 25%">
-                                    <label for="saleId">Sales Rep: </label>
-                                    <select style="width: auto" class="select" name="saleId" id="saleId">
+                                <br>
+                                <hr style="border: 1px solid darkgreen">
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm" style="width: 25%">
+                                        <label for="saleId">Sales Rep: </label>
+                                        <select style="width: auto" class="select" name="saleId" id="saleId">
                                     <% for (let sale of sal) { %>
                                     <option value="<%= sale.id %>">
                                     <%= sale.name %></option>
                                     <% } %>
                                 </select>
-                                </div>
-                                <div class="col-sm" style="width: 25%">
-                                    <label for="supervisorId">Supervisor: </label>
-                                    <select style="width: auto" class="select" name="supervisorId" id="supervisorId">
+                                    </div>
+                                    <div class="col-sm" style="width: 25%">
+                                        <label for="supervisorId">Supervisor: </label>
+                                        <select style="width: auto" class="select" name="supervisorId" id="supervisorId">
                                     <% for (let sup of supers) { %>
                                     <option value="<%= sup.id %>">
                                     <%= sup.name %></option>
                                     <% } %>
                                 </select>
+                                    </div>
                                 </div>
-                                <div class="col-sm" style="width: 25%">
-                                    <label for="insuranceId">Insurance Company: </label>
-                                    <select style="width: auto" class="select" name="insuranceId" id="insuranceId">
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm" style="width: 25%">
+                                        <label for="insuranceId">Insurance Company: </label>
+                                        <select style="width: auto" class="select" name="insuranceId" id="insuranceId">
                                             <% for (let insco of ins) { %>
                                                 <option value="<%= insco.id %>">
                                                 <%= insco.coName %></option>
                                             <% } %>
                                          </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <label for="policyNo"><strong>Policy No: </strong></label>
-                                    <input type="text" name="policyNo" id="policyNo" value="<%= project.policyNo %>">
-                                </div>
-                                <div class="col-sm">
-                                    <label for="claimNo"><strong>Claim No: </strong></label>
-                                    <input type="text" name="claimNo" id="claimNo" value="<%= project.claimNo %>">
-                                </div>
-                                <div class="col-sm">
-                                    <label for="dateLoss"><strong>Date of Loss: </strong></label>
-                                    <input type="date" name="dateLoss" id="dateLoss" value="<%= project.dateLoss %>">
-                                </div>
-                                <div class="col-sm mb-3 mr-sm-2">
-                                    <label for="typeLoss"><strong>Type of Loss: </strong></label>
-                                    <input type="text" name="typeLoss" id="typeLoss" value="<%= project.typeLoss %>">
-                                </div>
-
-                                <div class="col-sm">
-                                    <label for="deductible"><strong>Deductible: </strong></label>
-                                    <input type="text" name="deductible" id="deductible" value="<%= project.deductible %>">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <label for="oScopeDate"><strong>Origonal Scope Date: </strong></label>
-                                    <input type="date" name="oScopeDate" id="oScopeDate" value="<%= project.oScopeDate %>">
-                                </div>
-                                <div class="col-sm">
-                                    <label for="oScopeRCV"><strong>Origonal Scope RCV: </strong></label>
-                                    <input type="text" name="oScopeRCV" id="oScopeRCV" value="<%= project.oScopeRCV %>">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <label for="adjName"><strong>Adjuster's Name: </strong></label>
-                                    <input type="text" name="adjName" id="adjName" value="<%= project.adjName %>">
-                                </div>
-                                <div class="col-sm">
-                                    <label for="adjPhone"><strong>Adjuster's Phone: </strong></label>
-                                    <input type="text" name="adjPhone" id="adjPhone" value="<%= project.adjPhone %>">
-                                </div>
-                            </div>
-                            <div class="centered">
                                 <br>
-                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                <button class="updatebtn" type="submit">Add Project</button>
-                            </div>
-                        </form>
-                    </h6>
-                    </div>
-                </article>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="policyNo"><strong>Policy No: </strong></label>
+                                        <input type="text" name="policyNo" id="policyNo" value="<%= project.policyNo %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="claimNo"><strong>Claim No: </strong></label>
+                                        <input type="text" name="claimNo" id="claimNo" value="<%= project.claimNo %>">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="dateLoss"><strong>Date of Loss: </strong></label>
+                                        <input type="date" name="dateLoss" id="dateLoss" value="<%= project.dateLoss %>">
+                                    </div>
+                                    <div class="col-sm mb-3 mr-sm-2">
+                                        <label for="typeLoss"><strong>Type of Loss: </strong></label>
+                                        <input type="text" name="typeLoss" id="typeLoss" value="<%= project.typeLoss %>">
+                                    </div>
+
+                                    <div class="col-sm">
+                                        <label for="deductible"><strong>Deductible: </strong></label>
+                                        <input type="text" name="deductible" id="deductible" value="<%= project.deductible %>">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="oScopeDate"><strong>Origonal Scope Date: </strong></label>
+                                        <input type="date" name="oScopeDate" id="oScopeDate" value="<%= project.oScopeDate %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="oScopeRCV"><strong>Origonal Scope RCV: </strong></label>
+                                        <input type="text" name="oScopeRCV" id="oScopeRCV" value="<%= project.oScopeRCV %>">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="adjName"><strong>Adjuster's Name: </strong></label>
+                                        <input type="text" name="adjName" id="adjName" value="<%= project.adjName %>">
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="adjPhone"><strong>Adjuster's Phone: </strong></label>
+                                        <input type="text" name="adjPhone" id="adjPhone" value="<%= project.adjPhone %>">
+                                    </div>
+                                </div>
+                                <div class="centered">
+                                    <br>
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button class="updatebtn" type="submit">Add Project</button>
+                                </div>
+                            </form>
+                        </h6>
+                    </article>
+                </div>
             </main>
 
             <%- include('../includes/footer.ejs') %>

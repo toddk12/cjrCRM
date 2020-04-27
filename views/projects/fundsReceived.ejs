@@ -8,37 +8,33 @@
             <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
                 <%- include('../includes/navigation.ejs') %>
                     <main><br><br><br>
-                        <div class="centered">
-                            <h1><strong>Funds Received</strong></h1>
-                            <h4>
-                                <div class="row">
-                                    <div class="col-sm">
-                                        Project#:
-                                        <%= project.projectNo %>
+                        <div class="container">
+                            <div class="centered">
+                                <h1><strong>Funds Received</strong></h1>
+                                <h4>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            Project#:
+                                            <%= project.projectNo %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <%= project.owner1Fn %>
+                                                <%= project.owner1Ln %>
+                                        </div>
+                                        <div class="col-sm">
+                                            <%= project.address %>,
+                                                <%= project.city %>
+                                        </div>
                                     </div>
-                                    <div class="col-sm">
-                                        Owner:
-                                        <%= project.owner1Fn %>
-                                            <%= project.owner1Ln %>
-                                    </div>
-                                    <div class="col-sm">
-                                        Address:
-                                        <%= project.address %>
-                                    </div>
-                                    <div class="col-sm">
-                                        City:
-                                        <%= project.city %>
-                                    </div>
-                                </div>
-                            </h4>
+                                </h4>
+                            </div>
 
                             <article class="notes">
                                 <form class="form-inline" action="/fundsReceived" method="POST">
                                     <div class="row">
 
                                         <div class="col-sm">
-                                            <label for="projectId"><strong>Project Id: </strong></label>
-                                            <input type="text" name="projectId" id="projectId" value="<%= projId %>">
+                                            <input type="hidden" name="projectId" id="projectId" value="<%= projId %>">
                                         </div>
                                         <div class="col-sm">
                                             <label for="entryDate"><strong>Entered On: </strong></label>
@@ -55,29 +51,26 @@
                                         </div>
                                         <div class="col-sm">
                                             <label for="fundsDescription"><strong>Description: </strong></label>
-                                            <input style="width: 400px" type="text" name="fundsDescription" id="fundsDescription">
+                                            <input style="width: 300px" type="text" name="fundsDescription" id="fundsDescription">
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="row">
-                                        <br>
-                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                        <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Funds</button>
-                                        <br>
-                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
-                                    </div>
-                                </form><br>
-                            </article>
-                            <br>
-                            <br><br>
-                            <br><br>
-                            <br>
-                            <br>
+                                    <br></div>
+                        <div class="container">
+                            <div class="centered">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Funds</button>
+                                <br>
+                                <br>
+                                <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
+                            </div>
+                        </div>
+                        </form><br>
+                        </article>
+                        <br>
+                        <div class="container">
                             <article class="notes">
                                 <strong><div class="row">
-                                <div class="col-sm">
-                                    Project Id
-                                </div>
                                 <div class="col-sm">
                                     Entered By
                                 </div>
@@ -90,16 +83,13 @@
                                 <div class="col-sm">
                                     Description
                                 </div>
-                                <div class="col-sm">
+                                <div class="col-xsm">
                                     <strong></strong>
                         </div>
                         </div>
                         </strong>
                         <% for (let funds of fR) { %>
                             <div class="row">
-                                <div class="col-sm">
-                                    <%= funds.projectId %>
-                                </div>
                                 <div class="col-sm">
                                     <%= funds.enteredBy %>
                                 </div>
@@ -109,10 +99,10 @@
                                 <div class="col-sm">
                                     <%= money.format(funds.fundsAmt) %>
                                 </div>
-                                <div class="col-sm">
+                                <div class="col">
                                     <%= funds.fundsDescription %>
                                 </div>
-                                <div class="col-sm">
+                                <div class="col-xsm">
                                     <a class="btn-esm text-center" style="width: 150px" href="/frEdit/<%= funds.id %>">Edit</a>
                                 </div>
                                 <br>

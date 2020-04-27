@@ -6,29 +6,26 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
             <main><br><br><br>
-                <div class="centered">
-                    <h1><strong>Documents</strong></h1>
-                    <h4>
-                        <div class="row">
-                            <div class="col-sm">
-                                Project#:
-                                <%= project.projectNo %>
+                <div class="container">
+                    <div class="centered">
+                        <h1><strong>Documents</strong></h1>
+                        <h4>
+                            <div class="row">
+                                <div class="col-sm">
+                                    Project#:
+                                    <%= project.projectNo %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= project.owner1Fn %>
+                                        <%= project.owner1Ln %>
+                                </div>
+                                <div class="col-sm">
+                                    <%= project.address %>,
+                                        <%= project.city %>
+                                </div>
                             </div>
-                            <div class="col-sm">
-                                Owner:
-                                <%= project.owner1Fn %>
-                                    <%= project.owner1Ln %>
-                            </div>
-                            <div class="col-sm">
-                                Address:
-                                <%= project.address %>
-                            </div>
-                            <div class="col-sm">
-                                City:
-                                <%= project.city %>
-                            </div>
-                        </div>
-                    </h4>
+                        </h4>
+                    </div>
                 </div>
                 <br>
                 <article class="ownerinfo">
@@ -71,55 +68,55 @@
                         <div class="row">
                             <div class="col-sm">
                                 <label for="entDate"><strong>Date Entered: </strong></label>
-                                <input type="date" name="entDate" No="entDate" value="<%= project.entDate %>" disabled>
+                                <input type="date" name="entDate" No="entDate" value="<%= project.entDate %>">
                             </div>
                             <div class="col-sm">
                                 <label for="compDate"><strong>Date Completed: </strong></label>
-                                <input type="date" name="compDate" No="compDate" value="<%= project.compDate %>" disabled>
+                                <input type="date" name="compDate" No="compDate" value="<%= project.compDate %>">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-sm">
                                 <label for="estDate"><strong>Date to Estimating: </strong></label>
-                                <input type="date" name="estDate" No="estDate" value="<%= project.estDate %>" disabled>
+                                <input type="date" name="estDate" No="estDate" value="<%= project.estDate %>">
                             </div>
                             <div class="col-sm">
                                 <label for="collectDate"><strong>Date to Collections: </strong></label>
-                                <input type="date" name="collectDate" No="collectDate" value="<%= project.collectDate %>" disabled>
+                                <input type="date" name="collectDate" No="collectDate" value="<%= project.collectDate %>">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-sm">
                                 <label for="prodDate"><strong>Date to Production: </strong></label>
-                                <input type="date" name="prodDate" No="prodDate" value="<%= project.prodDate %>" disabled>
+                                <input type="date" name="prodDate" No="prodDate" value="<%= project.prodDate %>">
                             </div>
                             <div class="col-sm">
                                 <label for="cancelDate"><strong>Date Canceled: </strong></label>
-                                <input type="date" name="cancelDate" No="cancelDate" value="<%= project.cancelDate %>" disabled>
+                                <input type="date" name="cancelDate" No="cancelDate" value="<%= project.cancelDate %>">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-sm">
                                 <label for="aiDate"><strong>Date to Awaiting Inspection: </strong></label>
-                                <input type="date" name="aiDate" No="aiDate" value="<%= project.aiDate %>" disabled>
+                                <input type="date" name="aiDate" No="aiDate" value="<%= project.aiDate %>">
                             </div>
                             <div class="col-sm">
                                 <label for="denyDate"><strong>Date Denied: </strong></label>
-                                <input type="date" name="denyDate" No="denyDate" value="<%= project.denyDate %>" disabled>
+                                <input type="date" name="denyDate" No="denyDate" value="<%= project.denyDate %>">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-sm">
                                 <label for="closeDate"><strong>Date to Close Out: </strong></label>
-                                <input type="date" name="closeDate" No="closeDate" value="<%= project.closeDate %>" disabled>
+                                <input type="date" name="closeDate" No="closeDate" value="<%= project.closeDate %>">
                             </div>
                             <div class="col-sm">
                                 <label for="holdDate"><strong>Date put on Hold: </strong></label>
-                                <input type="date" name="holdDate" No="holdDate" value="<%= project.holdDate %>" disabled>
+                                <input type="date" name="holdDate" No="holdDate" value="<%= project.holdDate %>">
                             </div>
                         </div>
                         <br>

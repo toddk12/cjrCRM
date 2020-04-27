@@ -115,3 +115,7 @@ article {
     width: 12%;
     height: auto;
 }
+
+hr.thick {
+    border: 1px solid darkgreen;
+}
