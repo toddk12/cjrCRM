@@ -29,6 +29,14 @@ exports.getCal = async(req, res, next) => {
     let thu2 = moment(wed2).add(1, "days").format("MM/DD/YY");
     let fri2 = moment(thu2).add(1, "days").format("MM/DD/YY");
     let sat2 = moment(fri2).add(1, "days").format("MM/DD/YY");
+    let psun = moment(sDate).subtract(7, "days").format("MM/DD/YY");
+    let pmon = moment(sDate).subtract(6, "days").format("MM/DD/YY");
+    let ptue = moment(sDate).subtract(5, "days").format("MM/DD/YY");
+    let pwed = moment(sDate).subtract(4, "days").format("MM/DD/YY");
+    let pthu = moment(sDate).subtract(3, "days").format("MM/DD/YY");
+    let pfri = moment(sDate).subtract(2, "days").format("MM/DD/YY");
+    let psat = moment(sDate).subtract(1, "days").format("MM/DD/YY");
+    console.log(psun);
     try {
         let sunDA = [];
         let monDA = [];
@@ -44,6 +52,13 @@ exports.getCal = async(req, res, next) => {
         let thuDA2 = [];
         let friDA2 = [];
         let satDA2 = [];
+        const psCal = await WorkOrder.findAll({ where: { startDate: psun, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const pmCal = await WorkOrder.findAll({ where: { startDate: pmon, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const ptCal = await WorkOrder.findAll({ where: { startDate: ptue, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const pwCal = await WorkOrder.findAll({ where: { startDate: pwed, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const pthCal = await WorkOrder.findAll({ where: { startDate: pthu, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const pfCal = await WorkOrder.findAll({ where: { startDate: pfri, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        const psaCal = await WorkOrder.findAll({ where: { startDate: psat, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
         const sCal = await WorkOrder.findAll({ where: { startDate: sun, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
         const mCal = await WorkOrder.findAll({ where: { startDate: mon, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
         const tCal = await WorkOrder.findAll({ where: { startDate: tue, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
@@ -58,6 +73,314 @@ exports.getCal = async(req, res, next) => {
         const thCal2 = await WorkOrder.findAll({ where: { startDate: thu2, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
         const fCal2 = await WorkOrder.findAll({ where: { startDate: fri2, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
         const saCal2 = await WorkOrder.findAll({ where: { startDate: sat2, complete: 0 }, include: [{ model: Project }, { model: Subcontractor }] })
+        for (ps of psCal) {
+            if (ps.numDays > 7) {
+                sunDA.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                if (ps.numDays > 8) {
+                    monDA.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                    if (ps.numDays > 9) {
+                        tueDA.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                        if (ps.numDays > 10) {
+                            wedDA.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                            if (ps.numDays > 11) {
+                                thuDA.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                                if (ps.numDays > 12) {
+                                    friDA.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                                    if (ps.numDays > 13) {
+                                        satDA.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                                        if (ps.numDays > 14) {
+                                            sunDA2.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                                            if (ps.numDays > 15) {
+                                                monDA2.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                                                if (ps.numDays > 16) {
+                                                    tueDA2.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                                                    if (ps.numDays > 17) {
+                                                        wedDA2.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                                                        if (ps.numDays > 18) {
+                                                            thuDA2.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                                                            if (ps.numDays > 19) {
+                                                                friDA2.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                                                                if (ps.numDays > 20) {
+                                                                    satDA2.push(ps.project.owner1Ln + " - " + ps.project.address + " - " + ps.subcontractor.coName + " - " + ps.trade1)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (pm of pmCal) {
+            if (pm.numDays > 6) {
+                sunDA.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                if (pm.numDays > 7) {
+                    monDA.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                    if (pm.numDays > 8) {
+                        tueDA.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                        if (pm.numDays > 9) {
+                            wedDA.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                            if (pm.numDays > 10) {
+                                thuDA.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                                if (pm.numDays > 11) {
+                                    friDA.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                                    if (pm.numDays > 12) {
+                                        satDA.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                                        if (pm.numDays > 13) {
+                                            sunDA2.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                                            if (pm.numDays > 14) {
+                                                monDA2.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                                                if (pm.numDays > 15) {
+                                                    tueDA2.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                                                    if (pm.numDays > 16) {
+                                                        wedDA2.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                                                        if (pm.numDays > 17) {
+                                                            thuDA2.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                                                            if (pm.numDays > 18) {
+                                                                friDA2.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                                                                if (pm.numDays > 19) {
+                                                                    satDA2.push(pm.project.owner1Ln + " - " + pm.project.address + " - " + pm.subcontractor.coName + " - " + pm.trade1)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (pt of ptCal) {
+            if (pt.numDays > 5) {
+                sunDA.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                if (pt.numDays > 6) {
+                    monDA.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                    if (pt.numDays > 7) {
+                        tueDA.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                        if (pt.numDays > 8) {
+                            wedDA.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                            if (pt.numDays > 9) {
+                                thuDA.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                                if (pt.numDays > 10) {
+                                    friDA.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                                    if (pt.numDays > 11) {
+                                        satDA.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                                        if (pt.numDays > 12) {
+                                            sunDA2.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                                            if (pt.numDays > 13) {
+                                                monDA2.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                                                if (pt.numDays > 14) {
+                                                    tueDA2.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                                                    if (pt.numDays > 15) {
+                                                        wedDA2.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                                                        if (pt.numDays > 16) {
+                                                            thuDA2.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                                                            if (pt.numDays > 17) {
+                                                                friDA2.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                                                                if (pt.numDays > 18) {
+                                                                    satDA2.push(pt.project.owner1Ln + " - " + pt.project.address + " - " + pt.subcontractor.coName + " - " + pt.trade1)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (pw of pwCal) {
+            if (pw.numDays > 4) {
+                sunDA.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                if (pw.numDays > 5) {
+                    monDA.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                    if (pw.numDays > 6) {
+                        tueDA.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                        if (pw.numDays > 7) {
+                            wedDA.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                            if (pw.numDays > 8) {
+                                thuDA.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                                if (pw.numDays > 9) {
+                                    friDA.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                                    if (pw.numDays > 10) {
+                                        satDA.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                                        if (pw.numDays > 11) {
+                                            sunDA2.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                                            if (pw.numDays > 12) {
+                                                monDA2.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                                                if (pw.numDays > 13) {
+                                                    tueDA2.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                                                    if (pw.numDays > 14) {
+                                                        wedDA2.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                                                        if (pw.numDays > 15) {
+                                                            thuDA2.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                                                            if (pw.numDays > 16) {
+                                                                friDA2.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                                                                if (pw.numDays > 17) {
+                                                                    satDA2.push(pw.project.owner1Ln + " - " + pw.project.address + " - " + pw.subcontractor.coName + " - " + pw.trade1)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (pth of pthCal) {
+            if (pth.numDays > 3) {
+                sunDA.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                if (pth.numDays > 4) {
+                    monDA.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                    if (pth.numDays > 5) {
+                        tueDA.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                        if (pth.numDays > 6) {
+                            wedDA.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                            if (pth.numDays > 7) {
+                                thuDA.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                                if (pth.numDays > 8) {
+                                    friDA.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                                    if (pth.numDays > 9) {
+                                        satDA.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                                        if (pth.numDays > 10) {
+                                            sunDA2.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                                            if (pth.numDays > 11) {
+                                                monDA2.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                                                if (pth.numDays > 12) {
+                                                    tueDA2.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                                                    if (pth.numDays > 13) {
+                                                        wedDA2.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                                                        if (pth.numDays > 14) {
+                                                            thuDA2.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                                                            if (pth.numDays > 15) {
+                                                                friDA2.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                                                                if (pth.numDays > 16) {
+                                                                    satDA2.push(pth.project.owner1Ln + " - " + pth.project.address + " - " + pth.subcontractor.coName + " - " + pth.trade1)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (pf of pfCal) {
+            if (pf.numDays > 2) {
+                sunDA.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                if (pf.numDays > 3) {
+                    monDA.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                    if (pf.numDays > 4) {
+                        tueDA.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                        if (pf.numDays > 5) {
+                            wedDA.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                            if (pf.numDays > 6) {
+                                thuDA.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                                if (pf.numDays > 7) {
+                                    friDA.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                                    if (pf.numDays > 8) {
+                                        satDA.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                                        if (pf.numDays > 9) {
+                                            sunDA2.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                                            if (pf.numDays > 10) {
+                                                monDA2.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                                                if (pf.numDays > 11) {
+                                                    tueDA2.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                                                    if (pf.numDays > 12) {
+                                                        wedDA2.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                                                        if (pf.numDays > 13) {
+                                                            thuDA2.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                                                            if (pf.numDays > 14) {
+                                                                friDA2.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                                                                if (pf.numDays > 15) {
+                                                                    satDA2.push(pf.project.owner1Ln + " - " + pf.project.address + " - " + pf.subcontractor.coName + " - " + pf.trade1)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (psa of psaCal) {
+            if (psa.numDays > 2) {
+                sunDA.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                if (psa.numDays > 3) {
+                    monDA.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                    if (psa.numDays > 4) {
+                        tueDA.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                        if (psa.numDays > 5) {
+                            wedDA.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                            if (psa.numDays > 6) {
+                                thuDA.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                                if (psa.numDays > 7) {
+                                    friDA.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                                    if (psa.numDays > 7) {
+                                        satDA.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                                        if (psa.numDays > 8) {
+                                            sunDA2.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                                            if (psa.numDays > 9) {
+                                                monDA2.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                                                if (psa.numDays > 10) {
+                                                    tueDA2.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                                                    if (psa.numDays > 11) {
+                                                        wedDA2.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                                                        if (psa.numDays > 12) {
+                                                            thuDA2.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                                                            if (psa.numDays > 13) {
+                                                                friDA2.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                                                                if (psa.numDays > 14) {
+                                                                    satDA2.push(psa.project.owner1Ln + " - " + psa.project.address + " - " + psa.subcontractor.coName + " - " + psa.trade1)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         for (sc of sCal) {
             sunDA.push(sc.project.owner1Ln + " - " + sc.project.address + " - " + sc.subcontractor.coName + " - " + sc.trade1)
             if (sc.numDays > 1) {

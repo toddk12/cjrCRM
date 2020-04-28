@@ -96,10 +96,7 @@
      const updatedstartDate = req.body.startDate;
      const updatedendDate = req.body.endDate;
      const updatedcompDate = req.body.compDate;
-     let updatedComplete = 0;
-     if (updatedcompDate) {
-         updatedcomplete = 1;
-     }
+     const updatedComplete = req.body.complete;
      const updateddescription = req.body.description;
      const updatedtrade1 = req.body.trade1;
      const updatedtradeAmt1 = req.body.tradeAmt1;
@@ -110,17 +107,21 @@
      const updatedtrade4 = req.body.trade4;
      const updatedtradeAmt4 = req.body.tradeAmt4;
      const updatedwoTotal = req.body.woTotal;
-     const updatedNumDays = undatedStartDate.diff(updatedEndDate, 'days');
+     let a = moment(updatedstartDate).format("MM/DD/YY");
+     let b = moment(updatedendDate).format("MM/DD/YY");
+     console.log(a);
+     console.log(b);
 
+     let numDays = moment(b).diff(moment(a), 'days') + 1;
      try {
          const workOrder = await WorkOrder.findByPk(workId)
 
          workOrder.subcontractorId = updatedsubcontractorId;
          workOrder.startDate = updatedstartDate;
          workOrder.endDate = updatedendDate;
-         workOrder.numDays = updatedNumDays;
+         workOrder.numDays = numDays;
          workOrder.compDate = updatedcompDate;
-         workOrder.complete = updatedcomplete;
+         workOrder.complete = updatedComplete;
          workOrder.description = updateddescription;
          workOrder.trade1 = updatedtrade1;
          workOrder.tradeAmt1 = updatedtradeAmt1;

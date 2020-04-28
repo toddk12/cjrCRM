@@ -178,12 +178,17 @@
                                     <div class="row">
                                         <div class="col-sm" style="width: 200px">
                                             <label for="subcontractorId"><strong>SubContractor: </strong></label>
-                                            <select style="width: 200px" class="select" name="subcontractorId" id="subcontractorId">
+                                            <select style="width: 300px" class="select" name="subcontractorId" id="subcontractorId">
                             <% for (let sub of subs) { %>
                             <option value="<%= sub.id%>">
                                 <%= sub.coName %></option>
                             <% } %>
                         </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+
                                         </div>
                                         <div class="col-sm">
                                             <label for="startDate"><strong>Start Date:</strong></label>
@@ -193,12 +198,6 @@
                                             <label for="endDate"><strong>End Date:</strong></label>
                                             <input type="date" name="endDate" id="endDate">
                                         </div>
-                                        <div class="col-sm">
-                                            <input type="checkbox" name="complete" id="complete">
-                                            <label for="compDate"><strong>Date Completed:</strong></label>
-                                            <input type="date" name="compDate" id="compDate">
-                                        </div>
-
                                     </div>
                                     <br>
                                     <div class="row">
