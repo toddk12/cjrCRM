@@ -11,11 +11,12 @@ const flash = require('connect-flash');
 const multer = require('multer');
 const sgMail = require('@sendgrid/mail');
 const moment = require('moment');
-
-console.log(process.env.NODE_ENV);
+const helmet = require('helmet');
 
 const errorController = require('./controllers/error');
 const sequelize = require('./util/database');
+
+console.log(process.env.NODE_ENV);
 
 const Additions = require('./models/additions');
 const Document = require('./models/document');
@@ -76,6 +77,8 @@ const searchRoutes = require('./routes/search');
 const listsRoutes = require('./routes/lists');
 const calendarRoutes = require('./routes/calendar');
 const authRoutes = require('./routes/auth');
+
+app.use(helmet());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({ storage: fileStorage }).single('docFile'));
