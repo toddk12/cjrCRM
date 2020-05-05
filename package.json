@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "description": "",
     "main": "app.js",
+    "engines": {
+        "node": "12.9.0"
+    },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node app.js",
@@ -22,6 +25,7 @@
         "@sendgrid/mail": "^7.0.0",
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.19.0",
+        "compression": "^1.7.4",
         "connect-flash": "^0.1.1",
         "csurf": "^1.10.0",
         "ejs": "^3.0.1",

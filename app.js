@@ -13,6 +13,7 @@ const multer = require('multer');
 const sgMail = require('@sendgrid/mail');
 const moment = require('moment');
 const helmet = require('helmet');
+const compression = require("compression");
 
 const errorController = require('./controllers/error');
 const sequelize = require('./util/database');
@@ -49,8 +50,7 @@ const options = {
     user: process.env.DB_USER,
     port: process.env.DB_PORT,
     password: process.env.DB_PASS,
-    database: process.env.DB_DATABASE,
-    ssl: { ca: '-----BEGIN CERTIFICATE-----MIIEQTCCAqmgAwIBAgIUdl1LulvgFJUvVTRJIbHH2aG/upwwDQYJKoZIhvcNAQEMBQAwOjE4MDYGA1UEAwwvOWZkMTMwYjgtN2UwNC00ZjZmLWIzZTUtM2FlZjQ1YmY3Y2FhIFByb2plY3QgQ0EwHhcNMjAwNDMwMTgwMTI3WhcNMzAwNDI4MTgwMTI3WjA6MTgwNgYDVQQDDC85ZmQxMzBiOC03ZTA0LTRmNmYtYjNlNS0zYWVmNDViZjdjYWEgUHJvamVjdCBDQTCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBAKV88XkcFEj2U3F2+Cy+tRsbOms3w4AsIOu5AZ8DHs6MX1pPfLW4my3O00xthHYuEJdSA++Kf6g0SNxTPJhpAkNQWA/lUtSuQOEP9UI3TvGdMO/iYuK+3pcdBeaCqwzmQ9JQ+p33/k5NCvCtWvDcxlS6fQMuUI6r3JzCnY51tZTMHBtLep0QmC9MLY4tBoneR3OkNQse5L57I/cLwWRIjEjNqxHk98ir5O/Dbn7ZKNpUNkkDBCF/IXCkglUPBViDWgSId/7dBu0pana2oWGT1i+twsHFpKZJb9FrHGHss3BLXXefTtay5dBcfxBvW90RCaiu7z6WoxVOZKkgb31hYPUUWkEbwrpuzS7DLYNMVkov1qE1VsWr7+YxuB5xVCkF7KHef1osv0haGzB6J6sYbQFHUyhCL57o+saYZOeBXhn541a0BQ466+cN94cj/yj6+8rhEzL5RXRt1LAG+8OCioCVp2VKN/gPaflXQaPKOz9oY84yIGa0f1aHx60CJPNIPwIDAQABoz8wPTAdBgNVHQ4EFgQULlULpwP14EKpvwmNhdqnmXhp/X4wDwYDVR0TBAgwBgEB/wIBADALBgNVHQ8EBAMCAQYwDQYJKoZIhvcNAQEMBQADggGBABo6+Ae8QwpYDTKwWUDekNcLqRyNzseGgHqZ3cIhHsAUmKW+eSWQcS9A/n9mcKN0OXVHslj+H2eBNadRbRmNyA7nMnt1tlp9qnzM3iOSqhFQeiIPZEjv6HnYuGRY+8VB8I8UrESbnNK5oZVYqnUO7F2aTvjuwSkyteE04v6Z2syWkU/8MZmKhwKERcBLHCc2thRdgxy8fFs9pyCGzT67NHVpXQF/1mScJ7IBbXn9GwgIA9U8MuTnn1kihpY8LhTmQXTP/V5/ctPHKRs3z1ck4VlIXWJrGkIsesrtdvf5LUMxNN07yalgOYP2YmD6eBKG3QBwARNKYvL9rqRXYPSsGG/zLKxdlR65axCGyO/aosm8TZpMYefvXSOSSwWxLYfBHogxXRTU/RfcCeJOplWnXYGcnRWquyloUaN1R7Qb74Zu9j7uyTW2AyIjGQ3EiJwJmoV/QkInMK4qhPc0NNWmGFti3wa/UrDnQQKo0q7PaxYDkLA+05V2WJ/s17YJWB7hAA==-----END CERTIFICATE-----' }
+    database: process.env.DB_DATABASE
 };
 
 const sessionStore = new MySQLStore(options);
@@ -81,6 +81,7 @@ const calendarRoutes = require('./routes/calendar');
 const authRoutes = require('./routes/auth');
 
 app.use(helmet());
+app.use(compression());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(multer({ storage: fileStorage }).single('docFile'));
