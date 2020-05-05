@@ -1,10 +1,10 @@
 {
     "env": {
-        "DB_USER": "doadmin",
-        "DB_PORT": "25060",
-        "DB_DATABASE": "defaultdb",
-        "DB_PASS": "b4rxadvrfqwvqn1w",
-        "DB_HOST": "cjdatabase-do-user-7442686-0.a.db.ondigitalocean.com",
+        "DB_USER": "root",
+        "DB_PORT": "3306",
+        "DB_DATABASE": "cjdatabase",
+        "DB_PASS": "",
+        "DB_HOST": "localhost",
         "PRODKEY": "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"
     }
 }
