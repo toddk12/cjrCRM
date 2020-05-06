@@ -72,9 +72,9 @@ router.get('/exclEdit/:exclId', isAuth, projectsController.getExclEdit);
 
 router.post('/exclEdit', isAuth, projectsController.postExclEdit);
 
-router.get('/ownerOop/:projectId', isAuth, projectsController.getOwnerOop);
+router.get('/owneroop/:projectId', isAuth, projectsController.getOwneroop);
 
-router.post('/ownerOop', isAuth, projectsController.postOwnerOop);
+router.post('/owneroop', isAuth, projectsController.postOwneroop);
 
 router.get('/oopEdit/:oopId', isAuth, projectsController.getOopEdit);
 
