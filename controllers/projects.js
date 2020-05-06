@@ -22,7 +22,7 @@ const Notes = require('../models/notes');
 const Additions = require('../models/additions');
 const FundsRcvd = require('../models/fundsRcvd');
 const Exclusions = require('../models/exclusions');
-const Owneroop = require('../models/owneroop');
+const Ownero = require('../models/ownero');
 const JobCosts = require('../models/jobCosts');
 const Trades = require('../models/trades');
 const Estimator = require('../models/estimator');
@@ -891,35 +891,35 @@ exports.postExclusions = (req, res, next) => {
         });
 };
 
-exports.getOwneroop = async(req, res, next) => {
+exports.getOwnero = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
     try {
         const trades = await Trades.findAll()
-        const owneroop = await Owneroop.findAll({
+        const ownero = await Ownero.findAll({
             where: { projectId: projId },
             include: [{
                 model: Trades
             }]
         })
-        const tots = await Owneroop.sum('oopAmt', { where: { projectId: projId } })
+        const tots = await Ownero.sum('oopAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId, {
             include: [{
-                model: Owneroop
+                model: Ownero
             }]
         })
         project.totalOwner0op = tots;
         project.save();
-        res.render('projects/owneroop', {
+        res.render('projects/ownero', {
             pageTitle: "Owner Out of Pocket",
-            path: '/owneroop',
+            path: '/ownero',
             project: project,
             projId: projId,
             trade: trades,
             userName: userName,
             userId: userId,
-            oops: owneroop
+            oops: ownero
         });
     } catch (err) {
         console.log(err);
@@ -929,9 +929,9 @@ exports.getOwneroop = async(req, res, next) => {
     };
 };
 
-exports.postOwneroop = (req, res, next) => {
+exports.postOwnero = (req, res, next) => {
 
-    Owneroop.create({
+    Ownero.create({
             enteredBy: req.body.enteredBy,
             entryDate: req.body.entryDate,
             oopAmt: req.body.oopAmt,
@@ -1088,33 +1088,33 @@ exports.getWtbTot = async(req, res, next) => {
         const excl24 = await Exclusions.sum('exclAmt', { where: { projectId: projId, tradeId: 24 } })
         const excl25 = await Exclusions.sum('exclAmt', { where: { projectId: projId, tradeId: 25 } })
         const exclTot = await Exclusions.sum('exclAmt', { where: { projectId: projId } })
-        const owneroop = await Owneroop.findAll({ where: { projectId: projId }, include: [{ model: Trades }] })
-        const oop1 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 1 } })
-        const oop2 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 2 } })
-        const oop3 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 3 } })
-        const oop4 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 4 } })
-        const oop5 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 5 } })
-        const oop6 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 6 } })
-        const oop7 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 7 } })
-        const oop8 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 8 } })
-        const oop9 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 9 } })
-        const oop10 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 10 } })
-        const oop11 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 11 } })
-        const oop12 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 12 } })
-        const oop13 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 13 } })
-        const oop14 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 14 } })
-        const oop15 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 15 } })
-        const oop16 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 16 } })
-        const oop17 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 17 } })
-        const oop18 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 18 } })
-        const oop19 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 19 } })
-        const oop20 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 20 } })
-        const oop21 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 21 } })
-        const oop22 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 22 } })
-        const oop23 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 23 } })
-        const oop24 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 24 } })
-        const oop25 = await Owneroop.sum('oopAmt', { where: { projectId: projId, tradeId: 25 } })
-        const oopTot = await Owneroop.sum('oopAmt', { where: { projectId: projId } })
+        const ownero = await Ownero.findAll({ where: { projectId: projId }, include: [{ model: Trades }] })
+        const oop1 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 1 } })
+        const oop2 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 2 } })
+        const oop3 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 3 } })
+        const oop4 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 4 } })
+        const oop5 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 5 } })
+        const oop6 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 6 } })
+        const oop7 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 7 } })
+        const oop8 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 8 } })
+        const oop9 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 9 } })
+        const oop10 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 10 } })
+        const oop11 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 11 } })
+        const oop12 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 12 } })
+        const oop13 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 13 } })
+        const oop14 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 14 } })
+        const oop15 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 15 } })
+        const oop16 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 16 } })
+        const oop17 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 17 } })
+        const oop18 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 18 } })
+        const oop19 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 19 } })
+        const oop20 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 20 } })
+        const oop21 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 21 } })
+        const oop22 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 22 } })
+        const oop23 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 23 } })
+        const oop24 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 24 } })
+        const oop25 = await Ownero.sum('oopAmt', { where: { projectId: projId, tradeId: 25 } })
+        const oopTot = await Ownero.sum('oopAmt', { where: { projectId: projId } })
         const adj1 = (add1 - excl1 + oop1)
         const adj2 = (add2 - excl2 + oop2)
         const adj3 = (add3 - excl3 + oop3)
@@ -1179,7 +1179,7 @@ exports.getWtbTot = async(req, res, next) => {
             wtbs: wtb,
             adds: additions,
             excls: exclusions,
-            owneroop: owneroop,
+            ownero: ownero,
             jobCosts: jobCosts,
             net1: net1,
             net2: net2,
@@ -1512,7 +1512,7 @@ exports.getOopEdit = async(req, res, next) => {
 
     try {
         const trades = await Trades.findAll()
-        const oop = await Owneroop.findByPk(oopId, {
+        const oop = await Ownero.findByPk(oopId, {
             include: [{
                 model: Trades
             }]
@@ -1546,7 +1546,7 @@ exports.postOopEdit = async(req, res, next) => {
     const userName = req.user.ename;
 
     try {
-        const oop = await Owneroop.findByPk(oopId)
+        const oop = await Ownero.findByPk(oopId)
 
         oop.enteredBy = updatedEnteredBy;
         oop.entryDate = updatedEntryDate;
@@ -1556,28 +1556,28 @@ exports.postOopEdit = async(req, res, next) => {
         await oop.save();
 
         const trades = await Trades.findAll()
-        const owneroop = await Owneroop.findAll({
+        const ownero = await Ownero.findAll({
             where: { projectId: projId },
             include: [{
                 model: Trades
             }]
         })
-        const tots = await Owneroop.sum('oopAmt', { where: { projectId: projId } })
+        const tots = await Ownero.sum('oopAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId, {
             include: [{
-                model: Owneroop
+                model: Ownero
             }]
         })
-        project.totalOwneroop = tots;
+        project.totalOwnero = tots;
         project.save();
-        res.render('projects/owneroop', {
+        res.render('projects/ownero', {
             pageTitle: "Owner Out of Pocket",
-            path: '/owneroop',
+            path: '/ownero',
             project: project,
             projId: projId,
             trade: trades,
             userName: userName,
-            oops: owneroop
+            oops: ownero
         });
     } catch (err) {
         console.log(err);

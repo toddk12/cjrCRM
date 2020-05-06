@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../util/database');
 
-const Owneroop = sequelize.define('owneroop', {
+const Ownero = sequelize.define('ownero', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -23,4 +23,4 @@ const Owneroop = sequelize.define('owneroop', {
 
 });
 
-module.exports = Owneroop;
+module.exports = Ownero;
