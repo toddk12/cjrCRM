@@ -9,16 +9,15 @@ const Additions = sequelize.define('additions', {
         allowNull: false,
         primaryKey: true
     },
-    enteredBy: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
+
+    enteredBy: Sequelize.STRING,
     entryDate: {
         type: Sequelize.DATEONLY,
         allowNull: false
     },
     addAmt: { type: Sequelize.FLOAT(10, 2) },
-    addMemo: { type: Sequelize.STRING },
+    addMemo: { type: Sequelize.STRING }
+
 });
 
 module.exports = Additions;
