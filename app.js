@@ -183,10 +183,10 @@ Project.hasOne(RoofCalc);
 Project.hasMany(RepPay);
 
 sequelize
-    .sync()
-    .then(result => {
-        app.listen(process.env.PORT || 3002);;
-    })
-    .catch(err => {
-        console.log(err);
-    });
+// .sync()
+// .then(result => {
+app.listen(process.env.PORT || 3002);;
+// })
+// .catch(err => {
+//     console.log(err);
+// });
