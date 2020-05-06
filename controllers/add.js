@@ -17,7 +17,7 @@ const Additions = require('../models/additions');
 const Subcontractor = require('../models/subcontractor');
 const Supplier = require('../models/supplier');
 const Trades = require('../models/trades');
-const RType = require('../models/rtype');
+const RType = require('../models/rType');
 const WorkOrder = require('../models/workOrder');
 
 exports.getAddInsurance = async(req, res, next) => {
@@ -595,7 +595,7 @@ exports.postAddSupplier = (req, res, next) => {
 exports.getAddDoc = async(req, res, next) => {
     const projId = req.params.projectId;
     try {
-        const rtype = await RType.findAll()
+        const rType = await RType.findAll()
         const document = await Document.findAll({ where: { projectId: projId } })
         const project = await Project.findByPk(projId)
 
@@ -605,7 +605,7 @@ exports.getAddDoc = async(req, res, next) => {
             project: project,
             doc: document,
             projId: projId,
-            types: rtype
+            types: rType
         });
 
     } catch (err) {
@@ -632,7 +632,7 @@ exports.postAddDoc = (req, res, next) => {
 
     .then(results => {
         RType.findAll()
-            .then(rtype => {
+            .then(rType => {
                 Document.findAll({
                         where: { projectId: projId }
                     })
@@ -645,7 +645,7 @@ exports.postAddDoc = (req, res, next) => {
                                     project: project,
                                     doc: document,
                                     projId: projId,
-                                    types: rtype
+                                    types: rType
                                 });
                             })
                     })
@@ -691,7 +691,7 @@ exports.getDeleteDoc = async(req, res, next) => {
         document.destroy()
         await document.save();
         RType.findAll()
-            .then(rtype => {
+            .then(rType => {
                 Document.findAll({
                         where: { projectId: projId }
                     })
@@ -704,7 +704,7 @@ exports.getDeleteDoc = async(req, res, next) => {
                                     project: project,
                                     doc: document,
                                     projId: projId,
-                                    types: rtype
+                                    types: rType
                                 });
                             })
                     })
