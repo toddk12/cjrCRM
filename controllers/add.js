@@ -118,7 +118,8 @@ exports.getAddProject = async(req, res, next) => {
 };
 
 exports.postAddProject = (req, res, next) => {
-
+    console.log(req.body.projectNo);
+    console.log(req.body.statusId);
     Project.create({
             projectNo: req.body.projectNo,
             statusId: req.body.statusId,
