@@ -425,7 +425,7 @@ exports.postGeneralInfo = (req, res, next) => {
     const updatedCancelDate = req.body.cancelDate;
     const updatedDenyDate = req.body.denyDate;
     const updatedHoldDate = req.body.holdDate;
-
+    console.log(updatedEntDate);
     Project.findByPk(projId, {
             include: [{
                 model: Sales
