@@ -120,7 +120,7 @@ exports.getAddProject = async(req, res, next) => {
 exports.postAddProject = async(req, res, next) => {
     const upOScope = req.body.oScopeDate;
 
-    if (upOScope = null) {
+    if (upOScope == null) {
         Project.create({
             projectNo: req.body.projectNo,
             statusId: req.body.statusId,
