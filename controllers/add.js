@@ -118,6 +118,9 @@ exports.getAddProject = async(req, res, next) => {
 };
 
 exports.postAddProject = (req, res, next) => {
+    const updatedDeductible = req.body.deductible;
+    const updatedDateLoss = req.body.dateLoss;
+    const updatedOScopeDate = oScopeDate = req.body.oScopeDate;
 
     Project.create({
             projectNo: req.body.projectNo,
@@ -139,11 +142,11 @@ exports.postAddProject = (req, res, next) => {
             insuranceId: req.body.insuranceId,
             policyNo: req.body.policyNo,
             claimNo: req.body.claimNo,
-            // dateLoss: req.body.dateLoss,
+            dateLoss: req.body.dateLoss,
             typeLoss: req.body.typeLoss,
-            // deductible: req.body.deductible,
-            // oScopeDate: req.body.oScopeDate,
-            // oScopeRCV: req.body.oScopeRCV,
+            deductible: req.body.deductible,
+            oScopeDate: req.body.oScopeDate,
+            oScopeRCV: req.body.oScopeRCV,
             adjName: req.body.adjName,
             adjPhone: req.body.adjPhone,
             entBy: req.user.id
