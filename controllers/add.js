@@ -119,8 +119,7 @@ exports.getAddProject = async(req, res, next) => {
 
 exports.postAddProject = async(req, res, next) => {
     const upOScope = req.body.oScopeDate;
-
-    if (upOScope == null) {
+    if (upOScope = null) {
         Project.create({
             projectNo: req.body.projectNo,
             statusId: req.body.statusId,
@@ -180,31 +179,42 @@ exports.postAddProject = async(req, res, next) => {
             entBy: req.user.id
         })
     }
-    try {
-        const statId = req.body.statusId;
-        const sales = await Sales.findAll()
-        const status = await Status.findOne({ where: { id: statId } })
-        const project = await Project.findAll({
-            where: { statusId: statId },
-            include: [{ model: Sales }, { model: Supervisor }, { model: Insurance }, { model: Status }],
-            order: [
-                ['owner1Ln', 'ASC']
-            ]
+    const statId = req.body.statusId;
+    Sales.findAll()
+        .then(sales => {
+            Status.findOne({ where: { id: statId } })
+                .then(status => {
+                    Project.findAll({
+                            where: { statusId: statId },
+                            include: [{
+                                model: Sales
+                            }, {
+                                model: Supervisor
+                            }, {
+                                model: Insurance
+                            }, {
+                                model: Status
+                            }],
+                            order: [
+                                ['owner1Ln', 'ASC']
+                            ]
+                        })
+                        .then(projects => {
+                            res.render('projects/projects', {
+                                projs: projects,
+                                stat: status,
+                                sal: sales,
+                                pageTitle: 'Projects',
+                                path: '/projects',
+                            });
+                        })
+                })
         })
-
-        res.render('projects/projects', {
-            projs: projects,
-            stat: status,
-            sal: sales,
-            pageTitle: 'Projects',
-            path: '/projects',
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
         });
-
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    }
 };
 
 exports.getAddCProject = async(req, res, next) => {
