@@ -118,8 +118,38 @@ exports.getAddProject = async(req, res, next) => {
 };
 
 exports.postAddProject = (req, res, next) => {
+    const upOScope = req.body.oScopeDate;
+    if (upOScope = null) {
+        Project.create({
+            projectNo: req.body.projectNo,
+            statusId: req.body.statusId,
+            owner1Fn: req.body.owner1Fn,
+            owner1Ln: req.body.owner1Ln,
+            owner2Fn: req.body.owner2Fn,
+            owner2Ln: req.body.owner2Ln,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            hPhone: req.body.hPhone,
+            cPhone: req.body.cPhone,
+            oPhone: req.body.oPhone,
+            email: req.body.email,
+            saleId: req.body.saleId,
+            supervisorId: req.body.supervisorId,
+            insuranceId: req.body.insuranceId,
+            policyNo: req.body.policyNo,
+            claimNo: req.body.claimNo,
+            dateLoss: req.body.dateLoss,
+            typeLoss: req.body.typeLoss,
+            deductible: req.body.deductible,
+            adjName: req.body.adjName,
+            adjPhone: req.body.adjPhone,
+            entBy: req.user.id
+        })
+    } else {
 
-    Project.create({
+        Project.create({
             projectNo: req.body.projectNo,
             statusId: req.body.statusId,
             owner1Fn: req.body.owner1Fn,
@@ -148,7 +178,8 @@ exports.postAddProject = (req, res, next) => {
             adjPhone: req.body.adjPhone,
             entBy: req.user.id
         })
-        .then(result => {
+    }
+    .then(result => {
             const statId = req.body.statusId;
             Sales.findAll()
                 .then(sales => {
