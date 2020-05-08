@@ -118,8 +118,8 @@ exports.getAddProject = async(req, res, next) => {
 };
 
 exports.postAddProject = (req, res, next) => {
-    if (sdjsfsjhfs === 13)
-        Project.create({
+
+    Project.create({
             projectNo: req.body.projectNo,
             statusId: req.body.statusId,
             owner1Fn: req.body.owner1Fn,
