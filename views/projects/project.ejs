@@ -339,25 +339,29 @@
                                         <div class="row">
                                             <div class="col-sm">
                                                 Original Scope Date:
-                                                <strong><%= project.oScopeDate.substring(5, 7) %>/<%= project.oScopeDate.substring(8, 10) %>/<%= project.oScopeDate.substring(0,4) %></strong>
-                                            </div>
-                                            <div class="col-sm">Original Scope RCV:
-                                                <strong><%= money.format(project.oScopeRCV) %></strong>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                Final Scope Date:
-                                                <% if (!project.fScopeDate) { %>
+                                                <% if (!project.oScopeDate) { %>
                                                     <strong>Not Recieved</strong></div>
                                             <% } else { %>
-                                                <strong><%= project.fScopeDate.substring(5, 7) %>/<%= project.fScopeDate.substring(8, 10) %>/<%= project.fScopeDate.substring(0,4) %></strong>
+                                                <strong><%= project.oScopeDate.substring(5, 7) %>/<%= project.oScopeDate.substring(8, 10) %>/<%= project.oScopeDate.substring(0,4) %></strong>
                                         </div>
                                         <div class="col-sm">
-                                            Final Scope RCV:
-                                            <strong><%= money.format(project.fScopeRCV) %></strong>
+                                            Oringinal Scope RCV:
+                                            <strong><%= money.format(project.oScopeRCV) %></strong>
                                         </div>
                                         <% } %>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    Final Scope Date:
+                                                    <% if (!project.fScopeDate) { %>
+                                                        <strong>Not Recieved</strong></div>
+                                                <% } else { %>
+                                                    <strong><%= project.fScopeDate.substring(5, 7) %>/<%= project.fScopeDate.substring(8, 10) %>/<%= project.fScopeDate.substring(0,4) %></strong>
+                                            </div>
+                                            <div class="col-sm">
+                                                Final Scope RCV:
+                                                <strong><%= money.format(project.fScopeRCV) %></strong>
+                                            </div>
+                                            <% } %>
                         </div>
                         <div class="row">
                             <div class="col-sm">
