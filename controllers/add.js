@@ -141,7 +141,7 @@ exports.postAddProject = (req, res, next) => {
             claimNo: req.body.claimNo,
             // dateLoss: req.body.dateLoss,
             // typeLoss: req.body.typeLoss,
-            // deductible: req.body.deductible,
+            deductible: req.body.deductible,
             // oScopeDate: req.body.oScopeDate,
             // oScopeRCV: req.body.oScopeRCV,
             adjName: req.body.adjName,
