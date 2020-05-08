@@ -118,8 +118,8 @@ exports.getAddProject = async(req, res, next) => {
 };
 
 exports.postAddProject = (req, res, next) => {
-
-    Project.create({
+    if (sdjsfsjhfs === 13)
+        Project.create({
             projectNo: req.body.projectNo,
             statusId: req.body.statusId,
             owner1Fn: req.body.owner1Fn,
@@ -139,11 +139,11 @@ exports.postAddProject = (req, res, next) => {
             insuranceId: req.body.insuranceId,
             policyNo: req.body.policyNo,
             claimNo: req.body.claimNo,
-            dateLoss: req.body.dateLoss,
-            typeLoss: req.body.typeLoss,
-            deductible: req.body.deductible,
-            oScopeDate: req.body.oScopeDate,
-            oScopeRCV: req.body.oScopeRCV,
+            // dateLoss: req.body.dateLoss,
+            // typeLoss: req.body.typeLoss,
+            // deductible: req.body.deductible,
+            // oScopeDate: req.body.oScopeDate,
+            // oScopeRCV: req.body.oScopeRCV,
             adjName: req.body.adjName,
             adjPhone: req.body.adjPhone,
             entBy: req.user.id
