@@ -141,7 +141,7 @@
                                 <div class="row">
                                     <div class="col-sm">
                                         <label for="dateLoss"><strong>Date of Loss: </strong></label>
-                                        <input type="date" name="dateLoss" id="dateLoss" required>
+                                        <input type="date" name="dateLoss" id="dateLoss" value =0 required>
                                     </div>
                                     <div class="col-sm mb-3 mr-sm-2">
                                         <label for="typeLoss"><strong>Type of Loss: </strong></label>
@@ -150,7 +150,7 @@
 
                                     <div class="col-sm">
                                         <label for="deductible"><strong>Deductible: </strong></label>
-                                        <input type="text" name="deductible" id="deductible" required>
+                                        <input type="text" name="deductible" id="deductible" value=0 required>
                                     </div>
                                 </div>
                                 <br>
@@ -159,6 +159,17 @@
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                     <button class="updatebtn" type="submit">Add Project</button>
                                 </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="oScopeDate"><strong>Origonal Scope Date: </strong></label>
+                                        <input type="date" name="oScopeDate" id="oScopeDate" value=0 >
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="oScopeRCV"><strong>Origonal Scope RCV: </strong></label>
+                                        <input type="text" name="oScopeRCV" id="oScopeRCV" value=0 >
+                                    </div>
+                                </div>
+                                <br>
                             </form>
                         </h6>
                     </article>
