@@ -153,12 +153,6 @@
                                         <input type="text" name="deductible" id="deductible" value=0 required>
                                     </div>
                                 </div>
-                                <br>
-                                <div class="centered">
-                                    <br>
-                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                    <button class="updatebtn" type="submit">Add Project</button>
-                                </div>
                                 <div class="row">
                                     <div class="col-sm">
                                         <label for="oScopeDate"><strong>Origonal Scope Date: </strong></label>
@@ -168,6 +162,22 @@
                                         <label for="oScopeRCV"><strong>Origonal Scope RCV: </strong></label>
                                         <input type="text" name="oScopeRCV" id="oScopeRCV" value=0 >
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="adjName"><strong>Adjuster: </strong></label>
+                                        <input type="text" name="adjName" id="adjName" >
+                                    </div>
+                                    <div class="col-sm">
+                                        <label for="adjPhone"><strong>Adjuster's Phone: </strong></label>
+                                        <input type="text" name="adjPhone" id="adjPhone" >
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="centered">
+                                    <br>
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button class="updatebtn" type="submit">Add Project</button>
                                 </div>
                                 <br>
                             </form>
