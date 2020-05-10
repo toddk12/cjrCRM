@@ -342,22 +342,17 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm">
-                                                Original Scope Date:
-                                                <% if (!project.oScopeDate) { %>
+                                                Original Scope Date: <strong><%= project.oScopeDate.substring(5, 7) %>/<%= project.oScopeDate.substring(8, 10) %>/<%= project.oScopeDate.substring(0,4) %></strong>
+                                            </div>
+                                            <div class="col-sm">
+                                            Oringinal Scope RCV: <strong><%= money.format(project.oScopeRCV) %></strong>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                Final Scope Date:
+                                                <% if (!project.fScopeDate) { %>
                                                     <strong>Not Recieved</strong></div>
-                                            <% } else { %>
-                                                <strong><%= project.oScopeDate.substring(5, 7) %>/<%= project.oScopeDate.substring(8, 10) %>/<%= project.oScopeDate.substring(0,4) %></strong>
-                                        </div>
-                                        <div class="col-sm">
-                                            Oringinal Scope RCV:
-                                            <strong><%= money.format(project.oScopeRCV) %></strong>
-                                        </div>
-                                        <% } %>
-                                            <div class="row">
-                                                <div class="col-sm">
-                                                    Final Scope Date:
-                                                    <% if (!project.fScopeDate) { %>
-                                                        <strong>Not Recieved</strong></div>
                                                 <% } else { %>
                                                     <strong><%= project.fScopeDate.substring(5, 7) %>/<%= project.fScopeDate.substring(8, 10) %>/<%= project.fScopeDate.substring(0,4) %></strong>
                                             </div>
@@ -366,7 +361,7 @@
                                                 <strong><%= money.format(project.fScopeRCV) %></strong>
                                             </div>
                                             <% } %>
-                        </div>
+                                         </div>
                         <div class="row">
                             <div class="col-sm">
                                 Adjuster's Name: <strong><%= project.adjName %></strong>
@@ -382,8 +377,11 @@
                         <br>
                         <hr class="thick">
                         <!-- Finaincial Information Section -->
-
+                        <div class="row">
+                            <div class="col-sm">
                         <h5><strong>Financial Information</strong></h5>
+                        </div>
+                        </div>
                         <table class="table table-sm">
                             <thead>
                                 <tr>
