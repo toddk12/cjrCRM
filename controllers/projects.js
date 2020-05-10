@@ -909,7 +909,7 @@ exports.getOwnero = async(req, res, next) => {
                 model: Ownero
             }]
         })
-        project.totalOwner0op = tots;
+        project.totalOwnerOop = tots;
         project.save();
         res.render('projects/ownero', {
             pageTitle: "Owner Out of Pocket",
