@@ -17,7 +17,7 @@ const Additions = require('../models/additions');
 const Subcontractor = require('../models/subcontractor');
 const Supplier = require('../models/supplier');
 const Trades = require('../models/trades');
-const RType = require('../models/rType');
+const Rtype = require('../models/rtype');
 const WorkOrder = require('../models/workOrder');
 
 exports.getAddInsurance = async(req, res, next) => {
@@ -592,18 +592,20 @@ exports.postAddSupplier = (req, res, next) => {
 
 exports.getAddDoc = async(req, res, next) => {
     const projId = req.params.projectId;
+
     try {
-        const rType = await RType.findAll()
+        const rtype = await Rtype.findAll()
         const document = await Document.findAll({ where: { projectId: projId } })
         const project = await Project.findByPk(projId)
-
+            // console.log(rtype);
+            // res.redirect("back");
         res.render('add/add-doc', {
             pageTitle: "Add Document",
             path: '/add-doc',
             project: project,
             doc: document,
             projId: projId,
-            types: rType
+            types: rtype
         });
 
     } catch (err) {
@@ -629,8 +631,8 @@ exports.postAddDoc = (req, res, next) => {
     })
 
     .then(results => {
-        RType.findAll()
-            .then(rType => {
+        Rtype.findAll()
+            .then(rtype => {
                 Document.findAll({
                         where: { projectId: projId }
                     })
@@ -643,7 +645,7 @@ exports.postAddDoc = (req, res, next) => {
                                     project: project,
                                     doc: document,
                                     projId: projId,
-                                    types: rType
+                                    types: rtype
                                 });
                             })
                     })
@@ -688,8 +690,8 @@ exports.getDeleteDoc = async(req, res, next) => {
         fileHelper.deleteFile(filePath);
         document.destroy()
         await document.save();
-        RType.findAll()
-            .then(rType => {
+        Rtype.findAll()
+            .then(rtype => {
                 Document.findAll({
                         where: { projectId: projId }
                     })
@@ -702,7 +704,7 @@ exports.getDeleteDoc = async(req, res, next) => {
                                     project: project,
                                     doc: document,
                                     projId: projId,
-                                    types: rType
+                                    types: rtype
                                 });
                             })
                     })

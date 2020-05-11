@@ -544,28 +544,20 @@ exports.postInsuranceInfo = (req, res, next) => {
         });
 };
 
-exports.getDocInfo = (req, res, next) => {
+exports.getDocInfo = async(req, res, next) => {
     const projId = req.params.projectId;
-    Document.findAll({
+
+    try {
+        const document = await Document.findAll({
             where: { projectId: projId }
         })
-        .then(document => {
-            Project.findByPk(projId)
-                .then(project => {
-                    res.render('projects/docInfo', {
-                        pageTitle: "Documents",
-                        path: '/docInfo',
-                        project: project,
-                        docs: document,
-                        projId: projId
-                    });
-                })
-        })
-        .catch(err => {
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-        });
+        const project = await Project.findByPk(projId)
+        res.redirect("home");
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+    }
 };
 
 exports.postChangeStatus2 = (req, res, next) => {

@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../util/database');
 
-const RType = sequelize.define('rType', {
+const Rtype = sequelize.define('rtype', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -15,4 +15,4 @@ const RType = sequelize.define('rType', {
     }
 });
 
-module.exports = RType;
+module.exports = Rtype;
