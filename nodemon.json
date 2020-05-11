@@ -1,10 +1,10 @@
 {
     "env": {
-        "DB_USER": "toddk",
-        "DB_PORT": "9088",
+        "DB_USER": "root",
+        "DB_PORT": "3306",
         "DB_DATABASE": "cjdatabase",
-        "DB_PASS": "6vkI1E9JAcGK",
-        "DB_HOST": "mysql-9065-0.cloudclusters.net",
+        "DB_PASS": "",
+        "DB_HOST": "localhost",
         "PRODKEY": "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"
     }
 }
