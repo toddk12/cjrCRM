@@ -18,7 +18,7 @@ const Subcontractor = require('../models/subcontractor');
 const Supplier = require('../models/supplier');
 const Trades = require('../models/trades');
 const Rtype = require('../models/rtype');
-const WorkOrder = require('../models/workOrder');
+const WorkOrder = require('../models/workorder');
 
 exports.getAddInsurance = async(req, res, next) => {
     const username = req.session.username;
@@ -787,7 +787,7 @@ exports.postAddWorkOrder = (req, res, next) => {
             const projId = workOrder.projectId;
             Project.findByPk(projId)
                 .then(project => {
-                    WorkOrder.findAll({
+                    Workorder.findAll({
                             where: {
                                 projectId: projId
                             },

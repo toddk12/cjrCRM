@@ -9,7 +9,7 @@ const PDFDocument = require('pdfkit');
 
 const Project = require('../models/project');
 const Subcontractor = require('../models/subcontractor');
-const WorkOrder = require('../models/workOrder');
+const WorkOrder = require('../models/workorder');
 
 exports.getCal = async(req, res, next) => {
     const dowDate = new Date();

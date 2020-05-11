@@ -12,7 +12,7 @@
  const Subcontractor = require('../models/subcontractor');
  const Sales = require('../models/sales');
  const Trades = require('../models/trades');
- const WorkOrder = require('../models/workOrder');
+ const WorkOrder = require('../models/workorder');
 
  exports.getWorkOrderTot = async(req, res, next) => {
      const projId = req.params.projectId
@@ -136,7 +136,7 @@
 
          const projId = workOrder.projectId;
          const project = await Project.findByPk(projId)
-         const workOrders = await WorkOrder.findAll({
+         const workOrders = await Workorder.findAll({
              where: {
                  projectId: projId
              },
@@ -189,7 +189,7 @@
          const field = (workOrder.supervisor.name);
          const srep = (workOrder.sale.name);
          const woName = 'workOrder-' + workId + '.pdf';
-         const woPath = path.join('data', 'workOrders', woName);
+         const woPath = path.join('data', 'workorders', woName);
 
          const pdfDoc = new PDFDocument();
          res.setHeader('Content-Type', 'application/pdf');
