@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../util/database');
 
-const FundsRcvd = sequelize.define('fundsRcvd', {
+const Fundsrcvd = sequelize.define('fundsrcvd', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -19,4 +19,4 @@ const FundsRcvd = sequelize.define('fundsRcvd', {
     fundsDescription: { type: Sequelize.STRING }
 });
 
-module.exports = FundsRcvd;
+module.exports = Fundsrcvd;

@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../util/database');
 
-const JobCosts = sequelize.define('jobCosts', {
+const Jobcosts = sequelize.define('jobcosts', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -20,4 +20,4 @@ const JobCosts = sequelize.define('jobCosts', {
 
 });
 
-module.exports = JobCosts;
+module.exports = Jobcosts;

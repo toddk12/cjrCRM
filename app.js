@@ -24,9 +24,9 @@ const Additions = require('./models/additions');
 const Document = require('./models/document');
 const Estimator = require('./models/estimator');
 const Exclusions = require('./models/exclusions');
-const FundsRcvd = require('./models/fundsRcvd');
+const Fundsrcvd = require('./models/fundsrcvd');
 const Insurance = require('./models/insurance');
-const JobCosts = require('./models/jobCosts');
+const Jobcosts = require('./models/jobcosts');
 const Notes = require('./models/notes');
 const Ownero = require('./models/ownero');
 const Project = require('./models/project');
@@ -41,7 +41,7 @@ const Supplier = require('./models/supplier');
 const WorkOrder = require('./models/workOrder');
 const Wtb = require('./models/wtb');
 const RoofCalc = require('./models/roofCalc');
-const RepPay = require('./models/repPay');
+const Reppay = require('./models/reppay');
 
 const app = express();
 
@@ -157,9 +157,9 @@ Additions.belongsTo(Trades);
 Project.hasMany(Additions);
 Exclusions.belongsTo(Trades);
 Project.hasMany(Exclusions);
-Project.hasMany(FundsRcvd);
-JobCosts.belongsTo(Trades);
-Project.hasMany(JobCosts);
+Project.hasMany(Fundsrcvd);
+Jobcosts.belongsTo(Trades);
+Project.hasMany(Jobcosts);
 Ownero.belongsTo(Trades);
 Project.hasMany(Ownero);
 Notes.belongsTo(Project);
@@ -180,7 +180,7 @@ WorkOrder.belongsTo(Subcontractor);
 Subcontractor.hasMany(WorkOrder);
 RoofCalc.belongsTo(Project);
 Project.hasOne(RoofCalc);
-Project.hasMany(RepPay);
+Project.hasMany(Reppay);
 
 sequelize
 // .sync()

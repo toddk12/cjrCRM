@@ -20,13 +20,13 @@ const Sales = require('../models/sales');
 const Document = require('../models/document');
 const Notes = require('../models/notes');
 const Additions = require('../models/additions');
-const FundsRcvd = require('../models/fundsRcvd');
+const Fundsrcvd = require('../models/fundsrcvd');
 const Exclusions = require('../models/exclusions');
 const Ownero = require('../models/ownero');
-const JobCosts = require('../models/jobCosts');
+const Jobcosts = require('../models/jobcosts');
 const Trades = require('../models/trades');
 const Estimator = require('../models/estimator');
-const RepPay = require('../models/repPay');
+const Reppay = require('../models/reppay');
 const Wtb = require('../models/wtb');
 const WorkOrder = require('../models/workOrder');
 const RoofCalc = require('../models/roofCalc');
@@ -659,18 +659,19 @@ exports.postChangeStatus2 = (req, res, next) => {
         });
 };
 
-exports.getFundsReceived = async(req, res, nexct) => {
+exports.getFundsReceived = async(req, res, next) => {
     const projId = req.params.projectId;
     const userName = req.user.ename;
     const userId = req.user.id;
 
     try {
-        const fundsRcvd = await FundsRcvd.findAll({
+        const fundsrcvd = await Fundsrcvd.findAll({
             where: { projectId: projId }
         })
-        const tots = await FundsRcvd.sum('fundsAmt', { where: { projectId: projId } })
+        const tots = await Fundsrcvd.sum('fundsAmt', { where: { projectId: projId } })
+        console.log(tots);
         const project = await Project.findByPk(projId)
-        project.totalFundsRcvd = tots;
+        project.totalFundsrcvd = tots;
         await project.save();
         res.render('projects/fundsReceived', {
             pageTitle: "Funds Received",
@@ -679,19 +680,19 @@ exports.getFundsReceived = async(req, res, nexct) => {
             projId: projId,
             userName: userName,
             userId: userId,
-            fR: fundsRcvd,
+            fR: fundsrcvd,
             totals: tots
         });
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
         return next(error);
-    };
+    }
 };
 
 exports.postFundsReceived = (req, res, next) => {
 
-    FundsRcvd.create({
+    Fundsrcvd.create({
             enteredBy: req.body.enteredBy,
             projectId: req.body.projectId,
             entryDate: req.body.entryDate,
@@ -701,7 +702,7 @@ exports.postFundsReceived = (req, res, next) => {
         // .then(funds => {
         //     Project.findByPk(projId, {
         //             include: [{
-        //                 model: FundsRcvd
+        //                 model: Fundsrcvd
         //             }]
         //         })
         .then(project => {
@@ -721,29 +722,29 @@ exports.getJobCosts = async(req, res, next) => {
 
     try {
         const trades = await Trades.findAll()
-        const jobCosts = await JobCosts.findAll({
+        const jobcosts = await Jobcosts.findAll({
             where: { projectId: projId },
             include: [{
                 model: Trades
             }]
         })
-        const tots = await JobCosts.sum('costAmt', { where: { projectId: projId } })
+        const tots = await Jobcosts.sum('costAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId, {
             include: [{
-                model: JobCosts
+                model: Jobcosts
             }]
         })
         project.totalJobCosts = tots;
         project.save();
-        res.render('projects/jobCosts', {
+        res.render('projects/JobCosts', {
             pageTitle: "Job Costs",
-            path: '/jobCosts',
+            path: '/JobCosts',
             project: project,
             projId: projId,
             trade: trades,
             userName: userName,
             userId: userId,
-            jC: jobCosts,
+            jC: jobcosts,
             totals: tots
         });
     } catch (err) {
@@ -755,7 +756,7 @@ exports.getJobCosts = async(req, res, next) => {
 
 exports.postJobCosts = (req, res, next) => {
 
-    JobCosts.create({
+    Jobcosts.create({
             enteredBy: req.body.enteredBy,
             projectId: req.body.projectId,
             entryDate: req.body.entryDate,
@@ -1141,33 +1142,33 @@ exports.getWtbTot = async(req, res, next) => {
         const adj24 = (add24 - excl24 + oop24)
         const adj25 = (add25 - excl25 + oop25)
         const adjTot = (addTot - exclTot + oopTot)
-        const jobCosts = await JobCosts.findAll({ where: { projectId: projId }, include: [{ model: Trades }] })
-        const jc1 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 1 } })
-        const jc2 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 2 } })
-        const jc3 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 3 } })
-        const jc4 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 4 } })
-        const jc5 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 5 } })
-        const jc6 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 6 } })
-        const jc7 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 7 } })
-        const jc8 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 8 } })
-        const jc9 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 9 } })
-        const jc10 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 10 } })
-        const jc11 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 11 } })
-        const jc12 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 12 } })
-        const jc13 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 13 } })
-        const jc14 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 14 } })
-        const jc15 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 15 } })
-        const jc16 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 16 } })
-        const jc17 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 17 } })
-        const jc18 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 18 } })
-        const jc19 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 19 } })
-        const jc20 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 20 } })
-        const jc21 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 21 } })
-        const jc22 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 22 } })
-        const jc23 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 23 } })
-        const jc24 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 24 } })
-        const jc25 = await JobCosts.sum('costAmt', { where: { projectId: projId, tradeId: 25 } })
-        const jcTot = await JobCosts.sum('costAmt', { where: { projectId: projId } })
+        const Jobcosts = await Jobcosts.findAll({ where: { projectId: projId }, include: [{ model: Trades }] })
+        const jc1 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 1 } })
+        const jc2 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 2 } })
+        const jc3 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 3 } })
+        const jc4 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 4 } })
+        const jc5 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 5 } })
+        const jc6 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 6 } })
+        const jc7 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 7 } })
+        const jc8 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 8 } })
+        const jc9 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 9 } })
+        const jc10 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 10 } })
+        const jc11 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 11 } })
+        const jc12 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 12 } })
+        const jc13 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 13 } })
+        const jc14 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 14 } })
+        const jc15 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 15 } })
+        const jc16 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 16 } })
+        const jc17 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 17 } })
+        const jc18 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 18 } })
+        const jc19 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 19 } })
+        const jc20 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 20 } })
+        const jc21 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 21 } })
+        const jc22 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 22 } })
+        const jc23 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 23 } })
+        const jc24 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 24 } })
+        const jc25 = await Jobcosts.sum('costAmt', { where: { projectId: projId, tradeId: 25 } })
+        const jcTot = await Jobcosts.sum('costAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId)
 
         res.render('projects/wtbTot', {
@@ -1180,7 +1181,7 @@ exports.getWtbTot = async(req, res, next) => {
             adds: additions,
             excls: exclusions,
             ownero: ownero,
-            jobCosts: jobCosts,
+            Jobcosts: Jobcosts,
             net1: net1,
             net2: net2,
             net3: net3,
@@ -1669,7 +1670,7 @@ exports.getJcEdit = async(req, res, next) => {
 
     try {
         const trades = await Trades.findAll()
-        const jc = await JobCosts.findByPk(jcId, {
+        const jc = await Jobcosts.findByPk(jcId, {
             include: [{
                 model: Trades
             }]
@@ -1704,7 +1705,7 @@ exports.postJcEdit = async(req, res, next) => {
     const userId = req.user.id;
 
     try {
-        const jc = await JobCosts.findByPk(jcId)
+        const jc = await Jobcosts.findByPk(jcId)
 
         jc.enteredBy = updatedEnteredBy;
         jc.entryDate = updatedEntryDate;
@@ -1714,31 +1715,31 @@ exports.postJcEdit = async(req, res, next) => {
         await jc.save();
 
         const trades = await Trades.findAll()
-        const jobCosts = await JobCosts.findAll({
+        const jobcosts = await Jobcosts.findAll({
             where: { projectId: projId },
             include: [{
                 model: Trades
             }]
         })
-        const tots = await JobCosts.sum('costAmt', { where: { projectId: projId } })
+        const tots = await Jobcosts.sum('costAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId, {
             include: [{
-                model: JobCosts
+                model: Jobcosts
             }, {
                 model: Trades
             }]
         })
         project.totalJobCosts = tots;
         project.save();
-        res.render('projects/jobCosts', {
+        res.render('projects/JobCosts', {
             pageTitle: "Job Costs",
-            path: '/jobCosts',
+            path: '/JobCosts',
             project: project,
             projId: projId,
             trade: trades,
             userName: userName,
             userId: userId,
-            jC: jobCosts,
+            jC: Jobcosts,
             totals: tots
         });
     } catch (err) {
@@ -1753,13 +1754,13 @@ exports.getComEdit = async(req, res, next) => {
     const userName = req.user.ename;
 
     try {
-        const repPay = await RepPay.findAll({ where: { projectId: projId } })
+        const reppay = await Reppay.findAll({ where: { projectId: projId } })
         const project = await Project.findByPk(projId)
         res.render('projects/comEdit', {
             pageTitle: "Commissions Page",
             path: '/comEdit',
             project: project,
-            pays: repPay
+            pays: reppay
         });
     } catch (err) {
         const error = new Error(err);
@@ -1787,13 +1788,13 @@ exports.getComEditC = async(req, res, next) => {
     const userName = req.user.ename;
 
     try {
-        const repPay = await RepPay.findAll({ where: { projectId: projId } })
+        const reppay = await Reppay.findAll({ where: { projectId: projId } })
         const project = await Project.findByPk(projId)
         res.render('projects/comEditC', {
             pageTitle: "Commissions Page",
             path: '/comEditC',
             project: project,
-            pays: repPay
+            pays: reppay
         });
     } catch (err) {
         const error = new Error(err);
@@ -1822,10 +1823,10 @@ exports.getRepPay = async(req, res, nexct) => {
     const userId = req.user.id;
 
     try {
-        const repPay = await RepPay.findAll({
+        const reppay = await Reppay.findAll({
             where: { projectId: projId }
         })
-        const tots = await RepPay.sum('payAmt', { where: { projectId: projId } })
+        const tots = await Reppay.sum('payAmt', { where: { projectId: projId } })
         const project = await Project.findByPk(projId)
 
         project.totalRepPay = tots;
@@ -1835,7 +1836,7 @@ exports.getRepPay = async(req, res, nexct) => {
             path: '/repPay',
             project: project,
             projId: projId,
-            pays: repPay,
+            pays: reppay,
             userName: userName,
             userId: userId,
             totals: tots
@@ -1849,14 +1850,14 @@ exports.getRepPay = async(req, res, nexct) => {
 
 exports.postRepPay = (req, res, next) => {
 
-    RepPay.create({
+    Reppay.create({
             enteredBy: req.body.enteredBy,
             projectId: req.body.projectId,
             entryDate: req.body.entryDate,
             payAmt: req.body.payAmt,
             description: req.body.description
         })
-        .then(repPay => {
+        .then(reppay => {
             res.redirect('back');
         })
         .catch(err => {
@@ -1871,7 +1872,7 @@ exports.getRpEdit = async(req, res, next) => {
     const userName = req.user.ename;
 
     try {
-        const rp = await RepPay.findByPk(rpId)
+        const rp = await Reppay.findByPk(rpId)
 
         const project = await Project.findByPk(rp.projectId)
         res.render('projects/rpEdit', {
@@ -1901,7 +1902,7 @@ exports.postRpEdit = async(req, res, next) => {
     const userId = req.user.id;
 
     try {
-        const rp = await RepPay.findByPk(rpId)
+        const rp = await Reppay.findByPk(rpId)
 
         rp.enteredBy = updatedEnteredBy;
         rp.entryDate = updatedEntryDate;
@@ -1910,10 +1911,10 @@ exports.postRpEdit = async(req, res, next) => {
 
         await rp.save();
 
-        const repPay = await RepPay.findAll({
+        const reppay = await Reppay.findAll({
             where: { projectId: projId }
         })
-        const tots = await RepPay.sum('payAmt', { where: { projectId: projId } })
+        const tots = await Reppay.sum('payAmt', { where: { projectId: projId } })
 
         const project = await Project.findByPk(projId)
         project.totalRepPay = tots;
@@ -1925,7 +1926,7 @@ exports.postRpEdit = async(req, res, next) => {
             projId: projId,
             userName: userName,
             userId: userId,
-            pays: repPay,
+            pays: reppay,
             totals: tots
         });
 

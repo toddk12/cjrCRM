@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../util/database');
 
-const RepPay = sequelize.define('repPay', {
+const Reppay = sequelize.define('reppay', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -19,4 +19,4 @@ const RepPay = sequelize.define('repPay', {
     description: { type: Sequelize.STRING }
 });
 
-module.exports = RepPay;
+module.exports = Reppay;
