@@ -1586,7 +1586,7 @@ exports.getFrEdit = async(req, res, next) => {
 
     try {
         const trades = await Trades.findAll()
-        const fr = await FundsRcvd.findByPk(frId)
+        const fr = await Fundsrcvd.findByPk(frId)
         const project = await Project.findByPk(fr.projectId)
         res.render('projects/frEdit', {
             pageTitle: "Edit Funds Received Line Item",
@@ -1615,7 +1615,7 @@ exports.postFrEdit = async(req, res, next) => {
     const userId = req.user.id;
 
     try {
-        const fr = await FundsRcvd.findByPk(frId)
+        const fr = await Fundsrcvd.findByPk(frId)
 
         fr.enteredBy = updatedEnteredBy;
         fr.entryDate = updatedEntryDate;
@@ -1624,14 +1624,14 @@ exports.postFrEdit = async(req, res, next) => {
 
         await fr.save();
 
-        const fundsRcvd = await FundsRcvd.findAll({
+        const fundsrcvd = await Fundsrcvd.findAll({
             where: { projectId: projId }
         })
-        const tots = await FundsRcvd.sum('fundsAmt', { where: { projectId: projId } })
+        const tots = await Fundsrcvd.sum('fundsAmt', { where: { projectId: projId } })
 
         const project = await Project.findByPk(projId, {
             include: [{
-                model: FundsRcvd
+                model: Fundsrcvd
             }]
         })
         project.totalFundsReceived = tots;
@@ -1643,7 +1643,7 @@ exports.postFrEdit = async(req, res, next) => {
             projId: projId,
             userName: userName,
             userId: userId,
-            fR: fundsRcvd,
+            fR: fundsrcvd,
             totals: tots
         });
 
