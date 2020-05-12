@@ -728,9 +728,9 @@ exports.getJobCosts = async(req, res, next) => {
         })
         project.totalJobCosts = tots;
         project.save();
-        res.render('projects/JobCosts', {
+        res.render('projects/jobCosts', {
             pageTitle: "Job Costs",
-            path: '/JobCosts',
+            path: '/jobCosts',
             project: project,
             projId: projId,
             trade: trades,
