@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../util/database');
 
-const WorkOrder = sequelize.define('workorder', {
+const WorkOrder = sequelize.define('workorders', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
