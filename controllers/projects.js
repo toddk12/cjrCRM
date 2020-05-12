@@ -663,7 +663,7 @@ exports.getFundsReceived = async(req, res, next) => {
         const tots = await Fundsrcvd.sum('fundsAmt', { where: { projectId: projId } })
         console.log(tots);
         const project = await Project.findByPk(projId)
-        project.totalFundsrcvd = tots;
+        project.totalFundsRcvd = tots;
         await project.save();
         res.render('projects/fundsReceived', {
             pageTitle: "Funds Received",
