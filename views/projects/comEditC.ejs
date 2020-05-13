@@ -14,39 +14,19 @@
                             <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Details</a>
                             <br>
                             <form action="/comEdit/:<%= project.id %>" method="POST">
+
                                 <article>
-                                    <h4>Projected Commissions</h4>
+                                    <h4>Actual Commissions</h4>
                                     <div class="row">
                                         <div class="col-sm">
-                                            <h6>Total Project</h6>
+                                            <h6>Funds Received</h6>
                                         </div>
                                         <div class="col-sm">
                                             <h6></h6>
                                         </div>
                                         <div class="col-sm text-right">
                                             <h6>
-                                                <% if (project.fScopeRCV == null) { %>
-                                                    <strong><%= money.format(project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) %></strong>
-                                                    <% } else { %>
-                                                        <strong><%= money.format(project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) %></strong>
-                                                        <% } %>
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <h6>Projected Job Costs</h6>
-                                        </div>
-                                        <div class="col-sm">
-                                            <h6></h6>
-                                        </div>
-                                        <div class="col-sm text-right" name="overhead">
-                                            <h6>
-                                                <% if (project.fScopeRCV == null) { %>
-                                                    <%= money.format((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.65) %>
-                                                        <% } else { %>
-                                                            <%= money.format((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.65) %>
-                                                                <% } %>
+                                                <strong><%= money.format(project.totalFundsRcvd) %></strong>
                                             </h6>
                                         </div>
                                     </div>
@@ -59,11 +39,7 @@
                                         </div>
                                         <div class="col-sm text-right" name="overhead">
                                             <h6>
-                                                <% if (project.fScopeRCV == null) { %>
-                                                    <%= money.format((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.1) %>
-                                                        <% } else { %>
-                                                            <%= money.format((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.1) %>
-                                                                <% } %>
+                                                <%= money.format(project.totalFundsRcvd * 0.1) %>
                                             </h6>
                                         </div>
                                     </div>
@@ -77,11 +53,7 @@
                                         </div>
                                         <div class="col-sm text-right" name="commissionable">
                                             <h6>
-                                                <% if (project.fScopeRCV == null) { %>
-                                                    <%= money.format((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) %>
-                                                        <% } else { %>
-                                                            <%= money.format((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) %>
-                                                                <% } %>
+                                                <%= money.format(project.totalFundsRcvd * 0.9) %>
                                             </h6>
                                         </div>
                                     </div>
@@ -96,11 +68,7 @@
                                         </div>
                                         <div class="col-sm text-right">
                                             <h6>
-                                                <% if (project.fScopeRCV == null) { %>
-                                                    <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.salesP) %>
-                                                        <% } else { %>
-                                                            <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.salesP) %>
-                                                                <% } %>
+                                                <%= money.format((project.totalFundsRcvd * 0.9) * project.salesP) %>
                                             </h6>
                                         </div>
                                     </div>
@@ -115,12 +83,7 @@
                                         </div>
                                         <div class="col-sm text-right">
                                             <h6>
-                                                <% if (project.fScopeRCV == null) { %>
-                                                    <% if (project.fScopeRCV == null) { %>
-                                                        <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.orP) %>
-                                                            <% } else { %>
-                                                                <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.orP) %>
-                                                                    <% } %>
+                                                <%= money.format((project.totalFundsRcvd * 0.9) * project.orP) %>
                                             </h6>
                                         </div>
                                     </div>
@@ -135,11 +98,7 @@
                                         </div>
                                         <div class="col-sm text-right">
                                             <h6>
-                                                <% if (project.fScopeRCV == null) { %>
-                                                    <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.estP) %>
-                                                        <% } else { %>
-                                                            <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.estP) %>
-                                                                <% } %>
+                                                <%= money.format((project.totalFundsRcvd * 0.9) * project.estP) %>
                                             </h6>
                                         </div>
                                     </div>
@@ -153,11 +112,7 @@
                                         </div>
                                         <div class="col-sm text-right">
                                             <h6>
-                                                <% if (project.fScopeRCV == null) { %>
-                                                    <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * (project.salesP+project.orP+project.estP)) %>
-                                                        <% } else { %>
-                                                            <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * (project.salesP+project.orP+project.estP)) %>
-                                                                <% } %>
+                                                <%= money.format((project.totalFundsRcvd * 0.9) * (project.salesP+project.orP+project.estP)) %>
                                             </h6>
                                         </div>
                                     </div>
@@ -170,16 +125,43 @@
                                         </div>
                                         <div class="col-sm text-right">
                                             <h6>
-                                                <% if (project.fScopeRCV == null) { %>
-                                                    <%= money.format((((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.9) * project.salesP)/2) %>
-                                                        <% } else { %>
-                                                            <%= money.format((((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.9) * project.salesP)/2) %>
-                                                                <% } %>
+                                                <%= money.format(((project.totalFundsRcvd * 0.9) * project.salesP)/2) %>
                                             </h6>
                                         </div>
                                     </div>
                                 </article>
-
+                        </div>
+                        <br>
+                        <div class="centered">
+                            <article>
+                                <h4>Paid Commissions</h4>
+                                <a class="btn-sm text-center" style="width: 150px" href="/repPay/<%= project.id %>">Add Payment to Sales Rep</a>
+                                <% for (let pay of pays) { %>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>
+                                                <%= pay.description %>
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <%= money.format(pay.payAmt) %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <h6>Total Paid</h6>
+                                            </div>
+                                            <div class="col-sm text-right">
+                                                <h6>
+                                                    <%= money.format(project.totalRepPay) %>
+                                                </h6>
+                                            </div>
+                                        </div>
+                            </article>
                             </form>
                         </div>
             </main>
