@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs');
 
+const aws = require('aws-sdk');
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
@@ -10,6 +11,7 @@ const MySQLStore = require('express-mysql-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
+const multerS3 = require('multer-s3');
 const sgMail = require('@sendgrid/mail');
 const moment = require('moment');
 const helmet = require('helmet');
@@ -44,6 +46,7 @@ const RoofCalc = require('./models/roofCalc');
 const Reppay = require('./models/reppay');
 
 const app = express();
+const s3 = new aws.S3();
 
 const options = {
     host: process.env.DB_HOST,
@@ -56,19 +59,19 @@ const options = {
 const sessionStore = new MySQLStore(options);
 const csrfProtection = csrf();
 
-const fileStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/documents');
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now().toString() + '-' + file.originalname);
-    }
-})
+const fileStorage = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'cjrdocuments',
+        key: function(req, file, cb) {
+            cb(null, Date.now().toString() + '-' + file.originalname);
+        }
+    })
+});
+
 moment().format("M/D/YY");
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-
-
 
 const projectRoutes = require('./routes/project');
 const mainRoutes = require('./routes/main');
