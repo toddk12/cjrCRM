@@ -71,6 +71,26 @@
 
                                     <div class="row">
                                         <div class="col-sm">
+                                            <h6>Over-ride</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6>
+                                                <input style="width: 50px" type="number" name="orP" id="orP" value="<%= project.orP %>">
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <% if (project.fScopeRCV == null) { %>
+                                                        <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.orP) %>
+                                                            <% } else { %>
+                                                                <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.orP) %>
+                                                                    <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
                                             <h6>Estimator</h6>
                                         </div>
                                         <div class="col-sm">
