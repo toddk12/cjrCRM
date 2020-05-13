@@ -69,6 +69,60 @@
                                     </div>
                                     <hr>
 
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Estimator</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6>
+                                                <input style="width: 50px" type="number" name="estP" id="estP" value="<%= project.estP %>">
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.estP) %>
+                                                        <% } else { %>
+                                                            <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.estP) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Total Commissions</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * (project.salesP+project.orP+project.estP)) %>
+                                                        <% } else { %>
+                                                            <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * (project.salesP+project.orP+project.estP)) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>50% Sales Commissions</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format((((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.9) * project.salesP)/2) %>
+                                                        <% } else { %>
+                                                            <%= money.format((((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.9) * project.salesP)/2) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
                                 </article>
                                 <article>
                                     <h4>Actual Commissions</h4>
