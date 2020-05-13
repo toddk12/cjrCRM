@@ -68,7 +68,42 @@
                                         </div>
                                     </div>
                                     <hr>
-
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Commissionable</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6></h6>
+                                        </div>
+                                        <div class="col-sm text-right" name="commissionable">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) %>
+                                                        <% } else { %>
+                                                            <%= money.format((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h6>Sales Commission</h6>
+                                        </div>
+                                        <div class="col-sm">
+                                            <h6>
+                                                <input style="width: 50px" type="number" name="salesP" id="salesP" value="<%= project.salesP %>">
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm text-right">
+                                            <h6>
+                                                <% if (project.fScopeRCV == null) { %>
+                                                    <%= money.format(((project.oScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.salesP) %>
+                                                        <% } else { %>
+                                                            <%= money.format(((project.fScopeRCV + project.rcvChange - project.totalExclusions + project.totalOwnerOop) * 0.75) * project.salesP) %>
+                                                                <% } %>
+                                            </h6>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-sm">
                                             <h6>Over-ride</h6>
