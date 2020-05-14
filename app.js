@@ -46,7 +46,10 @@ const RoofCalc = require('./models/roofCalc');
 const Reppay = require('./models/reppay');
 
 const app = express();
-const s3 = new aws.S3();
+const s3 = new aws.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAcessKey: process.env.AWS_SECRET_ACCESS_KEY
+});
 
 const options = {
     host: process.env.DB_HOST,
@@ -59,7 +62,7 @@ const options = {
 const sessionStore = new MySQLStore(options);
 const csrfProtection = csrf();
 
-const fileStorage = multer({
+const uploadS3 = multer({
     storage: multerS3({
         s3: s3,
         bucket: 'cjrdocuments',
@@ -87,7 +90,7 @@ app.use(helmet());
 app.use(compression());
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multer({ storage: fileStorage }).single('docFile'));
+app.use(multer({ storage: uploadS3 }).single('docFile'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
