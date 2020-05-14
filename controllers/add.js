@@ -622,7 +622,7 @@ exports.postAddDoc = (req, res, next) => {
     const docFile = req.file.originalname;
     const docPath = req.file.filename;
     const file = req.file;
-
+    uploadS3.single('docfile');
     Document.create({
         projectId: projId,
         docName: docName,
