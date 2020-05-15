@@ -624,7 +624,7 @@ exports.postAddDoc = async(req, res, next) => {
     const file = req.file;
 
     try {
-        fileUpload.single('docfile');
+
         const docs = await Document.create({
             projectId: projId,
             docName: docName,
