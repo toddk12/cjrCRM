@@ -616,47 +616,41 @@ exports.getAddDoc = async(req, res, next) => {
 
 };
 
-exports.postAddDoc = (req, res, next) => {
+exports.postAddDoc = async(req, res, next) => {
     const projId = req.body.projectId;
     const docName = req.body.docName;
     const docFile = req.file.originalname;
     const docPath = req.file.filename;
     const file = req.file;
-    uploadS3.single('docfile');
-    Document.create({
-        projectId: projId,
-        docName: docName,
-        docFile: docFile,
-        docPath: docPath
-    })
 
-    .then(results => {
-        Rtype.findAll()
-            .then(rtype => {
-                Document.findAll({
-                        where: { projectId: projId }
-                    })
-                    .then(document => {
-                        Project.findByPk(projId)
-                            .then(project => {
-                                res.render('add/add-doc', {
-                                    pageTitle: "Add Document",
-                                    path: '/add-doc',
-                                    project: project,
-                                    doc: document,
-                                    projId: projId,
-                                    types: rtype
-                                });
-                            })
-                    })
-            })
-    })
+    try {
+        fileUpload.single('docfile');
+        const docs = await Document.create({
+            projectId: projId,
+            docName: docName,
+            docFile: docFile,
+            docPath: docPath
+        })
 
-    .catch(err => {
+        const rtype = await Rtype.findAll()
+        const document = await Document.findAll({
+            where: { projectId: projId }
+        })
+        const project = await Project.findByPk(projId)
+        res.render('add/add-doc', {
+            pageTitle: "Add Document",
+            path: '/add-doc',
+            project: project,
+            doc: document,
+            projId: projId,
+            types: rtype
+        });
+    } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
         return next(error);
-    });
+    }
+
 };
 
 exports.getDownloadDoc = async(req, res, next) => {
