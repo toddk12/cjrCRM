@@ -62,18 +62,18 @@ const options = {
 const sessionStore = new MySQLStore(options);
 const csrfProtection = csrf();
 
-module.exports = fileUpload = multer({
+const uploadS3 = multer({
     storage: multerS3({
         s3: s3,
+        acl: 'public-read',
         bucket: 'cjrdocuments',
         metadata: (req, file, cb) => {
-            cb(null, { fieldName: file.fieldname });
+            cb(null, { fieldname: file.fieldname })
+        },
+        key: (req, file, cb) => {
+            cb(null, file.originalname + '-' + Date.now().toString())
         }
-    }),
-    contentDisposition: 'document',
-    key: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now().toString());
-    }
+    })
 });
 
 moment().format("M/D/YY");
