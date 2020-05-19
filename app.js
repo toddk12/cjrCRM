@@ -62,26 +62,26 @@ const options = {
 const sessionStore = new MySQLStore(options);
 const csrfProtection = csrf();
 
-// const fileStorage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'public/documents');
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, file.originalname + '-' + Date.now());
-//     }
-// })
+const fileStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/documents');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname + '-' + Date.now());
+    }
+})
 
 
-const upload = multer({
-    storage: multerS3({
-        s3: s3,
-        bucket: 'cjrdocuments',
-        acl: 'public-read',
-        key: (req, file, cb) => {
-            cb(null, file.originalname + '-' + Date.now().toString());
-        }
-    })
-});
+// const upload = multer({
+//     storage: multerS3({
+//         s3: s3,
+//         bucket: 'cjrdocuments',
+//         acl: 'public-read',
+//         key: (req, file, cb) => {
+//             cb(null, file.originalname + '-' + Date.now().toString());
+//         }
+//     })
+// });
 
 moment().format("M/D/YY");
 app.set('view engine', 'ejs');
@@ -101,7 +101,7 @@ app.use(helmet());
 app.use(compression());
 
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(multer({ storage: fileStorage }).single('docFile'));
+app.use(multer({ storage: fileStorage }).single('docFile'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
