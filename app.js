@@ -72,7 +72,7 @@ const csrfProtection = csrf();
 // })
 
 
-app.use(upload = multer({
+const upload = multer({
     storage: multerS3({
         s3: s3,
         bucket: 'cjrdocuments',
@@ -81,7 +81,7 @@ app.use(upload = multer({
             cb(null, file.originalname + '-' + Date.now().toString());
         }
     })
-}));
+});
 
 moment().format("M/D/YY");
 app.set('view engine', 'ejs');
