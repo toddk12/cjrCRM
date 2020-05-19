@@ -45,7 +45,7 @@ router.post('/add-supplier', isAuth, addController.postAddSupplier);
 
 router.get('/add-doc/:projectId', isAuth, addController.getAddDoc);
 
-router.post('/add-doc', isAuth, addController.postAddDoc);
+router.post('/add-doc', upload.single('docFile'), isAuth, addController.postAddDoc);
 
 router.get('/document/:docId', isAuth, addController.getDownloadDoc);
 
