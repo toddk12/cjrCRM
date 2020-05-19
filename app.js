@@ -101,7 +101,7 @@ app.use(helmet());
 app.use(compression());
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multer({ storage: fileStorage }).single('docFile'));
+// app.use(multer({ storage: fileStorage }).single('docFile'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
