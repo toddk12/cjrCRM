@@ -80,7 +80,7 @@ const upload = multer({
             cb(null, file.originalname + '-' + Date.now().toString());
         }
     })
-}).array('upload', 1);
+});
 
 moment().format("M/D/YY");
 app.set('view engine', 'ejs');
