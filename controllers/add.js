@@ -781,7 +781,7 @@ exports.postAddWorkOrder = (req, res, next) => {
             const projId = workOrder.projectId;
             Project.findByPk(projId)
                 .then(project => {
-                    Workorder.findAll({
+                    WorkOrder.findAll({
                             where: {
                                 projectId: projId
                             },
