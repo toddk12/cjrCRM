@@ -65,4 +65,4 @@ const RoofCalc = sequelize.define('roofcalc', {
 
 });
 
-module.exports = Roofcalc;
+module.exports = RoofCalc;
