@@ -32,7 +32,7 @@ exports.getRoofCalc = async(req, res, next) => {
             roof: roofCalc,
             project: project
         });
-    } else {
+        // } else {
         const roofCalc = await RoofCalc.findOne({
             where: { projectId: projId },
             include: [{
@@ -46,13 +46,11 @@ exports.getRoofCalc = async(req, res, next) => {
             roofId: roofId,
             roof: roofCalc
         });
+    } catch (err) {
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
     }
-
-} catch (err) {
-    const error = new Error(err);
-    error.httpStatusCode = 500;
-    return next(error);
-}
 };
 
 exports.postRoofCalc = (req, res, next) => {
