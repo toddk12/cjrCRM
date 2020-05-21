@@ -16,6 +16,7 @@ const sgMail = require('@sendgrid/mail');
 const moment = require('moment');
 const helmet = require('helmet');
 const compression = require("compression");
+const wkhtmltopdf = require('wkhtmltopdf');
 
 const errorController = require('./controllers/error');
 const sequelize = require('./util/database');

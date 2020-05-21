@@ -13,46 +13,46 @@ exports.getRoofCalc = async(req, res, next) => {
     const projId = req.params.projectId;
 
     try {
-        const roofCheck = await RoofCalc.count({
-            where: { projectId: projId }
+        // const roofCheck = await RoofCalc.count({
+        //     where: { projectId: projId }
+        // })
+        // if (roofCheck === 0) {
+        //     const roofCalc = await RoofCalc.findOne({
+        //         where: { projectId: projId },
+        //         include: [{
+        //             model: Project
+        //         }]
+        //     })
+        const project = await Project.findByPk(projId)
+        console.log('HERE');
+        res.render('roof/roofCalc', {
+            pageTitle: 'Roof Calculator',
+            path: '/roofCalc',
+            projId: projId,
+            roof: roofCalc,
+            project: project
+        });
+    } else {
+        const roofCalc = await RoofCalc.findOne({
+            where: { projectId: projId },
+            include: [{
+                model: Project
+            }]
         })
-        if (roofCheck === 0) {
-            const roofCalc = await RoofCalc.findOne({
-                where: { projectId: projId },
-                include: [{
-                    model: Project
-                }]
-            })
-            const project = await Project.findByPk(projId)
-            console.log('HERE');
-            res.render('roof/roofCalc', {
-                pageTitle: 'Roof Calculator',
-                path: '/roofCalc',
-                projId: projId,
-                roof: roofCalc,
-                project: project
-            });
-        } else {
-            const roofCalc = await RoofCalc.findOne({
-                where: { projectId: projId },
-                include: [{
-                    model: Project
-                }]
-            })
-            const roofId = roofCalc.id;
-            res.render('roof/roofOrder', {
-                pageTitle: 'Roof Order',
-                path: '/roofOrder',
-                roofId: roofId,
-                roof: roofCalc
-            });
-        }
-
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
+        const roofId = roofCalc.id;
+        res.render('roof/roofOrder', {
+            pageTitle: 'Roof Order',
+            path: '/roofOrder',
+            roofId: roofId,
+            roof: roofCalc
+        });
     }
+
+} catch (err) {
+    const error = new Error(err);
+    error.httpStatusCode = 500;
+    return next(error);
+}
 };
 
 exports.postRoofCalc = (req, res, next) => {
