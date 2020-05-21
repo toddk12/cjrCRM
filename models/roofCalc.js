@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../util/database');
 
-const RoofCalc = sequelize.define('roofCalc', {
+const RoofCalc = sequelize.define('roofcalc', {
     id: { type: Sequelize.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true },
     adjPipeVents: { type: Sequelize.FLOAT(10, 2), defaultValue: 0.00 },
     bVent: { type: Sequelize.INTEGER, defaultValue: 0 },
@@ -65,4 +65,4 @@ const RoofCalc = sequelize.define('roofCalc', {
 
 });
 
-module.exports = RoofCalc;
+module.exports = Roofcalc;

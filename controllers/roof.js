@@ -7,7 +7,7 @@ const path = require('path');
 const PDFDocument = require('pdfkit');
 
 const Project = require('../models/project');
-const RoofCalc = require('../models/roofCalc');
+const RoofCalc = require('../models/roofcalc');
 
 exports.getRoofCalc = async(req, res, next) => {
     const projId = req.params.projectId;

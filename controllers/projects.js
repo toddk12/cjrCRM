@@ -29,7 +29,7 @@ const Estimator = require('../models/estimator');
 const Reppay = require('../models/reppay');
 const Wtb = require('../models/wtb');
 const WorkOrder = require('../models/workorder');
-const RoofCalc = require('../models/roofCalc');
+const RoofCalc = require('../models/roofcalc');
 
 exports.getAllProjects = async(req, res, next) => {
     try {
