@@ -65,7 +65,7 @@ router.post('/add-supplier', isAuth, addController.postAddSupplier);
 
 router.get('/add-doc/:projectId', isAuth, addController.getAddDoc);
 
-router.post('/add-doc', uploadS3.single('file'), isAuth, addController.postAddDoc);
+router.post('/add-doc', uploadS3.single('file'), addController.postAddDoc);
 
 router.get('/document/:docId', isAuth, addController.getDownloadDoc);
 
