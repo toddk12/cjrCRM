@@ -35,9 +35,6 @@ const uploadS3 = multer({
         acl: 'public-read',
         contentType: multerS3.AUTO_CONTENT_TYPE,
         contentDisposition: 'attachment',
-        metadata: function(req, file, cb) {
-            cb(null, Object.assign({}, req.body));
-        },
         key: (req, file, cb) => {
             cb(null, file.originalname + '-' + Date.now().toString());
         }
@@ -646,7 +643,7 @@ exports.postAddDoc = async(req, res, next) => {
     const docFile = req.file.originalname;
     const docPath = req.file.filename;
     const file = req.file;
-    uploadS3.single('file');
+    uploadS3.single(file);
     try {
 
         const docs = await Document.create({
