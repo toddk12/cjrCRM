@@ -646,7 +646,7 @@ exports.postAddDoc = async(req, res, next) => {
     const docFile = req.file.originalname;
     const docPath = req.file.filename;
     const file = req.file;
-    uploadS3.single('req.file.originalname');
+    uploadS3.single('file');
     try {
 
         const docs = await Document.create({
