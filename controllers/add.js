@@ -33,6 +33,11 @@ const uploadS3 = multer({
         s3: s3,
         bucket: 'elasticbeanstalk-us-west-2-324049635531',
         acl: 'public-read',
+        contentType: multerS3.AUTO_CONTENT_TYPE,
+        contentDisposition: 'attachment',
+        metadata: function(req, file, cb) {
+            cb(null, Object.assign({}, req.body));
+        },
         key: (req, file, cb) => {
             cb(null, file.originalname + '-' + Date.now().toString());
         }
