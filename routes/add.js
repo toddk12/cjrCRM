@@ -1,29 +1,10 @@
 const path = require('path');
 const fs = require('fs');
 
-const aws = require('aws-sdk');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
 const express = require('express');
 
 const addController = require('../controllers/add');
 const isAuth = require('../middleware/is-auth');
-
-const s3 = new aws.S3({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAcessKey: process.env.AWS_SECRET_ACCESS_KEY
-});
-
-const uploadS3 = multer({
-    storage: multerS3({
-        s3: s3,
-        bucket: 'elasticbeanstalk-us-west-2-324049635531',
-        acl: 'public-read',
-        key: (req, file, cb) => {
-            cb(null, file.originalname + '-' + Date.now().toString());
-        }
-    })
-});
 
 const router = express.Router();
 
@@ -65,7 +46,7 @@ router.post('/add-supplier', isAuth, addController.postAddSupplier);
 
 router.get('/add-doc/:projectId', isAuth, addController.getAddDoc);
 
-router.post('/add-doc', uploadS3.single('file'), addController.postAddDoc);
+router.post('/add-doc', isAuth, addController.postAddDoc);
 
 router.get('/document/:docId', isAuth, addController.getDownloadDoc);
 

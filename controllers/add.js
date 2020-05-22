@@ -2,6 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const fileHelper = require('../util/delete');
 const moment = require('moment');
+const aws = require('aws-sdk');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
 
 const Sequelize = require('sequelize');
 const { Op } = require('sequelize');
@@ -19,6 +22,22 @@ const Supplier = require('../models/supplier');
 const Trades = require('../models/trades');
 const Rtype = require('../models/rtype');
 const WorkOrder = require('../models/workorder');
+
+const s3 = new aws.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAcessKey: process.env.AWS_SECRET_ACCESS_KEY
+});
+
+const uploadS3 = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'elasticbeanstalk-us-west-2-324049635531',
+        acl: 'public-read',
+        key: (req, file, cb) => {
+            cb(null, file.originalname + '-' + Date.now().toString());
+        }
+    })
+});
 
 exports.getAddInsurance = async(req, res, next) => {
     const username = req.session.username;
@@ -616,7 +635,7 @@ exports.getAddDoc = async(req, res, next) => {
 
 };
 
-exports.postAddDoc = async(req, res, next) => {
+exports.postAddDoc = uploadS3.single('file'), async(req, res, next) => {
     const projId = req.body.projectId;
     const docName = req.body.docName;
     const docFile = req.file.originalname;
