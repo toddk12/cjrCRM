@@ -640,13 +640,13 @@ exports.getAddDoc = async(req, res, next) => {
 
 };
 
-exports.postAddDoc = uploadS3.single('req.file.originalname'), async(req, res, next) => {
+exports.postAddDoc = async(req, res, next) => {
     const projId = req.body.projectId;
     const docName = req.body.docName;
     const docFile = req.file.originalname;
     const docPath = req.file.filename;
     const file = req.file;
-
+    uploadS3.single('req.file.originalname');
     try {
 
         const docs = await Document.create({
