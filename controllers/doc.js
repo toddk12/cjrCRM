@@ -18,7 +18,7 @@ exports.getAddDoc = async(req, res, next) => {
         const project = await Project.findByPk(projId)
             // console.log(rtype);
             // res.redirect("back");
-        res.render('add/add-doc', {
+        res.render('doc/add-doc', {
             pageTitle: "Add Document",
             path: '/add-doc',
             project: project,
@@ -55,7 +55,7 @@ exports.postAddDoc = async(req, res, next) => {
             where: { projectId: projId }
         })
         const project = await Project.findByPk(projId)
-        res.render('add/add-doc', {
+        res.render('doc/add-doc', {
             pageTitle: "Add Document",
             path: '/add-doc',
             project: project,
@@ -110,7 +110,7 @@ exports.getDeleteDoc = async(req, res, next) => {
                     .then(document => {
                         Project.findByPk(projId)
                             .then(project => {
-                                res.render('add/add-doc', {
+                                res.render('doc/add-doc', {
                                     pageTitle: "Add Document",
                                     path: '/add-doc',
                                     project: project,
