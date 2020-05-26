@@ -91,6 +91,7 @@ app.set('views', 'views');
 const projectRoutes = require('./routes/project');
 const mainRoutes = require('./routes/main');
 const addRoutes = require('./routes/add');
+const docRoutes = require('./routes/doc');
 const workRoutes = require('./routes/work');
 const roofRoutes = require('./routes/roof');
 const searchRoutes = require('./routes/search');
@@ -141,6 +142,7 @@ app.use((req, res, next) => {
 app.use(projectRoutes);
 app.use(mainRoutes);
 app.use(addRoutes);
+app.use(docRoutes);
 app.use(workRoutes);
 app.use(roofRoutes);
 app.use(searchRoutes);
