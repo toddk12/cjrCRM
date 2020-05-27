@@ -34,7 +34,7 @@ router.get('/add-doc/:projectId', isAuth, docController.getAddDoc);
 
 router.post('/add-doc', isAuth, docController.postAddDoc);
 
-router.post('/add-doc', uploadS3.single('file'), isAuth, addController.postAddDoc);
+router.post('/add-doc', uploadS3.single('file'), isAuth, docController.postAddDoc);
 
 router.get('/document/:docId', isAuth, docController.getDownloadDoc);
 
