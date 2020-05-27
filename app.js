@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs');
 
-// const aws = require('aws-sdk');
+const aws = require('aws-sdk');
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
@@ -11,7 +11,7 @@ const MySQLStore = require('express-mysql-session')(session);
 const csrf = require('csurf');
 const flash = require('connect-flash');
 const multer = require('multer');
-// const multerS3 = require('multer-s3');
+const multerS3 = require('multer-s3');
 const sgMail = require('@sendgrid/mail');
 const moment = require('moment');
 const helmet = require('helmet');
@@ -103,7 +103,7 @@ app.use(helmet());
 app.use(compression());
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multer({ storage: fileStorage }).single('docFile'));
+// app.use(multer({ storage: fileStorage }).single('docFile'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
