@@ -45,45 +45,45 @@ exports.getAddDoc = async(req, res, next) => {
 };
 
 exports.postAddDoc = async(req, res) => {
-    const projId = req.body.projectId;
-    const docName = req.body.docName;
-    const docFile = req.file.originalname;
-    const docPath = req.file.filename;
-    var item = req.body;
-    var upload = multer({
-        storage: multerS3({
-            s3: s3,
-            bucket: item.bucketName,
-            metadata: function(req, file, cb) {
-                cb(null, { docfile: file.originalname });
-            },
-            key: function(req, file, cb) {
-                cb(null, Date.now().toString())
-            }
-        })
-    })
+    // const projId = req.body.projectId;
+    // const docName = req.body.docName;
+    // const docFile = req.file.originalname;
+    // const docPath = req.file.filename;
     try {
-
-        const docs = await Document.create({
-            projectId: projId,
-            docName: docName,
-            docFile: docFile,
-            docPath: docPath
+        var item = req.body;
+        var upload = multer({
+            storage: multerS3({
+                s3: s3,
+                bucket: item.bucketName,
+                metadata: function(req, file, cb) {
+                    cb(null, { docfile: file.docfile });
+                },
+                key: function(req, file, cb) {
+                    cb(null, Date.now().toString())
+                }
+            })
         })
+        res.redirect('home');
+        // const docs = await Document.create({
+        //     projectId: projId,
+        //     docName: docName,
+        //     docFile: docFile,
+        //     docPath: docPath
+        // })
 
-        const rtype = await Rtype.findAll()
-        const document = await Document.findAll({
-            where: { projectId: projId }
-        })
-        const project = await Project.findByPk(projId)
-        res.render('doc/add-doc', {
-            pageTitle: "Add Document",
-            path: '/add-doc',
-            project: project,
-            doc: document,
-            projId: projId,
-            types: rtype
-        });
+        // const rtype = await Rtype.findAll()
+        // const document = await Document.findAll({
+        //     where: { projectId: projId }
+        // })
+        // const project = await Project.findByPk(projId)
+        // res.render('doc/add-doc', {
+        //     pageTitle: "Add Document",
+        //     path: '/add-doc',
+        //     project: project,
+        //     doc: document,
+        //     projId: projId,
+        //     types: rtype
+        // });
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
