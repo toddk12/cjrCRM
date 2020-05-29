@@ -55,7 +55,7 @@ exports.postAddDoc = async(req, res) => {
             storage: multers3({
                 s3: s3,
                 acl: 'public-read',
-                bucket: 'bucket-name',
+                bucket: 'elasticbeanstalk-us-west-2-324049635531',
                 key: (req, file, cb) => {
                     cb(null, Date.now().toString() + '-' + file.originalname)
                 }
