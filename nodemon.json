@@ -5,6 +5,8 @@
         "DB_DATABASE": "cjdatabase",
         "DB_PASS": "AmxhudE3",
         "DB_HOST": "mysql-9065-0.cloudclusters.net",
-        "PRODKEY": "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"
+        "PRODKEY": "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",
+        "AWS_ACCESS_KEY_ID": "AKIAJZ47364JYPJM46QA",
+        "AWS_SECRET_ACCESS_KEY": "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"
     }
 }
