@@ -44,13 +44,13 @@ exports.getAddDoc = async(req, res, next) => {
 
 };
 
-exports.postAddDoc = a(req, res) => {
-    // const projId = req.body.projectId;
-    // const docName = req.body.docName;
-    // const docFile = req.file.originalname;
-    // const docPath = req.file.filename;
+exports.postAddDoc = async(req, res) => {
+    const projId = req.body.projectId;
+    const docName = req.body.docName;
+    const docFile = req.file.originalname;
+    const docPath = req.file.filename;
 
-    var item = req.file;
+    const item = req.file;
     const uploadS3 = multer({
         storage: multers3({
             s3: s3,
@@ -62,9 +62,8 @@ exports.postAddDoc = a(req, res) => {
         })
     });
     try {
-        uploadS3.single('docFile'), (req, res) {
-            console.log(docFile);
-        };
+        uploadS3.single('docFile'), (req, res)
+        console.log(docFile);
 
         res.redirect('home');
         // const docs = await Document.create({
