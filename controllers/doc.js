@@ -49,18 +49,19 @@ exports.postAddDoc = async(req, res) => {
     // const docName = req.body.docName;
     // const docFile = req.file.originalname;
     // const docPath = req.file.filename;
+
+    var item = req.body;
+    const uploadS3 = multer({
+        storage: multers3({
+            s3: s3,
+            acl: 'public-read',
+            bucket: 'elasticbeanstalk-us-west-2-324049635531',
+            key: (req, file, cb) => {
+                cb(null, Date.now().toString() + '-' + file.originalname)
+            }
+        })
+    });
     try {
-        var item = req.body;
-        const uploadS3 = multer({
-            storage: multers3({
-                s3: s3,
-                acl: 'public-read',
-                bucket: 'elasticbeanstalk-us-west-2-324049635531',
-                key: (req, file, cb) => {
-                    cb(null, Date.now().toString() + '-' + file.originalname)
-                }
-            })
-        });
         uploadS3.single('file'), (req, res) => {
             console.log(req.file);
         };
