@@ -63,14 +63,14 @@ const options = {
 const sessionStore = new MySQLStore(options);
 const csrfProtection = csrf();
 
-const fileStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/documents');
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname + '-' + Date.now());
-    }
-})
+// const fileStorage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'public/documents');
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.originalname + '-' + Date.now());
+//     }
+// })
 
 
 // const upload = multer({

@@ -62,9 +62,9 @@ exports.postAddDoc = async(req, res) => {
         })
     });
     try {
-        uploadS3.single('docFile'), (req, res)
-        console.log(docFile);
-
+        uploadS3.single('docFile'), (req, res) => {
+            console.log(docFile);
+        };
         res.redirect('home');
         // const docs = await Document.create({
         //     projectId: projId,
