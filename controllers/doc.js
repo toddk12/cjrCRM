@@ -44,7 +44,7 @@ exports.getAddDoc = async(req, res, next) => {
 
 };
 
-exports.postAddDoc = async(req, res) => {
+exports.postAddDoc = a(req, res) => {
     // const projId = req.body.projectId;
     // const docName = req.body.docName;
     // const docFile = req.file.originalname;
@@ -94,41 +94,41 @@ exports.postAddDoc = async(req, res) => {
     }
 };
 
-exports.postAddDoc = async(req, res, next) => {
-    const projId = req.body.projectId;
-    const docName = req.body.docName;
-    const docFile = req.file.originalname;
-    const docPath = req.file.filename;
+// exports.postAddDoc = async(req, res, next) => {
+//     const projId = req.body.projectId;
+//     const docName = req.body.docName;
+//     const docFile = req.file.originalname;
+//     const docPath = req.file.filename;
 
-    try {
+//     try {
 
-        const docs = await Document.create({
-            projectId: projId,
-            docName: docName,
-            docFile: docFile,
-            docPath: docPath
-        })
+//         const docs = await Document.create({
+//             projectId: projId,
+//             docName: docName,
+//             docFile: docFile,
+//             docPath: docPath
+//         })
 
-        const rtype = await Rtype.findAll()
-        const document = await Document.findAll({
-            where: { projectId: projId }
-        })
-        const project = await Project.findByPk(projId)
-        res.render('doc/add-doc', {
-            pageTitle: "Add Document",
-            path: '/add-doc',
-            project: project,
-            doc: document,
-            projId: projId,
-            types: rtype
-        });
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    }
+//         const rtype = await Rtype.findAll()
+//         const document = await Document.findAll({
+//             where: { projectId: projId }
+//         })
+//         const project = await Project.findByPk(projId)
+//         res.render('doc/add-doc', {
+//             pageTitle: "Add Document",
+//             path: '/add-doc',
+//             project: project,
+//             doc: document,
+//             projId: projId,
+//             types: rtype
+//         });
+//     } catch (err) {
+//         const error = new Error(err);
+//         error.httpStatusCode = 500;
+//         return next(error);
+//     }
 
-};
+// };
 
 exports.getDownloadDoc = async(req, res, next) => {
     const docId = req.params.docId;
