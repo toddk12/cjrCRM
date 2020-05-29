@@ -51,18 +51,20 @@ exports.postAddDoc = async(req, res) => {
     // const docPath = req.file.filename;
     try {
         var item = req.body;
-        var upload = multer({
-            storage: multerS3({
+        const uploadS3 = multer({
+            storage: multers3({
                 s3: s3,
-                bucket: item.bucketName,
-                metadata: function(req, file, cb) {
-                    cb(null, { docfile: file.docfile });
-                },
-                key: function(req, file, cb) {
-                    cb(null, Date.now().toString())
+                acl: 'public-read',
+                bucket: 'bucket-name',
+                key: (req, file, cb) => {
+                    cb(null, Date.now().toString() + '-' + file.originalname)
                 }
             })
-        })
+        });
+        uploadS3.single('file'), (req, res) => {
+            console.log(req.file);
+        };
+
         res.redirect('home');
         // const docs = await Document.create({
         //     projectId: projId,
