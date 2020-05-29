@@ -47,10 +47,10 @@ const RoofCalc = require('./models/roofcalc');
 const Reppay = require('./models/reppay');
 
 const app = express();
-const s3 = new aws.S3({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAcessKey: process.env.AWS_SECRET_ACCESS_KEY
-});
+// const s3 = new aws.S3({
+//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//     secretAcessKey: process.env.AWS_SECRET_ACCESS_KEY
+// });
 
 const options = {
     host: process.env.DB_HOST,
@@ -73,16 +73,16 @@ const csrfProtection = csrf();
 // })
 
 
-const uploadS3 = multer({
-    storage: multerS3({
-        s3: s3,
-        acl: 'public-read',
-        bucket: 'elasticbeanstalk-us-west-2-324049635531',
-        key: (req, file, cb) => {
-            cb(null, Date.now().toString() + '-' + docFile)
-        }
-    })
-});
+// const uploadS3 = multer({
+//     storage: multerS3({
+//         s3: s3,
+//         acl: 'public-read',
+//         bucket: 'elasticbeanstalk-us-west-2-324049635531',
+//         key: (req, file, cb) => {
+//             cb(null, Date.now().toString() + '-' + docFile)
+//         }
+//     })
+// });
 
 moment().format("M/D/YY");
 app.set('view engine', 'ejs');
@@ -103,14 +103,14 @@ app.use(helmet());
 app.use(compression());
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multer({
-    storage: multerS3({
-        s3: s3,
-        acl: 'public-read',
-        bucket: 'elasticbeanstalk-us-west-2-324049635531',
-        key: (req, file, cb) => { cb(null, Date.now().toString() + '-' + docFile) }
-    })
-}).single('docFile'));
+// app.use(multer({
+//     storage: multerS3({
+//         s3: s3,
+//         acl: 'public-read',
+//         bucket: 'elasticbeanstalk-us-west-2-324049635531',
+//         key: (req, file, cb) => { cb(null, Date.now().toString() + '-' + docFile) }
+//     })
+// }).single('docFile'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 

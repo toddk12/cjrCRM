@@ -2,15 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const fileHelper = require('../util/delete');
 const moment = require('moment');
-const aws = require('aws-sdk');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
+// const aws = require('aws-sdk');
+// const multer = require('multer');
+// const multerS3 = require('multer-s3');
 const express = require('express');
 
-const s3 = new aws.S3({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAcessKey: process.env.AWS_SECRET_ACCESS_KEY
-});
+// const s3 = new aws.S3({
+//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//     secretAcessKey: process.env.AWS_SECRET_ACCESS_KEY
+// });
 
 const Sequelize = require('sequelize');
 const { Op } = require('sequelize');
