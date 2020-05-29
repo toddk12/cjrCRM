@@ -50,20 +50,20 @@ exports.postAddDoc = a(req, res) => {
     // const docFile = req.file.originalname;
     // const docPath = req.file.filename;
 
-    var item = req.body;
+    var item = req.file;
     const uploadS3 = multer({
         storage: multers3({
             s3: s3,
             acl: 'public-read',
             bucket: 'elasticbeanstalk-us-west-2-324049635531',
             key: (req, file, cb) => {
-                cb(null, Date.now().toString() + '-' + file.originalname)
+                cb(null, Date.now().toString() + '-' + docFile)
             }
         })
     });
     try {
-        uploadS3.single('file'), (req, res) => {
-            console.log(req.file);
+        uploadS3.single('docFile'), (req, res) {
+            console.log(docFile);
         };
 
         res.redirect('home');
