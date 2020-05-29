@@ -50,21 +50,10 @@ exports.postAddDoc = async(req, res) => {
     const docFile = req.file.originalname;
     const docPath = req.file.filename;
 
-    const item = req.file;
-    const uploadS3 = multer({
-        storage: multers3({
-            s3: s3,
-            acl: 'public-read',
-            bucket: 'elasticbeanstalk-us-west-2-324049635531',
-            key: (req, file, cb) => {
-                cb(null, Date.now().toString() + '-' + docFile)
-            }
-        })
-    });
     try {
-        uploadS3.single('docFile'), (req, res) => {
-            console.log(docFile);
-        };
+        // uploadS3.single('docFile'), (req, res) => {
+        //     console.log(docFile);
+        // };
         res.redirect('home');
         // const docs = await Document.create({
         //     projectId: projId,
