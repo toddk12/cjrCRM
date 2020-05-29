@@ -14,7 +14,7 @@ const upload = multer({
     storage: multerS3({
         s3: s3,
         acl: 'public-read',
-        bucket: 'elasticbeanstalk-us-west-2-324049635531',
+        bucket: 'cjrdocuments',
         metadata: function(req, file, cb) {
             cb(null, { fieldname: file.fieldname });
         },
