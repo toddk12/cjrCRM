@@ -43,18 +43,17 @@ exports.getAddDoc = async(req, res, next) => {
 
 };
 
-exports.postAddDoc = async(req, res) => {
+exports.postAddDoc = singleUpload(req, res, function(err) {
+    return res.json({ 'fileUrl': req.file.location });
+    res.redirect('home');
+});
+
+// async(req, res) => {
     // const projId = req.body.projectId;
     // const docName = req.body.docName;
     // const docFile = req.file.originalname;
     // const docPath = req.file.filename;
     //     console.log(docFile);
-
-        singleUpload(req, res, function(err) {
-            return res.json({ 'fileUrl': req.file.location });
-        });
-    };
-
 
 //     try {
 //         // uploadS3.single('docFile'), (req, res) => {
