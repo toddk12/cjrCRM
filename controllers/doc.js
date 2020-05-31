@@ -44,6 +44,10 @@ exports.getAddDoc = async(req, res, next) => {
 };
 
 exports.postAddDoc = singleUpload(req, res, function(err) {
+        const projId = req.body.projectId;
+    const docName = req.body.docName;
+    const docFile = req.file.originalname;
+    const docPath = req.file.filename;
     return res.json({ 'fileUrl': req.file.location });
     res.redirect('home');
 });
