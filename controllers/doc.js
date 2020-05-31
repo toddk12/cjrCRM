@@ -47,7 +47,7 @@ exports.postAddDoc = singleUpload(req, res, function (err) {
   const docFile = req.file.originalname;
   const docPath = req.file.filename;
   return res.json({ fileUrl: req.file.location });
-  res.redirect("home");
+//   res.redirect("home");
 });
 
 // async(req, res) => {
