@@ -1,14 +1,14 @@
 const path = require('path');
 const fs = require('fs');
 
-const aws = require('aws-sdk');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
+// const aws = require('aws-sdk');
+// const multer = require('multer');
+// const multerS3 = require('multer-s3');
 const express = require('express');
 
-const upload = require('../services/file-upload');
+// const upload = require('../services/file-upload');
 
-const singleUpload = upload.single('docFile');
+// const singleUpload = upload.single('docFile');
 
 const docController = require('../controllers/doc');
 
@@ -18,12 +18,7 @@ const router = express.Router();
 
 router.get('/add-doc/:projectId', isAuth, docController.getAddDoc);
 
-router.post('/add-doc', isAuth, function(req, res) {
-    console.log(docFile);
-    singleUpload(req, res, function(err) {
-        return res.json({ 'fileUrl': req.file.location });
-    });
-});
+router.post('/add-doc', isAuth, 
 
 router.get('/document/:docId', isAuth, docController.getDownloadDoc);
 

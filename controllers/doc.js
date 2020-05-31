@@ -2,15 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const fileHelper = require('../util/delete');
 const moment = require('moment');
-// const aws = require('aws-sdk');
-// const multer = require('multer');
-// const multerS3 = require('multer-s3');
+const aws = require('aws-sdk');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
 const express = require('express');
 
-// const s3 = new aws.S3({
-//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//     secretAcessKey: process.env.AWS_SECRET_ACCESS_KEY
-// });
+const upload = require('../services/file-upload');
+
+const singleUpload = upload.single('docFile');
 
 const Sequelize = require('sequelize');
 const { Op } = require('sequelize');
@@ -45,42 +44,49 @@ exports.getAddDoc = async(req, res, next) => {
 };
 
 exports.postAddDoc = async(req, res) => {
-    const projId = req.body.projectId;
-    const docName = req.body.docName;
-    const docFile = req.file.originalname;
-    const docPath = req.file.filename;
+    // const projId = req.body.projectId;
+    // const docName = req.body.docName;
+    // const docFile = req.file.originalname;
+    // const docPath = req.file.filename;
+    //     console.log(docFile);
 
-    try {
-        // uploadS3.single('docFile'), (req, res) => {
-        //     console.log(docFile);
-        // };
-        res.redirect('home');
-        // const docs = await Document.create({
-        //     projectId: projId,
-        //     docName: docName,
-        //     docFile: docFile,
-        //     docPath: docPath
-        // })
+        singleUpload(req, res, function(err) {
+            return res.json({ 'fileUrl': req.file.location });
+        });
+    };
 
-        // const rtype = await Rtype.findAll()
-        // const document = await Document.findAll({
-        //     where: { projectId: projId }
-        // })
-        // const project = await Project.findByPk(projId)
-        // res.render('doc/add-doc', {
-        //     pageTitle: "Add Document",
-        //     path: '/add-doc',
-        //     project: project,
-        //     doc: document,
-        //     projId: projId,
-        //     types: rtype
-        // });
-    } catch (err) {
-        const error = new Error(err);
-        error.httpStatusCode = 500;
-        return next(error);
-    }
-};
+
+//     try {
+//         // uploadS3.single('docFile'), (req, res) => {
+//         //     console.log(docFile);
+//         // };
+//         res.redirect('home');
+//         // const docs = await Document.create({
+//         //     projectId: projId,
+//         //     docName: docName,
+//         //     docFile: docFile,
+//         //     docPath: docPath
+//         // })
+
+//         // const rtype = await Rtype.findAll()
+//         // const document = await Document.findAll({
+//         //     where: { projectId: projId }
+//         // })
+//         // const project = await Project.findByPk(projId)
+//         // res.render('doc/add-doc', {
+//         //     pageTitle: "Add Document",
+//         //     path: '/add-doc',
+//         //     project: project,
+//         //     doc: document,
+//         //     projId: projId,
+//         //     types: rtype
+//         // });
+//     } catch (err) {
+//         const error = new Error(err);
+//         error.httpStatusCode = 500;
+//         return next(error);
+//     }
+// };
 
 // exports.postAddDoc = async(req, res, next) => {
 //     const projId = req.body.projectId;
