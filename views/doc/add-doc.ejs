@@ -5,109 +5,109 @@
     <body>
         <% const money = new Intl.NumberFormat('en-US', {style: 'currency',currency: 'USD',minimumFractionDigits: 2}); %>
             <% const percent = new Intl.NumberFormat('en-US', {style: 'percent',minimumFractionDigits: 1}); %>
-                <%- include('../includes/navigation.ejs') %>
-                    <main><br><br><br>
-                        <div class="container">
-                            <div class="centered">
-                                <h1><strong>Documents</strong></h1>
-                                <h4>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            Project#:
-                                            <%= project.projectNo %>
-                                        </div>
-                                        <div class="col-sm">
-                                            <%= project.owner1Fn %>
-                                                <%= project.owner1Ln %>
-                                        </div>
-                                        <div class="col-sm">
-                                            <%= project.address %>,
-                                                <%= project.city %>
-                                        </div>
-                                    </div>
-                                </h4>
-                            </div>
-                        </div>
+                <!-- <%- include('../includes/navigation.ejs') %> -->
+                <main><br><br><br>
+                    <div class="container">
                         <div class="centered">
-                            <article class="document">
-                                <form class="form" action="/add-doc" method="POST" enctype="multipart/form-data">
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-sm">
-                                            <label for="projectId"><strong>Project Id: </strong></label>
-                                            <input type="text" name="projectId" id="projectId" value="<%= projId %>">
-                                        </div>
-                                        <!-- __________________________________________________________________________________ -->
-                                        <div class="col-sm">
-                                            <label for="docName"><strong>Document Type: </strong></label>
-                                            <select style="width: 250px" class="select" name="docName" id="docName">
+                            <h1><strong>Documents</strong></h1>
+                            <h4>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        Project#:
+                                        <%= project.projectNo %>
+                                    </div>
+                                    <div class="col-sm">
+                                        <%= project.owner1Fn %>
+                                            <%= project.owner1Ln %>
+                                    </div>
+                                    <div class="col-sm">
+                                        <%= project.address %>,
+                                            <%= project.city %>
+                                    </div>
+                                </div>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="centered">
+                        <article class="document">
+                            <form class="form" action="/add-doc" method="POST" enctype="multipart/form-data">
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label for="projectId"><strong>Project Id: </strong></label>
+                                        <input type="text" name="projectId" id="projectId" value="<%= projId %>">
+                                    </div>
+                                    <!-- __________________________________________________________________________________ -->
+                                    <div class="col-sm">
+                                        <label for="docName"><strong>Document Type: </strong></label>
+                                        <select style="width: 250px" class="select" name="docName" id="docName">
                                                 <% for (let type of types) { %>
                                                 <option value="<%= type.title %>">
                                                     <%= type.title %></option>
                                                 <% } %>
                                             </select>
-                                        </div>
-                                        <!-- __________________________________________________________________________________ -->
-                                        <div class="col-sm">
-                                            <label for="docFile"><strong>Document dFile: </strong></label>
-                                            <input type="File" name="docFile" id="docFile">
-                                        </div>
                                     </div>
+                                    <!-- __________________________________________________________________________________ -->
+                                    <div class="col-sm">
+                                        <label for="docFile"><strong>Document dFile: </strong></label>
+                                        <input type="File" name="docFile" id="docFile">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="rowc">
+                                    <h6>*Note: When adding a document not listed, use the Document Type "Other". Make certain that you rename the file you are uploading with a descriptive name prior to upload.</h6>
+                                    <h6>* And another thing: There should be only one document of each type (other than other) so if you need to replace one, delete it first and then upload the other.</h6>
+                                </div>
+                                <div class="rowc">
                                     <br>
-                                    <div class="rowc">
-                                        <h6>*Note: When adding a document not listed, use the Document Type "Other". Make certain that you rename the file you are uploading with a descriptive name prior to upload.</h6>
-                                        <h6>* And another thing: There should be only one document of each type (other than other) so if you need to replace one, delete it first and then upload the other.</h6>
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Document</button>
+                                    <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
+                                </div>
+                            </form><br>
+                        </article>
+                    </div>
+                    <br>
+                    <div class="centered">
+                        <article class="notes">
+                            <div class="lefted">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <strong>Project Id</strong>
                                     </div>
-                                    <div class="rowc">
-                                        <br>
-                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                        <button class="btn-sm text-center" style="width: 125px" type="submit"> Add Document</button>
-                                        <a class="btn-sm text-center" style="width: 150px" href="/project/<%= project.id %>">Back to Project Details</a>
+                                    <div class="col-sm">
+                                        <strong>Document Name</strong>
                                     </div>
-                                </form><br>
-                            </article>
-                        </div>
-                        <br>
-                        <div class="centered">
-                            <article class="notes">
-                                <div class="lefted">
+                                    <div class="col-sm">
+                                        <strong>Document File</strong>
+                                    </div>
+                                    <div class="col-sm">
+                                        <strong>Actual File Name</strong>
+                                    </div>
+                                </div>
+
+                                <% for (let docs of doc) { %>
                                     <div class="row">
                                         <div class="col-sm">
-                                            <strong>Project Id</strong>
+                                            <%= docs.projectId %>
                                         </div>
                                         <div class="col-sm">
-                                            <strong>Document Name</strong>
+                                            <%= docs.docName %> - <a href="/document/<%= docs.id %>">Download</a> - <a href="/deadDoc/<%= docs.id %>">Delete</a>
                                         </div>
                                         <div class="col-sm">
-                                            <strong>Document File</strong>
+                                            <%= docs.docFile %>
                                         </div>
                                         <div class="col-sm">
-                                            <strong>Actual File Name</strong>
+                                            <%= docs.docPath %>
                                         </div>
+                                        <br>
                                     </div>
+                                    <% } %>
+                            </div>
+                        </article>
+                    </div>
 
-                                    <% for (let docs of doc) { %>
-                                        <div class="row">
-                                            <div class="col-sm">
-                                                <%= docs.projectId %>
-                                            </div>
-                                            <div class="col-sm">
-                                                <%= docs.docName %> - <a href="/document/<%= docs.id %>">Download</a> - <a href="/deadDoc/<%= docs.id %>">Delete</a>
-                                            </div>
-                                            <div class="col-sm">
-                                                <%= docs.docFile %>
-                                            </div>
-                                            <div class="col-sm">
-                                                <%= docs.docPath %>
-                                            </div>
-                                            <br>
-                                        </div>
-                                        <% } %>
-                                </div>
-                            </article>
-                        </div>
+                </main>
 
-                    </main>
-
-                    <%- include('../includes/footer.ejs') %>
-                        <script src="/js/status.js"></script>
+                <%- include('../includes/footer.ejs') %>
+                    <script src="/js/status.js"></script>

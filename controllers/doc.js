@@ -53,27 +53,26 @@ exports.postAddDoc = async(req, res) => {
         const upload = await singleUpload(req, res, function(err) {
             const newUrl = res.json({ 'fileUrl': req.file.location });
         });
-        res.redirect('home');
-        // const docs = await Document.create({
-        //     projectId: projId,
-        //     docName: docName,
-        //     docFile: docFile,
-        //     docPath: docPath
-        // })
+        const docs = await Document.create({
+            projectId: projId,
+            docName: docName,
+            docFile: docFile,
+            docPath: newUrl
+        })
 
-        // const rtype = await Rtype.findAll()
-        // const document = await Document.findAll({
-        //     where: { projectId: projId }
-        // })
-        // const project = await Project.findByPk(projId)
-        // res.render('doc/add-doc', {
-        //     pageTitle: "Add Document",
-        //     path: '/add-doc',
-        //     project: project,
-        //     doc: document,
-        //     projId: projId,
-        //     types: rtype
-        // });
+        const rtype = await Rtype.findAll()
+        const document = await Document.findAll({
+            where: { projectId: projId }
+        })
+        const project = await Project.findByPk(projId)
+        res.render('doc/add-doc', {
+            pageTitle: "Add Document",
+            path: '/add-doc',
+            project: project,
+            doc: document,
+            projId: projId,
+            types: rtype
+        });
     } catch (err) {
         const error = new Error(err);
         error.httpStatusCode = 500;
