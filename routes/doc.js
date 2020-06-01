@@ -18,12 +18,7 @@ const router = express.Router();
 
 router.get('/add-doc/:projectId', isAuth, docController.getAddDoc);
 
-router.post('/add-doc', isAuth, function(req, res) {
-    console.log(docFile);
-    singleUpload(req, res, function(err) {
-        return res.json({ 'fileUrl': req.file.location });
-    });
-});
+router.post('/add-doc', isAuth, docController.postAddDoc);
 
 router.get('/document/:docId', isAuth, docController.getDownloadDoc);
 

@@ -7,10 +7,9 @@ const multer = require('multer');
 const multerS3 = require('multer-s3');
 const express = require('express');
 
-// const s3 = new aws.S3({
-//     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//     secretAcessKey: process.env.AWS_SECRET_ACCESS_KEY
-// });
+const upload = require('../services/file-upload');
+
+const singleUpload = upload.single('docFile');
 
 const Sequelize = require('sequelize');
 const { Op } = require('sequelize');
@@ -51,9 +50,9 @@ exports.postAddDoc = async(req, res) => {
     const docPath = req.file.filename;
 
     try {
-        // uploadS3.single('docFile'), (req, res) => {
-        //     console.log(docFile);
-        // };
+        const upload = await singleUpload(req, res, function(err) {
+            const newUrl = res.json({ 'fileUrl': req.file.location });
+        });
         res.redirect('home');
         // const docs = await Document.create({
         //     projectId: projId,
